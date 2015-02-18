@@ -2,7 +2,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "BlueRocketFuelCore"
-  s.version      = "0.0.1"
+  s.version      = "0.1"
   s.summary      = "This framework helps to jump start iOS development."
 
   s.description  = <<-DESC
@@ -19,8 +19,7 @@ Pod::Spec.new do |s|
   s.author             = { "Shawn McKee" => "shawn@bluerocket.us" }
   s.social_media_url   = "http://twitter.com/bluerocketinc"
   s.platform     = :ios, "8.1"
-  #s.source       = { :git => "https://github.com/danflynn76/BlueRocketFuelCore.git", :tag => "0.0.1" }
-  s.source       = { :git => "https://github.com/Blue-Rocket/BlueRocketFuelCore.git", :tag => "0.0.1" }
+  s.source       = { :git => "https://github.com/Blue-Rocket/BlueRocketFuelCore.git", :tag => "0.1" }
   s.source_files  = "BlueRocketFuelCore/**/*.{h,m}"
   #s.exclude_files = "Classes/Exclude"
   #s.public_header_files = "Classes/**/*.h"
