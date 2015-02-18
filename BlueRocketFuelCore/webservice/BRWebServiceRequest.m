@@ -57,7 +57,13 @@ static UIActivityIndicatorView *fullScreenSpinner;
 @implementation BRWebServiceRequest
 
 + (id)requestForAPI:(NSString *)api {
+    return [self requestForAPI:api recordId:nil];
+}
+
++ (id)requestForAPI:(NSString *)api recordId:(NSString *)recordId {
     
+    BRInfoLog(@"REQUEST INITIALIZED: %@",api);
+
     if (!networkActivityIndicatorRequests) {
         networkActivityIndicatorRequests = [[NSMutableDictionary alloc] init];
         preventUserInteractionRequests = [[NSMutableDictionary alloc] init];
@@ -85,7 +91,8 @@ static UIActivityIndicatorView *fullScreenSpinner;
         NSString *apiPath = [request pathForAPI:api];
         
         NSMutableString *mutableAPIPath = [NSMutableString stringWithString:apiPath];
-        [mutableAPIPath replaceOccurrencesOfString:@"{userId}" withString:[NSString stringWithFormat:@"%@",CurrentAppUser.recordId] options:NSLiteralSearch range:NSMakeRange(0,apiPath.length)];
+        [mutableAPIPath replaceOccurrencesOfString:@"{userId}" withString:[NSString stringWithFormat:@"%@",CurrentAppUser.recordId] options:NSLiteralSearch range:NSMakeRange(0,mutableAPIPath.length)];
+        if (recordId) [mutableAPIPath replaceOccurrencesOfString:@"{recordId}" withString:[NSString stringWithFormat:@"%@",recordId] options:NSLiteralSearch range:NSMakeRange(0,mutableAPIPath.length)];
         apiPath = mutableAPIPath;
 
         NSString *apiMethod = [BRApp.config objectForPath:[NSString stringWithFormat:@"webservice.api.%@.method",api]];
@@ -119,6 +126,7 @@ static UIActivityIndicatorView *fullScreenSpinner;
         NSString *appToken = [[NSBundle mainBundle] objectForInfoDictionaryKey: @"App_webservice_token"];
         [request.request setValue:appToken forHTTPHeaderField:@"AUTHORIZATION"];
         [request initializeHeaders];
+        BRInfoLog(@"REQUEST HEADERS: %@: %@",apiMethod,request.request.allHTTPHeaderFields);
         [request initializeRequestFeatures];
         request.appLevelNotificationOptions = (BRAppNetworkNotification404NotFound | BRAppNetworkNotificationActivity | BRAppNetworkNotificationHostNotFound | BRAppNetworkNotificationUnsupportedURL | BRAppNetworkNotificationUnkownError);
         [request.request setHTTPMethod:apiMethod];
@@ -141,12 +149,14 @@ static UIActivityIndicatorView *fullScreenSpinner;
 }
 
 + (id)requestForAPI:(NSString *)api parameters:(NSDictionary *)parameters {
-    BRInfoLog(@"%@",parameters);
     return [self requestForAPI:api JSONData:parameters];
 }
 
-+ (id)requestForAPI:(NSString *)api JSONData:(NSDictionary *)dictionary {
-    BRWebServiceRequest *request = [self requestForAPI:api];
++ (id)requestForAPI:(NSString *)api JSONData:(NSDictionary *)data {
+    NSMutableDictionary *dictionary = [NSMutableDictionary dictionaryWithDictionary:data];
+    [dictionary removeObjectForKey:@"recordId"];
+    if (dictionary.count) BRInfoLog(@"REQUEST PARAMETERS: %@\n%@",api,dictionary);
+    BRWebServiceRequest *request = [self requestForAPI:api recordId:[data objectForKey:@"recordId"]];
     [request.request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     [request.request setValue:[request acceptHeaderValue] forHTTPHeaderField:@"Accept"];
     
