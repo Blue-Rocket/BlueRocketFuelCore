@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>11A7139F-E5A5-492F-9DBE-57D081E97D5F</string>
+	<key>IDESourceControlProjectName</key>
+	<string>BlueRocketFuel</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>F9A2AA193E6EBEDD3220D72AE6C766EC1E4D2BC2</key>
+		<string>https://github.com/danflynn76/BlueRocketFuel.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>BlueRocketFuel.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>F9A2AA193E6EBEDD3220D72AE6C766EC1E4D2BC2</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/danflynn76/BlueRocketFuel.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>F9A2AA193E6EBEDD3220D72AE6C766EC1E4D2BC2</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>F9A2AA193E6EBEDD3220D72AE6C766EC1E4D2BC2</string>
+			<key>IDESourceControlWCCName</key>
+			<string>BlueRocketFuelFork</string>
+		</dict>
+	</array>
+</dict>
+</plist>
