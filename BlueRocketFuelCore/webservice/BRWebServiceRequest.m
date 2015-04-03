@@ -127,8 +127,8 @@ static UIActivityIndicatorView *fullScreenSpinner;
         [request.request setValue:appToken forHTTPHeaderField:@"AUTHORIZATION"];
         [request initializeHeaders];
         BRInfoLog(@"REQUEST HEADERS: %@: %@",apiMethod,request.request.allHTTPHeaderFields);
-        [request initializeRequestFeatures];
         request.appLevelNotificationOptions = (BRAppNetworkNotification404NotFound | BRAppNetworkNotificationActivity | BRAppNetworkNotificationHostNotFound | BRAppNetworkNotificationUnsupportedURL | BRAppNetworkNotificationUnkownError);
+        [request initializeRequestFeatures];
         [request.request setHTTPMethod:apiMethod];
         
         request.key = [request.request description];
@@ -157,12 +157,12 @@ static UIActivityIndicatorView *fullScreenSpinner;
     [dictionary removeObjectForKey:@"recordId"];
     if (dictionary.count) BRInfoLog(@"REQUEST PARAMETERS: %@\n%@",api,dictionary);
     BRWebServiceRequest *request = [self requestForAPI:api recordId:[data objectForKey:@"recordId"]];
-    [request.request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    if (dictionary.count) [request.request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     [request.request setValue:[request acceptHeaderValue] forHTTPHeaderField:@"Accept"];
     
     NSError *error;
     
-    if (dictionary) {
+    if (dictionary.count) {
         NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dictionary
                                                            options:(NSJSONReadingMutableContainers|NSJSONReadingMutableLeaves)
                                                              error:&error];
@@ -375,6 +375,7 @@ static UIActivityIndicatorView *fullScreenSpinner;
     self.failureCallback = failure;
     self.response = [[BRWebServiceResponse alloc] init];
     [self.request setHTTPBody:self.data];
+    BRInfoLog(@"REQUEST HEADERS: %@",self.request.allHTTPHeaderFields);
     BRInfoLog(@"REQUEST STARTED: %@",self.request.URL);
     self.connection = [NSURLConnection connectionWithRequest:self.request delegate:self];
     [self.connection start];
@@ -433,6 +434,10 @@ static UIActivityIndicatorView *fullScreenSpinner;
     self.appLevelNotificationOptions = (self.appLevelNotificationOptions | appLevelNotificationOptions);
 }
 
+- (void)removeAppLevelNoficationOptions:(BRAppNetworkNotificationOptions)appLevelNotificationOptions {
+    self.appLevelNotificationOptions = (self.appLevelNotificationOptions & ~appLevelNotificationOptions);
+}
+
 - (NSURL *)url {
     return self.request.URL;
 }
@@ -476,7 +481,10 @@ static UIActivityIndicatorView *fullScreenSpinner;
         case 404:
             BRErrorLog(@"%@",self.response.JSONDictionary);
             error = [NSError errorWithDomain:NSURLErrorDomain code:self.responseCode userInfo:nil];
-            if (self.appLevelNotificationOptions & BRAppNetworkNotification404NotFound) [BRApp applicationDidEncounter404NotFoundError:error forRequest:self];
+            if (self.appLevelNotificationOptions & BRAppNetworkNotification404NotFound) {
+                [BRApp applicationDidEncounter404NotFoundError:error forRequest:self];
+            }
+            else [self connection:connection didFailWithError:error];
             break;
             
         case 422:
@@ -511,6 +519,9 @@ static UIActivityIndicatorView *fullScreenSpinner;
     [self endRequestFeatures];
 
     BRErrorLog(@"REQUEST FAILED: %d: %@ - %@",error.code,self.request.URL,error);
+    
+    NSString *s = [[NSString alloc] initWithData:self.response.data encoding:NSUTF8StringEncoding];
+    BRErrorLog(@"FAILED RESPONSE: %@",s);
 
     self.failureCallback(error,error.code);
     [[UIApplication sharedApplication] endIgnoringInteractionEvents];

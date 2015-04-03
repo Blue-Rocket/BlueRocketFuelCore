@@ -51,6 +51,7 @@ typedef NS_OPTIONS(NSUInteger, BRAppNetworkNotificationOptions) {
 + (id)requestForAPI:(NSString *)api parameters:(NSDictionary *)parameters;
 
 - (void)addAppLevelNotificationOptions:(BRAppNetworkNotificationOptions)appLevelNotificationOptions;
+- (void)removeAppLevelNoficationOptions:(BRAppNetworkNotificationOptions)appLevelNotificationOptions;
 
 - (void)beginWithCompletion:(void (^)(BRWebServiceResponse *response))completion failure:(void (^)(NSError *error, NSInteger code))failure;
 - (void)retry;
