@@ -52,15 +52,16 @@ static UIActivityIndicatorView *fullScreenSpinner;
 @property (nonatomic, strong) void (^completionCallback)(BRWebServiceResponse *);
 @property (nonatomic, strong) void (^failureCallback)(NSError *, NSInteger code);
 @property (nonatomic, strong) NSString *key;
+@property (nonatomic, strong) NSString *method;
 @end
 
 @implementation BRWebServiceRequest
 
 + (id)requestForAPI:(NSString *)api {
-    return [self requestForAPI:api recordId:nil];
+    return [self requestForAPI:api recordId:nil params:nil];
 }
 
-+ (id)requestForAPI:(NSString *)api recordId:(NSString *)recordId {
++ (id)requestForAPI:(NSString *)api recordId:(NSString *)recordId params:(NSDictionary *)params {
     
     BRInfoLog(@"REQUEST INITIALIZED: %@",api);
 
@@ -95,10 +96,20 @@ static UIActivityIndicatorView *fullScreenSpinner;
         if (recordId) [mutableAPIPath replaceOccurrencesOfString:@"{recordId}" withString:[NSString stringWithFormat:@"%@",recordId] options:NSLiteralSearch range:NSMakeRange(0,mutableAPIPath.length)];
         apiPath = mutableAPIPath;
 
-        NSString *apiMethod = [BRApp.config objectForPath:[NSString stringWithFormat:@"webservice.api.%@.method",api]];
-        if (!apiMethod) apiMethod = @"GET";
+        request.method = [BRApp.config objectForPath:[NSString stringWithFormat:@"webservice.api.%@.method",api]];
+        if (!request.method) request.method = @"GET";
         
         NSString *port = [BRApp.config objectForPath:@"webservice.port"];
+        
+        NSMutableString *queryString = [NSMutableString stringWithString:@""];
+        if ([request.method isEqualToString:@"GET"] && params.count) {
+            for(NSString* key in params) {
+                if (queryString.length) [queryString appendString:@"&"];
+                else [queryString appendString:@"?"];
+                [queryString appendFormat:@"%@=%@",key,[[params objectForKey:key] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+            }
+            if (queryString.length) apiPath = [NSString stringWithFormat:@"%@%@",apiPath,queryString];
+        }
 
         NSString *protocol = [[NSBundle mainBundle] objectForInfoDictionaryKey: @"App_webservice_protocol"];
         NSString *host = [[NSBundle mainBundle] objectForInfoDictionaryKey: @"App_webservice_host"];
@@ -126,10 +137,9 @@ static UIActivityIndicatorView *fullScreenSpinner;
         NSString *appToken = [[NSBundle mainBundle] objectForInfoDictionaryKey: @"App_webservice_token"];
         [request.request setValue:appToken forHTTPHeaderField:@"AUTHORIZATION"];
         [request initializeHeaders];
-        BRInfoLog(@"REQUEST HEADERS: %@: %@",apiMethod,request.request.allHTTPHeaderFields);
         request.appLevelNotificationOptions = (BRAppNetworkNotification404NotFound | BRAppNetworkNotificationActivity | BRAppNetworkNotificationHostNotFound | BRAppNetworkNotificationUnsupportedURL | BRAppNetworkNotificationUnkownError);
         [request initializeRequestFeatures];
-        [request.request setHTTPMethod:apiMethod];
+        [request.request setHTTPMethod:request.method];
         
         request.key = [request.request description];
         
@@ -155,9 +165,11 @@ static UIActivityIndicatorView *fullScreenSpinner;
 + (id)requestForAPI:(NSString *)api JSONData:(NSDictionary *)data {
     NSMutableDictionary *dictionary = [NSMutableDictionary dictionaryWithDictionary:data];
     [dictionary removeObjectForKey:@"recordId"];
-    if (dictionary.count) BRInfoLog(@"REQUEST PARAMETERS: %@\n%@",api,dictionary);
-    BRWebServiceRequest *request = [self requestForAPI:api recordId:[data objectForKey:@"recordId"]];
-    if (dictionary.count) [request.request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    BRWebServiceRequest *request = [self requestForAPI:api recordId:[data objectForKey:@"recordId"] params:dictionary];
+    if (dictionary.count) {
+        BRInfoLog(@"REQUEST PARAMETERS: %@\n%@",api,dictionary);
+        [request.request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    }
     [request.request setValue:[request acceptHeaderValue] forHTTPHeaderField:@"Accept"];
     
     NSError *error;
@@ -168,7 +180,8 @@ static UIActivityIndicatorView *fullScreenSpinner;
                                                              error:&error];
         NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
         if (jsonData) {
-            request.data = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
+            if (![request.method isEqualToString:@"GET"]) request.data = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
+            else request.data = nil;
         }
         else {
             BRErrorLog(@"%@",error);
