@@ -481,19 +481,19 @@ static UIActivityIndicatorView *fullScreenSpinner;
     switch (self.responseCode) {
         case 400:
             BRErrorLog(@"%@",self.response.JSONDictionary);
-            error = [NSError errorWithDomain:NSURLErrorDomain code:self.responseCode userInfo:nil];
+            error = [NSError errorWithDomain:NSURLErrorDomain code:self.responseCode userInfo:self.response.JSONDictionary];
             [self connection:connection didFailWithError:error];
             break;
             
         case 401:
             BRErrorLog(@"%@",self.response.JSONDictionary);
-            error = [NSError errorWithDomain:NSURLErrorDomain code:self.responseCode userInfo:nil];
+            error = [NSError errorWithDomain:NSURLErrorDomain code:self.responseCode userInfo:self.response.JSONDictionary];
             self.failureCallback(error,error.code);
             break;
 
         case 404:
             BRErrorLog(@"%@",self.response.JSONDictionary);
-            error = [NSError errorWithDomain:NSURLErrorDomain code:self.responseCode userInfo:nil];
+            error = [NSError errorWithDomain:NSURLErrorDomain code:self.responseCode userInfo:self.response.JSONDictionary];
             if (self.appLevelNotificationOptions & BRAppNetworkNotification404NotFound) {
                 [BRApp applicationDidEncounter404NotFoundError:error forRequest:self];
             }
@@ -502,19 +502,19 @@ static UIActivityIndicatorView *fullScreenSpinner;
             
         case 422:
             BRErrorLog(@"%@",self.response.JSONDictionary);
-            error = [NSError errorWithDomain:NSURLErrorDomain code:self.responseCode userInfo:nil];
+            error = [NSError errorWithDomain:NSURLErrorDomain code:self.responseCode userInfo:self.response.JSONDictionary];
             self.failureCallback(error,error.code);
             break;
             
         case 500:
             BRErrorLog(@"%@",self.response.JSONDictionary);
-            error = [NSError errorWithDomain:NSURLErrorDomain code:self.responseCode userInfo:nil];
+            error = [NSError errorWithDomain:NSURLErrorDomain code:self.responseCode userInfo:self.response.JSONDictionary];
             [self connection:connection didFailWithError:error];
             break;
             
         case 503:
             BRErrorLog(@"%@",self.response.JSONDictionary);
-            error = [NSError errorWithDomain:NSURLErrorDomain code:self.responseCode userInfo:nil];
+            error = [NSError errorWithDomain:NSURLErrorDomain code:self.responseCode userInfo:self.response.JSONDictionary];
             [self connection:connection didFailWithError:error];
            break;
             
