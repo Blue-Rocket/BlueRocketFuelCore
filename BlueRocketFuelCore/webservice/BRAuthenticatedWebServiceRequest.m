@@ -33,5 +33,12 @@
     }
 }
 
+- (void)initializeRequestFeatures {
+    [super initializeRequestFeatures];
+    [self addAppLevelNotificationOptions:BRAppNetworkNotificationNoConnection];
+    [self addAppLevelNotificationOptions:BRAppNetworkNotificationTimedOut];
+}
+
+
 
 @end
