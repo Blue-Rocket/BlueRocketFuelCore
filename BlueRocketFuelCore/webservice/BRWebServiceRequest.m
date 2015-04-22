@@ -45,7 +45,9 @@ static NSLock *fullScreenSpinnerRequests_lock;
 static UIView *fullScreenSpinnerView;
 static UIActivityIndicatorView *fullScreenSpinner;
 
-@interface BRWebServiceRequest () <NSURLConnectionDelegate>
+@interface BRWebServiceRequest () <NSURLConnectionDelegate> {
+    BOOL inProgress;
+}
 @property (nonatomic, strong) NSURLConnection *connection;
 @property (nonatomic) NSInteger responseCode;
 @property (nonatomic, strong) BRWebServiceResponse *response;
@@ -289,6 +291,8 @@ static UIActivityIndicatorView *fullScreenSpinner;
 }
 
 - (void)handleShowSpinnerTimerFired:(NSTimer *)timer {
+
+    if (!inProgress) return;
     
     //UIViewController *vc = ((UIWindow *)[[[UIApplication sharedApplication] windows] lastObject]).rootViewController;
     UIView *screenView;// = vc.view;
@@ -391,6 +395,7 @@ static UIActivityIndicatorView *fullScreenSpinner;
     BRInfoLog(@"REQUEST HEADERS: %@",self.request.allHTTPHeaderFields);
     BRInfoLog(@"REQUEST STARTED: %@",self.request.URL);
     self.connection = [NSURLConnection connectionWithRequest:self.request delegate:self];
+    inProgress = YES;
     [self.connection start];
 }
 
@@ -474,6 +479,7 @@ static UIActivityIndicatorView *fullScreenSpinner;
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
+    inProgress = NO;
     [self endRequestFeatures];
     
     NSError *error = nil;
@@ -528,7 +534,7 @@ static UIActivityIndicatorView *fullScreenSpinner;
 }
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
-
+    inProgress = NO;
     [self endRequestFeatures];
 
     BRErrorLog(@"REQUEST FAILED: %d: %@ - %@",error.code,self.request.URL,error);
