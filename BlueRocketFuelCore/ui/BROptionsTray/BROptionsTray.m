@@ -142,6 +142,7 @@ typedef void (^CompletionBlock)();
 }
 
 - (void)animationDidStop:(CAAnimation *)theAnimation finished:(BOOL)flag {
+    [self.imageView removeFromSuperview];
     [self.view removeFromSuperview];
     if (self.hideCompletionBlock) self.hideCompletionBlock();
 }
