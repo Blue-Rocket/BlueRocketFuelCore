@@ -25,8 +25,14 @@
 #import "BRAppUser.h"
 
 NSString *const BRAppUserRecordIdPreference = @"BRAppUserRecordIdPreference";
+NSString *const BRAppUserTypePreference = @"BRAppUserTypePreference";
 NSString *const BRAppUserNamePreference = @"BRAppUserNamePreference";
+NSString *const BRAppUserFirstNamePreference = @"BRAppUserFirstNamePreference";
+NSString *const BRAppUserLastNamePreference = @"BRAppUserLastNamePreference";
 NSString *const BRAppUserEmailPreference = @"BRAppUserEmailPreference";
+NSString *const BRAppUserWebsitePreference = @"BRAppUserWebsitePreference";
+NSString *const BRAppUserPhonePreference = @"BRAppUserPhonePreference";
+NSString *const BRAppUserAddressPreference = @"BRAppUserAddressPreference";
 NSString *const BRAppUserPasswordPreference = @"BRAppUserPasswordPreference";
 NSString *const BRAppUserAuthenticationTokenPreference = @"BRAppUserAuthenticationTokenPreference";
 
@@ -54,15 +60,26 @@ NSString *const BRAppUserAuthenticationTokenPreference = @"BRAppUserAuthenticati
     self.recordId = [NSString stringWithFormat:@"%d",[[dictionary objectForKey:@"id"] intValue]];
     self.email = [dictionary objectForKey:@"email"];
     self.name = [dictionary objectForKey:@"name"];
+    self.firstName = [dictionary objectForKey:@"first_name"];
+    self.lastName = [dictionary objectForKey:@"last_name"];
+    self.phone = [dictionary objectForKey:@"phone"];
+    self.website = [dictionary objectForKey:@"website"];
+    self.address = [dictionary objectForKey:@"address"];
     if ([dictionary objectForKey:@"password"]) self.password = [dictionary objectForKey:@"password"];
     if ([dictionary objectForKey:@"token"]) self.authenticationToken = [dictionary objectForKey:@"token"];
 }
 
 - (void)clear {
     self.recordId = nil;
+    self.type = nil;
     self.email = nil;
     self.name = nil;
+    self.firstName = nil;
+    self.lastName = nil;
     self.password = nil;
+    self.website = nil;
+    self.address = nil;
+    self.phone = nil;
     self.authenticationToken = nil;
 }
 
@@ -76,12 +93,37 @@ NSString *const BRAppUserAuthenticationTokenPreference = @"BRAppUserAuthenticati
     return [self preferencesValueForKey:BRAppUserRecordIdPreference];
 }
 
+- (void)setType:(NSString *)type {
+    [self setPreferencesValue:type forKey:BRAppUserTypePreference];
+}
+
+- (NSString *)type {
+    return [self preferencesValueForKey:BRAppUserTypePreference];
+}
+
+
 - (void)setName:(NSString *)name {
     [self setPreferencesValue:name forKey:BRAppUserNamePreference];
 }
 
 - (NSString *)name {
     return [self preferencesValueForKey:BRAppUserNamePreference];
+}
+
+- (void)setFirstName:(NSString *)firstName {
+    [self setPreferencesValue:firstName forKey:BRAppUserFirstNamePreference];
+}
+
+- (NSString *)firstName {
+    return [self preferencesValueForKey:BRAppUserFirstNamePreference];
+}
+
+- (void)setLastName:(NSString *)lastName {
+    [self setPreferencesValue:lastName forKey:BRAppUserLastNamePreference];
+}
+
+- (NSString *)lastName {
+    return [self preferencesValueForKey:BRAppUserLastNamePreference];
 }
 
 - (void)setEmail:(NSString *)email {
@@ -91,6 +133,31 @@ NSString *const BRAppUserAuthenticationTokenPreference = @"BRAppUserAuthenticati
 - (NSString *)email {
     return [self preferencesValueForKey:BRAppUserEmailPreference];
 }
+
+- (void)setWebsite:(NSString *)website {
+    [self setPreferencesValue:website forKey:BRAppUserWebsitePreference];
+}
+
+- (NSString *)website {
+    return [self preferencesValueForKey:BRAppUserWebsitePreference];
+}
+
+- (void)setPhone:(NSString *)phone {
+    [self setPreferencesValue:phone forKey:BRAppUserPhonePreference];
+}
+
+- (NSString *)phone {
+    return [self preferencesValueForKey:BRAppUserPhonePreference];
+}
+
+- (void)setAddress:(NSString *)address {
+    [self setPreferencesValue:address forKey:BRAppUserAddressPreference];
+}
+
+- (NSString *)address {
+    return [self preferencesValueForKey:BRAppUserAddressPreference];
+}
+
 
 
 - (void)setPassword:(NSString *)password {

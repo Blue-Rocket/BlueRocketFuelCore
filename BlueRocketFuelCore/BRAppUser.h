@@ -34,7 +34,13 @@
 @property (nonatomic, strong) NSString *authenticationToken;
 
 @property (nonatomic, strong) NSString *recordId;
+@property (nonatomic, strong) NSString *type;
 @property (nonatomic, strong) NSString *name;
+@property (nonatomic, strong) NSString *firstName;
+@property (nonatomic, strong) NSString *lastName;
+@property (nonatomic, strong) NSString *website;
+@property (nonatomic, strong) NSString *phone;
+@property (nonatomic, strong) NSString *address;
 @property (nonatomic, strong) NSString *email;
 @property (nonatomic, strong) NSString *password;
 
