@@ -31,5 +31,8 @@
     self.placeholder = [self.placeholder localizedString];
 }
 
+- (void)setPlaceholderColor:(UIColor *)color {
+    [self setValue:color forKeyPath:@"_placeholderLabel.textColor"];
+}
 
 @end

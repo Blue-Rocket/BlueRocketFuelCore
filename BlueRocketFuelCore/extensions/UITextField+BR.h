@@ -26,4 +26,6 @@
 
 @interface UITextField (BR)
 
+- (void)setPlaceholderColor:(UIColor *)color;
+
 @end
