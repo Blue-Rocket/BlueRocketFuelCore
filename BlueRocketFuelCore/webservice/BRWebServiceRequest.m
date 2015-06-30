@@ -270,7 +270,7 @@ static UIActivityIndicatorView *fullScreenSpinner;
     __block NSTimer *timer = [fullScreenSpinnerRequests objectForKey:self.key];
     if (!timer) {
         dispatch_async(dispatch_get_main_queue(), ^{
-            timer = [NSTimer scheduledTimerWithTimeInterval:3 target:self selector:@selector(handleShowSpinnerTimerFired:) userInfo:nil repeats:NO];
+            timer = [NSTimer scheduledTimerWithTimeInterval:4 target:self selector:@selector(handleShowSpinnerTimerFired:) userInfo:nil repeats:NO];
             [fullScreenSpinnerRequests setObject:timer forKey:self.key];
         });
     }
