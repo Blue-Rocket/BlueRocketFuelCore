@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		290AB3061B42EC450088EA30 /* ResetPasswordWebServiceRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 290AB3041B42EC450088EA30 /* ResetPasswordWebServiceRequest.h */; };
+		290AB3071B42EC450088EA30 /* ResetPasswordWebServiceRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 290AB3051B42EC450088EA30 /* ResetPasswordWebServiceRequest.m */; };
 		290DA0FB1A7951C900AF38D7 /* BROptionsTray.h in Headers */ = {isa = PBXBuildFile; fileRef = 290DA0F91A7951C900AF38D7 /* BROptionsTray.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		290DA0FC1A7951C900AF38D7 /* BROptionsTray.m in Sources */ = {isa = PBXBuildFile; fileRef = 290DA0FA1A7951C900AF38D7 /* BROptionsTray.m */; };
 		29116E671A6F454800E546DF /* UIBarButtonItem+BR.h in Headers */ = {isa = PBXBuildFile; fileRef = 29116E4D1A6F454800E546DF /* UIBarButtonItem+BR.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -84,6 +86,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		290AB3041B42EC450088EA30 /* ResetPasswordWebServiceRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResetPasswordWebServiceRequest.h; sourceTree = "<group>"; };
+		290AB3051B42EC450088EA30 /* ResetPasswordWebServiceRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResetPasswordWebServiceRequest.m; sourceTree = "<group>"; };
 		290DA0F91A7951C900AF38D7 /* BROptionsTray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BROptionsTray.h; sourceTree = "<group>"; };
 		290DA0FA1A7951C900AF38D7 /* BROptionsTray.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BROptionsTray.m; sourceTree = "<group>"; };
 		29116E4D1A6F454800E546DF /* UIBarButtonItem+BR.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+BR.h"; sourceTree = "<group>"; };
@@ -172,6 +176,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		290AB3031B42EC450088EA30 /* resetPassword */ = {
+			isa = PBXGroup;
+			children = (
+				290AB3041B42EC450088EA30 /* ResetPasswordWebServiceRequest.h */,
+				290AB3051B42EC450088EA30 /* ResetPasswordWebServiceRequest.m */,
+			);
+			path = resetPassword;
+			sourceTree = "<group>";
+		};
 		290DA0F81A7951B100AF38D7 /* BROptionsTray */ = {
 			isa = PBXGroup;
 			children = (
@@ -258,6 +271,7 @@
 				29116EA71A7094A200E546DF /* login */,
 				29254B2D1A780BD100978983 /* profileView */,
 				29254B2C1A780BD100978983 /* profileEdit */,
+				290AB3031B42EC450088EA30 /* resetPassword */,
 			);
 			path = requests;
 			sourceTree = "<group>";
@@ -379,6 +393,7 @@
 				29116E871A6F48F900E546DF /* NSDictionary+BR.h in Headers */,
 				29116EA11A70185800E546DF /* BRAppUser.h in Headers */,
 				2979679B1A683CE900B7408B /* BRReachability.h in Headers */,
+				290AB3061B42EC450088EA30 /* ResetPasswordWebServiceRequest.h in Headers */,
 				299B0D2F1A6EE75D00A9B28E /* PushNoAnimationSegue.h in Headers */,
 				29116E751A6F454800E546DF /* UISegmentedControl+BR.h in Headers */,
 				29E2E3731A683B7D0048D0AB /* BlueRocketFuelCore.h in Headers */,
@@ -509,6 +524,7 @@
 				29254B271A78055800978983 /* BRAuthenticatedWebServiceRequest.m in Sources */,
 				2979679C1A683CE900B7408B /* BRReachability.m in Sources */,
 				297967961A683CE900B7408B /* BRAppDelegate.m in Sources */,
+				290AB3071B42EC450088EA30 /* ResetPasswordWebServiceRequest.m in Sources */,
 				29116E8C1A6F48F900E546DF /* UIView+BR.m in Sources */,
 				29116EAB1A7094A200E546DF /* BRLoginWebServiceRequest.m in Sources */,
 				297967981A683CE900B7408B /* BRJSON.m in Sources */,
