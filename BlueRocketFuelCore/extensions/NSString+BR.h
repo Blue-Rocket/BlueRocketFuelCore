@@ -26,6 +26,11 @@
 
 @interface NSString (BR)
 
+
++ (NSString *)commaSeparatedStringFromArray:(NSArray *)array;
++ (NSString *)commaSeparatedStringFromArray:(NSArray *)array prefixSymbol:(NSString *)symbol;
+- (NSMutableArray *)arrayFromCommaSeparatedList;
+
 - (NSString *)localizedString;
 
 - (BOOL)isValidEmailFormat;

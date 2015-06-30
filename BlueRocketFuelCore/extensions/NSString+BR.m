@@ -29,6 +29,35 @@
 
 @implementation NSString (BR)
 
+
++ (NSString *)commaSeparatedStringFromArray:(NSArray *)array {
+    return [self commaSeparatedStringFromArray:array prefixSymbol:nil];
+}
+
++ (NSString *)commaSeparatedStringFromArray:(NSArray *)array prefixSymbol:(NSString *)symbol {
+    NSMutableString *list = [[NSMutableString alloc] init];
+    for (int i = 0; i < array.count; i++) {
+        if (symbol) {
+            if (i != 0) [list appendString:@" "];
+            [list appendString:symbol];
+        }
+        [list appendString:[array objectAtIndex:i]];
+        if (i+1 < array.count) [list appendString:@","];
+    }
+    return list;
+}
+
+- (NSMutableArray *)arrayFromCommaSeparatedList {
+    NSMutableArray *list = [[NSMutableArray alloc] init];
+    NSString *s = [self stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    for (NSString *item in [s componentsSeparatedByString:@","]) {
+        NSString *i = [item stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+        if (i.length) [list addObject:i];
+    }
+    return list;
+}
+
+
 - (NSString *)localizedString {
     NSString *finalString = self;
     NSString *string = [self stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
