@@ -1,5 +1,5 @@
 //
-//  NSBundle+BR.h
+//  BRAppConfigEnvironmentProvider.m
 //  BlueRocketFuelCore
 //
 //  Created by Matt on 10/08/15.
@@ -24,20 +24,15 @@
 //  THE SOFTWARE.
 //
 
-#import <Foundation/Foundation.h>
+#import "BRAppConfigEnvironmentProvider.h"
 
-@interface NSBundle (BR)
+#import "NSBundle+BR.h"
 
-/** Decode application strings file from a JSON file named @c strings. */
-@property (nonatomic, readonly) NSDictionary *appStrings;
+@implementation BRAppConfigEnvironmentProvider
 
-/** Decode application config values from a JSON file name @c config. */
-@property (nonatomic, readonly) NSDictionary *appConfig;
-
-/** Get application strings from the main bundle, caching the results. */
-+ (NSDictionary *)appStrings;
-
-/** Get application config from the main bundle, caching the results. */
-+ (NSDictionary *)appConfig;
+- (id)objectForKeyedSubscript:(id)key {
+	// treat key as keyPath!
+	return [[NSBundle appConfig] valueForKeyPath:key];
+}
 
 @end
