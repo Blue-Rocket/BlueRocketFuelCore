@@ -26,19 +26,6 @@
 
 @implementation NSDictionary (BR)
 
-- (id)objectForPath:(NSString *)objectPath {
-    NSArray *path = [objectPath componentsSeparatedByString:@"."];
-	id object = self;
-    
-    for (int i = 0; i < path.count; i++) {
-        NSString *objectName = [path objectAtIndex:i];
-        if ([object isKindOfClass:[NSDictionary class]]) {
-            object = [object objectForKey:objectName];
-        }
-    }
-    return object;
-}
-
 - (NSString *)localizedString:(NSString *)path {
     return [self localizedString:path withDefault:nil];
 }
