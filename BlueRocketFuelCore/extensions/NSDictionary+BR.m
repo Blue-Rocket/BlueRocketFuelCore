@@ -44,7 +44,7 @@
 }
 
 - (NSString *)localizedString:(NSString *)path withDefault:(NSString *)defaultString {
-    NSString *string = [self objectForPath:path];
+    id string = [self valueForKeyPath:path];
     if (string && [string isKindOfClass:[NSString class]]) {
         return string;
     }

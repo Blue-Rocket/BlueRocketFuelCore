@@ -26,6 +26,9 @@
 
 @interface NSDictionary (BR)
 
+/**
+ @deprecated Use valueForKeyPath: instead.
+ */
 - (id)objectForPath:(NSString *)objectPath;
 
 - (NSString *)localizedString:(NSString *)path;
