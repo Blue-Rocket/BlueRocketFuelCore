@@ -23,17 +23,39 @@
 //
 
 #import "UISegmentedControl+BR.h"
+
+#import <objc/runtime.h>
 #import "NSString+BR.h"
+
+static IMP original_willMoveToWindow;//(id, SEL, UIWindow *);
+
+static void brrf_willMoveToWindow(id self, SEL _cmd, UIWindow * window) {
+	((void(*)(id,SEL,UIWindow *))original_willMoveToWindow)(self, _cmd, window);
+	if ( ![self isKindOfClass:[UISegmentedControl class]] ) {
+		// as we're swizzling a method of UIView, we may not actually be the expected object type here
+		return;
+	}
+	for ( NSUInteger i = 0, len = [self numberOfSegments]; i < len; i++ ) {
+		NSString *orig = [self titleForSegmentAtIndex:i];
+		NSString *localized = [orig localizedString];
+		if ( orig && ![orig isEqualToString:localized] ) {
+			[self setTitle:localized forSegmentAtIndex:i];
+		}
+	}
+}
 
 @implementation UISegmentedControl (BR)
 
-- (void)didMoveToSuperview {
-    for (int i = 0; i < self.numberOfSegments; i++) {
-        NSString *title = [self titleForSegmentAtIndex:i];
-        title = [title localizedString];
-        [self setTitle:title forSegmentAtIndex:i];
-    }
++ (void)load {
+	static dispatch_once_t onceToken;
+	dispatch_once(&onceToken, ^{
+		Class class = [self class];
+		
+		SEL originalSelector = @selector(willMoveToWindow:);
+		
+		Method originalMethod = class_getInstanceMethod(class, originalSelector);
+		original_willMoveToWindow = method_setImplementation(originalMethod, (IMP)brrf_willMoveToWindow);
+	});
 }
-
 
 @end

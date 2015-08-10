@@ -23,12 +23,37 @@
 //
 
 #import "UITextField+BR.h"
+
+#import <objc/runtime.h>
 #import "NSString+BR.h"
+
+static IMP original_willMoveToWindow;//(id, SEL, UIWindow *);
+
+static void brrf_willMoveToWindow(id self, SEL _cmd, UIWindow * window) {
+	((void(*)(id,SEL,UIWindow *))original_willMoveToWindow)(self, _cmd, window);
+	if ( ![self isKindOfClass:[UITextField class]] ) {
+		// as we're swizzling a method of UIView, we may not actually be the expected object type here
+		return;
+	}
+	NSString *orig = [self placeholder];
+	NSString *localized = [orig localizedString];
+	if ( orig && ![orig isEqualToString:localized] ) {
+		[self setPlaceholder:localized];
+	}
+}
 
 @implementation UITextField (BR)
 
-- (void)didMoveToSuperview {
-    self.placeholder = [self.placeholder localizedString];
++ (void)load {
+	static dispatch_once_t onceToken;
+	dispatch_once(&onceToken, ^{
+		Class class = [self class];
+		
+		SEL originalSelector = @selector(willMoveToWindow:);
+		
+		Method originalMethod = class_getInstanceMethod(class, originalSelector);
+		original_willMoveToWindow = method_setImplementation(originalMethod, (IMP)brrf_willMoveToWindow);
+	});
 }
 
 - (void)setPlaceholderColor:(UIColor *)color {

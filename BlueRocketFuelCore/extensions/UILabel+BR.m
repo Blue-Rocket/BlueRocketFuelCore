@@ -23,13 +23,38 @@
 //
 
 #import "UILabel+BR.h"
+
+#import <objc/runtime.h>
 #import "NSString+BR.h"
 #import "UIFont+BR.h"
 
+static IMP original_willMoveToWindow;//(id, SEL, UIWindow *);
+
+static void brrf_willMoveToWindow(id self, SEL _cmd, UIWindow * window) {
+	((void(*)(id,SEL,UIWindow *))original_willMoveToWindow)(self, _cmd, window);
+	if ( ![self isKindOfClass:[UILabel class]] ) {
+		// as we're swizzling a method of UIView, we may not actually be the expected object type here
+		return;
+	}
+	NSString *orig = [self text];
+	NSString *localized = [orig localizedString];
+	if ( orig && ![orig isEqualToString:localized] ) {
+		[self setText:localized];
+	}
+}
+
 @implementation UILabel (BR)
 
-- (void)didMoveToSuperview {
-    self.text = [self.text localizedString];
++ (void)load {
+	static dispatch_once_t onceToken;
+	dispatch_once(&onceToken, ^{
+		Class class = [self class];
+		
+		SEL originalSelector = @selector(willMoveToWindow:);
+		
+		Method originalMethod = class_getInstanceMethod(class, originalSelector);
+		original_willMoveToWindow = method_setImplementation(originalMethod, (IMP)brrf_willMoveToWindow);
+	});
 }
 
 - (void)setText:(NSString *)text withHTMLFormatting:(NSURL *)htmlURL {

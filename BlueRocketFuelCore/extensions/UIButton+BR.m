@@ -23,15 +23,42 @@
 //
 
 #import "UIButton+BR.h"
+
+#import <objc/runtime.h>
 #import "NSString+BR.h"
+
+static IMP original_willMoveToWindow;//(id, SEL, UIWindow *);
+
+static void brrf_willMoveToWindow(id self, SEL _cmd, UIWindow * window) {
+	((void(*)(id,SEL,UIWindow *))original_willMoveToWindow)(self, _cmd, window);
+	if ( ![self isKindOfClass:[UIButton class]] ) {
+		// as we're swizzling a method of UIView, we may not actually be the expected object type here
+		return;
+	}
+	NSArray *states = @[@(UIControlStateNormal), @(UIControlStateHighlighted),
+						@(UIControlStateDisabled), @(UIControlStateSelected)];
+	for ( NSNumber *state in states ) {
+		UIControlState cs = [state unsignedIntegerValue];
+		NSString *orig = [self titleForState:cs];
+		NSString *localized = [orig localizedString];
+		if ( orig && ![orig isEqualToString:localized] ) {
+			[self setTitle:localized forState:cs];
+		}
+	}
+}
 
 @implementation UIButton (BR)
 
-- (void)didMoveToSuperview {
-    [self setTitle:[[self titleForState:UIControlStateNormal] localizedString] forState:UIControlStateNormal];
-    [self setTitle:[[self titleForState:UIControlStateHighlighted] localizedString] forState:UIControlStateHighlighted];
-    [self setTitle:[[self titleForState:UIControlStateDisabled] localizedString] forState:UIControlStateDisabled];
-    [self setTitle:[[self titleForState:UIControlStateSelected] localizedString] forState:UIControlStateSelected];
++ (void)load {
+	static dispatch_once_t onceToken;
+	dispatch_once(&onceToken, ^{
+		Class class = [self class];
+		
+		SEL originalSelector = @selector(willMoveToWindow:);
+		
+		Method originalMethod = class_getInstanceMethod(class, originalSelector);
+		original_willMoveToWindow = method_setImplementation(originalMethod, (IMP)brrf_willMoveToWindow);
+	});
 }
 
 @end
