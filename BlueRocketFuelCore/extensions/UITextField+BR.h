@@ -24,7 +24,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface UITextField (BR)
+#import "BRLocalizable.h"
+
+@interface UITextField (BR) <BRLocalizable>
 
 - (void)setPlaceholderColor:(UIColor *)color;
 
