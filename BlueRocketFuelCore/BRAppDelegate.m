@@ -23,9 +23,11 @@
 //
 
 #import "BRAppDelegate.h"
+
 #import "BRFullScreeNotificationViewDelegate.h"
 #import "BRFullScreenNotificationView.h"
 #import "BRLogging.h"
+#import "BRWebServiceRequest.h"
 #import "NSDictionary+BR.h"
 
 @interface BRAppDelegate () <BRFullScreeNotificationViewDelegate> {
