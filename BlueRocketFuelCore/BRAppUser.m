@@ -124,11 +124,11 @@ static id CurrentUser;
 }
 
 - (void)setEmail:(NSString *)email {
-    [self setPreferencesValue:email forKey:BRKeychainServiceKeyUsername];
+    [self setSecurePreferencesValue:email forKey:BRKeychainServiceKeyUsername];
 }
 
 - (NSString *)email {
-    return [self preferencesValueForKey:BRKeychainServiceKeyUsername];
+    return [self securePreferencesValueForKey:BRKeychainServiceKeyUsername];
 }
 
 - (void)setWebsite:(NSString *)website {
