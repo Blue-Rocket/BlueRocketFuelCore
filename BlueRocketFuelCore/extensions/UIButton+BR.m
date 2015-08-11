@@ -23,15 +23,22 @@
 //
 
 #import "UIButton+BR.h"
+
 #import "NSString+BR.h"
 
 @implementation UIButton (BR)
 
-- (void)didMoveToSuperview {
-    [self setTitle:[[self titleForState:UIControlStateNormal] localizedString] forState:UIControlStateNormal];
-    [self setTitle:[[self titleForState:UIControlStateHighlighted] localizedString] forState:UIControlStateHighlighted];
-    [self setTitle:[[self titleForState:UIControlStateDisabled] localizedString] forState:UIControlStateDisabled];
-    [self setTitle:[[self titleForState:UIControlStateSelected] localizedString] forState:UIControlStateSelected];
+- (void)localizeWithAppStrings:(NSDictionary *)strings {
+	NSArray *states = @[@(UIControlStateNormal), @(UIControlStateHighlighted),
+						@(UIControlStateDisabled), @(UIControlStateSelected)];
+	for ( NSNumber *state in states ) {
+		UIControlState cs = [state unsignedIntegerValue];
+		NSString *orig = [self titleForState:cs];
+		NSString *localized = [orig localizedStringWithAppStrings:strings];
+		if ( orig && ![orig isEqualToString:localized] ) {
+			[self setTitle:localized forState:cs];
+		}
+	}
 }
 
 @end

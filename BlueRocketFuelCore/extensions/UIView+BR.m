@@ -24,7 +24,36 @@
 
 #import "UIView+BR.h"
 
+#import <objc/objc-runtime.h>
+#import "BRLocalizable.h"
+#import "NSBundle+BR.h"
+#import "NSString+BR.h"
+
+static IMP original_willMoveToWindow;//(id, SEL, UIWindow *);
+
+static void brrf_willMoveToWindow(id self, SEL _cmd, UIWindow * window) {
+	((void(*)(id,SEL,UIWindow *))original_willMoveToWindow)(self, _cmd, window);
+	if ( ![self conformsToProtocol:@protocol(BRLocalizable)] ) {
+		return;
+	}
+	NSDictionary *strings = [NSBundle appStrings];
+	[self localizeWithAppStrings:strings];
+}
+
+
 @implementation UIView (BR)
+
++ (void)load {
+	static dispatch_once_t onceToken;
+	dispatch_once(&onceToken, ^{
+		Class class = [self class];
+		
+		SEL originalSelector = @selector(willMoveToWindow:);
+		
+		Method originalMethod = class_getInstanceMethod(class, originalSelector);
+		original_willMoveToWindow = method_setImplementation(originalMethod, (IMP)brrf_willMoveToWindow);
+	});
+}
 
 - (UIView *)findFirstResponder {
     

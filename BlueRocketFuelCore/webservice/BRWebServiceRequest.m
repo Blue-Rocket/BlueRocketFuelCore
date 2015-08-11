@@ -98,10 +98,10 @@ static UIActivityIndicatorView *fullScreenSpinner;
         if (recordId) [mutableAPIPath replaceOccurrencesOfString:@"{recordId}" withString:[NSString stringWithFormat:@"%@",recordId] options:NSLiteralSearch range:NSMakeRange(0,mutableAPIPath.length)];
         apiPath = mutableAPIPath;
 
-        request.method = [BRApp.config objectForPath:[NSString stringWithFormat:@"webservice.api.%@.method",api]];
+        request.method = [BRApp.config valueForKeyPath:[NSString stringWithFormat:@"webservice.api.%@.method",api]];
         if (!request.method) request.method = @"GET";
         
-        NSString *port = [BRApp.config objectForPath:@"webservice.port"];
+        NSString *port = [BRApp.config valueForKeyPath:@"webservice.port"];
         
         NSMutableString *queryString = [NSMutableString stringWithString:@""];
         if ([request.method isEqualToString:@"GET"] && params.count) {
@@ -115,8 +115,8 @@ static UIActivityIndicatorView *fullScreenSpinner;
 
         NSString *protocol = [[NSBundle mainBundle] objectForInfoDictionaryKey: @"App_webservice_protocol"];
         NSString *host = [[NSBundle mainBundle] objectForInfoDictionaryKey: @"App_webservice_host"];
-        //        [App.config objectForPath:@"webservice.protocol"],
-        //        [App.config objectForPath:@"webservice.host"],
+        //        [App.config valueForKeyPath:@"webservice.protocol"],
+        //        [App.config valueForKeyPath:@"webservice.host"],
         
         if (!port || [port isEqualToString:@"80"]) {
             apiURL = [NSString stringWithFormat:@"%@://%@%@",
@@ -193,7 +193,7 @@ static UIActivityIndicatorView *fullScreenSpinner;
 }
 
 - (NSString *)pathForAPI:(NSString *)api {
-    NSString *apiPath = [BRApp.config objectForPath:[NSString stringWithFormat:@"webservice.api.%@.path",api]];
+    NSString *apiPath = [BRApp.config valueForKeyPath:[NSString stringWithFormat:@"webservice.api.%@.path",api]];
     if (!apiPath) apiPath = @"";
     else apiPath = [NSString stringWithFormat:@"/%@",apiPath];
     

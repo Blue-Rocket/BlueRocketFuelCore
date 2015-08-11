@@ -24,6 +24,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface UIButton (BR)
+#import "BRLocalizable.h"
+
+@interface UIButton (BR) <BRLocalizable>
 
 @end

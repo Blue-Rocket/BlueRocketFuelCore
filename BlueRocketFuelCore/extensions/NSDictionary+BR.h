@@ -26,8 +26,6 @@
 
 @interface NSDictionary (BR)
 
-- (id)objectForPath:(NSString *)objectPath;
-
 - (NSString *)localizedString:(NSString *)path;
 - (NSString *)localizedString:(NSString *)path withDefault:(NSString *)defaultString;
 

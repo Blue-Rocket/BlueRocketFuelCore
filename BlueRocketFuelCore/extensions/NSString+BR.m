@@ -23,8 +23,8 @@
 //
 
 #import <CommonCrypto/CommonDigest.h>
+#import "NSBundle+BR.h"
 #import "NSString+BR.h"
-#import "BRAppDelegate.h"
 #import "NSDictionary+BR.h"
 
 @implementation NSString (BR)
@@ -57,14 +57,17 @@
     return list;
 }
 
-
 - (NSString *)localizedString {
+	return [self localizedStringWithAppStrings:[NSBundle appStrings]];
+}
+
+- (NSString *)localizedStringWithAppStrings:(NSDictionary *)strings {
     NSString *finalString = self;
     NSString *string = [self stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     if (!string.length || string.length == 1) return self;
     if ([string characterAtIndex:0] == '{' && [string characterAtIndex:string.length-1] == '}') {
         NSString *key = [string substringWithRange:NSMakeRange(1, string.length-2)];
-        string = [BRApp.strings localizedString:key];
+        string = [strings localizedString:key];
         if ([string isEqualToString:key]) finalString = self;
         else if (string && [string isKindOfClass:[NSString class]]) finalString = string;
     }

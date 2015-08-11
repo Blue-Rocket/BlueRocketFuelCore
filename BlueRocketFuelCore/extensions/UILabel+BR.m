@@ -23,13 +23,18 @@
 //
 
 #import "UILabel+BR.h"
+
 #import "NSString+BR.h"
 #import "UIFont+BR.h"
 
 @implementation UILabel (BR)
 
-- (void)didMoveToSuperview {
-    self.text = [self.text localizedString];
+- (void)localizeWithAppStrings:(NSDictionary *)strings {
+	NSString *orig = [self text];
+	NSString *localized = [orig localizedStringWithAppStrings:strings];
+	if ( orig && ![orig isEqualToString:localized] ) {
+		[self setText:localized];
+	}
 }
 
 - (void)setText:(NSString *)text withHTMLFormatting:(NSURL *)htmlURL {

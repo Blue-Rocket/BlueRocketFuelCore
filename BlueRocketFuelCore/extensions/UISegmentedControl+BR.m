@@ -23,17 +23,19 @@
 //
 
 #import "UISegmentedControl+BR.h"
+
 #import "NSString+BR.h"
 
 @implementation UISegmentedControl (BR)
 
-- (void)didMoveToSuperview {
-    for (int i = 0; i < self.numberOfSegments; i++) {
-        NSString *title = [self titleForSegmentAtIndex:i];
-        title = [title localizedString];
-        [self setTitle:title forSegmentAtIndex:i];
-    }
+- (void)localizeWithAppStrings:(NSDictionary *)strings {
+	for ( NSUInteger i = 0, len = [self numberOfSegments]; i < len; i++ ) {
+		NSString *orig = [self titleForSegmentAtIndex:i];
+		NSString *localized = [orig localizedStringWithAppStrings:strings];
+		if ( orig && ![orig isEqualToString:localized] ) {
+			[self setTitle:localized forSegmentAtIndex:i];
+		}
+	}
 }
-
 
 @end

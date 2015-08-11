@@ -24,7 +24,7 @@
 
 #import <UIKit/UIKit.h>
 
-#import "BRWebServiceRequest.h"
+@class BRWebServiceRequest;
 
 #define BRApp ((BRAppDelegate *)[UIApplication sharedApplication].delegate)
 

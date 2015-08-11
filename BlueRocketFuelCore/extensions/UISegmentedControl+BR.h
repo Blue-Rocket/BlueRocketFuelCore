@@ -24,6 +24,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface UISegmentedControl (BR)
+#import "BRLocalizable.h"
+
+@interface UISegmentedControl (BR) <BRLocalizable>
 
 @end

@@ -73,6 +73,9 @@
 		29E2E3731A683B7D0048D0AB /* BlueRocketFuelCore.h in Headers */ = {isa = PBXBuildFile; fileRef = 29E2E3721A683B7D0048D0AB /* BlueRocketFuelCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		29E2E3791A683B7D0048D0AB /* BlueRocketFuelCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29E2E36D1A683B7D0048D0AB /* BlueRocketFuelCore.framework */; };
 		29E2E3801A683B7D0048D0AB /* BlueRocketFuelCoreTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 29E2E37F1A683B7D0048D0AB /* BlueRocketFuelCoreTests.m */; };
+		C93146AD1B7886F200153E4D /* BRLocalizable.h in Headers */ = {isa = PBXBuildFile; fileRef = C93146AC1B7886F200153E4D /* BRLocalizable.h */; };
+		C93146B21B78875700153E4D /* NSBundle+BR.h in Headers */ = {isa = PBXBuildFile; fileRef = C93146B01B78875700153E4D /* NSBundle+BR.h */; };
+		C93146B31B78875700153E4D /* NSBundle+BR.m in Sources */ = {isa = PBXBuildFile; fileRef = C93146B11B78875700153E4D /* NSBundle+BR.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -155,6 +158,9 @@
 		29E2E3781A683B7D0048D0AB /* BlueRocketFuelCoreTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BlueRocketFuelCoreTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		29E2E37E1A683B7D0048D0AB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		29E2E37F1A683B7D0048D0AB /* BlueRocketFuelCoreTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BlueRocketFuelCoreTests.m; sourceTree = "<group>"; };
+		C93146AC1B7886F200153E4D /* BRLocalizable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRLocalizable.h; sourceTree = "<group>"; };
+		C93146B01B78875700153E4D /* NSBundle+BR.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSBundle+BR.h"; sourceTree = "<group>"; };
+		C93146B11B78875700153E4D /* NSBundle+BR.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSBundle+BR.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -197,6 +203,8 @@
 		29116E4C1A6F454800E546DF /* extensions */ = {
 			isa = PBXGroup;
 			children = (
+				C93146B01B78875700153E4D /* NSBundle+BR.h */,
+				C93146B11B78875700153E4D /* NSBundle+BR.m */,
 				299103EE1A83D00300E8D964 /* NSDate+BR.h */,
 				299103EF1A83D00300E8D964 /* NSDate+BR.m */,
 				299103F01A83D00300E8D964 /* UIFont+BR.h */,
@@ -340,6 +348,7 @@
 				297967841A683CE900B7408B /* BRAppDelegate.m */,
 				297967851A683CE900B7408B /* BRJSON.h */,
 				297967861A683CE900B7408B /* BRJSON.m */,
+				C93146AC1B7886F200153E4D /* BRLocalizable.h */,
 				297967871A683CE900B7408B /* BRLogging.h */,
 				297967881A683CE900B7408B /* BRLogging.m */,
 				297967891A683CE900B7408B /* BRReachability.h */,
@@ -391,12 +400,14 @@
 				29116E6F1A6F454800E546DF /* UIImage+BR.h in Headers */,
 				297967991A683CE900B7408B /* BRLogging.h in Headers */,
 				29116E871A6F48F900E546DF /* NSDictionary+BR.h in Headers */,
+				C93146B21B78875700153E4D /* NSBundle+BR.h in Headers */,
 				29116EA11A70185800E546DF /* BRAppUser.h in Headers */,
 				2979679B1A683CE900B7408B /* BRReachability.h in Headers */,
 				290AB3061B42EC450088EA30 /* ResetPasswordWebServiceRequest.h in Headers */,
 				299B0D2F1A6EE75D00A9B28E /* PushNoAnimationSegue.h in Headers */,
 				29116E751A6F454800E546DF /* UISegmentedControl+BR.h in Headers */,
 				29E2E3731A683B7D0048D0AB /* BlueRocketFuelCore.h in Headers */,
+				C93146AD1B7886F200153E4D /* BRLocalizable.h in Headers */,
 				29116E671A6F454800E546DF /* UIBarButtonItem+BR.h in Headers */,
 				29254B2A1A780A0900978983 /* BRUserWebServiceRequest.h in Headers */,
 				29116E8F1A6F4B7400E546DF /* UINavigationItem+BR.h in Headers */,
@@ -520,6 +531,7 @@
 			files = (
 				29116E6A1A6F454800E546DF /* UIButton+BR.m in Sources */,
 				29116E741A6F454800E546DF /* UILabel+BR.m in Sources */,
+				C93146B31B78875700153E4D /* NSBundle+BR.m in Sources */,
 				299B0D2D1A6EE75D00A9B28E /* BRFullScreenNotificationView.m in Sources */,
 				29254B271A78055800978983 /* BRAuthenticatedWebServiceRequest.m in Sources */,
 				2979679C1A683CE900B7408B /* BRReachability.m in Sources */,

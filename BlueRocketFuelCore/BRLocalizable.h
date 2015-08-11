@@ -1,7 +1,9 @@
 //
-//  Created by Shawn McKee on 11/21/13.
+//  BRLocalizable.h
+//  BlueRocketFuelCore
 //
-//  Copyright (c) 2015 Blue Rocket, Inc. All rights reserved.
+//  Created by Matt on 10/08/15.
+//  Copyright (c) 2015 Blue Rocket. All rights reserved.
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -22,12 +24,18 @@
 //  THE SOFTWARE.
 //
 
-#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
 
-#import "BRLocalizable.h"
+/**
+ Protocol to support localization of objects, such as views.
+ */
+@protocol BRLocalizable <NSObject>
 
-@interface UITextField (BR) <BRLocalizable>
-
-- (void)setPlaceholderColor:(UIColor *)color;
+/**
+ Localize the receiver with a given dictionary of strings.
+ 
+ @param strings The strings data, typically loaded via the application's standard JSON strings file.
+ */
+- (void)localizeWithAppStrings:(NSDictionary *)strings;
 
 @end

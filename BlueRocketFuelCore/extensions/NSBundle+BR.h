@@ -1,7 +1,9 @@
 //
-//  Created by Shawn McKee on 11/21/13.
+//  NSBundle+BR.h
+//  BlueRocketFuelCore
 //
-//  Copyright (c) 2015 Blue Rocket, Inc. All rights reserved.
+//  Created by Matt on 10/08/15.
+//  Copyright (c) 2015 Blue Rocket. All rights reserved.
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -22,12 +24,14 @@
 //  THE SOFTWARE.
 //
 
-#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
 
-#import "BRLocalizable.h"
+@interface NSBundle (BR)
 
-@interface UITextField (BR) <BRLocalizable>
+/** Decode application strings file from a JSON file named @c strings. */
+@property (nonatomic, readonly) NSDictionary *appStrings;
 
-- (void)setPlaceholderColor:(UIColor *)color;
+/** Get application strings from the main bundle, caching the results. */
++ (NSDictionary *)appStrings;
 
 @end
