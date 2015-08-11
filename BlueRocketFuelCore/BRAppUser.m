@@ -24,36 +24,33 @@
 
 #import "BRAppUser.h"
 
-NSString *const BRAppUserRecordIdPreference = @"BRAppUserRecordIdPreference";
-NSString *const BRAppUserTypePreference = @"BRAppUserTypePreference";
-NSString *const BRAppUserNamePreference = @"BRAppUserNamePreference";
-NSString *const BRAppUserFirstNamePreference = @"BRAppUserFirstNamePreference";
-NSString *const BRAppUserLastNamePreference = @"BRAppUserLastNamePreference";
-NSString *const BRAppUserEmailPreference = @"BRAppUserEmailPreference";
-NSString *const BRAppUserWebsitePreference = @"BRAppUserWebsitePreference";
-NSString *const BRAppUserPhonePreference = @"BRAppUserPhonePreference";
-NSString *const BRAppUserAddressPreference = @"BRAppUserAddressPreference";
-NSString *const BRAppUserPasswordPreference = @"BRAppUserPasswordPreference";
-NSString *const BRAppUserAuthenticationTokenPreference = @"BRAppUserAuthenticationTokenPreference";
+#import "BRSimpleKeychainService.h"
+
+static NSString *const BRAppUserRecordIdPreference = @"BRAppUserRecordIdPreference";
+static NSString *const BRAppUserTypePreference = @"BRAppUserTypePreference";
+static NSString *const BRAppUserNamePreference = @"BRAppUserNamePreference";
+static NSString *const BRAppUserFirstNamePreference = @"BRAppUserFirstNamePreference";
+static NSString *const BRAppUserLastNamePreference = @"BRAppUserLastNamePreference";
+static NSString *const BRAppUserWebsitePreference = @"BRAppUserWebsitePreference";
+static NSString *const BRAppUserPhonePreference = @"BRAppUserPhonePreference";
+static NSString *const BRAppUserAddressPreference = @"BRAppUserAddressPreference";
+static NSString *const BRAppUserAuthenticationTokenPreference = @"BRAppUserAuthenticationTokenPreference";
+
+static id CurrentUser;
 
 @implementation BRAppUser
 
-+ (BRAppUser *)currentUser {
++ (instancetype)currentUser {
     static dispatch_once_t pred = 0;
-    __strong static id currentUser = nil;
     dispatch_once(&pred, ^{
-        
-        // if the app provides a custom user class, use that...
-        Class c = NSClassFromString(@"AppUser");
-        if (c) {
-            currentUser = [[c alloc] init];
-        }
-        // otherwise, use the default implementation...
-        else {
-            currentUser = [[self alloc] init];
-        }
+		CurrentUser = [[self alloc] init];
     });
-    return currentUser;
+    return CurrentUser;
+}
+
++ (void)replaceCurrentUser:(BRAppUser *)theUser {
+	NSParameterAssert([theUser isKindOfClass:[self class]]);
+	CurrentUser = theUser;
 }
 
 - (void)initializeWithDictionary:(NSDictionary *)dictionary {
@@ -127,11 +124,11 @@ NSString *const BRAppUserAuthenticationTokenPreference = @"BRAppUserAuthenticati
 }
 
 - (void)setEmail:(NSString *)email {
-    [self setPreferencesValue:email forKey:BRAppUserEmailPreference];
+    [self setPreferencesValue:email forKey:BRKeychainServiceKeyUsername];
 }
 
 - (NSString *)email {
-    return [self preferencesValueForKey:BRAppUserEmailPreference];
+    return [self preferencesValueForKey:BRKeychainServiceKeyUsername];
 }
 
 - (void)setWebsite:(NSString *)website {
@@ -161,11 +158,11 @@ NSString *const BRAppUserAuthenticationTokenPreference = @"BRAppUserAuthenticati
 
 
 - (void)setPassword:(NSString *)password {
-    [self setPreferencesValue:password forKey:BRAppUserPasswordPreference];
+    [self setSecurePreferencesValue:password forKey:BRKeychainServiceKeyPassword];
 }
 
 - (NSString *)password {
-    return [self preferencesValueForKey:BRAppUserPasswordPreference];
+    return [self securePreferencesValueForKey:BRKeychainServiceKeyPassword];
 }
 
 #pragma mark - Authentication
@@ -179,11 +176,11 @@ NSString *const BRAppUserAuthenticationTokenPreference = @"BRAppUserAuthenticati
 }
 
 - (void)setAuthenticationToken:(NSString *)authenticationToken {
-    [self setPreferencesValue:authenticationToken forKey:BRAppUserAuthenticationTokenPreference];
+	[self setSecurePreferencesValue:authenticationToken forKey:BRAppUserAuthenticationTokenPreference];
 }
 
 - (NSString *)authenticationToken {
-    return [self preferencesValueForKey:BRAppUserAuthenticationTokenPreference];
+    return [self securePreferencesValueForKey:BRAppUserAuthenticationTokenPreference];
 }
 
 #pragma mark - Preferences Management
@@ -199,6 +196,15 @@ NSString *const BRAppUserAuthenticationTokenPreference = @"BRAppUserAuthenticati
 - (id)preferencesValueForKey:(NSString *)key {
     return [[NSUserDefaults standardUserDefaults] objectForKey:key];
 }
+
+- (void)setSecurePreferencesValue:(NSString *)value forKey:(NSString *)key {
+	[[BRSimpleKeychainService sharedService] setStringValue:value forKey:key];
+}
+
+- (id)securePreferencesValueForKey:(NSString *)key {
+	return [[BRSimpleKeychainService sharedService] stringValueForKey:key];
+}
+
 
 
 @end
