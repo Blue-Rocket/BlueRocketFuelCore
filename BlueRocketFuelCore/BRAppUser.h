@@ -22,15 +22,14 @@
 //  THE SOFTWARE.
 //
 
-#import <Foundation/Foundation.h>
+#import "BRUser.h"
 
+extern NSString * const BREnvironmentKeyPasswordMinLength;
 
 #define CurrentAppUser [BRAppUser currentUser]
 
-@interface BRAppUser : NSObject
+@interface BRAppUser : NSObject <BRUser, BRUserRegistration>
 
-@property (nonatomic, readonly) BOOL newUser;
-@property (nonatomic, readonly) BOOL authenticated;
 @property (nonatomic, strong) NSString *authenticationToken;
 
 @property (nonatomic, strong) NSString *recordId;
@@ -43,6 +42,7 @@
 @property (nonatomic, strong) NSString *address;
 @property (nonatomic, strong) NSString *email;
 @property (nonatomic, strong) NSString *password;
+@property (nonatomic, strong) NSString *passwordAgain;
 
 /**
  Get the current user. This may return an anonymous user (non-authenticated) or @c nil.

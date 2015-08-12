@@ -42,6 +42,7 @@ FOUNDATION_EXPORT const unsigned char BlueRocketFuelCoreVersionString[];
 #import <BlueRocketFuelCore/BRReachability.h>
 #import <BlueRocketFuelCore/BRRegisterWebServiceRequest.h>
 #import <BlueRocketFuelCore/BRSimpleKeychainService.h>
+#import <BlueRocketFuelCore/BRUser.h>
 #import <BlueRocketFuelCore/BRUserWebServiceRequest.h>
 #import <BlueRocketFuelCore/BRWebServiceRequest.h>
 #import <BlueRocketFuelCore/NSBundle+BR.h>

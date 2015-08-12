@@ -24,7 +24,11 @@
 
 #import "BRAppUser.h"
 
+#import <BREnvironment/BREnvironment.h>
 #import "BRSimpleKeychainService.h"
+#import "NSString+BR.h"
+
+NSString * const BREnvironmentKeyPasswordMinLength = @"validation.password.minLength";
 
 static NSString *const BRAppUserRecordIdPreference = @"BRAppUserRecordIdPreference";
 static NSString *const BRAppUserTypePreference = @"BRAppUserTypePreference";
@@ -167,11 +171,11 @@ static id CurrentUser;
 
 #pragma mark - Authentication
 
-- (BOOL)newUser {
+- (BOOL)isNewUser {
     return ([self preferencesValueForKey:BRAppUserRecordIdPreference] == nil);
 }
 
-- (BOOL)authenticated {
+- (BOOL)isAuthenticated {
     return !([self authenticationToken] == nil);
 }
 
@@ -205,6 +209,37 @@ static id CurrentUser;
 	return [[BRSimpleKeychainService sharedService] stringValueForKey:key];
 }
 
+#pragma mark - Validation
 
+- (NSString *)validateEmail {
+	if ( [self.email length] < 1 ) {
+		return [@"{validation.user.email.missing}" localizedString];
+	}
+	return ([self.email isValidEmailAddress] ? nil : [@"{validation.user.email.format}" localizedString]);
+}
+
+- (NSString *)validateName {
+	return ([self.name length] > 0 ? nil : [@"{validation.user.name.missing" localizedString]);
+}
+
+- (NSString *)validatePhone {
+	if ( [self.phone length] < 1 ) {
+		return [@"{validation.user.phone.missing}" localizedString];
+	}
+	return ([self.phone isValidPhoneNumberForLocale:nil] ? nil : [@"{validation.user.phone.format}" localizedString]);
+}
+
+- (NSString *)validatePassword {
+	NSNumber *minLength = [[BREnvironment sharedEnvironment] numberForKey:BREnvironmentKeyPasswordMinLength];
+	return ([self.password length] >= [minLength unsignedIntegerValue] ? nil
+			: [NSString stringWithFormat:[@"{validation.user.password.minLength}" localizedString], minLength]);
+}
+
+- (NSString *)validatePasswordAgain {
+	if ( [self.passwordAgain length] < 1 ) {
+		return [@"{validation.user.passwordAgain.missing}" localizedString];
+	}
+	return ([self.passwordAgain isEqualToString:self.password] ? nil : [@"{validation.user.passwordAgain.mismatch}" localizedString]);
+}
 
 @end
