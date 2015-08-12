@@ -54,4 +54,23 @@
 - (NSString *)MD5String;
 - (NSString *)capitalizedFirstLetter;
 
+/// -----
+/// @name Validation
+/// -----
+
+/**
+ Test if the receiver is a valid phone number for a given locale.
+ 
+ @param locale The locale to test, or @c nil for the current locale.
+ @return @c YES if the reciever appears to be a valid phone number for the given locale.
+ */
+- (BOOL)isValidPhoneNumberForLocale:(NSLocale *)locale;
+
+/**
+ Test if the receiver has a valid email address syntax.
+ 
+ @return @c YES if the receiver has a valid email syntax.
+ */
+- (BOOL)isValidEmailAddress;
+
 @end

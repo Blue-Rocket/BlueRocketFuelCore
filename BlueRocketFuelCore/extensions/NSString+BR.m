@@ -22,13 +22,76 @@
 //  THE SOFTWARE.
 //
 
-#import <CommonCrypto/CommonDigest.h>
-#import "NSBundle+BR.h"
 #import "NSString+BR.h"
+
+#import <BREnvironment/BREnvironment.h>
+#import <CommonCrypto/CommonDigest.h>
+#import "BRLogging.h"
+#import "NSBundle+BR.h"
 #import "NSDictionary+BR.h"
+
+static NSRegularExpression *kValidEmailRegex = nil;
+static NSMutableDictionary *kPhoneRegexes = nil;
 
 @implementation NSString (BR)
 
+- (BOOL)isValidEmailAddress {
+	static dispatch_once_t onceToken;
+	dispatch_once(&onceToken, ^{
+		// RegEx adapted from http://www.cocoawithlove.com/2009/06/verifying-that-string-is-email-address.html
+		kValidEmailRegex = [[NSRegularExpression alloc] initWithPattern:
+							@"(?:[a-z0-9!#$%\\&'*+/=?\\^_`{|}~-]+(?:\\.[a-z0-9!#$%\\&'*+/=?\\^_`{|}"
+							@"~-]+)*|\"(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21\\x23-\\x5b\\x5d-\\"
+							@"x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])*\")@(?:(?:[a-z0-9](?:[a-"
+							@"z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\\[(?:(?:25[0-5"
+							@"]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-"
+							@"9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21"
+							@"-\\x5a\\x53-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])+)\\])"
+														  options:NSRegularExpressionCaseInsensitive
+																  error:nil];
+	});
+	NSUInteger count = [kValidEmailRegex numberOfMatchesInString:self options:NSMatchingAnchored range:NSMakeRange(0, [self length])];
+	return (count > 0);
+}
+
++ (NSRegularExpression *)phoneRegexForLocale:(NSLocale *)locale {
+	NSString *countryCode = [locale objectForKey:NSLocaleCountryCode];
+	if ( !countryCode ) {
+		countryCode = [[NSLocale currentLocale] objectForKey:NSLocaleCountryCode];
+	}
+	if ( !countryCode ) {
+		return nil;
+	}
+	static dispatch_once_t onceToken;
+	dispatch_once(&onceToken, ^{
+		kPhoneRegexes = [[NSMutableDictionary alloc] initWithCapacity:2];
+	});
+	NSRegularExpression *result = kPhoneRegexes[countryCode];
+	if ( result ) {
+		return result;
+	}
+	
+	// look up validation regex in environment config
+	NSString *key = [NSString stringWithFormat:@"validation.phone.%@.regex", countryCode];
+	NSString *pat = [BREnvironment sharedEnvironment][key];
+	if ( !pat && [countryCode isEqualToString:@"US"] ) {
+		// provide a default pattern for US locale
+		pat = @"(?:\\+?\\D*1)?([2-9]\\d{2})\\D*([2-9]\\d{2})\\D*(\\d{4})";
+	}
+	if ( pat ) {
+		NSError *error = nil;
+		result = [[NSRegularExpression alloc] initWithPattern:pat options:0 error:&error];
+		if ( !result ) {
+			BRErrorLog(@"Error compiling phone validation regex for key %@: %@", key, [error localizedDescription]);
+		}
+	}
+	return result;
+}
+
+- (BOOL)isValidPhoneNumberForLocale:(NSLocale *)locale {
+	NSUInteger count = [[NSString phoneRegexForLocale:locale] numberOfMatchesInString:self options:0 range:NSMakeRange(0, [self length])];
+	return (count > 0);
+}
 
 + (NSString *)commaSeparatedStringFromArray:(NSArray *)array {
     return [self commaSeparatedStringFromArray:array prefixSymbol:nil];
