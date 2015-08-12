@@ -34,8 +34,10 @@ FOUNDATION_EXPORT const unsigned char BlueRocketFuelCoreVersionString[];
 
 
 #import <BlueRocketFuelCore/BRAppDelegate.h>
+#import <BlueRocketFuelCore/BRLocalizable.h>
 #import <BlueRocketFuelCore/BRLogging.h>
 #import <BlueRocketFuelCore/BRWebServiceRequest.h>
+#import <BlueRocketFuelCore/NSBundle+BR.h>
 #import <BlueRocketFuelCore/NSDictionary+BR.h>
 #import <BlueRocketFuelCore/NSString+BR.h>
 #import <BlueRocketFuelCore/PushNoAnimationSegue.h>

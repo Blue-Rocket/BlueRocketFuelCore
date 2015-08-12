@@ -26,4 +26,20 @@
 	return [NSJSONSerialization JSONObjectWithData:data options:(NSJSONReadingMutableContainers|NSJSONReadingMutableLeaves) error:nil];
 }
 
++ (NSDictionary *)appConfig {
+	static NSDictionary *appConfig = nil;
+	static dispatch_once_t onceToken;
+	dispatch_once(&onceToken, ^{
+		appConfig = [NSBundle mainBundle].appConfig;
+	});
+	return appConfig;
+}
+
+- (NSDictionary *)appConfig {
+	NSString *path = [self pathForResource:@"config" ofType:@"json"];
+	NSData *data = [[NSData alloc] initWithContentsOfFile:path];
+	// FIXME: why is this using mutable containers
+	return[NSJSONSerialization JSONObjectWithData:data options:(NSJSONReadingMutableContainers|NSJSONReadingMutableLeaves) error:nil];
+}
+
 @end

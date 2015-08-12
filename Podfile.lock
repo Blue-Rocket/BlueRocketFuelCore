@@ -1,0 +1,10 @@
+PODS:
+  - BREnvironment (1.1.0)
+
+DEPENDENCIES:
+  - BREnvironment (~> 1.1)
+
+SPEC CHECKSUMS:
+  BREnvironment: 10859bde59bcbf7bcf65b23dcb97701ded62717b
+
+COCOAPODS: 0.38.2

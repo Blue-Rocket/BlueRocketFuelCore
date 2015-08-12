@@ -23,14 +23,17 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "BRWebServiceRequest.h"
-#import "NSString+BR.h"
-#import "BRReachability.h"
+
+#import <BREnvironment/BREnvironment.h>
 #import "BRAppDelegate.h"
-#import "NSDictionary+BR.h"
-#import "BRLogging.h"
-#import "UIImage+ImageEffects.h"
 #import "BRAppUser.h"
+#import "BRLogging.h"
+#import "BRReachability.h"
+#import "BRWebServiceRequest.h"
+#import "NSBundle+BR.h"
+#import "NSDictionary+BR.h"
+#import "NSString+BR.h"
+#import "UIImage+ImageEffects.h"
 
 //#import "UIImage+ImageEffects.h"
 
@@ -98,10 +101,10 @@ static UIActivityIndicatorView *fullScreenSpinner;
         if (recordId) [mutableAPIPath replaceOccurrencesOfString:@"{recordId}" withString:[NSString stringWithFormat:@"%@",recordId] options:NSLiteralSearch range:NSMakeRange(0,mutableAPIPath.length)];
         apiPath = mutableAPIPath;
 
-        request.method = [BRApp.config valueForKeyPath:[NSString stringWithFormat:@"webservice.api.%@.method",api]];
+        request.method = [BREnvironment sharedEnvironment][[NSString stringWithFormat:@"webservice.api.%@.method",api]];
         if (!request.method) request.method = @"GET";
         
-        NSString *port = [BRApp.config valueForKeyPath:@"webservice.port"];
+        NSString *port = [BREnvironment sharedEnvironment][@"webservice.port"];
         
         NSMutableString *queryString = [NSMutableString stringWithString:@""];
         if ([request.method isEqualToString:@"GET"] && params.count) {
@@ -113,10 +116,10 @@ static UIActivityIndicatorView *fullScreenSpinner;
             if (queryString.length) apiPath = [NSString stringWithFormat:@"%@%@",apiPath,queryString];
         }
 
-        NSString *protocol = [[NSBundle mainBundle] objectForInfoDictionaryKey: @"App_webservice_protocol"];
-        NSString *host = [[NSBundle mainBundle] objectForInfoDictionaryKey: @"App_webservice_host"];
-        //        [App.config valueForKeyPath:@"webservice.protocol"],
-        //        [App.config valueForKeyPath:@"webservice.host"],
+        NSString *protocol = [BREnvironment sharedEnvironment][@"App_webservice_protocol"];
+        NSString *host = [BREnvironment sharedEnvironment][@"App_webservice_host"];
+        //        [BREnvironment sharedEnvironment][@"webservice.protocol"],
+        //        [BREnvironment sharedEnvironment][@"webservice.host"],
         
         if (!port || [port isEqualToString:@"80"]) {
             apiURL = [NSString stringWithFormat:@"%@://%@%@",
@@ -193,7 +196,7 @@ static UIActivityIndicatorView *fullScreenSpinner;
 }
 
 - (NSString *)pathForAPI:(NSString *)api {
-    NSString *apiPath = [BRApp.config valueForKeyPath:[NSString stringWithFormat:@"webservice.api.%@.path",api]];
+    NSString *apiPath = [BREnvironment sharedEnvironment][[NSString stringWithFormat:@"webservice.api.%@.path",api]];
     if (!apiPath) apiPath = @"";
     else apiPath = [NSString stringWithFormat:@"/%@",apiPath];
     
@@ -314,7 +317,7 @@ static UIActivityIndicatorView *fullScreenSpinner;
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0,0,s.width - 40,s.height)];
     label.textAlignment = NSTextAlignmentCenter;
     label.numberOfLines = 0;
-    label.text = [BRApp.strings localizedString:@"error.network.slow" withDefault:@"This is taking a little longer than expected. Please wait..."];
+    label.text = [[NSBundle appStrings] localizedString:@"error.network.slow" withDefault:@"This is taking a little longer than expected. Please wait..."];
     [label sizeToFit];
     CGRect r = label.frame;
     r.origin.x = rintf(s.width/2 - r.size.width/2);

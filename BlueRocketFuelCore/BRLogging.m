@@ -24,12 +24,18 @@
 
 #import "BRLogging.h"
 
+#import <BREnvironment/BREnvironment.h>
+
 @implementation BRLogging
 
 + (BOOL)shouldLogForObject:(id)object type:(NSString *)type {
     BOOL shouldLog = true;
-    
-    NSDictionary *config = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"LoggingConfig" ofType:@"plist"]];
+	
+	NSDictionary *config = [BREnvironment sharedEnvironment][@"LoggingConfig"];
+	if ( !config ) {
+		// fall back to stand-alone plist
+		config = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"LoggingConfig" ofType:@"plist"]];
+	}
     if (config) {
         
         NSString *value = [config valueForKey:@"logAllClassesByDefault"];

@@ -73,9 +73,12 @@
 		29E2E3731A683B7D0048D0AB /* BlueRocketFuelCore.h in Headers */ = {isa = PBXBuildFile; fileRef = 29E2E3721A683B7D0048D0AB /* BlueRocketFuelCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		29E2E3791A683B7D0048D0AB /* BlueRocketFuelCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29E2E36D1A683B7D0048D0AB /* BlueRocketFuelCore.framework */; };
 		29E2E3801A683B7D0048D0AB /* BlueRocketFuelCoreTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 29E2E37F1A683B7D0048D0AB /* BlueRocketFuelCoreTests.m */; };
+		912CD96D928E33B7C31F0C96 /* libPods-BlueRocketFuelCore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 107959C8D8AC4224453FD59D /* libPods-BlueRocketFuelCore.a */; };
 		C93146AD1B7886F200153E4D /* BRLocalizable.h in Headers */ = {isa = PBXBuildFile; fileRef = C93146AC1B7886F200153E4D /* BRLocalizable.h */; };
 		C93146B21B78875700153E4D /* NSBundle+BR.h in Headers */ = {isa = PBXBuildFile; fileRef = C93146B01B78875700153E4D /* NSBundle+BR.h */; };
 		C93146B31B78875700153E4D /* NSBundle+BR.m in Sources */ = {isa = PBXBuildFile; fileRef = C93146B11B78875700153E4D /* NSBundle+BR.m */; };
+		C93146B61B789CA700153E4D /* BRAppConfigEnvironmentProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = C93146B41B789CA700153E4D /* BRAppConfigEnvironmentProvider.h */; };
+		C93146B71B789CA700153E4D /* BRAppConfigEnvironmentProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = C93146B51B789CA700153E4D /* BRAppConfigEnvironmentProvider.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -89,6 +92,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		102009BDEA71639BF2E84CA4 /* Pods-BlueRocketFuelCore.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BlueRocketFuelCore.release.xcconfig"; path = "Pods/Target Support Files/Pods-BlueRocketFuelCore/Pods-BlueRocketFuelCore.release.xcconfig"; sourceTree = "<group>"; };
+		107959C8D8AC4224453FD59D /* libPods-BlueRocketFuelCore.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BlueRocketFuelCore.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		290AB3041B42EC450088EA30 /* ResetPasswordWebServiceRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResetPasswordWebServiceRequest.h; sourceTree = "<group>"; };
 		290AB3051B42EC450088EA30 /* ResetPasswordWebServiceRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResetPasswordWebServiceRequest.m; sourceTree = "<group>"; };
 		290DA0F91A7951C900AF38D7 /* BROptionsTray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BROptionsTray.h; sourceTree = "<group>"; };
@@ -158,9 +163,12 @@
 		29E2E3781A683B7D0048D0AB /* BlueRocketFuelCoreTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BlueRocketFuelCoreTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		29E2E37E1A683B7D0048D0AB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		29E2E37F1A683B7D0048D0AB /* BlueRocketFuelCoreTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BlueRocketFuelCoreTests.m; sourceTree = "<group>"; };
+		A268984B69E64005A00ED955 /* Pods-BlueRocketFuelCore.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BlueRocketFuelCore.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BlueRocketFuelCore/Pods-BlueRocketFuelCore.debug.xcconfig"; sourceTree = "<group>"; };
 		C93146AC1B7886F200153E4D /* BRLocalizable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRLocalizable.h; sourceTree = "<group>"; };
 		C93146B01B78875700153E4D /* NSBundle+BR.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSBundle+BR.h"; sourceTree = "<group>"; };
 		C93146B11B78875700153E4D /* NSBundle+BR.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSBundle+BR.m"; sourceTree = "<group>"; };
+		C93146B41B789CA700153E4D /* BRAppConfigEnvironmentProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRAppConfigEnvironmentProvider.h; sourceTree = "<group>"; };
+		C93146B51B789CA700153E4D /* BRAppConfigEnvironmentProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRAppConfigEnvironmentProvider.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -168,6 +176,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				912CD96D928E33B7C31F0C96 /* libPods-BlueRocketFuelCore.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -328,6 +337,8 @@
 				29E2E36F1A683B7D0048D0AB /* BlueRocketFuelCore */,
 				29E2E37C1A683B7D0048D0AB /* BlueRocketFuelCoreTests */,
 				29E2E36E1A683B7D0048D0AB /* Products */,
+				BEAF6F62C348BD759695ED90 /* Pods */,
+				6D14640ED142B895E3B4B13E /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -344,6 +355,8 @@
 			isa = PBXGroup;
 			children = (
 				29E2E3721A683B7D0048D0AB /* BlueRocketFuelCore.h */,
+				C93146B41B789CA700153E4D /* BRAppConfigEnvironmentProvider.h */,
+				C93146B51B789CA700153E4D /* BRAppConfigEnvironmentProvider.m */,
 				297967831A683CE900B7408B /* BRAppDelegate.h */,
 				297967841A683CE900B7408B /* BRAppDelegate.m */,
 				297967851A683CE900B7408B /* BRJSON.h */,
@@ -388,6 +401,23 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		6D14640ED142B895E3B4B13E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				107959C8D8AC4224453FD59D /* libPods-BlueRocketFuelCore.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		BEAF6F62C348BD759695ED90 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				A268984B69E64005A00ED955 /* Pods-BlueRocketFuelCore.debug.xcconfig */,
+				102009BDEA71639BF2E84CA4 /* Pods-BlueRocketFuelCore.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -421,6 +451,7 @@
 				29116E731A6F454800E546DF /* UILabel+BR.h in Headers */,
 				299103F41A83D00300E8D964 /* UIFont+BR.h in Headers */,
 				297967971A683CE900B7408B /* BRJSON.h in Headers */,
+				C93146B61B789CA700153E4D /* BRAppConfigEnvironmentProvider.h in Headers */,
 				299B0D0E1A6EC65900A9B28E /* BRPingWebServiceRequest.h in Headers */,
 				29254B261A78055800978983 /* BRAuthenticatedWebServiceRequest.h in Headers */,
 				29254B301A780BFC00978983 /* BRProfileViewWebServiceRequest.h in Headers */,
@@ -440,10 +471,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 29E2E3831A683B7D0048D0AB /* Build configuration list for PBXNativeTarget "BlueRocketFuelCore" */;
 			buildPhases = (
+				54DCFB059DA0FBEEB9A18EF0 /* Check Pods Manifest.lock */,
 				29E2E3681A683B7D0048D0AB /* Sources */,
 				29E2E3691A683B7D0048D0AB /* Frameworks */,
 				29E2E36A1A683B7D0048D0AB /* Headers */,
 				29E2E36B1A683B7D0048D0AB /* Resources */,
+				3A3352CD31F916207739CFA9 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -524,6 +557,39 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		3A3352CD31F916207739CFA9 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BlueRocketFuelCore/Pods-BlueRocketFuelCore-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		54DCFB059DA0FBEEB9A18EF0 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		29E2E3681A683B7D0048D0AB /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -532,6 +598,7 @@
 				29116E6A1A6F454800E546DF /* UIButton+BR.m in Sources */,
 				29116E741A6F454800E546DF /* UILabel+BR.m in Sources */,
 				C93146B31B78875700153E4D /* NSBundle+BR.m in Sources */,
+				C93146B71B789CA700153E4D /* BRAppConfigEnvironmentProvider.m in Sources */,
 				299B0D2D1A6EE75D00A9B28E /* BRFullScreenNotificationView.m in Sources */,
 				29254B271A78055800978983 /* BRAuthenticatedWebServiceRequest.m in Sources */,
 				2979679C1A683CE900B7408B /* BRReachability.m in Sources */,
@@ -669,6 +736,7 @@
 		};
 		29E2E3841A683B7D0048D0AB /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A268984B69E64005A00ED955 /* Pods-BlueRocketFuelCore.debug.xcconfig */;
 			buildSettings = {
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -684,6 +752,7 @@
 		};
 		29E2E3851A683B7D0048D0AB /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 102009BDEA71639BF2E84CA4 /* Pods-BlueRocketFuelCore.release.xcconfig */;
 			buildSettings = {
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
