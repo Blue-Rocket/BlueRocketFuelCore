@@ -44,14 +44,22 @@
 @property (nonatomic, strong) NSString *email;
 @property (nonatomic, strong) NSString *password;
 
-+ (BRAppUser *)currentUser;
+/**
+ Get the current user. This may return an anonymous user (non-authenticated) or @c nil.
+ 
+ @return The current user instance.
+ */
++ (instancetype)currentUser;
+
+/**
+ Set the current user to a new instance.
+ 
+ @param theUser The new user instance, or @c nil to clear the current user.
+ */
++ (void)replaceCurrentUser:(BRAppUser *)theUser;
 
 - (void)initializeWithDictionary:(NSDictionary *)dictionary;
 
 - (void)clear;
-
-- (void)setPreferencesValue:(id)value forKey:(NSString *)key;
-- (id)preferencesValueForKey:(NSString *)key;
-
 
 @end
