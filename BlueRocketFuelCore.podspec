@@ -1,29 +1,60 @@
 Pod::Spec.new do |s|
 
-  s.name         = "BlueRocketFuelCore"
-  s.version      = "0.1"
-  s.summary      = "This framework helps to jump start iOS development."
+  s.name         = 'BlueRocketFuelCore'
+  s.version      = '0.1'
+  s.summary      = 'This framework helps to jump start iOS development.'
 
-  s.description  = <<-DESC
-                   A longer description of BlueRocketFuelCore in Markdown format.
+  s.description        = <<-DESC
+                         A set of common components to jump start iOS app development.
+                         DESC
 
-                   * Think: Why did you write this? What is the focus? What does it do?
-                   * CocoaPods will be using this to generate tags, and improve search results.
-                   * Try to keep it short, snappy and to the point.
-                   * Finally, don't worry about the indent, CocoaPods strips it!
-                   DESC
-
-  s.homepage     = "https://github.com/Blue-Rocket/BlueRocketFuelCore"
-  s.license      = "Apache License, Version 2.0"
-  s.author             = { "Shawn McKee" => "shawn@bluerocket.us" }
-  s.social_media_url   = "http://twitter.com/bluerocketinc"
-  s.platform     = :ios, "8.1"
-  s.source       = { :git => "https://github.com/Blue-Rocket/BlueRocketFuelCore.git", :tag => "0.1" }
-  s.source_files  = "BlueRocketFuelCore/**/*.{h,m}"
-
-
-  s.requires_arc = true
+  s.homepage           = 'https://github.com/Blue-Rocket/BlueRocketFuelCore'
+  s.license            = { :type => 'Apache License, Version 2.0', :file => 'LICENSE' }
+  s.author             = { 'Shawn McKee' => 'shawn@bluerocket.us',
+  							'Matt Magoffin' => 'matt@bluerocket.us' }
+  s.social_media_url   = 'http://twitter.com/bluerocketinc'
+  s.platform           = :ios, '8.1'
+  s.source             = { :git => 'https://github.com/Blue-Rocket/BlueRocketFuelCore.git', 
+                           :tag => s.version.to_s }
   
-  s.dependency "BREnvironment", "~> 1.1"
+  s.requires_arc       = true
+
+  s.default_subspecs = 'All'
+  
+  s.subspec 'All' do |sp|
+    sp.dependency 'BlueRocketFuelCore/Core'
+    sp.dependency 'BlueRocketFuelCore/WebApiClient'
+    sp.dependency 'BlueRocketFuelCore/WebApiClient-AFNetworking'
+    sp.dependency 'BlueRocketFuelCore/WebApiClient-RestKit'
+  end
+  
+  s.subspec 'Core' do |sp|
+  	sp.source_files = 'BlueRocketFuelCore/**/*.{h,m}'
+  	sp.header_dir = 'Core'
+    sp.dependency 'BREnvironment',     '~> 1.1'
+    sp.dependency 'BRCocoaLumberjack', '~> 1.9'
+  end
+  
+  s.subspec 'WebApiClient' do |sp|
+    sp.source_files = 'Code/WebApiClient-Core.h', 'Code/WebApiClient'
+  	sp.header_dir = 'WebApiClient'
+    sp.dependency 'BlueRocketFuelCore/Core'
+	sp.dependency 'MAObjCRuntime', '~> 0.0.1'
+	sp.dependency 'SOCKit',        '~> 1.1'
+  end
+
+  s.subspec 'WebApiClient-AFNetworking' do |sp|
+    sp.source_files = 'Code/WebApiClient-AFNetworking.h', 'Code/WebApiClient-AFNetworking'
+  	sp.header_dir = 'WebApiClient-AFNetworking'
+    sp.dependency 'BlueRocketFuelCore/WebApiClient'
+    sp.dependency 'AFNetworking/NSURLSession', '~> 2.5'
+  end
+
+  s.subspec 'WebApiClient-RestKit' do |sp|
+    sp.source_files = 'Code/WebApiClient-RestKit.h', 'Code/WebApiClient-RestKit'
+  	sp.header_dir = 'WebApiClient-RestKit'
+    sp.dependency 'BlueRocketFuelCore/WebApiClient'
+    sp.dependency 'RestKit/ObjectMapping', '~> 0.24'
+  end
 
 end
