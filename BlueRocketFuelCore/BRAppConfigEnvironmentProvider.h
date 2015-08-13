@@ -1,5 +1,5 @@
 //
-//  NSBundle+BR.h
+//  BRAppConfigEnvironmentProvider.h
 //  BlueRocketFuelCore
 //
 //  Created by Matt on 10/08/15.
@@ -24,20 +24,12 @@
 //  THE SOFTWARE.
 //
 
-#import <Foundation/Foundation.h>
+#import <BREnvironment/BREnvironment.h>
 
-@interface NSBundle (BR)
-
-/** Decode application strings file from a JSON file named @c strings. */
-@property (nonatomic, readonly) NSDictionary *appStrings;
-
-/** Decode application config values from a JSON file name @c config. */
-@property (nonatomic, readonly) NSDictionary *appConfig;
-
-/** Get application strings from the main bundle, caching the results. */
-+ (NSDictionary *)appStrings;
-
-/** Get application config from the main bundle, caching the results. */
-+ (NSDictionary *)appConfig;
+/**
+ A @c BREnvironmentProvider that reads configuration values from the 
+ application's standard JSON config file.
+ */
+@interface BRAppConfigEnvironmentProvider : NSObject <BREnvironmentProvider>
 
 @end

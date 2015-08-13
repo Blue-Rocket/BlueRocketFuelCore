@@ -24,10 +24,13 @@
 
 #import "BRAppDelegate.h"
 
+#import <BREnvironment/BREnvironment.h>
+#import "BRAppConfigEnvironmentProvider.h"
 #import "BRFullScreeNotificationViewDelegate.h"
 #import "BRFullScreenNotificationView.h"
 #import "BRLogging.h"
 #import "BRWebServiceRequest.h"
+#import "NSBundle+BR.h"
 #import "NSDictionary+BR.h"
 
 @interface BRAppDelegate () <BRFullScreeNotificationViewDelegate> {
@@ -38,28 +41,16 @@
 
 @implementation BRAppDelegate
 
++ (void)initialize {
+	[BREnvironment registerEnvironmentProvider:[BRAppConfigEnvironmentProvider new]];
+}
+
 - (NSDictionary *)config {
-    static NSDictionary *appConfig = nil;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        NSString *path = [[NSBundle mainBundle] pathForResource:@"config" ofType:@"json"];
-        NSData *data = [[NSData alloc] initWithContentsOfFile:path];
-        NSError *error;
-        if (data) appConfig = [NSJSONSerialization JSONObjectWithData:data options:(NSJSONReadingMutableContainers|NSJSONReadingMutableLeaves) error:&error];
-    });
-    return appConfig;
+	return [NSBundle appConfig];
 }
 
 - (NSDictionary *)strings {
-    static NSDictionary *appStrings = nil;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        NSString *path = [[NSBundle mainBundle] pathForResource:@"strings" ofType:@"json"];
-        NSData *data = [[NSData alloc] initWithContentsOfFile:path];
-        NSError *error;
-        if (data) appStrings = [NSJSONSerialization JSONObjectWithData:data options:(NSJSONReadingMutableContainers|NSJSONReadingMutableLeaves) error:&error];
-    });
-    return appStrings;
+	return [NSBundle appStrings];
 }
 
 
