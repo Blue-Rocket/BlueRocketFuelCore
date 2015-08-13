@@ -30,33 +30,10 @@ FOUNDATION_EXPORT double BlueRocketFuelCoreVersionNumber;
 //! Project version string for BlueRocketFuelCore.
 FOUNDATION_EXPORT const unsigned char BlueRocketFuelCoreVersionString[];
 
-#import <BlueRocketFuelCore/BRAppDelegate.h>
-#import <BlueRocketFuelCore/BRAppUser.h>
-#import <BlueRocketFuelCore/BRAuthenticatedWebServiceRequest.h>
-#import <BlueRocketFuelCore/BRFullScreenNotificationView.h>
-#import <BlueRocketFuelCore/BRJSON.h>
-#import <BlueRocketFuelCore/BRKeychainService.h>
-#import <BlueRocketFuelCore/BRLocalizable.h>
-#import <BlueRocketFuelCore/BRLogging.h>
-#import <BlueRocketFuelCore/BROptionsTray.h>
-#import <BlueRocketFuelCore/BRReachability.h>
-#import <BlueRocketFuelCore/BRRegisterWebServiceRequest.h>
-#import <BlueRocketFuelCore/BRSimpleKeychainService.h>
-#import <BlueRocketFuelCore/BRUser.h>
-#import <BlueRocketFuelCore/BRUserWebServiceRequest.h>
-#import <BlueRocketFuelCore/BRWebServiceRequest.h>
-#import <BlueRocketFuelCore/NSBundle+BR.h>
-#import <BlueRocketFuelCore/NSDate+BR.h>
-#import <BlueRocketFuelCore/NSDictionary+BR.h>
-#import <BlueRocketFuelCore/NSString+BR.h>
-#import <BlueRocketFuelCore/PushNoAnimationSegue.h>
-#import <BlueRocketFuelCore/UIBarButtonItem+BR.h>
-#import <BlueRocketFuelCore/UIButton+BR.h>
-#import <BlueRocketFuelCore/UIFont+BR.h>
-#import <BlueRocketFuelCore/UIImage+BR.h>
-#import <BlueRocketFuelCore/UIImage+ImageEffects.h>
-#import <BlueRocketFuelCore/UILabel+BR.h>
-#import <BlueRocketFuelCore/UINavigationItem+BR.h>
-#import <BlueRocketFuelCore/UISegmentedControl+BR.h>
-#import <BlueRocketFuelCore/UITextField+BR.h>
-#import <BlueRocketFuelCore/UIView+BR.h>
+#import <BlueRocketFuelCore/Core.h>
+#import <BlueRocketFuelCore/Logging.h>
+#import <BlueRocketFuelCore/UI.h>
+#import <BlueRocketFuelCore/WebApiClient-AFNetworking.h>
+#import <BlueRocketFuelCore/WebApiClient-Core.h>
+#import <BlueRocketFuelCore/WebApiClient-RestKit.h>
+#import <BlueRocketFuelCore/WebRequest.h>

@@ -23,18 +23,36 @@ Pod::Spec.new do |s|
   
   s.subspec 'All' do |sp|
     sp.dependency 'BlueRocketFuelCore/Core'
+    sp.dependency 'BlueRocketFuelCore/Logging'
+    sp.dependency 'BlueRocketFuelCore/UI'
     sp.dependency 'BlueRocketFuelCore/WebApiClient'
     sp.dependency 'BlueRocketFuelCore/WebApiClient-AFNetworking'
     sp.dependency 'BlueRocketFuelCore/WebApiClient-RestKit'
+    sp.dependency 'BlueRocketFuelCore/WebRequest'
   end
   
   s.subspec 'Core' do |sp|
-  	sp.source_files = 'BlueRocketFuelCore/**/*.{h,m}'
+    sp.source_files = 'Code/Core.h', 'Code/Core'
   	sp.header_dir = 'Core'
     sp.dependency 'BREnvironment',     '~> 1.1'
     sp.dependency 'BRCocoaLumberjack', '~> 1.9'
+    
+    # TODO: remove Logging dep
+    sp.dependency 'BlueRocketFuelCore/Logging'
   end
   
+  s.subspec 'Logging' do |sp|
+    sp.source_files = 'Code/Logging.h', 'Code/Logging'
+  	sp.header_dir = 'Logging'
+    sp.dependency 'BREnvironment',     '~> 1.1'
+  end
+  
+  s.subspec 'UI' do |sp|
+    sp.source_files = 'Code/UI.h', 'Code/UI'
+  	sp.header_dir = 'UI'
+    sp.dependency 'BlueRocketFuelCore/Core'
+  end
+
   s.subspec 'WebApiClient' do |sp|
     sp.source_files = 'Code/WebApiClient-Core.h', 'Code/WebApiClient'
   	sp.header_dir = 'WebApiClient'
@@ -55,6 +73,12 @@ Pod::Spec.new do |s|
   	sp.header_dir = 'WebApiClient-RestKit'
     sp.dependency 'BlueRocketFuelCore/WebApiClient'
     sp.dependency 'RestKit/ObjectMapping', '~> 0.24'
+  end
+
+  s.subspec 'WebRequest' do |sp|
+    sp.source_files = 'Code/WebRequest.h', 'Code/WebRequest'
+  	sp.header_dir = 'WebRequest'
+    sp.dependency 'BlueRocketFuelCore/UI'
   end
 
 end
