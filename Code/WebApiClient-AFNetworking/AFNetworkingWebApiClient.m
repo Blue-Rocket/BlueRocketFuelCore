@@ -8,12 +8,12 @@
 
 #import "AFNetworkingWebApiClient.h"
 
-#import <AFNetworking/AFNetworking.h>
+#import <AFNetworking/AFHTTPSessionManager.h>
 #import <BlueRocketFuelCore/NSString+BR.h>
 #import "WebApiDataMapper.h"
 
 @implementation AFNetworkingWebApiClient {
-	AFURLSessionManager *manager;
+	AFHTTPSessionManager *manager;
 }
 
 - (id)init {
@@ -28,7 +28,7 @@
 		[manager invalidateSessionCancelingTasks:YES];
 	}
 	NSURLSessionConfiguration *sessConfig = [NSURLSessionConfiguration defaultSessionConfiguration];
-	AFURLSessionManager *mgr = [[AFURLSessionManager alloc] initWithSessionConfiguration:sessConfig];
+	AFHTTPSessionManager *mgr = [[AFHTTPSessionManager alloc] initWithBaseURL:[self baseApiURL] sessionConfiguration:sessConfig];
 	manager = mgr;
 }
 
