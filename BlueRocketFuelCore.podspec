@@ -36,10 +36,7 @@ Pod::Spec.new do |s|
     sp.source_files = 'Code/Core.h', 'Code/Core'
   	sp.header_dir = 'Core'
     sp.dependency 'BREnvironment',     '~> 1.1'
-    sp.dependency 'BRCocoaLumberjack', '~> 1.9'
-    
-    # TODO: remove Logging dep
-    sp.dependency 'BlueRocketFuelCore/Logging'
+    sp.dependency 'BRCocoaLumberjack'
   end
   
   s.subspec 'Logging' do |sp|
@@ -79,6 +76,7 @@ Pod::Spec.new do |s|
   s.subspec 'WebRequest' do |sp|
     sp.source_files = 'Code/WebRequest.h', 'Code/WebRequest'
   	sp.header_dir = 'WebRequest'
+    sp.dependency 'BlueRocketFuelCore/Logging'
     sp.dependency 'BlueRocketFuelCore/UI'
   end
 

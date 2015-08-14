@@ -24,9 +24,9 @@
 
 #import "NSString+BR.h"
 
+#import <BRCocoaLumberjack/BRCocoaLumberjack.h>
 #import <BREnvironment/BREnvironment.h>
 #import <CommonCrypto/CommonDigest.h>
-#import "BRLogging.h"
 #import "NSBundle+BR.h"
 #import "NSDictionary+BR.h"
 
@@ -82,7 +82,7 @@ static NSMutableDictionary *kPhoneRegexes = nil;
 		NSError *error = nil;
 		result = [[NSRegularExpression alloc] initWithPattern:pat options:0 error:&error];
 		if ( !result ) {
-			BRErrorLog(@"Error compiling phone validation regex for key %@: %@", key, [error localizedDescription]);
+			DDLogError(@"Error compiling phone validation regex for key %@: %@", key, [error localizedDescription]);
 		}
 	}
 	return result;

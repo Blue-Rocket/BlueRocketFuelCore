@@ -26,7 +26,7 @@
 
 #import "BRSimpleKeychainService.h"
 
-#import "BRLogging.h"
+#import <BRCocoaLumberjack/BRCocoaLumberjack.h>
 
 @implementation BRSimpleKeychainService
 
@@ -81,30 +81,30 @@
 			// delete the key if value is nil or empty
 			error = SecItemDelete((__bridge CFDictionaryRef)queryDictionary);
 			if ( error != noErr ) {
-				BRErrorLog(@"Error deleting keychain entry %@: %d", key, (int)error);
+				DDLogError(@"Error deleting keychain entry %@: %d", key, (int)error);
 			} else {
-				BRDebugLog(@"Deleted keychain entry %@", key);
+				DDLogVerbose(@"Deleted keychain entry %@", key);
 			}
 		} else {
 			error = SecItemUpdate((__bridge CFDictionaryRef)queryDictionary, (__bridge CFDictionaryRef)updateAttributes);
 			if ( error != noErr ) {
-				BRDebugLog(@"Error updating keychain entry %@, will try to delete and then add: %d", key, (int)error);
+				DDLogVerbose(@"Error updating keychain entry %@, will try to delete and then add: %d", key, (int)error);
 				error = SecItemDelete((__bridge CFDictionaryRef)queryDictionary);
 				if ( error != noErr ) {
-					BRErrorLog(@"Error setting keychain entry %@ (update failed, then delete failed): %d", key, (int)error);
+					DDLogError(@"Error setting keychain entry %@ (update failed, then delete failed): %d", key, (int)error);
 				} else {
-					BRDebugLog(@"Deleted keychain entry %@, will now try to add", key);
+					DDLogVerbose(@"Deleted keychain entry %@, will now try to add", key);
 					NSMutableDictionary *addDictionary = [queryDictionary mutableCopy];
 					[addDictionary addEntriesFromDictionary:updateAttributes];
 					error = SecItemAdd((__bridge CFDictionaryRef)addDictionary, (CFTypeRef *)&keyDataRef);
 					if ( error != noErr ) {
-						BRErrorLog(@"Error adding keychain entry %@ (updated failed, then delete succeeded, then add failed: %d", key, (int)error);
+						DDLogError(@"Error adding keychain entry %@ (updated failed, then delete succeeded, then add failed: %d", key, (int)error);
 					} else {
-						BRDebugLog(@"Set keychain entry %@ after deleting existing entry and then adding again", key);
+						DDLogVerbose(@"Set keychain entry %@ after deleting existing entry and then adding again", key);
 					}
 				}
 			} else {
-				BRDebugLog(@"Updated keychain entry %@", key);
+				DDLogVerbose(@"Updated keychain entry %@", key);
 			}
 		}
 	} else {
@@ -113,9 +113,9 @@
 			[addDictionary addEntriesFromDictionary:updateAttributes];
 			error = SecItemAdd((__bridge CFDictionaryRef)addDictionary, (CFTypeRef *)&keyDataRef);
 			if ( error != noErr) {
-				BRErrorLog(@"Error adding keychain entry %@: %d", key, (int)error);
+				DDLogError(@"Error adding keychain entry %@: %d", key, (int)error);
 			} else {
-				BRDebugLog(@"Added keychain entry %@", key);
+				DDLogVerbose(@"Added keychain entry %@", key);
 			}
 		}
 	}
