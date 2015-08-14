@@ -27,6 +27,7 @@
  */
 @interface NSMutableDictionary (MutableWebApiRoute)
 
+@property (nonatomic, readwrite) NSString *name;
 @property (nonatomic, readwrite) NSString *path;
 @property (nonatomic, readwrite) NSString *method;
 @property (nonatomic, readwrite) WebApiSerialization serialization;

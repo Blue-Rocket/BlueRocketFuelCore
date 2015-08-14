@@ -9,13 +9,16 @@
 #import "BRFCRestKitDataMapping.h"
 
 #import "BRAppUser.h"
+#import "WebApiRoute.h"
 
 @implementation BRFCRestKitDataMapping
 
 + (void)registerObjectMappings:(RestKitWebApiDataMapper *)dataMapper {
 	RKObjectMapping *appUserMapping = [self appUserMapping];
-	[dataMapper registerRequestObjectMapping:appUserMapping forRoutePath:@"register"];
-	[dataMapper registerResponseObjectMapping:appUserMapping forRoutePath:@"register"];
+	[dataMapper registerRequestObjectMapping:appUserMapping forRouteName:WebApiRouteLogin];
+	[dataMapper registerResponseObjectMapping:appUserMapping forRouteName:WebApiRouteLogin];
+	[dataMapper registerRequestObjectMapping:appUserMapping forRouteName:WebApiRouteRegister];
+	[dataMapper registerResponseObjectMapping:appUserMapping forRouteName:WebApiRouteRegister];
 }
 
 + (RKObjectMapping *)appUserMapping {

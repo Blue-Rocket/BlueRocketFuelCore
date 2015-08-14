@@ -19,6 +19,10 @@ static CFStringRef CreateURLEncodedQueryParameterString(CFStringRef string) {
 
 @implementation NSDictionary (WebApiClient)
 
+- (NSString *)name {
+	return self[NSStringFromSelector(@selector(name))];
+}
+
 - (NSString *)path {
 	return self[NSStringFromSelector(@selector(path))];
 }
@@ -68,6 +72,10 @@ static CFStringRef CreateURLEncodedQueryParameterString(CFStringRef string) {
 	} else {
 		self[key] = object;
 	}
+}
+
+- (void)setName:(NSString *)name {
+	[self setOrRemoveObject:name forKey:NSStringFromSelector(@selector(name))];
 }
 
 - (void)setPath:(NSString *)path {

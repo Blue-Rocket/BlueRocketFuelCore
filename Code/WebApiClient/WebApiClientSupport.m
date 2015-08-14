@@ -63,6 +63,9 @@ static NSString * const kRoutePropertyDataMapperInstance = @"_dataMapper";
 		internalRoute[NSStringFromSelector(@selector(path))] = route.path;
 	}
 	
+	// force name to given name
+	internalRoute.name = name;
+	
 	// add our SOCPattern
 	internalRoute[kRoutePropertyPattern] = [[SOCPattern alloc] initWithString:route.path];
 	

@@ -36,12 +36,12 @@ NSString * const RestKitWebApiRoutePropertyRootKeyPath = @"dataMapperRootKeyPath
 	return self;
 }
 
-- (void)registerRequestObjectMapping:(RKObjectMapping *)objectMapping forRoutePath:(NSString *)path {
-	requestRouteMappers[path] = objectMapping;
+- (void)registerRequestObjectMapping:(RKObjectMapping *)objectMapping forRouteName:(NSString *)name {
+	requestRouteMappers[name] = objectMapping;
 }
 
-- (void)registerResponseObjectMapping:(RKObjectMapping *)objectMapping forRoutePath:(NSString *)path {
-	responseRouteMappers[path] = objectMapping;
+- (void)registerResponseObjectMapping:(RKObjectMapping *)objectMapping forRouteName:(NSString *)name {
+	responseRouteMappers[name] = objectMapping;
 }
 
 - (id<RKMappingOperationDataSource>)dataSourceForMappingOperation:(RKMappingOperation *)mappingOperation {
@@ -54,7 +54,7 @@ NSString * const RestKitWebApiRoutePropertyRootKeyPath = @"dataMapperRootKeyPath
 }
 
 - (RKObjectMapping *)requestObjectMappingForRoute:(id<WebApiRoute>)route object:(id)domainObject {
-	RKObjectMapping *objectMapper = requestRouteMappers[route.path];
+	RKObjectMapping *objectMapper = requestRouteMappers[route.name];
 	if ( !objectMapper ) {
 		// TODO: automatic, convention based lookup? Could base off of domainObject.class, for example.
 	}
@@ -62,7 +62,7 @@ NSString * const RestKitWebApiRoutePropertyRootKeyPath = @"dataMapperRootKeyPath
 }
 
 - (RKObjectMapping *)responseObjectMappingForRoute:(id<WebApiRoute>)route data:(id)response {
-	RKObjectMapping *objectMapper = responseRouteMappers[route.path];
+	RKObjectMapping *objectMapper = responseRouteMappers[route.name];
 	if ( !objectMapper ) {
 		// TODO: automatic, convention based lookup? Could base off of response data, for example.
 	}

@@ -26,8 +26,8 @@ extern NSString * const RestKitWebApiRoutePropertyRootKeyPath;
  */
 + (instancetype)sharedDataMapper;
 
-- (void)registerRequestObjectMapping:(RKObjectMapping *)objectMapping forRoutePath:(NSString *)path;
+- (void)registerRequestObjectMapping:(RKObjectMapping *)objectMapping forRouteName:(NSString *)name;
 
-- (void)registerResponseObjectMapping:(RKObjectMapping *)objectMapping forRoutePath:(NSString *)path;
+- (void)registerResponseObjectMapping:(RKObjectMapping *)objectMapping forRouteName:(NSString *)name;
 
 @end
