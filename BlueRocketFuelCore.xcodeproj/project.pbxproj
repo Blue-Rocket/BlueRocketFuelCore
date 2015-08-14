@@ -126,7 +126,7 @@
 		297967861A683CE900B7408B /* BRJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRJSON.m; sourceTree = "<group>"; };
 		29E2E36D1A683B7D0048D0AB /* BlueRocketFuelCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BlueRocketFuelCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		29E2E3711A683B7D0048D0AB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		29E2E3721A683B7D0048D0AB /* BlueRocketFuelCore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = BlueRocketFuelCore.h; path = BlueRocketFuelCore/BlueRocketFuelCore.h; sourceTree = "<group>"; };
+		29E2E3721A683B7D0048D0AB /* BlueRocketFuelCore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = BlueRocketFuelCore.h; path = Code/BlueRocketFuelCore.h; sourceTree = "<group>"; };
 		29E2E3781A683B7D0048D0AB /* BlueRocketFuelCoreTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BlueRocketFuelCoreTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		29E2E37E1A683B7D0048D0AB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		29E2E37F1A683B7D0048D0AB /* BlueRocketFuelCoreTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BlueRocketFuelCoreTests.m; sourceTree = "<group>"; };

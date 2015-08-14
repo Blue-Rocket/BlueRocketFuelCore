@@ -22,6 +22,7 @@ Pod::Spec.new do |s|
   s.default_subspecs = 'All'
   
   s.subspec 'All' do |sp|
+    sp.source_files = 'Code/BlueRocketFuelCore.h'
     sp.dependency 'BlueRocketFuelCore/Core'
     sp.dependency 'BlueRocketFuelCore/Logging'
     sp.dependency 'BlueRocketFuelCore/UI'
