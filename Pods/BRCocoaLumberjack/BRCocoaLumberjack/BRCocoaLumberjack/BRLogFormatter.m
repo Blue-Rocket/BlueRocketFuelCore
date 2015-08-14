@@ -25,7 +25,7 @@
 
 - (NSString *)formatLogMessage:(DDLogMessage *)logMessage {
 	NSString *logLevel;
-	switch ( logMessage->logFlag ) {
+	switch ( logMessage->_flag ) {
 		case LOG_FLAG_ERROR: logLevel = @"ERROR"; break;
 
 		case LOG_FLAG_WARN: logLevel = @"WARN "; break;
@@ -39,18 +39,17 @@
 		default: logLevel = @"OTHER"; break;
 	}
 
-	NSString *ts = [dateFormatter stringFromDate:(logMessage->timestamp)];
-	NSString *fileName = [[NSString stringWithCString:logMessage->file encoding:NSUTF8StringEncoding] lastPathComponent];
-	NSString *paddedThreadId = [[logMessage threadID] stringByPaddingToLength:6 withString:@" " startingAtIndex:0];
+	NSString *ts = [dateFormatter stringFromDate:(logMessage->_timestamp)];
+	NSString *paddedThreadId = [logMessage->_threadID stringByPaddingToLength:6 withString:@" " startingAtIndex:0];
 
-	return [NSString stringWithFormat:@"%@ %@ %@ %@:%d %@| %@",
+	return [NSString stringWithFormat:@"%@ %@ %@ %@:%lu %@| %@",
 	        logLevel,
 	        ts,
 	        paddedThreadId,
-	        fileName,
-	        logMessage->lineNumber,
-	        [logMessage methodName],
-	        logMessage->logMsg];
+	        logMessage->_fileName,
+	        (unsigned long)logMessage->_line,
+	        logMessage->_function,
+	        logMessage->_message];
 }
 
 @end

@@ -6,6 +6,7 @@
 //  Copyright (c) 2013 Blue Rocket, Inc. Distributable under the terms of the Apache License, Version 2.0.
 //
 
+#define DD_LEGACY_MACROS 0
 #import <CocoaLumberjack/DDLog.h>
 
 /**

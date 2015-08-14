@@ -45,12 +45,6 @@ extern int BRCLogLevel;
 #undef DDLogDebug
 #undef DDLogVerbose
 
-#undef DDLogCError
-#undef DDLogCWarn
-#undef DDLogCInfo
-#undef DDLogCDebug
-#undef DDLogCVerbose
-
 // Now define everything how we want it
 
 #define LOG_FLAG_ERROR   (1 << 0)  // 0...00001
