@@ -34,6 +34,8 @@
 		C921E9DB1B814A07001C04FA /* WebApiClientActivitySupport.h in Headers */ = {isa = PBXBuildFile; fileRef = C921E9D81B814A07001C04FA /* WebApiClientActivitySupport.h */; };
 		C921E9DC1B814A07001C04FA /* WebApiClientActivitySupport.m in Sources */ = {isa = PBXBuildFile; fileRef = C921E9D91B814A07001C04FA /* WebApiClientActivitySupport.m */; };
 		C921E9DD1B814A07001C04FA /* WebApiClient-UI.h in Headers */ = {isa = PBXBuildFile; fileRef = C921E9DA1B814A07001C04FA /* WebApiClient-UI.h */; };
+		C921E9E01B8185E1001C04FA /* NSObject+BRLocalizableUI.h in Headers */ = {isa = PBXBuildFile; fileRef = C921E9DE1B8185E1001C04FA /* NSObject+BRLocalizableUI.h */; };
+		C921E9E11B8185E1001C04FA /* NSObject+BRLocalizableUI.m in Sources */ = {isa = PBXBuildFile; fileRef = C921E9DF1B8185E1001C04FA /* NSObject+BRLocalizableUI.m */; };
 		C95775F91B7DBEE100D91C3D /* WebApiRotue.m in Sources */ = {isa = PBXBuildFile; fileRef = C95775F81B7DBEE100D91C3D /* WebApiRotue.m */; };
 		C95B2B0E1B7D58320050ABBE /* Logging.h in Headers */ = {isa = PBXBuildFile; fileRef = C95B2AB91B7D58310050ABBE /* Logging.h */; };
 		C95B2B0F1B7D58320050ABBE /* BRLogging.h in Headers */ = {isa = PBXBuildFile; fileRef = C95B2ABB1B7D58310050ABBE /* BRLogging.h */; };
@@ -157,6 +159,8 @@
 		C921E9D81B814A07001C04FA /* WebApiClientActivitySupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebApiClientActivitySupport.h; sourceTree = "<group>"; };
 		C921E9D91B814A07001C04FA /* WebApiClientActivitySupport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebApiClientActivitySupport.m; sourceTree = "<group>"; };
 		C921E9DA1B814A07001C04FA /* WebApiClient-UI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "WebApiClient-UI.h"; path = "Code/WebApiClient-UI.h"; sourceTree = "<group>"; };
+		C921E9DE1B8185E1001C04FA /* NSObject+BRLocalizableUI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+BRLocalizableUI.h"; sourceTree = "<group>"; };
+		C921E9DF1B8185E1001C04FA /* NSObject+BRLocalizableUI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+BRLocalizableUI.m"; sourceTree = "<group>"; };
 		C95775F81B7DBEE100D91C3D /* WebApiRotue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebApiRotue.m; sourceTree = "<group>"; };
 		C95B2AB91B7D58310050ABBE /* Logging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Logging.h; path = Code/Logging.h; sourceTree = "<group>"; };
 		C95B2ABB1B7D58310050ABBE /* BRLogging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRLogging.h; sourceTree = "<group>"; };
@@ -440,6 +444,8 @@
 				C95B2B6F1B7D596A0050ABBE /* BRFullScreeNotificationViewDelegate.h */,
 				C95B2B701B7D596A0050ABBE /* BROptionsTray.h */,
 				C95B2B711B7D596A0050ABBE /* BROptionsTray.m */,
+				C921E9DE1B8185E1001C04FA /* NSObject+BRLocalizableUI.h */,
+				C921E9DF1B8185E1001C04FA /* NSObject+BRLocalizableUI.m */,
 				C95B2B721B7D596A0050ABBE /* PushNoAnimationSegue.h */,
 				C95B2B731B7D596A0050ABBE /* PushNoAnimationSegue.m */,
 				C95B2B741B7D596A0050ABBE /* ReplaceNoAnimationSegue.h */,
@@ -511,6 +517,7 @@
 				C95B2BE61B7D62F90050ABBE /* BRWebServiceRequest.h in Headers */,
 				C95B2B421B7D58320050ABBE /* UI.h in Headers */,
 				C95B2BA31B7D596A0050ABBE /* PushNoAnimationSegue.h in Headers */,
+				C921E9E01B8185E1001C04FA /* NSObject+BRLocalizableUI.h in Headers */,
 				C90510651B7C31C800031482 /* WebApiClient-AFNetworking.h in Headers */,
 				C95B2B441B7D58320050ABBE /* Core.h in Headers */,
 				C95B2BB11B7D596A0050ABBE /* UILabel+BR.h in Headers */,
@@ -706,6 +713,7 @@
 				C95B2BAE1B7D596A0050ABBE /* UIImage+BR.m in Sources */,
 				C95B2BD91B7D62F90050ABBE /* BRLoginWebServiceRequest.m in Sources */,
 				C90510601B7C31C800031482 /* WebApiClientSupport.m in Sources */,
+				C921E9E11B8185E1001C04FA /* NSObject+BRLocalizableUI.m in Sources */,
 				C95B2BDB1B7D62F90050ABBE /* BRPingWebServiceRequest.m in Sources */,
 				C95B2B101B7D58320050ABBE /* BRLogging.m in Sources */,
 				C921E9DC1B814A07001C04FA /* WebApiClientActivitySupport.m in Sources */,
