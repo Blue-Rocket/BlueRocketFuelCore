@@ -80,6 +80,7 @@ Pod::Spec.new do |s|
   	sp.header_dir = 'WebApiClient-UI'
     sp.dependency 'BlueRocketFuelCore/WebApiClient'
     sp.dependency 'BlueRocketFuelCore/UI'
+    sp.dependency 'Masony', '~> 0.6'
   end
 
   s.subspec 'WebRequest' do |sp|

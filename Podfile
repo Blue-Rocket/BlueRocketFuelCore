@@ -8,6 +8,7 @@ target :BlueRocketFuelCore do
 	pod 'BRCocoaLumberjack',		'~> 2.0'
 	pod 'BREnvironment',			'~> 1.1'
 	pod 'MAObjCRuntime', 			'~> 0.0.1'
+	pod 'Masonry',					'~> 0.6'
 	pod 'RestKit/ObjectMapping',	'~> 0.24'
 	pod 'SOCKit',             		'~> 1.1'
 	pod 'TransformerKit/String',    '~> 0.5'
