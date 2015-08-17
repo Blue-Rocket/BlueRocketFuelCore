@@ -24,6 +24,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface UINavigationItem (BR)
+#import "BRLocalizable.h"
+
+@interface UINavigationItem (BR) <BRLocalizable>
 
 @end

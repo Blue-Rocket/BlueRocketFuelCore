@@ -24,7 +24,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface UIBarButtonItem (BR)
+#import "BRLocalizable.h"
+
+@interface UIBarButtonItem (BR) <BRLocalizable>
 
 - (CGRect)frameInView:(UIView *)view;
 - (UIView *)parentView;

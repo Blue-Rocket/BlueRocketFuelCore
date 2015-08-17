@@ -27,9 +27,12 @@
 
 @implementation UINavigationItem (BR)
 
-- (void)awakeFromNib {
-    self.title = [self.title localizedString];
+- (void)localizeWithAppStrings:(NSDictionary *)strings {
+	NSString *orig = self.title;
+	NSString *localized = [orig localizedStringWithAppStrings:strings];
+	if ( orig && ![orig isEqualToString:localized] ) {
+		self.title = localized;
+	}
 }
-
 
 @end
