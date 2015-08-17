@@ -180,19 +180,6 @@
 		[self addAuthorizationHeadersToRequest:req forRoute:route];
 		
 		NSURLSessionDataTask *dataTask = [manager dataTaskWithRequest:req completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
-			/*
-			NSNotification *note = nil;
-			if ( error ) {
-				note = [[NSNotification alloc] initWithName:WebApiClientRequestDidFailNotification object:route
-												   userInfo:@{NSUnderlyingErrorKey : error, WebApiClientURLRequestNotificationKey : req}];
-				DDLogDebug(@"Error: %@", error);
-			} else {
-				note = [[NSNotification alloc] initWithName:WebApiClientRequestDidSucceedNotification object:route
-												   userInfo:@{WebApiClientURLRequestNotificationKey : req}]
-				DDLogDebug(@"%@ %@", response, responseObject);
-			}
-			[[NSNotificationCenter defaultCenter] postNotification:note];
-			*/
 			NSMutableDictionary *apiResponse = [[NSMutableDictionary alloc] initWithCapacity:4];
 			if ( [response isKindOfClass:[NSHTTPURLResponse class]] ) {
 				NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)response;
@@ -207,7 +194,9 @@
 				dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
 					NSError *decodeError = nil;
 					id decoded = [dataMapper performMappingWithSourceObject:responseObject route:route error:&decodeError];
-					handleResponse(decoded, decodeError);
+					dispatch_async(dispatch_get_main_queue(), ^{
+						handleResponse(decoded, decodeError);
+					});
 				});
 			} else {
 				handleResponse(responseObject, error);
