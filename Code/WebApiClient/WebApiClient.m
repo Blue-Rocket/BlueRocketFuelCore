@@ -11,3 +11,19 @@
 NSString * const WebApiClientErrorDomain = @"WebApiClientError";
 
 const NSInteger WebApiClientErrorRouteNotAvailable = 2000;
+
+NSString * const WebApiClientRequestWillBeginNotification = @"WebApiClientRequestWillBegin";
+
+NSString * const WebApiClientRequestDidBeginNotification = @"WebApiClientRequestDidBegin";
+
+NSString * const WebApiClientRequestDidProgressNotification = @"WebApiClientRequestDidProgress";
+
+NSString * const WebApiClientRequestDidSucceedNotification = @"WebApiClientRequestDidSucceed";
+
+NSString * const WebApiClientRequestDidFailNotification = @"WebApiClientRequestDidFail";
+
+NSString * const WebApiClientRequestDidCancelNotification = @"WebApiClientRequestDidCancel";
+
+NSString * const WebApiClientURLRequestNotificationKey = @"request";
+
+NSString * const WebApiClientURLResponseNotificationKey = @"response";

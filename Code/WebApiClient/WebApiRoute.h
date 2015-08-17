@@ -54,6 +54,9 @@ extern NSString * const WebApiRouteLogin;
 /** The name of a @c WebApiDataMapper to use for mapping the request parameters from/to native objects. */
 @property (nonatomic, readonly) NSString *dataMapper;
 
+/** Flag to indicate that while this API endpoint is being called, no user interaction should be allowed. */
+@property (nonatomic, readonly, getter=isPreventUserInteraction) BOOL preventUserInteraction;
+
 /**
  Get a route property by keyed subscript.
  

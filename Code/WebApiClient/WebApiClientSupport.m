@@ -16,6 +16,10 @@
 #import <SOCKit/SOCKit.h>
 #import "WebApiDataMapper.h"
 
+NSString * const WebApiClientSupportAppApiKeyDefaultHTTPHeaderName = @"Authorization";
+NSString * const WebApiClientSupportAppApiKeyEnvironmentKey = @"App_webservice_token";
+NSString * const WebApiClientSupportAppIdDefaultHTTPHeaderName = @"X-App-ID";
+
 static NSString * const kRoutePropertyPattern = @"_pattern";
 static NSString * const kRoutePropertyDataMapperInstance = @"_dataMapper";
 
@@ -26,6 +30,10 @@ static NSString * const kRoutePropertyDataMapperInstance = @"_dataMapper";
 - (id)init {
 	if ( (self = [super init]) ) {
 		routes = [[NSMutableDictionary alloc] initWithCapacity:16];
+		self.appApiKey = [BREnvironment sharedEnvironment][WebApiClientSupportAppApiKeyEnvironmentKey];
+		self.appApiKeyHTTPHeaderName = WebApiClientSupportAppApiKeyDefaultHTTPHeaderName;
+		self.appIdHTTPHeaderName = WebApiClientSupportAppIdDefaultHTTPHeaderName;
+		self.appId = [[NSBundle mainBundle] objectForInfoDictionaryKey:(id)kCFBundleIdentifierKey];
 		[self loadDefaultRoutes];
 	}
 	return self;
@@ -187,8 +195,22 @@ static NSString * const kRoutePropertyDataMapperInstance = @"_dataMapper";
 }
 
 - (void)requestAPI:(NSString *)name withPathVariables:(id)pathVariables parameters:(NSDictionary *)parameters data:(id)data
-		  finished:(void (^)(id<WebApiResponse>, id, NSError *))callback {
+		  finished:(void (^)(id<WebApiResponse>, NSError *))callback {
 	// extending classes probably want to do something useful here
+}
+
+- (void)addAuthorizationHeadersToRequest:(NSMutableURLRequest *)request forRoute:(id<WebApiRoute>)route {
+	// TODO: the App token should be passed as a custom X-Whatever HTTP header, while Authorization is used for the actual user's token!
+	[request setValue:self.appApiKey forHTTPHeaderField:self.appApiKeyHTTPHeaderName];
+	[request setValue:self.appId forHTTPHeaderField:self.appIdHTTPHeaderName];
+}
+
+- (void)willBeginRequestForRoute:(id<WebApiRoute>)route withRequest:(NSURLRequest *)request {
+	// TODO
+}
+
+- (void)didEndRequestForRoute:(id<WebApiRoute>)route withResponse:(NSURLResponse *)response {
+	// TODO
 }
 
 @end

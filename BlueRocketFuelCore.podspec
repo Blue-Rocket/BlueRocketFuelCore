@@ -29,6 +29,7 @@ Pod::Spec.new do |s|
     sp.dependency 'BlueRocketFuelCore/WebApiClient'
     sp.dependency 'BlueRocketFuelCore/WebApiClient-AFNetworking'
     sp.dependency 'BlueRocketFuelCore/WebApiClient-RestKit'
+    sp.dependency 'BlueRocketFuelCore/WebApiClient-UI'
     sp.dependency 'BlueRocketFuelCore/WebRequest'
   end
   
@@ -71,6 +72,13 @@ Pod::Spec.new do |s|
   	sp.header_dir = 'WebApiClient-RestKit'
     sp.dependency 'BlueRocketFuelCore/WebApiClient'
     sp.dependency 'RestKit/ObjectMapping', '~> 0.24'
+  end
+
+  s.subspec 'WebApiClient-UI' do |sp|
+    sp.source_files = 'Code/WebApiClient-UI.h', 'Code/WebApiClient-UI'
+  	sp.header_dir = 'WebApiClient-UI'
+    sp.dependency 'BlueRocketFuelCore/WebApiClient'
+    sp.dependency 'BlueRocketFuelCore/UI'
   end
 
   s.subspec 'WebRequest' do |sp|

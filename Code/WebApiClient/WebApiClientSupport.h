@@ -10,7 +10,16 @@
 
 @protocol WebApiDataMapper;
 
+extern NSString * const WebApiClientSupportAppApiKeyDefaultHTTPHeaderName;
+extern NSString * const WebApiClientSupportAppApiKeyEnvironmentKey;
+extern NSString * const WebApiClientSupportAppIdDefaultHTTPHeaderName;
+
 @interface WebApiClientSupport : NSObject <WebApiClient>
+
+@property (nonatomic, strong) NSString *appApiKey;
+@property (nonatomic, strong) NSString *appApiKeyHTTPHeaderName;
+@property (nonatomic, strong) NSString *appId;
+@property (nonatomic, strong) NSString *appIdHTTPHeaderName;
 
 /**
  Configure default routes in the receiver. Extending classes can override to customize the instance.
@@ -75,5 +84,13 @@
  @return The configured data mapper, or @c nil if no data mapper configured for the given route.
  */
 - (id<WebApiDataMapper>)dataMapperForRoute:(id<WebApiRoute>)route;
+
+/**
+ Add authorization headers to a request for a given route.
+ 
+ @param request The request to add headers to.
+ @param route The route.
+ */
+- (void)addAuthorizationHeadersToRequest:(NSMutableURLRequest *)request forRoute:(id<WebApiRoute>)route;
 
 @end

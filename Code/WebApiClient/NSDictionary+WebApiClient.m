@@ -43,6 +43,11 @@ static CFStringRef CreateURLEncodedQueryParameterString(CFStringRef string) {
 	return self[NSStringFromSelector(@selector(dataMapper))];
 }
 
+- (BOOL)isPreventUserInteraction {
+	NSNumber *val = self[@"preventUserInteraction"];
+	return [val boolValue];
+}
+
 - (NSString *)asURLQueryParameterString {
 	NSMutableString *str = [NSMutableString new];
 	[self enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
@@ -54,6 +59,21 @@ static CFStringRef CreateURLEncodedQueryParameterString(CFStringRef string) {
 		[str appendString:(CFBridgingRelease(CreateURLEncodedQueryParameterString((__bridge CFStringRef)[NSString stringWithFormat:@"%@", obj])))];
 	}];
 	return str;
+}
+
+#pragma mark - WebApiResponse
+
+- (NSInteger)statusCode {
+	NSNumber *val = self[NSStringFromSelector(@selector(statusCode))];
+	return [val integerValue];
+}
+
+- (id)responseObject {
+	return self[NSStringFromSelector(@selector(responseObject))];
+}
+
+- (NSDictionary *)responseHeaders {
+	return self[NSStringFromSelector(@selector(responseHeaders))];
 }
 
 @end
@@ -97,6 +117,24 @@ static CFStringRef CreateURLEncodedQueryParameterString(CFStringRef string) {
 
 - (void)setDataMapper:(NSString *)dataMapper {
 	[self setOrRemoveObject:dataMapper forKey:NSStringFromSelector(@selector(dataMapper))];
+}
+
+- (void)setPreventUserInteraction:(BOOL)preventUserInteraction {
+	[self setOrRemoveObject:@(preventUserInteraction) forKey:@"preventUserInteraction"];
+}
+
+#pragma mark - WebApiResponse
+
+- (void)setStatusCode:(NSInteger)statusCode {
+	[self setOrRemoveObject:@(statusCode) forKey:NSStringFromSelector(@selector(statusCode))];
+}
+
+- (void)setResponseObject:(id)responseObject {
+	[self setOrRemoveObject:responseObject forKey:NSStringFromSelector(@selector(responseObject))];
+}
+
+- (void)setResponseHeaders:(NSDictionary *)responseHeaders {
+	[self setOrRemoveObject:responseHeaders forKey:NSStringFromSelector(@selector(responseHeaders))];
 }
 
 @end
