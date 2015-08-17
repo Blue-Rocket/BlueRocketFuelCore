@@ -53,8 +53,18 @@ static id CurrentUser;
 }
 
 + (void)replaceCurrentUser:(BRAppUser *)theUser {
-	NSParameterAssert([theUser isKindOfClass:[self class]]);
+	NSParameterAssert(theUser == nil || [theUser isKindOfClass:[self class]]);
 	CurrentUser = theUser;
+	if ( theUser == nil ) {
+		NSUserDefaults *def = [NSUserDefaults standardUserDefaults];
+		[@[BRAppUserRecordIdPreference, BRAppUserTypePreference, BRAppUserNamePreference, BRAppUserFirstNamePreference, BRAppUserLastNamePreference] enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+			[def removeObjectForKey:obj];
+		}];
+		[def synchronize];
+		[@[BRAppUserAuthenticationTokenPreference, BRKeychainServiceKeyPassword, BRKeychainServiceKeyUsername] enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+			[[BRSimpleKeychainService sharedService] setStringValue:nil forKey:(NSString *)obj];
+		}];
+	}
 }
 
 - (void)initializeWithDictionary:(NSDictionary *)dictionary {
@@ -87,92 +97,92 @@ static id CurrentUser;
 #pragma mark - Identification
 
 - (void)setRecordId:(NSString *)recordId {
-    [self setPreferencesValue:recordId forKey:BRAppUserRecordIdPreference];
+    [BRAppUser setPreferencesValue:recordId forKey:BRAppUserRecordIdPreference];
 }
 
 - (NSString *)recordId {
-    return [self preferencesValueForKey:BRAppUserRecordIdPreference];
+    return [BRAppUser preferencesValueForKey:BRAppUserRecordIdPreference];
 }
 
 - (void)setType:(NSString *)type {
-    [self setPreferencesValue:type forKey:BRAppUserTypePreference];
+    [BRAppUser setPreferencesValue:type forKey:BRAppUserTypePreference];
 }
 
 - (NSString *)type {
-    return [self preferencesValueForKey:BRAppUserTypePreference];
+    return [BRAppUser preferencesValueForKey:BRAppUserTypePreference];
 }
 
 
 - (void)setName:(NSString *)name {
-    [self setPreferencesValue:name forKey:BRAppUserNamePreference];
+    [BRAppUser setPreferencesValue:name forKey:BRAppUserNamePreference];
 }
 
 - (NSString *)name {
-    return [self preferencesValueForKey:BRAppUserNamePreference];
+    return [BRAppUser preferencesValueForKey:BRAppUserNamePreference];
 }
 
 - (void)setFirstName:(NSString *)firstName {
-    [self setPreferencesValue:firstName forKey:BRAppUserFirstNamePreference];
+    [BRAppUser setPreferencesValue:firstName forKey:BRAppUserFirstNamePreference];
 }
 
 - (NSString *)firstName {
-    return [self preferencesValueForKey:BRAppUserFirstNamePreference];
+    return [BRAppUser preferencesValueForKey:BRAppUserFirstNamePreference];
 }
 
 - (void)setLastName:(NSString *)lastName {
-    [self setPreferencesValue:lastName forKey:BRAppUserLastNamePreference];
+    [BRAppUser setPreferencesValue:lastName forKey:BRAppUserLastNamePreference];
 }
 
 - (NSString *)lastName {
-    return [self preferencesValueForKey:BRAppUserLastNamePreference];
+    return [BRAppUser preferencesValueForKey:BRAppUserLastNamePreference];
 }
 
 - (void)setEmail:(NSString *)email {
-    [self setSecurePreferencesValue:email forKey:BRKeychainServiceKeyUsername];
+    [BRAppUser setSecurePreferencesValue:email forKey:BRKeychainServiceKeyUsername];
 }
 
 - (NSString *)email {
-    return [self securePreferencesValueForKey:BRKeychainServiceKeyUsername];
+    return [BRAppUser securePreferencesValueForKey:BRKeychainServiceKeyUsername];
 }
 
 - (void)setWebsite:(NSString *)website {
-    [self setPreferencesValue:website forKey:BRAppUserWebsitePreference];
+    [BRAppUser setPreferencesValue:website forKey:BRAppUserWebsitePreference];
 }
 
 - (NSString *)website {
-    return [self preferencesValueForKey:BRAppUserWebsitePreference];
+    return [BRAppUser preferencesValueForKey:BRAppUserWebsitePreference];
 }
 
 - (void)setPhone:(NSString *)phone {
-    [self setPreferencesValue:phone forKey:BRAppUserPhonePreference];
+    [BRAppUser setPreferencesValue:phone forKey:BRAppUserPhonePreference];
 }
 
 - (NSString *)phone {
-    return [self preferencesValueForKey:BRAppUserPhonePreference];
+    return [BRAppUser preferencesValueForKey:BRAppUserPhonePreference];
 }
 
 - (void)setAddress:(NSString *)address {
-    [self setPreferencesValue:address forKey:BRAppUserAddressPreference];
+    [BRAppUser setPreferencesValue:address forKey:BRAppUserAddressPreference];
 }
 
 - (NSString *)address {
-    return [self preferencesValueForKey:BRAppUserAddressPreference];
+    return [BRAppUser preferencesValueForKey:BRAppUserAddressPreference];
 }
 
 
 
 - (void)setPassword:(NSString *)password {
-    [self setSecurePreferencesValue:password forKey:BRKeychainServiceKeyPassword];
+    [BRAppUser setSecurePreferencesValue:password forKey:BRKeychainServiceKeyPassword];
 }
 
 - (NSString *)password {
-    return [self securePreferencesValueForKey:BRKeychainServiceKeyPassword];
+    return [BRAppUser securePreferencesValueForKey:BRKeychainServiceKeyPassword];
 }
 
 #pragma mark - Authentication
 
 - (BOOL)isNewUser {
-    return ([self preferencesValueForKey:BRAppUserRecordIdPreference] == nil);
+    return ([BRAppUser preferencesValueForKey:BRAppUserRecordIdPreference] == nil);
 }
 
 - (BOOL)isAuthenticated {
@@ -180,16 +190,16 @@ static id CurrentUser;
 }
 
 - (void)setAuthenticationToken:(NSString *)authenticationToken {
-	[self setSecurePreferencesValue:authenticationToken forKey:BRAppUserAuthenticationTokenPreference];
+	[BRAppUser setSecurePreferencesValue:authenticationToken forKey:BRAppUserAuthenticationTokenPreference];
 }
 
 - (NSString *)authenticationToken {
-    return [self securePreferencesValueForKey:BRAppUserAuthenticationTokenPreference];
+    return [BRAppUser securePreferencesValueForKey:BRAppUserAuthenticationTokenPreference];
 }
 
 #pragma mark - Preferences Management
 
-- (void)setPreferencesValue:(id)value forKey:(NSString *)key {
++ (void)setPreferencesValue:(id)value forKey:(NSString *)key {
     if ([value isKindOfClass:[NSNull class]]) value = nil;
     if (!key) return;
     if (!value) [[NSUserDefaults standardUserDefaults] removeObjectForKey:key];
@@ -197,15 +207,15 @@ static id CurrentUser;
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
-- (id)preferencesValueForKey:(NSString *)key {
++ (id)preferencesValueForKey:(NSString *)key {
     return [[NSUserDefaults standardUserDefaults] objectForKey:key];
 }
 
-- (void)setSecurePreferencesValue:(NSString *)value forKey:(NSString *)key {
++ (void)setSecurePreferencesValue:(NSString *)value forKey:(NSString *)key {
 	[[BRSimpleKeychainService sharedService] setStringValue:value forKey:key];
 }
 
-- (id)securePreferencesValueForKey:(NSString *)key {
++ (id)securePreferencesValueForKey:(NSString *)key {
 	return [[BRSimpleKeychainService sharedService] stringValueForKey:key];
 }
 
