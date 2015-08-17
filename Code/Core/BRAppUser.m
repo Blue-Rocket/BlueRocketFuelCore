@@ -218,8 +218,12 @@ static id CurrentUser;
 	return ([self.email isValidEmailAddress] ? nil : [@"{validation.user.email.format}" localizedString]);
 }
 
-- (NSString *)validateName {
-	return ([self.name length] > 0 ? nil : [@"{validation.user.name.missing" localizedString]);
+- (NSString *)validateFirstName {
+	return ([self.firstName length] > 0 ? nil : [@"{validation.user.firstName.missing}" localizedString]);
+}
+
+- (NSString *)validateLastName {
+	return ([self.lastName length] > 0 ? nil : [@"{validation.user.lastName.missing}" localizedString]);
 }
 
 - (NSString *)validatePhone {

@@ -16,7 +16,8 @@
 @property (nonatomic, readonly, getter=isNewUser) BOOL newUser;
 @property (nonatomic, readonly, getter=isAuthenticated) BOOL authenticated;
 
-@property (nonatomic, strong) NSString *name;
+@property (nonatomic, strong) NSString *firstName;
+@property (nonatomic, strong) NSString *lastName;
 @property (nonatomic, strong) NSString *email;
 
 @end
@@ -34,7 +35,8 @@
 // the various validateX methods return a localized error message if the associated property X is not valid
 
 - (NSString *)validateEmail;
-- (NSString *)validateName;
+- (NSString *)validateFirstName;
+- (NSString *)validateLastName;
 - (NSString *)validatePassword;
 - (NSString *)validatePasswordAgain;
 
