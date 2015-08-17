@@ -28,6 +28,12 @@
 + (void)setAppUserClass:(Class)theClass;
 
 /**
+ Get a mapping key transformer, to automatically map between @c snake_case for server keys and @c llamaCase
+ for ObjC object keys. Extending classes may want to override this behavior.
+ */
++ (NSString * (^)(RKObjectMapping *mapping, NSString *sourceKey))sourceToDestinationKeyTransformationBlock;
+
+/**
  Register all supported object mappings with a specific @c RestKitWebApiDataMapper.
  
  @param dataMapper The @c RestKitWebApiDataMapper to register request and response mappings for.

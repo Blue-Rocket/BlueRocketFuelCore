@@ -8,6 +8,7 @@
 
 #import "BRFCRestKitDataMapping.h"
 
+#import <TransformerKit/TTTStringTransformers.h>
 #import "BRAppUser.h"
 #import "WebApiRoute.h"
 
@@ -29,30 +30,39 @@ static Class kAppUserClass;
 	kAppUserClass = theClass;
 }
 
++ (NSString * (^)(RKObjectMapping *mapping, NSString *sourceKey))sourceToDestinationKeyTransformationBlock {
+	return ^(RKObjectMapping *mapping, NSString *sourceKey) {
+		NSValueTransformer *normalizedKey = [[NSValueTransformer valueTransformerForName:TTTSnakeCaseStringTransformerName] reverseTransformedValue:sourceKey];
+		NSString *destKey = [[NSValueTransformer valueTransformerForName:TTTLlamaCaseStringTransformerName] transformedValue:normalizedKey];
+		return destKey;
+	};
+}
+
 + (void)registerObjectMappings:(RestKitWebApiDataMapper *)dataMapper {
 	RKObjectMapping *appUserMapping = [self appUserMapping];
-	[dataMapper registerRequestObjectMapping:appUserMapping forRouteName:WebApiRouteLogin];
+	RKObjectMapping *apiUserEncoding = [appUserMapping inverseMapping];
+	[dataMapper registerRequestObjectMapping:apiUserEncoding forRouteName:WebApiRouteLogin];
 	[dataMapper registerResponseObjectMapping:appUserMapping forRouteName:WebApiRouteLogin];
-	[dataMapper registerRequestObjectMapping:appUserMapping forRouteName:WebApiRouteRegister];
+	[dataMapper registerRequestObjectMapping:apiUserEncoding forRouteName:WebApiRouteRegister];
 	[dataMapper registerResponseObjectMapping:appUserMapping forRouteName:WebApiRouteRegister];
 }
 
 + (RKObjectMapping *)appUserMapping {
 	RKObjectMapping* mapping = [RKObjectMapping mappingForClass:[self appUserClass]];
+	[mapping setSourceToDestinationKeyTransformationBlock:[self sourceToDestinationKeyTransformationBlock]];
 	[mapping addAttributeMappingsFromArray:@[
-											 NSStringFromSelector(@selector(recordId)),
-											 NSStringFromSelector(@selector(type)),
-											 NSStringFromSelector(@selector(name)),
-											 NSStringFromSelector(@selector(firstName)),
-											 NSStringFromSelector(@selector(lastName)),
-											 NSStringFromSelector(@selector(website)),
-											 NSStringFromSelector(@selector(phone)),
-											 NSStringFromSelector(@selector(address)),
-											 NSStringFromSelector(@selector(email)),
-											 NSStringFromSelector(@selector(password)),
+											 @"name",
+											 @"first_name",
+											 @"last_name",
+											 @"website",
+											 @"phone",
+											 @"address",
+											 @"email",
+											 @"password",
 											 ]];
-	[mapping addAttributeMappingsFromDictionary:@{
-												  @"passwordAgain" : @"password_confirmation",
+	[mapping addAttributeMappingsFromDictionary:@{@"id" : @"recordId",
+												  @"password_confirmation" : @"passwordAgain",
+												  @"user_type" : @"type"
 												  }];
 	return mapping;
 }
