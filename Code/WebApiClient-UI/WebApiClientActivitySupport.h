@@ -10,6 +10,11 @@
 
 /**
  UI support for WebApiClient requests, for example to show an activity view when a request is taking too long.
+ 
+ This class for listen for @c WebApiClientRequestWillBeginNotification notifications. If the @c WebApiRoute
+ included in the notification has @c preventUserInteraction set to @c YES and the client request does not 
+ complete within the configured @c requestTooSlowDuration, a full-screen view with an activity indicator
+ and message will be inserted into the configured @c window and remain until the client request completes.
  */
 @interface WebApiClientActivitySupport : NSObject
 
