@@ -12,7 +12,8 @@
 #import <RestKit/ObjectMapping/RKObjectMappingOperationDataSource.h>
 #import "WebApiRoute.h"
 
-NSString * const RestKitWebApiRoutePropertyRootKeyPath = @"dataMapperRootKeyPath";
+NSString * const RestKitWebApiRoutePropertyRequestRootKeyPath = @"dataMapperRequestRootKeyPath";
+NSString * const RestKitWebApiRoutePropertyResponseRootKeyPath = @"dataMapperResponseRootKeyPath";
 
 @implementation RestKitWebApiDataMapper {
 	NSMutableDictionary *requestRouteMappers;
@@ -101,12 +102,28 @@ NSString * const RestKitWebApiRoutePropertyRootKeyPath = @"dataMapperRootKeyPath
 		}
 	}
 	NSMutableDictionary *encoded = mappingOperation.destinationObject;
-	encoded = [self wrapEncoding:encoded withKeyPath:route[RestKitWebApiRoutePropertyRootKeyPath]];
+	encoded = [self wrapEncoding:encoded withKeyPath:route[RestKitWebApiRoutePropertyRequestRootKeyPath]];
 	return encoded;
 }
 
 - (id)performMappingWithSourceObject:(id)sourceObject route:(id<WebApiRoute>)route error:(NSError *__autoreleasing *)error {
-	return nil;
+	RKObjectMapping *objectMapping = [self responseObjectMappingForRoute:route data:sourceObject];
+	id decodeSource = sourceObject;
+	if ( route[RestKitWebApiRoutePropertyResponseRootKeyPath] ) {
+		decodeSource = [sourceObject valueForKeyPath:route[RestKitWebApiRoutePropertyResponseRootKeyPath]];
+	}
+	RKMappingOperation *mappingOperation = [[RKMappingOperation alloc] initWithSourceObject:decodeSource
+																		  destinationObject:nil
+																					mapping:objectMapping];
+	id<RKMappingOperationDataSource> dataSource = [self dataSourceForMappingOperation:mappingOperation];
+	mappingOperation.dataSource = dataSource;
+	[mappingOperation start];
+	if ( mappingOperation.error ) {
+		if ( error ) {
+			*error = mappingOperation.error;
+		}
+	}
+	return mappingOperation.destinationObject;
 }
 
 @end

@@ -12,7 +12,19 @@
 
 @class RKObjectMapping;
 
-extern NSString * const RestKitWebApiRoutePropertyRootKeyPath;
+/**
+ A WebApiRoute property for a root object property to wrap the encoded request object in. This provides
+ a way to wrap the request in a top-level object, for example wrap a @c User object so the request looks
+ like @c { "user" : { ... } }.
+ */
+extern NSString * const RestKitWebApiRoutePropertyRequestRootKeyPath;
+
+/**
+ A WebApiRoute property for a root object property to unwrap the decoded request object from. This provides
+ a way to unwrap the response in a top-level object, for example unwrap a @c User object from a response
+ like @c { "user" : { ... } }.
+ */
+extern NSString * const RestKitWebApiRoutePropertyResponseRootKeyPath;
 
 /**
  A @c WebApiDataMapper that uses RestKit to handle data mapping to/from native objects.
