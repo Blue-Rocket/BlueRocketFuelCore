@@ -8,6 +8,7 @@
 
 #import "WebApiClientActivitySupport.h"
 
+#import <Masonry/Masonry.h>
 #import "WebApiClient.h"
 #import "NSBundle+BR.h"
 #import "NSDictionary+BR.h"
@@ -101,42 +102,62 @@
 	UIView *indicatorView = [[UIView alloc] initWithFrame:screenView.bounds];
 	indicatorView.backgroundColor = [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.65];
 	
-	UIActivityIndicatorView *fullScreenSpinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
-	fullScreenSpinner.center = CGPointMake(CGRectGetMidX(fullScreenIndicatorView.bounds), CGRectGetMidY(fullScreenIndicatorView.bounds));
-	fullScreenSpinner.alpha = 0.0;
-	[fullScreenSpinner startAnimating];
-	[indicatorView addSubview:fullScreenSpinner];
-	
-	UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0,0, s.width - 40, s.height)];
-	label.textAlignment = NSTextAlignmentCenter;
-	label.numberOfLines = 0;
-	label.text = [[NSBundle appStrings] localizedString:@"error.network.slow" withDefault:@"This is taking a little longer than expected. Please wait..."];
-	[label sizeToFit];
-	CGRect r = label.frame;
-	r.origin.x = rintf(s.width/2 - r.size.width/2);
-	r.origin.y = fullScreenSpinner.frame.origin.y - r.size.height - 20;
-	label.frame = r;
-	label.textColor = [UIColor whiteColor];
-	[indicatorView addSubview:label];
-	
-	
+	// add blurred background image
 	UIGraphicsBeginImageContext(screenView.bounds.size);
 	[screenView drawViewHierarchyInRect:screenView.bounds afterScreenUpdates:YES];
 	UIImage *snapshotImage = UIGraphicsGetImageFromCurrentImageContext();
 	UIGraphicsEndImageContext();
 	
-	indicatorView.backgroundColor = [UIColor colorWithPatternImage:[snapshotImage applyBlurWithRadius:3
-																							tintColor:[UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.65]
-																				saturationDeltaFactor:1
-																							maskImage:nil]];
+	UIImageView *bgImage = [[UIImageView alloc] initWithImage:[snapshotImage applyBlurWithRadius:3
+																					   tintColor:[UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.65]
+																		   saturationDeltaFactor:1
+																					   maskImage:nil]];
+	bgImage.contentMode = UIViewContentModeScaleToFill;
+	[indicatorView addSubview:bgImage];
+
+	// add spinner
+	UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+	spinner.center = CGPointMake(CGRectGetMidX(indicatorView.bounds), CGRectGetMidY(indicatorView.bounds));
+	spinner.alpha = 0.0;
+	[spinner startAnimating];
+	[indicatorView addSubview:spinner];
 	
+	// add message label
+	UILabel *label = [[UILabel alloc] initWithFrame:CGRectZero];
+	label.preferredMaxLayoutWidth = s.width - 40;
+	label.textAlignment = NSTextAlignmentCenter;
+	label.numberOfLines = 0;
+	label.lineBreakMode = NSLineBreakByWordWrapping;
+	label.text = [[NSBundle appStrings] localizedString:@"error.network.slow" withDefault:@"This is taking a little longer than expected. Please wait..."];
+	label.textColor = [UIColor whiteColor];
+	[label setContentHuggingPriority:UILayoutPriorityRequired forAxis:UILayoutConstraintAxisVertical];
+	[indicatorView addSubview:label];
+	
+	// setup constraints
 	[screenView addSubview:indicatorView];
+	[indicatorView mas_makeConstraints:^(MASConstraintMaker *make) {
+		make.edges.equalTo(screenView);
+	}];
+	[bgImage mas_makeConstraints:^(MASConstraintMaker *make) {
+		make.edges.equalTo(indicatorView);
+	}];
+	[label mas_makeConstraints:^(MASConstraintMaker *make) {
+		make.left.equalTo(@20);
+		make.right.equalTo(@-20);
+		make.bottom.equalTo(indicatorView.mas_centerY).offset(-5);
+	}];
+	[spinner mas_makeConstraints:^(MASConstraintMaker *make) {
+		make.top.equalTo(label.mas_bottom).offset(10);
+		make.centerX.equalTo(label);
+	}];
+	
+	// fade in
 	fullScreenIndicatorView = indicatorView;
 	[UIView animateWithDuration:0.35
-						  delay:0
+						  delay:0.1
 						options:UIViewAnimationOptionCurveEaseInOut
 					 animations:^{
-						 fullScreenSpinner.alpha = 1.0;
+						 spinner.alpha = 1.0;
 					 }
 					 completion:NULL];
 }
