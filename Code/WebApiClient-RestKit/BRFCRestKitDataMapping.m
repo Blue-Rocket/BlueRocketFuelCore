@@ -11,7 +11,23 @@
 #import "BRAppUser.h"
 #import "WebApiRoute.h"
 
+static Class kAppUserClass;
+
 @implementation BRFCRestKitDataMapping
+
++ (Class)appUserClass {
+	Class c = kAppUserClass;
+	if ( !c ) {
+		c = [BRAppUser class];
+		kAppUserClass = c;
+	}
+	return c;
+}
+
++ (void)setAppUserClass:(Class)theClass {
+	NSParameterAssert([theClass conformsToProtocol:@protocol(BRUser)]);
+	kAppUserClass = theClass;
+}
 
 + (void)registerObjectMappings:(RestKitWebApiDataMapper *)dataMapper {
 	RKObjectMapping *appUserMapping = [self appUserMapping];
@@ -22,7 +38,7 @@
 }
 
 + (RKObjectMapping *)appUserMapping {
-	RKObjectMapping* mapping = [RKObjectMapping mappingForClass:[BRAppUser class]];
+	RKObjectMapping* mapping = [RKObjectMapping mappingForClass:[self appUserClass]];
 	[mapping addAttributeMappingsFromArray:@[
 											 NSStringFromSelector(@selector(recordId)),
 											 NSStringFromSelector(@selector(type)),

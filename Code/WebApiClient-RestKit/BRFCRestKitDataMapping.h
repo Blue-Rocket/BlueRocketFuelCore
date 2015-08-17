@@ -16,6 +16,18 @@
 @interface BRFCRestKitDataMapping : NSObject
 
 /**
+ Get the class of the app user. This defaults to @c BRAppUser.
+ */
++ (Class)appUserClass;
+
+/**
+ Set the class of the app user. This class is expected to conform to the @c BRUser protocol.
+ 
+ @param theClass The class to set.
+ */
++ (void)setAppUserClass:(Class)theClass;
+
+/**
  Register all supported object mappings with a specific @c RestKitWebApiDataMapper.
  
  @param dataMapper The @c RestKitWebApiDataMapper to register request and response mappings for.
