@@ -10,6 +10,7 @@ target :BlueRocketFuelCore do
 	pod 'MAObjCRuntime', 			'~> 0.0.1'
 	pod 'RestKit/ObjectMapping',	'~> 0.24'
 	pod 'SOCKit',             		'~> 1.1'
+	pod 'TransformerKit/String',    '~> 0.5'
 	
 	target :BlueRocketFuelCoreTests do
 #		pod 'OCHamcrest',			'~> 4.1'

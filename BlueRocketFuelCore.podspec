@@ -72,6 +72,7 @@ Pod::Spec.new do |s|
   	sp.header_dir = 'WebApiClient-RestKit'
     sp.dependency 'BlueRocketFuelCore/WebApiClient'
     sp.dependency 'RestKit/ObjectMapping', '~> 0.24'
+    sp.dependency 'TransformerKit/String', '~> 0.5'
   end
 
   s.subspec 'WebApiClient-UI' do |sp|
