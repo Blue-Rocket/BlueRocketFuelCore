@@ -8,9 +8,6 @@
 
 #import "BaseNetworkTestingSupport.h"
 
-#define HC_SHORTHAND
-#import <OCHamcrest/OCHamcrest.h>
-
 #import "BRAppUser.h"
 #import "WebApiClientSupport.h"
 

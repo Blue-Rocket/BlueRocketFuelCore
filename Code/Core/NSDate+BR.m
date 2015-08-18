@@ -23,21 +23,27 @@
 //
 
 #import "NSDate+BR.h"
-#import <time.h>
-#import <xlocale.h>
 
 @implementation NSDate (BR)
 
-+ (NSDate*)dateFromJSONString:(NSString*)string{
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSSZ"];
-    return [dateFormatter dateFromString:string];
++ (NSDateFormatter *)JSONTimestampDateFormatter {
+	static NSDateFormatter *formatter;
+	if ( formatter == nil ) {
+		formatter = [NSDateFormatter new];
+		[formatter setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"]];
+		[formatter setTimeZone:[NSTimeZone timeZoneWithName:@"GMT"]];
+		[formatter setCalendar:[[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian]];
+		[formatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"];
+	}
+	return formatter;
 }
 
-- (NSString*)JSONString {
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ssZ"];
-    return [dateFormatter stringFromDate:self];
++ (NSDate *)dateWithJSONString:(NSString *)string{
+    return [[NSDate JSONTimestampDateFormatter] dateFromString:string];
+}
+
+- (NSString *)JSONString {
+    return [[NSDate JSONTimestampDateFormatter] stringFromDate:self];
 }
 
 @end

@@ -10,6 +10,9 @@
 
 #import <BREnvironment/BREnvironment.h>
 
+#define HC_SHORTHAND
+#import <OCHamcrest/OCHamcrest.h>
+
 /**
  A base @c XCTestCase class for other unit tests to extend.
  */

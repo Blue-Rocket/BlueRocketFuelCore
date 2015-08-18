@@ -8,9 +8,6 @@
 
 #import "BaseTestingSupport.h"
 
-#define HC_SHORTHAND
-#import <OCHamcrest/OCHamcrest.h>
-
 #import "NSString+BR.h"
 
 @interface NSString_BRTests : BaseTestingSupport

@@ -8,9 +8,6 @@
 
 #import "BaseTestingSupport.h"
 
-#define HC_SHORTHAND
-#import <OCHamcrest/OCHamcrest.h>
-
 #import "BRAppUser.h"
 
 @interface BRAppUserTests : BaseTestingSupport

@@ -24,9 +24,25 @@
 
 #import <Foundation/Foundation.h>
 
+/**
+ Utility methods for dates.
+ */
 @interface NSDate (BR)
 
-+ (NSDate*)dateFromJSONString:(NSString*)string;
+/**
+ Parse a JSON timestamp string in ISO8601 format into a date object.
+ 
+ The expected format is @c yyyy-MM-dd'T'HH:mm:ss.SSS'Z'.
+ 
+ @param string The date string.
+ */
++ (NSDate*)dateWithJSONString:(NSString *)string;
+
+/**
+ Encode the receiver into a JSON ISO8601 date string.
+ 
+ @return The date in string form.
+ */
 - (NSString*)JSONString;
 
 @end
