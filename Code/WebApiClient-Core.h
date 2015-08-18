@@ -8,6 +8,8 @@
 
 #import <BlueRocketFuelCore/WebApiClient/NSDictionary+WebApiClient.h>
 #import <BlueRocketFuelCore/WebApiClient/WebApiClient.h>
+#import <BlueRocketFuelCore/WebApiClient/WebApiClientEnvironment.h>
 #import <BlueRocketFuelCore/WebApiClient/WebApiClientSupport.h>
 #import <BlueRocketFuelCore/WebApiClient/WebApiDataMapper.h>
+#import <BlueRocketFuelCore/WebApiClient/WebApiResponse.h>
 #import <BlueRocketFuelCore/WebApiClient/WebApiRoute.h>

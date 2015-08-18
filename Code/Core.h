@@ -8,8 +8,11 @@
 
 #import <BlueRocketFuelCore/Core/BRAppConfigEnvironmentProvider.h>
 #import <BlueRocketFuelCore/Core/BRAppUser.h>
+#import <BlueRocketFuelCore/Core/BREntity.h>
+#import <BlueRocketFuelCore/Core/BREntityReference.h>
 #import <BlueRocketFuelCore/Core/BRKeychainService.h>
 #import <BlueRocketFuelCore/Core/BRLocalizable.h>
+#import <BlueRocketFuelCore/Core/BRSimpleEntityReference.h>
 #import <BlueRocketFuelCore/Core/BRSimpleKeychainService.h>
 #import <BlueRocketFuelCore/Core/BRUser.h>
 #import <BlueRocketFuelCore/Core/NSBundle+BR.h>
