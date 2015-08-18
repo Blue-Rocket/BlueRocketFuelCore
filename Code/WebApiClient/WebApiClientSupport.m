@@ -76,9 +76,9 @@ static NSString * const kRoutePropertyDataMapperInstance = @"_dataMapper";
 		|| ([protocol isEqualToString:@"http"] && [port isEqualToString:@"80"])
 		|| ([protocol isEqualToString:@"https"] && [port isEqualToString:@"443"]) ) {
 		// don't include port in base URL
-		return [NSURL URLWithString:[NSString stringWithFormat:@"%@://%@", protocol, host]];
+		return [NSURL URLWithString:[NSString stringWithFormat:@"%@://%@/", protocol, host]];
 	}
-	return [NSURL URLWithString:[NSString stringWithFormat:@"%@://%@:%@", protocol, host, port]];
+	return [NSURL URLWithString:[NSString stringWithFormat:@"%@://%@:%@/", protocol, host, port]];
 }
 
 - (void)registerRoute:(id<WebApiRoute>)route forName:(NSString *)name {
