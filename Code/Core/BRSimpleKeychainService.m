@@ -49,7 +49,11 @@
 }
 
 - (NSString *)keychainAccountForKey:(NSString *)key {
-	return [[[NSBundle mainBundle] bundleIdentifier] stringByAppendingFormat:@".%@", key];
+	NSString *ident = [[NSBundle mainBundle] bundleIdentifier];
+	if ( !ident ) {
+		ident = [[NSBundle bundleForClass:[self class]] bundleIdentifier];
+	}
+	return (ident ? [ident stringByAppendingFormat:@".%@", key] : key);
 }
 
 - (NSString *)stringValueForKey:(NSString *)key {
