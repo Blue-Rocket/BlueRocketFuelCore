@@ -1,7 +1,7 @@
 //
 //  Created by Shawn McKee on 2/5/15.
 //
-//  Copyright (c) 2015 Blue Rocket. All rights reserved.
+//  Copyright (c) 2015 Blue Rocket. Distributable under the terms of the Apache License, Version 2.0.
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
