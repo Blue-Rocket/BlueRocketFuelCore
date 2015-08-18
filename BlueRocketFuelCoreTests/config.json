@@ -26,11 +26,11 @@
 			},
 			"doc" : {
 				"method" : "GET",
-				"path" : "document/:docId"
-			}
-			"person" : {
-				"method" : "GET",
-				"path" : "person/:userId"
+				"path" : "document/:uniqueId"
+			},
+			"saveDoc" : {
+				"method" : "PUT",
+				"path" : "document/:uniqueId"
 			}
 		}
 	}

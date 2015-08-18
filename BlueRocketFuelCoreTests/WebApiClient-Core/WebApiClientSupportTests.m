@@ -63,7 +63,7 @@
 }
 
 - (void)testLoadRoutes {
-	assertThat(client.routeNames, containsInAnyOrder(@"register", @"login", @"user", @"test", nil));
+	assertThat(client.routeNames, hasItems(@"register", @"login", nil));
 	id<WebApiRoute> route = [client routeForName:@"register" error:nil];
 	assertThat(route, notNilValue());
 	assertThat(route.name, equalTo(@"register"));

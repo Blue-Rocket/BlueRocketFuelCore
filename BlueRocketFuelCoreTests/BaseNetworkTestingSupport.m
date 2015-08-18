@@ -36,6 +36,11 @@
 	return [NSURL URLWithString:[@"http://localhost:" stringByAppendingFormat:@"%u", [self.http listeningPort]]];
 }
 
+- (NSURL *)httpURLForRelativePath:(NSString *)path {
+	return [NSURL URLWithString:path relativeToURL:[self httpURL]];
+}
+
+
 #pragma mark - Threading support
 
 - (BOOL)processMainRunLoopAtMost:(NSTimeInterval)seconds stop:(BOOL *)stop {

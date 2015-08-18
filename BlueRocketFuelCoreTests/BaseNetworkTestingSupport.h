@@ -27,6 +27,14 @@
 @property (nonatomic, readonly) NSURL *httpURL;
 
 /**
+ Get a URL for a relative path from the @c httpURL base URL.
+ 
+ @param path The relative path.
+ @return A URL.
+ */
+- (NSURL *)httpURLForRelativePath:(NSString *)path;
+
+/**
  Process the main run loop for a maximum number of seconds or until the BOOL parameter is YES,
  whichever occurs first; returns the value of the 'stop' parameter.
  
