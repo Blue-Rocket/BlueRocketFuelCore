@@ -60,7 +60,7 @@ static Class kAppUserClass;
 											 @"email",
 											 @"password",
 											 ]];
-	[mapping addAttributeMappingsFromDictionary:@{@"id" : @"recordId",
+	[mapping addAttributeMappingsFromDictionary:@{@"id" : @"uniqueId",
 												  @"password_confirmation" : @"passwordAgain",
 												  @"token" : @"authenticationToken",
 												  @"user_type" : @"type"
