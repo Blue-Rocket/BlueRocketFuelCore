@@ -52,6 +52,7 @@
 		C9500C631B83B9A600AC0706 /* BREntityReference.h in Headers */ = {isa = PBXBuildFile; fileRef = C9500C621B83B9A600AC0706 /* BREntityReference.h */; };
 		C9500C661B83BA1D00AC0706 /* BRSimpleEntityReference.h in Headers */ = {isa = PBXBuildFile; fileRef = C9500C641B83BA1D00AC0706 /* BRSimpleEntityReference.h */; };
 		C9500C671B83BA1D00AC0706 /* BRSimpleEntityReference.m in Sources */ = {isa = PBXBuildFile; fileRef = C9500C651B83BA1D00AC0706 /* BRSimpleEntityReference.m */; };
+		C9500C6B1B83E1AE00AC0706 /* RestKitWebApiDataMapperTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C9500C6A1B83E1AE00AC0706 /* RestKitWebApiDataMapperTests.m */; };
 		C95775F91B7DBEE100D91C3D /* WebApiRotue.m in Sources */ = {isa = PBXBuildFile; fileRef = C95775F81B7DBEE100D91C3D /* WebApiRotue.m */; };
 		C95B2B0E1B7D58320050ABBE /* Logging.h in Headers */ = {isa = PBXBuildFile; fileRef = C95B2AB91B7D58310050ABBE /* Logging.h */; };
 		C95B2B0F1B7D58320050ABBE /* BRLogging.h in Headers */ = {isa = PBXBuildFile; fileRef = C95B2ABB1B7D58310050ABBE /* BRLogging.h */; };
@@ -199,6 +200,7 @@
 		C9500C621B83B9A600AC0706 /* BREntityReference.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BREntityReference.h; sourceTree = "<group>"; };
 		C9500C641B83BA1D00AC0706 /* BRSimpleEntityReference.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRSimpleEntityReference.h; sourceTree = "<group>"; };
 		C9500C651B83BA1D00AC0706 /* BRSimpleEntityReference.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRSimpleEntityReference.m; sourceTree = "<group>"; };
+		C9500C6A1B83E1AE00AC0706 /* RestKitWebApiDataMapperTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RestKitWebApiDataMapperTests.m; sourceTree = "<group>"; };
 		C95775F81B7DBEE100D91C3D /* WebApiRotue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebApiRotue.m; sourceTree = "<group>"; };
 		C95B2AB91B7D58310050ABBE /* Logging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Logging.h; path = Code/Logging.h; sourceTree = "<group>"; };
 		C95B2ABB1B7D58310050ABBE /* BRLogging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRLogging.h; sourceTree = "<group>"; };
@@ -366,6 +368,7 @@
 				C91F6ED11B82C7AB004A518A /* Core */,
 				C91F6E9B1B828117004A518A /* WebApiClient-Core */,
 				C91F6E981B826E4A004A518A /* WebApiClient-AFNetworking */,
+				C9500C691B83E1AE00AC0706 /* WebApiClient-RestKit */,
 				29E2E37D1A683B7D0048D0AB /* Supporting Files */,
 			);
 			path = BlueRocketFuelCoreTests;
@@ -493,6 +496,14 @@
 				C9500C651B83BA1D00AC0706 /* BRSimpleEntityReference.m */,
 			);
 			name = Domain;
+			sourceTree = "<group>";
+		};
+		C9500C691B83E1AE00AC0706 /* WebApiClient-RestKit */ = {
+			isa = PBXGroup;
+			children = (
+				C9500C6A1B83E1AE00AC0706 /* RestKitWebApiDataMapperTests.m */,
+			);
+			path = "WebApiClient-RestKit";
 			sourceTree = "<group>";
 		};
 		C95B2ABA1B7D58310050ABBE /* Logging */ = {
@@ -894,6 +905,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C91F6E961B826CFE004A518A /* BaseNetworkTestingSupport.m in Sources */,
+				C9500C6B1B83E1AE00AC0706 /* RestKitWebApiDataMapperTests.m in Sources */,
 				C91F6ED31B82C7AB004A518A /* BRAppUserTests.m in Sources */,
 				C91F6EA01B828476004A518A /* BaseTestingSupport.m in Sources */,
 				C91F6E9D1B828117004A518A /* WebApiClientSupportTests.m in Sources */,
