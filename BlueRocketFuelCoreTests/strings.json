@@ -1,0 +1,9 @@
+{
+	"error" : {
+		"general" : "This is a general error: %@",
+		"specific" : {
+			"ouch" : "Ouch, that hurt.",
+			"youch" : "Yowza, that really hurt."
+		}
+	}
+}

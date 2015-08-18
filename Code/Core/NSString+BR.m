@@ -127,12 +127,12 @@ static NSMutableDictionary *kPhoneRegexes = nil;
 - (NSString *)localizedStringWithAppStrings:(NSDictionary *)strings {
     NSString *finalString = self;
     NSString *string = [self stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-    if (!string.length || string.length == 1) return self;
-    if ([string characterAtIndex:0] == '{' && [string characterAtIndex:string.length-1] == '}') {
-        NSString *key = [string substringWithRange:NSMakeRange(1, string.length-2)];
+    if ( string.length > 2 && [string characterAtIndex:0] == '{' && [string characterAtIndex:string.length-1] == '}' ) {
+        NSString *key = [string substringWithRange:NSMakeRange(1, string.length - 2)];
         string = [strings localizedString:key];
-        if ([string isEqualToString:key]) finalString = self;
-        else if (string && [string isKindOfClass:[NSString class]]) finalString = string;
+		if ( string && [string isKindOfClass:[NSString class]] && ![string isEqualToString:key] ) {
+			finalString = string;
+		}
     }
     return finalString;
 }
