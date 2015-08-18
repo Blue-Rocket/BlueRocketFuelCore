@@ -10,7 +10,7 @@
 
 #import "AFNetworkingWebApiClient.h"
 #import "BRAppUser.h"
-#import "BRFCRestKitDataMapping.h"
+#import "BRRestKitDataMapping.h"
 #import "BRSimpleEntityReference.h"
 #import "RestKitWebApiDataMapper.h"
 
@@ -30,7 +30,7 @@
 
 - (void)testEncodeAppUserObject {
 	RestKitWebApiDataMapper *mapper = [RestKitWebApiDataMapper sharedDataMapper];
-	RKObjectMapping *userMapping = [BRFCRestKitDataMapping appUserMapping];
+	RKObjectMapping *userMapping = [BRRestKitDataMapping appUserMapping];
 	[mapper registerRequestObjectMapping:[userMapping inverseMapping] forRouteName:@"login"];
 	
 	id<WebApiRoute> route = @{@"name" : @"login"};
@@ -52,7 +52,7 @@
 
 - (void)testEncodeAppUserObjectWithRootKeyPath {
 	RestKitWebApiDataMapper *mapper = [RestKitWebApiDataMapper sharedDataMapper];
-	RKObjectMapping *userMapping = [BRFCRestKitDataMapping appUserMapping];
+	RKObjectMapping *userMapping = [BRRestKitDataMapping appUserMapping];
 	[mapper registerRequestObjectMapping:[userMapping inverseMapping] forRouteName:@"login"];
 	
 	id<WebApiRoute> route = @{@"name" : @"login", @"dataMapperRequestRootKeyPath" : @"foo"};
@@ -76,7 +76,7 @@
 
 - (void)testMapAppUserObject {
 	RestKitWebApiDataMapper *mapper = [RestKitWebApiDataMapper sharedDataMapper];
-	RKObjectMapping *userMapping = [BRFCRestKitDataMapping appUserMapping];
+	RKObjectMapping *userMapping = [BRRestKitDataMapping appUserMapping];
 	[mapper registerResponseObjectMapping:userMapping forRouteName:@"login"];
 	
 	id<WebApiRoute> route = @{@"name" : @"login"};
@@ -97,7 +97,7 @@
 
 - (void)testMapAppUserObjectWithRootKeyPath {
 	RestKitWebApiDataMapper *mapper = [RestKitWebApiDataMapper sharedDataMapper];
-	RKObjectMapping *userMapping = [BRFCRestKitDataMapping appUserMapping];
+	RKObjectMapping *userMapping = [BRRestKitDataMapping appUserMapping];
 	[mapper registerResponseObjectMapping:userMapping forRouteName:@"login"];
 	
 	id<WebApiRoute> route = @{@"name" : @"login", @"dataMapperResponseRootKeyPath" : @"foo"};

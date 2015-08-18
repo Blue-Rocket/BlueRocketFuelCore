@@ -13,8 +13,8 @@
 		29E2E3791A683B7D0048D0AB /* BlueRocketFuelCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29E2E36D1A683B7D0048D0AB /* BlueRocketFuelCore.framework */; };
 		912CD96D928E33B7C31F0C96 /* libPods-BlueRocketFuelCore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 107959C8D8AC4224453FD59D /* libPods-BlueRocketFuelCore.a */; };
 		AE94E27C9F9AF9FA43288F5A /* libPods-BlueRocketFuelCore-BlueRocketFuelCoreTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 235F56302A91ECF08BF088E1 /* libPods-BlueRocketFuelCore-BlueRocketFuelCoreTests.a */; };
-		C90510561B7C31C800031482 /* BRFCRestKitDataMapping.h in Headers */ = {isa = PBXBuildFile; fileRef = C90510421B7C31C800031482 /* BRFCRestKitDataMapping.h */; };
-		C90510571B7C31C800031482 /* BRFCRestKitDataMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = C90510431B7C31C800031482 /* BRFCRestKitDataMapping.m */; };
+		C90510561B7C31C800031482 /* BRRestKitDataMapping.h in Headers */ = {isa = PBXBuildFile; fileRef = C90510421B7C31C800031482 /* BRRestKitDataMapping.h */; };
+		C90510571B7C31C800031482 /* BRRestKitDataMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = C90510431B7C31C800031482 /* BRRestKitDataMapping.m */; };
 		C90510581B7C31C800031482 /* RestKitWebApiDataMapper.h in Headers */ = {isa = PBXBuildFile; fileRef = C90510441B7C31C800031482 /* RestKitWebApiDataMapper.h */; };
 		C90510591B7C31C800031482 /* RestKitWebApiDataMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = C90510451B7C31C800031482 /* RestKitWebApiDataMapper.m */; };
 		C905105B1B7C31C800031482 /* NSDictionary+WebApiClient.h in Headers */ = {isa = PBXBuildFile; fileRef = C90510481B7C31C800031482 /* NSDictionary+WebApiClient.h */; };
@@ -159,8 +159,8 @@
 		7088CC6D616A201CDA54004B /* Pods-BlueRocketFuelCore-BlueRocketFuelCoreTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BlueRocketFuelCore-BlueRocketFuelCoreTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-BlueRocketFuelCore-BlueRocketFuelCoreTests/Pods-BlueRocketFuelCore-BlueRocketFuelCoreTests.release.xcconfig"; sourceTree = "<group>"; };
 		838B284CCE585777D0123ED0 /* Pods-BlueRocketFuelCore-BlueRocketFuelCoreTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BlueRocketFuelCore-BlueRocketFuelCoreTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BlueRocketFuelCore-BlueRocketFuelCoreTests/Pods-BlueRocketFuelCore-BlueRocketFuelCoreTests.debug.xcconfig"; sourceTree = "<group>"; };
 		A268984B69E64005A00ED955 /* Pods-BlueRocketFuelCore.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BlueRocketFuelCore.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BlueRocketFuelCore/Pods-BlueRocketFuelCore.debug.xcconfig"; sourceTree = "<group>"; };
-		C90510421B7C31C800031482 /* BRFCRestKitDataMapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = BRFCRestKitDataMapping.h; sourceTree = "<group>"; };
-		C90510431B7C31C800031482 /* BRFCRestKitDataMapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = BRFCRestKitDataMapping.m; sourceTree = "<group>"; };
+		C90510421B7C31C800031482 /* BRRestKitDataMapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = BRRestKitDataMapping.h; sourceTree = "<group>"; };
+		C90510431B7C31C800031482 /* BRRestKitDataMapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = BRRestKitDataMapping.m; sourceTree = "<group>"; };
 		C90510441B7C31C800031482 /* RestKitWebApiDataMapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = RestKitWebApiDataMapper.h; sourceTree = "<group>"; };
 		C90510451B7C31C800031482 /* RestKitWebApiDataMapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = RestKitWebApiDataMapper.m; sourceTree = "<group>"; };
 		C90510481B7C31C800031482 /* NSDictionary+WebApiClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = "NSDictionary+WebApiClient.h"; sourceTree = "<group>"; };
@@ -409,8 +409,8 @@
 		C90510411B7C31C800031482 /* WebApiClient-RestKit */ = {
 			isa = PBXGroup;
 			children = (
-				C90510421B7C31C800031482 /* BRFCRestKitDataMapping.h */,
-				C90510431B7C31C800031482 /* BRFCRestKitDataMapping.m */,
+				C90510421B7C31C800031482 /* BRRestKitDataMapping.h */,
+				C90510431B7C31C800031482 /* BRRestKitDataMapping.m */,
 				C90510441B7C31C800031482 /* RestKitWebApiDataMapper.h */,
 				C90510451B7C31C800031482 /* RestKitWebApiDataMapper.m */,
 			);
@@ -674,7 +674,7 @@
 				C90510581B7C31C800031482 /* RestKitWebApiDataMapper.h in Headers */,
 				C95B2B511B7D58320050ABBE /* NSDate+BR.h in Headers */,
 				C905105B1B7C31C800031482 /* NSDictionary+WebApiClient.h in Headers */,
-				C90510561B7C31C800031482 /* BRFCRestKitDataMapping.h in Headers */,
+				C90510561B7C31C800031482 /* BRRestKitDataMapping.h in Headers */,
 				C90510611B7C31C800031482 /* WebApiDataMapper.h in Headers */,
 				C95B2BB91B7D596A0050ABBE /* UIView+BR.h in Headers */,
 				C95B2BAD1B7D596A0050ABBE /* UIImage+BR.h in Headers */,
@@ -863,7 +863,7 @@
 				C95B2BE91B7D62F90050ABBE /* BRWebServiceResponse.m in Sources */,
 				C95B2BA61B7D596A0050ABBE /* ReplaceNoAnimationSegue.m in Sources */,
 				C95B2B4D1B7D58320050ABBE /* BRSimpleKeychainService.m in Sources */,
-				C90510571B7C31C800031482 /* BRFCRestKitDataMapping.m in Sources */,
+				C90510571B7C31C800031482 /* BRRestKitDataMapping.m in Sources */,
 				C95B2BB21B7D596A0050ABBE /* UILabel+BR.m in Sources */,
 				C95B2BE51B7D62F90050ABBE /* BRUserWebServiceRequest.m in Sources */,
 				C95B2B9F1B7D596A0050ABBE /* BRFullScreenNotificationView.m in Sources */,

@@ -1,5 +1,5 @@
 //
-//  BRFCRestKitDataMapping.h
+//  BRRestKitDataMapping.h
 //  BlueRocketFuelCore
 //
 //  Created by Matt on 13/08/15.
@@ -13,7 +13,7 @@
 /**
  Utility class to generate RestKit object mapping instances for domain objects.
  */
-@interface BRFCRestKitDataMapping : NSObject
+@interface BRRestKitDataMapping : NSObject
 
 /**
  Get the class of the app user. This defaults to @c BRAppUser.
