@@ -9,6 +9,7 @@
 #import "WebApiClient.h"
 
 @protocol WebApiDataMapper;
+@class BREnvironment;
 
 extern NSString * const WebApiClientSupportAppApiKeyDefaultHTTPHeaderName;
 extern NSString * const WebApiClientSupportAppApiKeyEnvironmentKey;
@@ -16,15 +17,34 @@ extern NSString * const WebApiClientSupportAppIdDefaultHTTPHeaderName;
 
 @interface WebApiClientSupport : NSObject <WebApiClient>
 
+@property (nonatomic, strong) BREnvironment *environment;
 @property (nonatomic, strong) NSString *appApiKey;
 @property (nonatomic, strong) NSString *appApiKeyHTTPHeaderName;
 @property (nonatomic, strong) NSString *appId;
 @property (nonatomic, strong) NSString *appIdHTTPHeaderName;
 
 /**
- Configure default routes in the receiver. Extending classes can override to customize the instance.
+ Init with a custom environment.
+ 
+ @param environment The environment to use.
+ @return The new instance.
  */
-- (void)loadDefaultRoutes;
+- (id)initWithEnvironment:(BREnvironment *)environment;
+
+/**
+ Configure default routes in the receiver. Extending classes can override to customize the instance.
+ 
+ @param environment The environment to configure the routes from.
+ */
+- (void)loadDefaultRoutes:(BREnvironment *)environment;
+
+/**
+ Configure the base API URL in the receiver. Extending classes can override to customize the instance.
+ 
+ @param environment The environment to configure the base API URL from.
+ @return The base API URL to use.
+ */
+- (NSURL *)setupBaseApiURL:(BREnvironment *)environment;
 
 /**
  Register a new route.

@@ -8,9 +8,9 @@
 
 #import "WebApiClientSupport.h"
 
+#import <BlueRocketFuelCore/NSString+BR.h>
 #import <BRCocoaLumberjack/BRCocoaLumberjack.h>
 #import <BREnvironment/BREnvironment.h>
-#import <BlueRocketFuelCore/NSString+BR.h>
 #import <MAObjCRuntime/MARTNSObject.h>
 #import <MAObjCRuntime/RTProperty.h>
 #import <SOCKit/SOCKit.h>
@@ -25,16 +25,23 @@ static NSString * const kRoutePropertyDataMapperInstance = @"_dataMapper";
 
 @implementation WebApiClientSupport {
 	NSMutableDictionary *routes;
+	NSURL *baseApiURL;
 }
 
 - (id)init {
+	return [self initWithEnvironment:[BREnvironment sharedEnvironment]];
+}
+
+- (id)initWithEnvironment:(BREnvironment *)theEnvironment {
 	if ( (self = [super init]) ) {
 		routes = [[NSMutableDictionary alloc] initWithCapacity:16];
-		self.appApiKey = [BREnvironment sharedEnvironment][WebApiClientSupportAppApiKeyEnvironmentKey];
+		//environment = theEnvironment;
+		self.appApiKey = theEnvironment[WebApiClientSupportAppApiKeyEnvironmentKey];
 		self.appApiKeyHTTPHeaderName = WebApiClientSupportAppApiKeyDefaultHTTPHeaderName;
 		self.appIdHTTPHeaderName = WebApiClientSupportAppIdDefaultHTTPHeaderName;
 		self.appId = [[NSBundle mainBundle] objectForInfoDictionaryKey:(id)kCFBundleIdentifierKey];
-		[self loadDefaultRoutes];
+		[self loadDefaultRoutes:theEnvironment];
+		baseApiURL = [self setupBaseApiURL:theEnvironment];
 	}
 	return self;
 }
@@ -48,9 +55,9 @@ static NSString * const kRoutePropertyDataMapperInstance = @"_dataMapper";
 	return shared;
 }
 
-- (void)loadDefaultRoutes {
+- (void)loadDefaultRoutes:(BREnvironment *)environment {
 	// look for routes in config.json/webservice.api dictionary
-	id routeConfigs = [BREnvironment sharedEnvironment][@"webservice.api"];
+	id routeConfigs = environment[@"webservice.api"];
 	if ( ![routeConfigs conformsToProtocol:@protocol(NSFastEnumeration)] ) {
 		return;
 	}
@@ -58,6 +65,20 @@ static NSString * const kRoutePropertyDataMapperInstance = @"_dataMapper";
 	   DDLogDebug(@"Inspecting web api route %@", routeName);
 	   [self registerRoute:routeConfigs[routeName] forName:routeName];
    }
+}
+
+- (NSURL *)setupBaseApiURL:(BREnvironment *)environment {
+	NSString *protocol = environment[@"App_webservice_protocol"];
+	NSString *host = environment[@"App_webservice_host"];
+	NSString *port = environment[@"webservice.port"];
+	
+	if ( !port
+		|| ([protocol isEqualToString:@"http"] && [port isEqualToString:@"80"])
+		|| ([protocol isEqualToString:@"https"] && [port isEqualToString:@"443"]) ) {
+		// don't include port in base URL
+		return [NSURL URLWithString:[NSString stringWithFormat:@"%@://%@", protocol, host]];
+	}
+	return [NSURL URLWithString:[NSString stringWithFormat:@"%@://%@:%@", protocol, host, port]];
 }
 
 - (void)registerRoute:(id<WebApiRoute>)route forName:(NSString *)name {
@@ -92,17 +113,7 @@ static NSString * const kRoutePropertyDataMapperInstance = @"_dataMapper";
 }
 
 - (NSURL *)baseApiURL {
-	NSString *protocol = [BREnvironment sharedEnvironment][@"App_webservice_protocol"];
-	NSString *host = [BREnvironment sharedEnvironment][@"App_webservice_host"];
-	NSString *port = [BREnvironment sharedEnvironment][@"webservice.port"];
-	
-	if ( !port
-		|| ([protocol isEqualToString:@"http"] && [port isEqualToString:@"80"])
-		|| ([protocol isEqualToString:@"https"] && [port isEqualToString:@"443"]) ) {
-		// don't include port in base URL
-		return [NSURL URLWithString:[NSString stringWithFormat:@"%@://%@", protocol, host]];
-	}
-	return [NSURL URLWithString:[NSString stringWithFormat:@"%@://%@:%@", protocol, host, port]];
+	return baseApiURL;
 }
 
 - (NSDictionary *)dictionaryForParametersObject:(id)parameters {

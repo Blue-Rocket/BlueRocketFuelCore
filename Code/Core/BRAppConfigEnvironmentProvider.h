@@ -32,4 +32,7 @@
  */
 @interface BRAppConfigEnvironmentProvider : NSObject <BREnvironmentProvider>
 
+/** An optional specific bundle to use. If not configured, the main bundle will be used. */
+@property (nonatomic, strong) NSBundle *bundle;
+
 @end

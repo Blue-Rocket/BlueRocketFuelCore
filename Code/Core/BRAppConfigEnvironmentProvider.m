@@ -28,11 +28,26 @@
 
 #import "NSBundle+BR.h"
 
-@implementation BRAppConfigEnvironmentProvider
+@implementation BRAppConfigEnvironmentProvider {
+	NSBundle *bundle;
+	NSDictionary *appConfig;
+}
+
+@synthesize bundle;
+
+- (void)setBundle:(NSBundle *)theBundle {
+	bundle = theBundle;
+	appConfig = [theBundle appConfig];
+}
+
+- (NSDictionary *)appConfig {
+	return (bundle ? appConfig : [NSBundle appConfig]);
+}
 
 - (id)objectForKeyedSubscript:(id)key {
+	NSDictionary *dict = [self appConfig];
 	// treat key as keyPath!
-	return [[NSBundle appConfig] valueForKeyPath:key];
+	return [dict valueForKeyPath:key];
 }
 
 @end
