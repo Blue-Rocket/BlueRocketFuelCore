@@ -21,6 +21,9 @@
 
 - (NSDictionary *)appStrings {
 	NSString *path = [self pathForResource:@"strings" ofType:@"json"];
+	if ( !path ) {
+		return nil;
+	}
 	NSData *data = [[NSData alloc] initWithContentsOfFile:path];
 	return [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
 }
@@ -36,6 +39,9 @@
 
 - (NSDictionary *)appConfig {
 	NSString *path = [self pathForResource:@"config" ofType:@"json"];
+	if ( !path ) {
+		return nil;
+	}
 	NSData *data = [[NSData alloc] initWithContentsOfFile:path];
 	return[NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
 }
