@@ -1,5 +1,8 @@
 {
 	"App_webservice_token" : "test_token",
+	"App_webservice_protocol" : "http",
+	"App_webservice_host" : "localhost",
+	"App_webservice_port" : "80",
 	"webservice" : {
 		"api" : {
 			"register" : {
@@ -15,6 +18,11 @@
 				"dataMapper" : "RestKitWebApiDataMapper",
 				"dataMapperRequestRootKeyPath" : "user",
 				"preventUserInteraction" : true
+			},
+			"user" : {
+				"method" : "GET",
+				"path" : "user/:userId",
+				"dataMapper" : "RestKitWebApiDataMapper"
 			}
 		}
 	}
