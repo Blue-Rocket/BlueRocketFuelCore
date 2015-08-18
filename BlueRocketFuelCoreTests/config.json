@@ -1,0 +1,21 @@
+{
+	"App_webservice_token" : "test_token",
+	"webservice" : {
+		"api" : {
+			"register" : {
+				"method" : "POST",
+				"path" : "register",
+				"dataMapper" : "RestKitWebApiDataMapper",
+				"dataMapperRequestRootKeyPath" : "user",
+				"preventUserInteraction" : true
+			},
+			"login" : {
+				"method" : "POST",
+				"path" : "login",
+				"dataMapper" : "RestKitWebApiDataMapper",
+				"dataMapperRequestRootKeyPath" : "user",
+				"preventUserInteraction" : true
+			}
+		}
+	}
+}

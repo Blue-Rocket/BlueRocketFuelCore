@@ -6,15 +6,15 @@
 //  Copyright (c) 2015 Blue Rocket. All rights reserved.
 //
 
-#import <XCTest/XCTest.h>
+#import "BaseTestingSupport.h"
+
 #import <RoutingHTTPServer/RoutingHTTPServer.h>
 
 /**
  A base @c XCTestCase class for other unit tests to extend that require basic HTTP networking support.
  */
-@interface BaseNetworkTestingSupport : XCTestCase
+@interface BaseNetworkTestingSupport : BaseTestingSupport
 
-@property (nonatomic, readonly) NSBundle *bundle;
 @property (nonatomic, readonly) RoutingHTTPServer *http;
 @property (nonatomic, readonly) NSURL *httpURL;
 

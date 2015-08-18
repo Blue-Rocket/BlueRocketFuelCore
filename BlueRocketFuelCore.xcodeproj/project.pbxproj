@@ -11,7 +11,6 @@
 		297967981A683CE900B7408B /* BRJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 297967861A683CE900B7408B /* BRJSON.m */; };
 		29E2E3731A683B7D0048D0AB /* BlueRocketFuelCore.h in Headers */ = {isa = PBXBuildFile; fileRef = 29E2E3721A683B7D0048D0AB /* BlueRocketFuelCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		29E2E3791A683B7D0048D0AB /* BlueRocketFuelCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29E2E36D1A683B7D0048D0AB /* BlueRocketFuelCore.framework */; };
-		29E2E3801A683B7D0048D0AB /* BlueRocketFuelCoreTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 29E2E37F1A683B7D0048D0AB /* BlueRocketFuelCoreTests.m */; };
 		912CD96D928E33B7C31F0C96 /* libPods-BlueRocketFuelCore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 107959C8D8AC4224453FD59D /* libPods-BlueRocketFuelCore.a */; };
 		AE94E27C9F9AF9FA43288F5A /* libPods-BlueRocketFuelCore-BlueRocketFuelCoreTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 235F56302A91ECF08BF088E1 /* libPods-BlueRocketFuelCore-BlueRocketFuelCoreTests.a */; };
 		C90510561B7C31C800031482 /* BRFCRestKitDataMapping.h in Headers */ = {isa = PBXBuildFile; fileRef = C90510421B7C31C800031482 /* BRFCRestKitDataMapping.h */; };
@@ -32,6 +31,11 @@
 		C90510661B7C31C800031482 /* WebApiClient-RestKit.h in Headers */ = {isa = PBXBuildFile; fileRef = C90510541B7C31C800031482 /* WebApiClient-RestKit.h */; };
 		C90510671B7C31C800031482 /* WebApiClient-Core.h in Headers */ = {isa = PBXBuildFile; fileRef = C90510551B7C31C800031482 /* WebApiClient-Core.h */; };
 		C91F6E961B826CFE004A518A /* BaseNetworkTestingSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = C91F6E951B826CFE004A518A /* BaseNetworkTestingSupport.m */; };
+		C91F6E9A1B826E4A004A518A /* AFNetworkingWebApiClientTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C91F6E991B826E4A004A518A /* AFNetworkingWebApiClientTests.m */; };
+		C91F6E9D1B828117004A518A /* WebApiClientSupportTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C91F6E9C1B828117004A518A /* WebApiClientSupportTests.m */; };
+		C91F6EA01B828476004A518A /* BaseTestingSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = C91F6E9F1B828476004A518A /* BaseTestingSupport.m */; };
+		C91F6EA21B828548004A518A /* config.json in Resources */ = {isa = PBXBuildFile; fileRef = C91F6EA11B828548004A518A /* config.json */; };
+		C91F6ECE1B82AB62004A518A /* config.json in Resources */ = {isa = PBXBuildFile; fileRef = C91F6EA11B828548004A518A /* config.json */; };
 		C921E9D61B813B0B001C04FA /* WebApiResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = C921E9D51B813B0B001C04FA /* WebApiResponse.h */; };
 		C921E9DB1B814A07001C04FA /* WebApiClientActivitySupport.h in Headers */ = {isa = PBXBuildFile; fileRef = C921E9D81B814A07001C04FA /* WebApiClientActivitySupport.h */; };
 		C921E9DC1B814A07001C04FA /* WebApiClientActivitySupport.m in Sources */ = {isa = PBXBuildFile; fileRef = C921E9D91B814A07001C04FA /* WebApiClientActivitySupport.m */; };
@@ -116,6 +120,7 @@
 		C95B2BE91B7D62F90050ABBE /* BRWebServiceResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = C95B2BD11B7D62F90050ABBE /* BRWebServiceResponse.m */; };
 		C95B2BEA1B7D62F90050ABBE /* ResetPasswordWebServiceRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = C95B2BD21B7D62F90050ABBE /* ResetPasswordWebServiceRequest.h */; };
 		C95B2BEB1B7D62F90050ABBE /* ResetPasswordWebServiceRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = C95B2BD31B7D62F90050ABBE /* ResetPasswordWebServiceRequest.m */; };
+		CF46D3A888C92A8570CABE09 /* libPods-BlueRocketFuelCoreTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2EDAFDFF1C0541D555C292E7 /* libPods-BlueRocketFuelCoreTests.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -139,7 +144,7 @@
 		29E2E3721A683B7D0048D0AB /* BlueRocketFuelCore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = BlueRocketFuelCore.h; path = Code/BlueRocketFuelCore.h; sourceTree = "<group>"; };
 		29E2E3781A683B7D0048D0AB /* BlueRocketFuelCoreTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BlueRocketFuelCoreTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		29E2E37E1A683B7D0048D0AB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		29E2E37F1A683B7D0048D0AB /* BlueRocketFuelCoreTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BlueRocketFuelCoreTests.m; sourceTree = "<group>"; };
+		2EDAFDFF1C0541D555C292E7 /* libPods-BlueRocketFuelCoreTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BlueRocketFuelCoreTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7088CC6D616A201CDA54004B /* Pods-BlueRocketFuelCore-BlueRocketFuelCoreTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BlueRocketFuelCore-BlueRocketFuelCoreTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-BlueRocketFuelCore-BlueRocketFuelCoreTests/Pods-BlueRocketFuelCore-BlueRocketFuelCoreTests.release.xcconfig"; sourceTree = "<group>"; };
 		838B284CCE585777D0123ED0 /* Pods-BlueRocketFuelCore-BlueRocketFuelCoreTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BlueRocketFuelCore-BlueRocketFuelCoreTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BlueRocketFuelCore-BlueRocketFuelCoreTests/Pods-BlueRocketFuelCore-BlueRocketFuelCoreTests.debug.xcconfig"; sourceTree = "<group>"; };
 		A268984B69E64005A00ED955 /* Pods-BlueRocketFuelCore.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BlueRocketFuelCore.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BlueRocketFuelCore/Pods-BlueRocketFuelCore.debug.xcconfig"; sourceTree = "<group>"; };
@@ -162,6 +167,11 @@
 		C90510551B7C31C800031482 /* WebApiClient-Core.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "WebApiClient-Core.h"; path = "Code/WebApiClient-Core.h"; sourceTree = "<group>"; };
 		C91F6E951B826CFE004A518A /* BaseNetworkTestingSupport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseNetworkTestingSupport.m; sourceTree = "<group>"; };
 		C91F6E971B826D15004A518A /* BaseNetworkTestingSupport.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseNetworkTestingSupport.h; sourceTree = "<group>"; };
+		C91F6E991B826E4A004A518A /* AFNetworkingWebApiClientTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFNetworkingWebApiClientTests.m; sourceTree = "<group>"; };
+		C91F6E9C1B828117004A518A /* WebApiClientSupportTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebApiClientSupportTests.m; sourceTree = "<group>"; };
+		C91F6E9E1B828476004A518A /* BaseTestingSupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseTestingSupport.h; sourceTree = "<group>"; };
+		C91F6E9F1B828476004A518A /* BaseTestingSupport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseTestingSupport.m; sourceTree = "<group>"; };
+		C91F6EA11B828548004A518A /* config.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = config.json; sourceTree = "<group>"; };
 		C921E9D51B813B0B001C04FA /* WebApiResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebApiResponse.h; sourceTree = "<group>"; };
 		C921E9D81B814A07001C04FA /* WebApiClientActivitySupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebApiClientActivitySupport.h; sourceTree = "<group>"; };
 		C921E9D91B814A07001C04FA /* WebApiClientActivitySupport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebApiClientActivitySupport.m; sourceTree = "<group>"; };
@@ -263,6 +273,7 @@
 			files = (
 				29E2E3791A683B7D0048D0AB /* BlueRocketFuelCore.framework in Frameworks */,
 				AE94E27C9F9AF9FA43288F5A /* libPods-BlueRocketFuelCore-BlueRocketFuelCoreTests.a in Frameworks */,
+				CF46D3A888C92A8570CABE09 /* libPods-BlueRocketFuelCoreTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -329,7 +340,10 @@
 			children = (
 				C91F6E971B826D15004A518A /* BaseNetworkTestingSupport.h */,
 				C91F6E951B826CFE004A518A /* BaseNetworkTestingSupport.m */,
-				29E2E37F1A683B7D0048D0AB /* BlueRocketFuelCoreTests.m */,
+				C91F6E9E1B828476004A518A /* BaseTestingSupport.h */,
+				C91F6E9F1B828476004A518A /* BaseTestingSupport.m */,
+				C91F6E9B1B828117004A518A /* WebApiClient-Core */,
+				C91F6E981B826E4A004A518A /* WebApiClient-AFNetworking */,
 				29E2E37D1A683B7D0048D0AB /* Supporting Files */,
 			);
 			path = BlueRocketFuelCoreTests;
@@ -339,6 +353,7 @@
 			isa = PBXGroup;
 			children = (
 				29E2E37E1A683B7D0048D0AB /* Info.plist */,
+				C91F6EA11B828548004A518A /* config.json */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -348,6 +363,7 @@
 			children = (
 				107959C8D8AC4224453FD59D /* libPods-BlueRocketFuelCore.a */,
 				235F56302A91ECF08BF088E1 /* libPods-BlueRocketFuelCore-BlueRocketFuelCoreTests.a */,
+				2EDAFDFF1C0541D555C292E7 /* libPods-BlueRocketFuelCoreTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -401,6 +417,22 @@
 			);
 			name = "WebApiClient-AFNetworking";
 			path = "Code/WebApiClient-AFNetworking";
+			sourceTree = "<group>";
+		};
+		C91F6E981B826E4A004A518A /* WebApiClient-AFNetworking */ = {
+			isa = PBXGroup;
+			children = (
+				C91F6E991B826E4A004A518A /* AFNetworkingWebApiClientTests.m */,
+			);
+			path = "WebApiClient-AFNetworking";
+			sourceTree = "<group>";
+		};
+		C91F6E9B1B828117004A518A /* WebApiClient-Core */ = {
+			isa = PBXGroup;
+			children = (
+				C91F6E9C1B828117004A518A /* WebApiClientSupportTests.m */,
+			);
+			path = "WebApiClient-Core";
 			sourceTree = "<group>";
 		};
 		C921E9D71B814A07001C04FA /* WebApiClient-UI */ = {
@@ -672,6 +704,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C91F6ECE1B82AB62004A518A /* config.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -679,6 +712,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C91F6EA21B828548004A518A /* config.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -805,7 +839,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				C91F6E961B826CFE004A518A /* BaseNetworkTestingSupport.m in Sources */,
-				29E2E3801A683B7D0048D0AB /* BlueRocketFuelCoreTests.m in Sources */,
+				C91F6EA01B828476004A518A /* BaseTestingSupport.m in Sources */,
+				C91F6E9D1B828117004A518A /* WebApiClientSupportTests.m in Sources */,
+				C91F6E9A1B826E4A004A518A /* AFNetworkingWebApiClientTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -942,10 +978,6 @@
 			buildSettings = {
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = BlueRocketFuelCoreTests/Info.plist;

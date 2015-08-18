@@ -8,15 +8,10 @@
 
 #import "BaseNetworkTestingSupport.h"
 
+#import <BREnvironment/BREnvironment.h>
+
 @implementation BaseNetworkTestingSupport {
-	NSBundle *bundle;
 	RoutingHTTPServer *http;
-}
-
-@synthesize bundle;
-
-- (void)setUp {
-	bundle = [NSBundle bundleForClass:[self class]];
 }
 
 - (void)tearDown {
@@ -59,7 +54,7 @@
 - (void)respondWithJSONResource:(NSString *)name response:(RouteResponse *)response status:(NSInteger)statusCode {
 	[response setStatusCode:statusCode];
 	[response setHeader:@"Content-Type" value:@"application/json; charset=utf-8"];
-	NSURL *jsonResourceURL = [bundle URLForResource:name withExtension:@"json"];
+	NSURL *jsonResourceURL = [self.bundle URLForResource:name withExtension:@"json"];
 	NSString *json = [NSString stringWithContentsOfURL:jsonResourceURL encoding:NSUTF8StringEncoding error:nil];
 	XCTAssertNotNil(json, @"Error parsing JSON resource: %@", name);
 	[response respondWithString:json encoding:NSUTF8StringEncoding];
@@ -68,7 +63,7 @@
 - (void)respondWithJSONTemplate:(NSString *)name parameters:(NSDictionary *)parameters response:(RouteResponse *)response status:(NSInteger)statusCode {
 	[response setStatusCode:statusCode];
 	[response setHeader:@"Content-Type" value:@"application/json; charset=utf-8"];
-	NSURL *jsonResourceURL = [bundle URLForResource:name withExtension:@"json"];
+	NSURL *jsonResourceURL = [self.bundle URLForResource:name withExtension:@"json"];
 	NSString *json = [NSString stringWithContentsOfURL:jsonResourceURL encoding:NSUTF8StringEncoding error:nil];
 	
 	static NSRegularExpression *regex = nil;
