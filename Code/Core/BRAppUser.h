@@ -60,6 +60,4 @@ extern NSString * const BREnvironmentKeyPasswordMinLength;
 
 - (void)initializeWithDictionary:(NSDictionary *)dictionary;
 
-- (void)clear;
-
 @end
