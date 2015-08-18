@@ -70,7 +70,7 @@ static NSString * const kRoutePropertyDataMapperInstance = @"_dataMapper";
 - (NSURL *)setupBaseApiURL:(BREnvironment *)environment {
 	NSString *protocol = environment[@"App_webservice_protocol"];
 	NSString *host = environment[@"App_webservice_host"];
-	NSString *port = environment[@"webservice.port"];
+	NSString *port = environment[@"App_webservice_port"];
 	
 	if ( !port
 		|| ([protocol isEqualToString:@"http"] && [port isEqualToString:@"80"])
