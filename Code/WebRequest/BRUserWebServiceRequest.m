@@ -28,7 +28,7 @@
 @implementation BRUserWebServiceRequest
 
 - (NSString *)subpath {
-    return [NSString stringWithFormat:@"%@",CurrentAppUser.recordId];
+    return [NSString stringWithFormat:@"%@",CurrentAppUser.uniqueId];
 }
 
 @end

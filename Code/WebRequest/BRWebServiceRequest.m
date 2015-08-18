@@ -97,7 +97,7 @@ static UIActivityIndicatorView *fullScreenSpinner;
         NSString *apiPath = [request pathForAPI:api];
         
         NSMutableString *mutableAPIPath = [NSMutableString stringWithString:apiPath];
-        [mutableAPIPath replaceOccurrencesOfString:@"{userId}" withString:[NSString stringWithFormat:@"%@",CurrentAppUser.recordId] options:NSLiteralSearch range:NSMakeRange(0,mutableAPIPath.length)];
+        [mutableAPIPath replaceOccurrencesOfString:@"{userId}" withString:[NSString stringWithFormat:@"%@",CurrentAppUser.uniqueId] options:NSLiteralSearch range:NSMakeRange(0,mutableAPIPath.length)];
         if (recordId) [mutableAPIPath replaceOccurrencesOfString:@"{recordId}" withString:[NSString stringWithFormat:@"%@",recordId] options:NSLiteralSearch range:NSMakeRange(0,mutableAPIPath.length)];
         apiPath = mutableAPIPath;
 

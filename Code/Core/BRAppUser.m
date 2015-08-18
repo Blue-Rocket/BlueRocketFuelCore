@@ -72,7 +72,7 @@ static id CurrentUser;
 }
 
 - (void)initializeWithDictionary:(NSDictionary *)dictionary {
-    self.recordId = [NSString stringWithFormat:@"%lu",[[dictionary objectForKey:@"id"] unsignedLongValue]];
+    self.uniqueId = [NSString stringWithFormat:@"%lu",[[dictionary objectForKey:@"id"] unsignedLongValue]];
     self.email = [dictionary objectForKey:@"email"];
     self.name = [dictionary objectForKey:@"name"];
     self.firstName = [dictionary objectForKey:@"first_name"];
@@ -85,7 +85,7 @@ static id CurrentUser;
 }
 
 - (void)clear {
-    self.recordId = nil;
+    self.uniqueId = nil;
     self.type = nil;
     self.email = nil;
     self.name = nil;
@@ -99,7 +99,7 @@ static id CurrentUser;
 }
 
 - (void)save {
-	[BRAppUser setPreferencesValue:self.recordId forKey:BRAppUserRecordIdPreference];
+	[BRAppUser setPreferencesValue:self.uniqueId forKey:BRAppUserRecordIdPreference];
 	[BRAppUser setPreferencesValue:self.type forKey:BRAppUserTypePreference];
 	[BRAppUser setPreferencesValue:self.name forKey:BRAppUserNamePreference];
 	[BRAppUser setPreferencesValue:self.firstName forKey:BRAppUserFirstNamePreference];
@@ -132,7 +132,7 @@ static id CurrentUser;
 }
 
 - (void)load {
-	self.recordId = [BRAppUser preferencesValueForKey:BRAppUserRecordIdPreference];
+	self.uniqueId = [BRAppUser preferencesValueForKey:BRAppUserRecordIdPreference];
 	self.type = [BRAppUser preferencesValueForKey:BRAppUserTypePreference];
 	self.name = [BRAppUser preferencesValueForKey:BRAppUserNamePreference];
 	self.firstName = [BRAppUser preferencesValueForKey:BRAppUserFirstNamePreference];
@@ -158,7 +158,7 @@ static id CurrentUser;
 }
 
 - (BOOL)isNewUser {
-    return (self.recordId == nil);
+    return (self.uniqueId == nil);
 }
 
 - (BOOL)isAuthenticated {

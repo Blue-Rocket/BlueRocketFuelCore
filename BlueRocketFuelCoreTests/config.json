@@ -23,6 +23,14 @@
 			"test" : {
 				"method" : "GET",
 				"path" : "test"
+			},
+			"doc" : {
+				"method" : "GET",
+				"path" : "document/:docId"
+			}
+			"person" : {
+				"method" : "GET",
+				"path" : "person/:userId"
 			}
 		}
 	}

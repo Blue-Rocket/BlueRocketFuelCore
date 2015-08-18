@@ -6,12 +6,12 @@
 //  Copyright (c) 2015 Blue Rocket. Distributable under the terms of the Apache License, Version 2.0.
 //
 
-#import <Foundation/Foundation.h>
+#import "BREntity.h"
 
 /**
  Basic API for an application user.
  */
-@protocol BRUser <NSObject>
+@protocol BRUser <BREntity>
 
 @property (nonatomic, readonly, getter=isNewUser) BOOL newUser;
 @property (nonatomic, readonly, getter=isAuthenticated) BOOL authenticated;

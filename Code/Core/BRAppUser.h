@@ -32,7 +32,7 @@ extern NSString * const BREnvironmentKeyPasswordMinLength;
 
 @property (nonatomic, strong) NSString *authenticationToken;
 
-@property (nonatomic, strong) NSString *recordId;
+@property (nonatomic, strong) NSString *uniqueId;
 @property (nonatomic, strong) NSString *type;
 @property (nonatomic, strong) NSString *name;
 @property (nonatomic, strong) NSString *firstName;
