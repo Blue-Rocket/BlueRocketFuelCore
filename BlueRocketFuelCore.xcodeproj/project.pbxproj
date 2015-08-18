@@ -46,6 +46,8 @@
 		C921E9DD1B814A07001C04FA /* WebApiClient-UI.h in Headers */ = {isa = PBXBuildFile; fileRef = C921E9DA1B814A07001C04FA /* WebApiClient-UI.h */; };
 		C921E9E01B8185E1001C04FA /* NSObject+BRLocalizableUI.h in Headers */ = {isa = PBXBuildFile; fileRef = C921E9DE1B8185E1001C04FA /* NSObject+BRLocalizableUI.h */; };
 		C921E9E11B8185E1001C04FA /* NSObject+BRLocalizableUI.m in Sources */ = {isa = PBXBuildFile; fileRef = C921E9DF1B8185E1001C04FA /* NSObject+BRLocalizableUI.m */; };
+		C9500C5D1B83B56500AC0706 /* WebApiClientEnvironment.h in Headers */ = {isa = PBXBuildFile; fileRef = C9500C5B1B83B56500AC0706 /* WebApiClientEnvironment.h */; };
+		C9500C5E1B83B56500AC0706 /* WebApiClientEnvironment.m in Sources */ = {isa = PBXBuildFile; fileRef = C9500C5C1B83B56500AC0706 /* WebApiClientEnvironment.m */; };
 		C95775F91B7DBEE100D91C3D /* WebApiRotue.m in Sources */ = {isa = PBXBuildFile; fileRef = C95775F81B7DBEE100D91C3D /* WebApiRotue.m */; };
 		C95B2B0E1B7D58320050ABBE /* Logging.h in Headers */ = {isa = PBXBuildFile; fileRef = C95B2AB91B7D58310050ABBE /* Logging.h */; };
 		C95B2B0F1B7D58320050ABBE /* BRLogging.h in Headers */ = {isa = PBXBuildFile; fileRef = C95B2ABB1B7D58310050ABBE /* BRLogging.h */; };
@@ -187,6 +189,8 @@
 		C921E9DA1B814A07001C04FA /* WebApiClient-UI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "WebApiClient-UI.h"; path = "Code/WebApiClient-UI.h"; sourceTree = "<group>"; };
 		C921E9DE1B8185E1001C04FA /* NSObject+BRLocalizableUI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+BRLocalizableUI.h"; sourceTree = "<group>"; };
 		C921E9DF1B8185E1001C04FA /* NSObject+BRLocalizableUI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+BRLocalizableUI.m"; sourceTree = "<group>"; };
+		C9500C5B1B83B56500AC0706 /* WebApiClientEnvironment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebApiClientEnvironment.h; sourceTree = "<group>"; };
+		C9500C5C1B83B56500AC0706 /* WebApiClientEnvironment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebApiClientEnvironment.m; sourceTree = "<group>"; };
 		C95775F81B7DBEE100D91C3D /* WebApiRotue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebApiRotue.m; sourceTree = "<group>"; };
 		C95B2AB91B7D58310050ABBE /* Logging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Logging.h; path = Code/Logging.h; sourceTree = "<group>"; };
 		C95B2ABB1B7D58310050ABBE /* BRLogging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRLogging.h; sourceTree = "<group>"; };
@@ -410,6 +414,8 @@
 				C90510491B7C31C800031482 /* NSDictionary+WebApiClient.m */,
 				C905104A1B7C31C800031482 /* WebApiClient.h */,
 				C905104B1B7C31C800031482 /* WebApiClient.m */,
+				C9500C5B1B83B56500AC0706 /* WebApiClientEnvironment.h */,
+				C9500C5C1B83B56500AC0706 /* WebApiClientEnvironment.m */,
 				C905104C1B7C31C800031482 /* WebApiClientSupport.h */,
 				C905104D1B7C31C800031482 /* WebApiClientSupport.m */,
 				C905104E1B7C31C800031482 /* WebApiDataMapper.h */,
@@ -592,6 +598,7 @@
 				C95B2B0F1B7D58320050ABBE /* BRLogging.h in Headers */,
 				C95B2BA11B7D596A0050ABBE /* BROptionsTray.h in Headers */,
 				C90510671B7C31C800031482 /* WebApiClient-Core.h in Headers */,
+				C9500C5D1B83B56500AC0706 /* WebApiClientEnvironment.h in Headers */,
 				C95B2BE81B7D62F90050ABBE /* BRWebServiceResponse.h in Headers */,
 				C95B2BB31B7D596A0050ABBE /* UINavigationItem+BR.h in Headers */,
 				C95B2BE41B7D62F90050ABBE /* BRUserWebServiceRequest.h in Headers */,
@@ -851,6 +858,7 @@
 				C95B2B461B7D58320050ABBE /* BRAppConfigEnvironmentProvider.m in Sources */,
 				C95B2BD71B7D62F90050ABBE /* BRAuthenticatedWebServiceRequest.m in Sources */,
 				C95B2BE71B7D62F90050ABBE /* BRWebServiceRequest.m in Sources */,
+				C9500C5E1B83B56500AC0706 /* WebApiClientEnvironment.m in Sources */,
 				C95B2BAA1B7D596A0050ABBE /* UIButton+BR.m in Sources */,
 				C95B2BA41B7D596A0050ABBE /* PushNoAnimationSegue.m in Sources */,
 				C95B2B4A1B7D58320050ABBE /* BRKeychainService.m in Sources */,

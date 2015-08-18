@@ -15,7 +15,15 @@
  */
 @interface BaseNetworkTestingSupport : BaseTestingSupport
 
+/**
+ Get an internal HTTP server instance. The server will use a randomly available port when first started.
+ The @c testEnvironment will be updated with the port number, available at @c WebApiClientSupportServerPortEnvironmentKey.
+ */
 @property (nonatomic, readonly) RoutingHTTPServer *http;
+
+/**
+ A base URL to the configured HTTP server. The HTTP server will be started when invoking this property, if not already running.
+ */
 @property (nonatomic, readonly) NSURL *httpURL;
 
 /**

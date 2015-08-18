@@ -14,10 +14,10 @@
 #import <MAObjCRuntime/MARTNSObject.h>
 #import <MAObjCRuntime/RTProperty.h>
 #import <SOCKit/SOCKit.h>
+#import "WebApiClientEnvironment.h"
 #import "WebApiDataMapper.h"
 
 NSString * const WebApiClientSupportAppApiKeyDefaultHTTPHeaderName = @"Authorization";
-NSString * const WebApiClientSupportAppApiKeyEnvironmentKey = @"App_webservice_token";
 NSString * const WebApiClientSupportAppIdDefaultHTTPHeaderName = @"X-App-ID";
 
 static NSString * const kRoutePropertyPattern = @"_pattern";
@@ -68,17 +68,17 @@ static NSString * const kRoutePropertyDataMapperInstance = @"_dataMapper";
 }
 
 - (NSURL *)setupBaseApiURL:(BREnvironment *)environment {
-	NSString *protocol = environment[@"App_webservice_protocol"];
-	NSString *host = environment[@"App_webservice_host"];
-	NSString *port = environment[@"App_webservice_port"];
+	NSString *protocol = environment[WebApiClientSupportServerProtocolEnvironmentKey];
+	NSString *host = environment[WebApiClientSupportServerHostEnvironmentKey];
+	int port = [environment[WebApiClientSupportServerPortEnvironmentKey] intValue];
 	
 	if ( !port
-		|| ([protocol isEqualToString:@"http"] && [port isEqualToString:@"80"])
-		|| ([protocol isEqualToString:@"https"] && [port isEqualToString:@"443"]) ) {
+		|| ([protocol isEqualToString:@"http"] && port == 80 )
+		|| ([protocol isEqualToString:@"https"] && port == 443) ) {
 		// don't include port in base URL
 		return [NSURL URLWithString:[NSString stringWithFormat:@"%@://%@/", protocol, host]];
 	}
-	return [NSURL URLWithString:[NSString stringWithFormat:@"%@://%@:%@/", protocol, host, port]];
+	return [NSURL URLWithString:[NSString stringWithFormat:@"%@://%@:%d/", protocol, host, port]];
 }
 
 - (void)registerRoute:(id<WebApiRoute>)route forName:(NSString *)name {

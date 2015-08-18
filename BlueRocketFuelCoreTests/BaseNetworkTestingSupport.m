@@ -9,6 +9,7 @@
 #import "BaseNetworkTestingSupport.h"
 
 #import <BREnvironment/BREnvironment.h>
+#import "WebApiClientEnvironment.h"
 
 @implementation BaseNetworkTestingSupport {
 	RoutingHTTPServer *http;
@@ -18,7 +19,7 @@
 	[super tearDown];
 	[http stop];
 	http = nil;
-	self.testEnvironment[@"App_webservice_port"] = nil;
+	self.testEnvironment[WebApiClientSupportServerPortEnvironmentKey] = nil;
 }
 
 - (RoutingHTTPServer *)http {
@@ -26,7 +27,7 @@
 		http = [[RoutingHTTPServer alloc] init];
 		[http setDefaultHeader:@"Server" value:@"BRMenuTests/1.0"];
 		[http start:nil];
-		self.testEnvironment[@"App_webservice_port"] = [NSString stringWithFormat:@"%u", [http listeningPort]];
+		self.testEnvironment[WebApiClientSupportServerPortEnvironmentKey] = [NSString stringWithFormat:@"%u", [http listeningPort]];
 	}
 	return http;
 }

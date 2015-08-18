@@ -11,8 +11,10 @@
 @protocol WebApiDataMapper;
 @class BREnvironment;
 
+/** The HTTP header name to put the @c appApiKey value in. */
 extern NSString * const WebApiClientSupportAppApiKeyDefaultHTTPHeaderName;
-extern NSString * const WebApiClientSupportAppApiKeyEnvironmentKey;
+
+/** The HTTP header name to put the @c appId value in. */
 extern NSString * const WebApiClientSupportAppIdDefaultHTTPHeaderName;
 
 @interface WebApiClientSupport : NSObject <WebApiClient>
