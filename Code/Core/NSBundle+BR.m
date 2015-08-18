@@ -22,8 +22,7 @@
 - (NSDictionary *)appStrings {
 	NSString *path = [self pathForResource:@"strings" ofType:@"json"];
 	NSData *data = [[NSData alloc] initWithContentsOfFile:path];
-	// FIXME: why is this using mutable containers
-	return [NSJSONSerialization JSONObjectWithData:data options:(NSJSONReadingMutableContainers|NSJSONReadingMutableLeaves) error:nil];
+	return [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
 }
 
 + (NSDictionary *)appConfig {
@@ -38,8 +37,7 @@
 - (NSDictionary *)appConfig {
 	NSString *path = [self pathForResource:@"config" ofType:@"json"];
 	NSData *data = [[NSData alloc] initWithContentsOfFile:path];
-	// FIXME: why is this using mutable containers
-	return[NSJSONSerialization JSONObjectWithData:data options:(NSJSONReadingMutableContainers|NSJSONReadingMutableLeaves) error:nil];
+	return[NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
 }
 
 @end
