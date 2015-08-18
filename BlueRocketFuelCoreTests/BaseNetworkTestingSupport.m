@@ -15,8 +15,10 @@
 }
 
 - (void)tearDown {
+	[super tearDown];
 	[http stop];
 	http = nil;
+	self.testEnvironment[@"App_webservice_port"] = nil;
 }
 
 - (RoutingHTTPServer *)http {
@@ -24,6 +26,7 @@
 		http = [[RoutingHTTPServer alloc] init];
 		[http setDefaultHeader:@"Server" value:@"BRMenuTests/1.0"];
 		[http start:nil];
+		self.testEnvironment[@"App_webservice_port"] = [NSString stringWithFormat:@"%u", [http listeningPort]];
 	}
 	return http;
 }
@@ -38,7 +41,7 @@
 	NSParameterAssert(stop);
 	NSTimeInterval cutoff = [NSDate timeIntervalSinceReferenceDate] + seconds;
 	while ( (*stop == NO) && [NSDate timeIntervalSinceReferenceDate] < cutoff ) {
-		[[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.2]];
+		[[NSRunLoop mainRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.2]];
 	}
 	return *stop;
 }

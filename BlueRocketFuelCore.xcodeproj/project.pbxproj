@@ -39,6 +39,7 @@
 		C91F6ED51B82F301004A518A /* NSString_BRTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C91F6ED41B82F301004A518A /* NSString_BRTests.m */; };
 		C91F6ED71B82F3B3004A518A /* strings.json in Resources */ = {isa = PBXBuildFile; fileRef = C91F6ED61B82F3B3004A518A /* strings.json */; };
 		C91F6ED91B82F640004A518A /* NSDate_BRTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C91F6ED81B82F640004A518A /* NSDate_BRTests.m */; };
+		C91F6EDB1B82FC97004A518A /* Environment.plist in Resources */ = {isa = PBXBuildFile; fileRef = C91F6EDA1B82FC97004A518A /* Environment.plist */; };
 		C921E9D61B813B0B001C04FA /* WebApiResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = C921E9D51B813B0B001C04FA /* WebApiResponse.h */; };
 		C921E9DB1B814A07001C04FA /* WebApiClientActivitySupport.h in Headers */ = {isa = PBXBuildFile; fileRef = C921E9D81B814A07001C04FA /* WebApiClientActivitySupport.h */; };
 		C921E9DC1B814A07001C04FA /* WebApiClientActivitySupport.m in Sources */ = {isa = PBXBuildFile; fileRef = C921E9D91B814A07001C04FA /* WebApiClientActivitySupport.m */; };
@@ -157,7 +158,7 @@
 		C90510451B7C31C800031482 /* RestKitWebApiDataMapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = RestKitWebApiDataMapper.m; sourceTree = "<group>"; };
 		C90510481B7C31C800031482 /* NSDictionary+WebApiClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = "NSDictionary+WebApiClient.h"; sourceTree = "<group>"; };
 		C90510491B7C31C800031482 /* NSDictionary+WebApiClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = "NSDictionary+WebApiClient.m"; sourceTree = "<group>"; };
-		C905104A1B7C31C800031482 /* WebApiClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = WebApiClient.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		C905104A1B7C31C800031482 /* WebApiClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = WebApiClient.h; sourceTree = "<group>"; };
 		C905104B1B7C31C800031482 /* WebApiClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = WebApiClient.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		C905104C1B7C31C800031482 /* WebApiClientSupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = WebApiClientSupport.h; sourceTree = "<group>"; };
 		C905104D1B7C31C800031482 /* WebApiClientSupport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = WebApiClientSupport.m; sourceTree = "<group>"; };
@@ -179,6 +180,7 @@
 		C91F6ED41B82F301004A518A /* NSString_BRTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSString_BRTests.m; sourceTree = "<group>"; };
 		C91F6ED61B82F3B3004A518A /* strings.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = strings.json; sourceTree = "<group>"; };
 		C91F6ED81B82F640004A518A /* NSDate_BRTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSDate_BRTests.m; sourceTree = "<group>"; };
+		C91F6EDA1B82FC97004A518A /* Environment.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Environment.plist; sourceTree = "<group>"; };
 		C921E9D51B813B0B001C04FA /* WebApiResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebApiResponse.h; sourceTree = "<group>"; };
 		C921E9D81B814A07001C04FA /* WebApiClientActivitySupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebApiClientActivitySupport.h; sourceTree = "<group>"; };
 		C921E9D91B814A07001C04FA /* WebApiClientActivitySupport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebApiClientActivitySupport.m; sourceTree = "<group>"; };
@@ -361,6 +363,7 @@
 			isa = PBXGroup;
 			children = (
 				29E2E37E1A683B7D0048D0AB /* Info.plist */,
+				C91F6EDA1B82FC97004A518A /* Environment.plist */,
 				C91F6EA11B828548004A518A /* config.json */,
 				C91F6ED61B82F3B3004A518A /* strings.json */,
 			);
@@ -731,6 +734,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C91F6ED71B82F3B3004A518A /* strings.json in Resources */,
+				C91F6EDB1B82FC97004A518A /* Environment.plist in Resources */,
 				C91F6EA21B828548004A518A /* config.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

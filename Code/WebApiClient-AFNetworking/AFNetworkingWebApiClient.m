@@ -21,8 +21,8 @@
 	NSMutableDictionary *tasksToRoutes;
 }
 
-- (id)init {
-	if ( (self = [super init]) ) {
+- (id)initWithEnvironment:(BREnvironment *)environment {
+	if ( (self = [super initWithEnvironment:environment]) ) {
 		tasksToRoutes = [[NSMutableDictionary alloc] initWithCapacity:8];
 		lock = [[NSLock alloc] init];
 		lock.name = @"AFNetworkingApiClientLock";
