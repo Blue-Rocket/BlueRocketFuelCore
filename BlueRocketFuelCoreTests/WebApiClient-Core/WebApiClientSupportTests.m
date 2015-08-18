@@ -10,6 +10,7 @@
 
 #import "BRAppUser.h"
 #import "WebApiClientSupport.h"
+#import "RestKitWebApiDataMapper.h"
 
 @interface TestWebApiClient : WebApiClientSupport
 
@@ -34,9 +35,10 @@
 @end
 
 @interface TestUser : BRAppUser
-
 @property (nonatomic, strong) NSString *subclassProp;
+@end
 
+@implementation TestUser
 @end
 
 #pragma mark - Unit tests
@@ -87,9 +89,33 @@
 	assertThat([url absoluteString], equalTo(@"http://localhost/user/1234"));
 }
 
-- (void)dictionaryFromUserObject {
-	BRAppUser *user = nil;
+- (void)testDictionaryFromUserObject {
+	TestUser *user = [TestUser new];
+	user.subclassProp = @"subclass";
+	user.name = @"name";
+	user.password = @"pass";
 	NSDictionary *dictionary = [client dictionaryForParametersObject:user];
+	assertThat(dictionary, equalTo(@{ @"subclassProp" : @"subclass",
+									  @"name" : @"name",
+									  @"password" : @"pass",
+									  @"authenticated" : @NO,
+									  @"newUser" : @YES}));
+}
+
+- (void)testRouteRegisteredWithDataMapper {
+	id<WebApiRoute> route = [client routeForName:@"register" error:nil];
+	id<WebApiDataMapper> mapper = [client dataMapperForRoute:route];
+	assertThatBool([mapper isKindOfClass:[RestKitWebApiDataMapper class]], isTrue());
+}
+
+- (void)testAddAuthenticationHTTPHeaders {
+	NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://localhost/foo"]];
+	id<WebApiRoute> route = [client routeForName:@"register" error:nil];
+	client.appId = @"MyTestId";
+	[client addAuthorizationHeadersToRequest:req forRoute:route];
+	NSDictionary *headers = [req allHTTPHeaderFields];
+	assertThat(headers, equalTo(@{ @"Authorization" : @"test_token",
+								   @"X-App-ID" : @"MyTestId"}));
 }
 
 @end

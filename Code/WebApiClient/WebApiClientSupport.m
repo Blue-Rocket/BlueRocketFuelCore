@@ -216,12 +216,4 @@ static NSString * const kRoutePropertyDataMapperInstance = @"_dataMapper";
 	[request setValue:self.appId forHTTPHeaderField:self.appIdHTTPHeaderName];
 }
 
-- (void)willBeginRequestForRoute:(id<WebApiRoute>)route withRequest:(NSURLRequest *)request {
-	// TODO
-}
-
-- (void)didEndRequestForRoute:(id<WebApiRoute>)route withResponse:(NSURLResponse *)response {
-	// TODO
-}
-
 @end
