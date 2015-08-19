@@ -67,6 +67,7 @@ The [WebApiRoute](https://github.com/Blue-Rocket/BlueRocketFuelCore/blob/msm/Cod
 
 ```objc
 id<WebApiRoute> myRoute = ...;
+
 // access the path property
 NSString *path1 = myRoute.path;
 
@@ -120,7 +121,7 @@ Routes can be configured in code via the `registerRoute:forName:` method, but mo
 
 # Module: WebApiClient-RestKit
 
-The **WebApiClient-RestKit** module provides an _object mapping_ implementation for the `WebApiClient` API based on the [RestKit][rk]. It provides a way to transform native objects into JSON, and vice versa. This module only makes use of the `RestKit/ObjectMapping` module, so it does not conflict with AFNetworking 2. In fact, part of the motivation for WebApiClient was to be able to use AFNetworking 2 with RestKit's object mapping support, and in some respects the WebApiClient API provides some of the same scaffolding that the full RestKit project provides.
+The **WebApiClient-RestKit** module provides an _object mapping_ implementation for the `WebApiClient` API based on the [RestKit][rk]. It provides a way to transform native objects into JSON, and vice versa. This module only makes use of the `RestKit/ObjectMapping` module, so it does not conflict with AFNetworking 2. In fact, part of the motivation for WebApiClient was to be able to use AFNetworking 2 with RestKit's object mapping support because RestKit's networking layer is based on AFNetworking 1. In some respects the WebApiClient API provides some of the same scaffolding that the full RestKit project provides.
 
 ## Mapping configuration
 
@@ -157,7 +158,7 @@ To use RestKit-based object mapping with a route, you configure the `dataMapper`
 }
 ```
 
-Sometimes the request or response JSON needs to be nested in some top-level object. For example the register endpoint expects the user properties to be posted as a JSON object like this:
+Sometimes the request or response JSON needs to be nested in some top-level object. For example imagine that the register endpoint expects the user object to be posted as JSON like this:
 
 ```JSON
 {
