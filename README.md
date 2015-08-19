@@ -213,7 +213,7 @@ For public, non-restricted endpoints that do not require an authenticated user t
 
 For endpoints that require an authenticated user token (passed in the "USER-AUTHORIZATION" HTTP header) to access.
 
-##### BRUserWebServiceRequest
+#### BRUserWebServiceRequest
 
 For endpoints that not only require an authenticated user token to access, but also require the user's record ID appended to the path of the end point. Subclasses of this would typically be for endpoints that provide user-specific details, such as a user profile endpoint.
 
