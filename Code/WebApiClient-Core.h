@@ -6,10 +6,10 @@
 //  Copyright (c) 2015 Blue Rocket. Distributable under the terms of the Apache License, Version 2.0.
 //
 
-#import <BlueRocketFuelCore/WebApiClient/NSDictionary+WebApiClient.h>
-#import <BlueRocketFuelCore/WebApiClient/WebApiClient.h>
-#import <BlueRocketFuelCore/WebApiClient/WebApiClientEnvironment.h>
-#import <BlueRocketFuelCore/WebApiClient/WebApiClientSupport.h>
-#import <BlueRocketFuelCore/WebApiClient/WebApiDataMapper.h>
-#import <BlueRocketFuelCore/WebApiClient/WebApiResponse.h>
-#import <BlueRocketFuelCore/WebApiClient/WebApiRoute.h>
+#import <BlueRocketFuelCore/NSDictionary+WebApiClient.h>
+#import <BlueRocketFuelCore/WebApiClient.h>
+#import <BlueRocketFuelCore/WebApiClientEnvironment.h>
+#import <BlueRocketFuelCore/WebApiClientSupport.h>
+#import <BlueRocketFuelCore/WebApiDataMapper.h>
+#import <BlueRocketFuelCore/WebApiResponse.h>
+#import <BlueRocketFuelCore/WebApiRoute.h>

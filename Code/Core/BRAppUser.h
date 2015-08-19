@@ -44,20 +44,6 @@ extern NSString * const BREnvironmentKeyPasswordMinLength;
 @property (nonatomic, strong) NSString *password;
 @property (nonatomic, strong) NSString *passwordAgain;
 
-/**
- Get the current user. This may return an anonymous user (non-authenticated) or @c nil.
- 
- @return The current user instance.
- */
-+ (instancetype)currentUser;
-
-/**
- Set the current user to a new instance.
- 
- @param theUser The new user instance, or @c nil to clear the current user.
- */
-+ (void)replaceCurrentUser:(BRAppUser *)theUser;
-
 - (void)initializeWithDictionary:(NSDictionary *)dictionary;
 
 @end

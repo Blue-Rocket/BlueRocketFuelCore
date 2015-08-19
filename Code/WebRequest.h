@@ -6,16 +6,15 @@
 //  Copyright (c) 2015 Blue Rocket. Distributable under the terms of the Apache License, Version 2.0.
 //
 
-#import <BlueRocketFuelCore/WebRequest/BRAppDelegate.h>
-#import <BlueRocketFuelCore/WebRequest/BRAuthenticatedWebServiceRequest.h>
-#import <BlueRocketFuelCore/WebRequest/BRLoginWebServiceRequest.h>
-#import <BlueRocketFuelCore/WebRequest/BRPingWebServiceRequest.h>
-#import <BlueRocketFuelCore/WebRequest/BRProfileEditWebServiceRequest.h>
-#import <BlueRocketFuelCore/WebRequest/BRProfileViewWebServiceRequest.h>
-#import <BlueRocketFuelCore/WebRequest/BRReachability.h>
-#import <BlueRocketFuelCore/WebRequest/BRRegisterWebServiceRequest.h>
-#import <BlueRocketFuelCore/WebRequest/BRUserWebServiceRequest.h>
-#import <BlueRocketFuelCore/WebRequest/BRWebServiceRequest.h>
-#import <BlueRocketFuelCore/WebRequest/BRWebServiceResponse.h>
-#import <BlueRocketFuelCore/WebRequest/ResetPasswordWebServiceRequest.h>
-
+#import <BlueRocketFuelCore/BRAppDelegate.h>
+#import <BlueRocketFuelCore/BRAuthenticatedWebServiceRequest.h>
+#import <BlueRocketFuelCore/BRLoginWebServiceRequest.h>
+#import <BlueRocketFuelCore/BRPingWebServiceRequest.h>
+#import <BlueRocketFuelCore/BRProfileEditWebServiceRequest.h>
+#import <BlueRocketFuelCore/BRProfileViewWebServiceRequest.h>
+#import <BlueRocketFuelCore/BRReachability.h>
+#import <BlueRocketFuelCore/BRRegisterWebServiceRequest.h>
+#import <BlueRocketFuelCore/BRUserWebServiceRequest.h>
+#import <BlueRocketFuelCore/BRWebServiceRequest.h>
+#import <BlueRocketFuelCore/BRWebServiceResponse.h>
+#import <BlueRocketFuelCore/ResetPasswordWebServiceRequest.h>

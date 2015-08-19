@@ -6,17 +6,18 @@
 //  Copyright (c) 2015 Blue Rocket. Distributable under the terms of the Apache License, Version 2.0.
 //
 
-#import <BlueRocketFuelCore/Core/BRAppConfigEnvironmentProvider.h>
-#import <BlueRocketFuelCore/Core/BRAppUser.h>
-#import <BlueRocketFuelCore/Core/BREntity.h>
-#import <BlueRocketFuelCore/Core/BREntityReference.h>
-#import <BlueRocketFuelCore/Core/BRKeychainService.h>
-#import <BlueRocketFuelCore/Core/BRLocalizable.h>
-#import <BlueRocketFuelCore/Core/BRSimpleEntityReference.h>
-#import <BlueRocketFuelCore/Core/BRSimpleKeychainService.h>
-#import <BlueRocketFuelCore/Core/BRUser.h>
-#import <BlueRocketFuelCore/Core/NSBundle+BR.h>
-#import <BlueRocketFuelCore/Core/NSDate+BR.h>
-#import <BlueRocketFuelCore/Core/NSDictionary+BR.h>
-#import <BlueRocketFuelCore/Core/NSString+BR.h>
-
+#import <BlueRocketFuelCore/BRAppConfigEnvironmentProvider.h>
+#import <BlueRocketFuelCore/BRAppUser.h>
+#import <BlueRocketFuelCore/BREntity.h>
+#import <BlueRocketFuelCore/BREntityReference.h>
+#import <BlueRocketFuelCore/BRKeychainService.h>
+#import <BlueRocketFuelCore/BRLocalizable.h>
+#import <BlueRocketFuelCore/BRServiceConstants.h>
+#import <BlueRocketFuelCore/BRSimpleEntityReference.h>
+#import <BlueRocketFuelCore/BRSimpleKeychainService.h>
+#import <BlueRocketFuelCore/BRUser.h>
+#import <BlueRocketFuelCore/BRUserService.h>
+#import <BlueRocketFuelCore/NSBundle+BR.h>
+#import <BlueRocketFuelCore/NSDate+BR.h>
+#import <BlueRocketFuelCore/NSDictionary+BR.h>
+#import <BlueRocketFuelCore/NSString+BR.h>

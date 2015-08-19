@@ -30,11 +30,12 @@ FOUNDATION_EXPORT double BlueRocketFuelCoreVersionNumber;
 //! Project version string for BlueRocketFuelCore.
 FOUNDATION_EXPORT const unsigned char BlueRocketFuelCoreVersionString[];
 
-#import <BlueRocketFuelCore/Core/Core.h>
-#import <BlueRocketFuelCore/Logging/Logging.h>
-#import <BlueRocketFuelCore/UI/UI.h>
-#import <BlueRocketFuelCore/WebApiClient-AFNetworking/WebApiClient-AFNetworking.h>
-#import <BlueRocketFuelCore/WebApiClient/WebApiClient-Core.h>
-#import <BlueRocketFuelCore/WebApiClient-RestKit/WebApiClient-RestKit.h>
-#import <BlueRocketFuelCore/WebApiClient-UI/WebApiClient-UI.h>
-#import <BlueRocketFuelCore/WebRequest/WebRequest.h>
+#import <BlueRocketFuelCore/Core.h>
+#import <BlueRocketFuelCore/Logging.h>
+#import <BlueRocketFuelCore/UI.h>
+#import <BlueRocketFuelCore/WebApiClient-AFNetworking.h>
+#import <BlueRocketFuelCore/WebApiClient-Core.h>
+#import <BlueRocketFuelCore/WebApiClient-RestKit.h>
+#import <BlueRocketFuelCore/WebApiClient-Services.h>
+#import <BlueRocketFuelCore/WebApiClient-UI.h>
+#import <BlueRocketFuelCore/WebRequest.h>

@@ -6,18 +6,19 @@
 //  Copyright (c) 2015 Blue Rocket. Distributable under the terms of the Apache License, Version 2.0.
 //
 
-#import <BlueRocketFuelCore/UI/BRFullScreenNotificationView.h>
-#import <BlueRocketFuelCore/UI/BRFullScreeNotificationViewDelegate.h>
-#import <BlueRocketFuelCore/UI/BROptionsTray.h>
-#import <BlueRocketFuelCore/UI/PushNoAnimationSegue.h>
-#import <BlueRocketFuelCore/UI/ReplaceNoAnimationSegue.h>
-#import <BlueRocketFuelCore/UI/UIBarButtonItem+BR.h>
-#import <BlueRocketFuelCore/UI/UIButton+BR.h>
-#import <BlueRocketFuelCore/UI/UIFont+BR.h>
-#import <BlueRocketFuelCore/UI/UIImage+BR.h>
-#import <BlueRocketFuelCore/UI/UIImage+ImageEffects.h>
-#import <BlueRocketFuelCore/UI/UILabel+BR.h>
-#import <BlueRocketFuelCore/UI/UINavigationItem+BR.h>
-#import <BlueRocketFuelCore/UI/UISegmentedControl+BR.h>
-#import <BlueRocketFuelCore/UI/UITextField+BR.h>
-#import <BlueRocketFuelCore/UI/UIView+BR.h>
+#import <BlueRocketFuelCore/BRFullScreeNotificationViewDelegate.h>
+#import <BlueRocketFuelCore/BRFullScreenNotificationView.h>
+#import <BlueRocketFuelCore/BROptionsTray.h>
+#import <BlueRocketFuelCore/NSObject+BRLocalizableUI.h>
+#import <BlueRocketFuelCore/PushNoAnimationSegue.h>
+#import <BlueRocketFuelCore/ReplaceNoAnimationSegue.h>
+#import <BlueRocketFuelCore/UIBarButtonItem+BR.h>
+#import <BlueRocketFuelCore/UIButton+BR.h>
+#import <BlueRocketFuelCore/UIFont+BR.h>
+#import <BlueRocketFuelCore/UIImage+BR.h>
+#import <BlueRocketFuelCore/UIImage+ImageEffects.h>
+#import <BlueRocketFuelCore/UILabel+BR.h>
+#import <BlueRocketFuelCore/UINavigationItem+BR.h>
+#import <BlueRocketFuelCore/UISegmentedControl+BR.h>
+#import <BlueRocketFuelCore/UITextField+BR.h>
+#import <BlueRocketFuelCore/UIView+BR.h>
