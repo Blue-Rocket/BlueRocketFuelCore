@@ -91,7 +91,19 @@ mutableRoute[@"extendedProperty"] = @"special";
 
 ## Object mapping
 
-The [WebApiDataMapper](https://github.com/Blue-Rocket/BlueRocketFuelCore/blob/msm/Code/WebApiClient/WebApiDataMapper.h) protocol defines an API for _encoding_ native objects into HTTP requests and _mapping_ HTTP responses into native objects. Routes can be configured with a `dataMapper` property to support this feature. 
+The [WebApiDataMapper](https://github.com/Blue-Rocket/BlueRocketFuelCore/blob/msm/Code/WebApiClient/WebApiDataMapper.h) protocol defines an API for _encoding_ native objects into HTTP requests and _mapping_ HTTP responses into native objects. Routes can be configured with a `dataMapper` property to support this feature. The API is also pretty simple:
+
+```objc
+@protocol WebApiDataMapper <NSObject>
+
+// Map a source data object into some domain object.
+- (id)performMappingWithSourceObject:(id)sourceObject route:(id<WebApiRoute>)route error:(NSError *__autoreleasing *)error;
+
+// Encode a domain object into an encoded form, such as @c NSDictionary or @c NSData.
+- (id)performEncodingWithObject:(id)domainObject route:(id<WebApiRoute>)route error:(NSError *__autoreleasing *)error;
+
+@end
+```
 
 # Module: WebApiClient-AFNetworking
 
