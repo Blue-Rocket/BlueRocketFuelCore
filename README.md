@@ -37,7 +37,15 @@ The **WebApiClient** module provides a HTTP client framework based on _routes_ c
 
 ## Client
 
-The [WebApiClient](https://github.com/Blue-Rocket/BlueRocketFuelCore/blob/msm/Code/WebApiClient/WebApiClient.h) protocol defines the main HTTP client entry point for applications to use. The API is purposefully simple and based on asynchronous block callbacks.
+The [WebApiClient](https://github.com/Blue-Rocket/BlueRocketFuelCore/blob/msm/Code/WebApiClient/WebApiClient.h) protocol defines the main HTTP client entry point for applications to use. The API is purposefully simple and based on asynchronous block callbacks:
+
+```objc
+- (void)requestAPI:(NSString *)name 
+ withPathVariables:(id)pathVariables 
+        parameters:(id)parameters 
+              data:(id)data
+		  finished:(void (^)(id<WebApiResponse> response, NSError *error))callback;
+```
 
 ## Routing
 
