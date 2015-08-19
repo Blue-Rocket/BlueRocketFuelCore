@@ -42,7 +42,7 @@
 			// TODO: handle business error decoding here
 		} else {
 			user = response.responseObject;
-			[BRAppUser replaceCurrentUser:user];
+			[self.appUserClass replaceCurrentUser:user];
 		}
 		doCallback(user, error);
 	}];
@@ -66,7 +66,7 @@
 															  userInfo:@{NSUnderlyingErrorKey : error}];
 		} else {
 			user = response.responseObject;
-			[BRAppUser replaceCurrentUser:user];
+			[self.appUserClass replaceCurrentUser:user];
 			[[NSNotificationCenter defaultCenter] postNotificationName:BRUserServiceNotificationLoginDidSucceed object:user userInfo:nil];
 		}
 		doCallback(user, error);
@@ -88,7 +88,7 @@
 }
 
 - (void)logout {
-	[BRAppUser replaceCurrentUser:nil];
+	[self.appUserClass replaceCurrentUser:nil];
 	[[NSNotificationCenter defaultCenter] postNotificationName:BRUserServiceNotificationLogoutDidSucceed object:nil userInfo:nil];
 }
 
