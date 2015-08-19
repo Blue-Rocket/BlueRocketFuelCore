@@ -50,6 +50,7 @@ The [WebApiClient](https://github.com/Blue-Rocket/BlueRocketFuelCore/blob/msm/Co
 An example invocation of this API might look like this:
 
 ```objc
+// make a GET request to /documents/123
 [client requestAPI:@"doc" withPathVariables:@{@"uniqueId" : @123 } parameters:nil data:nil 
           finished:^(id<WebApiResponse> response, NSError *error) {
 	if ( !error ) {
