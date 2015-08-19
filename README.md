@@ -47,6 +47,19 @@ The [WebApiClient](https://github.com/Blue-Rocket/BlueRocketFuelCore/blob/msm/Co
 		  finished:(void (^)(id<WebApiResponse> response, NSError *error))callback;
 ```
 
+An example invocation of this API might look like this:
+
+```objc
+[client requestAPI:@"doc" withPathVariables:@{@"uniqueId" : @123 } parameters:nil data:nil 
+          finished:^(id<WebApiResponse> response, NSError *error) {
+	if ( !error ) {
+		MyDocument *doc = response.responseObject;
+	} else if ( response.statusCode == 422 ) {
+		// handle 422 (validation) errors here...
+	}
+}];
+```
+
 ## Routing
 
 The [WebApiRoute](https://github.com/Blue-Rocket/BlueRocketFuelCore/blob/msm/Code/WebApiClient/WebApiRoute.h) protocol defines a single API endpoint definition, assigned a unique name. Routes are typically configured when an application starts up. Each route defines some standardized properties, such as a HTTP `method` and URL `path`. For convenience, routes support arbitrary property access via Objective-C's keyed subscript support, so the following is possible:
