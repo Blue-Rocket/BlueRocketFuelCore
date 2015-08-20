@@ -8,4 +8,4 @@
 
 #import "BRServiceConstants.h"
 
-NSString * const BRServiceValidationErrorDomain = @"ServiceValidation";
+NSString * const BRServiceValidationErrorDomain = @"us.bluerocket.ServiceValidation";
