@@ -28,6 +28,27 @@
 	return [self.appUserClass currentUser];
 }
 
+- (NSError *)errorForResponse:(id<WebApiResponse>)response error:(NSError *)error {
+	NSError *result = error;
+	if ( response.statusCode == 422 ) {
+		NSMutableDictionary *userInfo = [[NSMutableDictionary alloc] initWithCapacity:4];
+		[userInfo addEntriesFromDictionary:error.userInfo];
+		
+		// extract server-assigned code and localized message, if available
+		id responseObj = response.responseObject;
+		NSInteger code = [[responseObj valueForKeyPath:@"code"] integerValue];
+		NSString *message = [responseObj valueForKeyPath:@"message"];
+		if ( message ) {
+			userInfo[NSLocalizedDescriptionKey] = message;
+		}
+		if ( error ) {
+			userInfo[NSUnderlyingErrorKey] = error;
+		}
+		result = [NSError errorWithDomain:BRServiceValidationErrorDomain code:(code ? code : response.statusCode) userInfo:userInfo];
+	}
+	return result;
+}
+
 - (void)registerNewUser:(id<BRUserRegistration>)newUser finished:(void (^)(id<BRUser>, NSError *))callback {
 	void (^doCallback)(id<BRUser>, NSError *) = ^(id<BRUser> user, NSError *error) {
 		if ( callback ) {
@@ -39,7 +60,8 @@
 		log4Debug(@"Got register response: %@; error: %@", response, error);
 		BRAppUser *user = nil;
 		if ( error ) {
-			// TODO: handle business error decoding here
+			// map into business error, if possible
+			error = [self errorForResponse:response error:error];
 		} else {
 			user = response.responseObject;
 			[self.appUserClass replaceCurrentUser:user];
