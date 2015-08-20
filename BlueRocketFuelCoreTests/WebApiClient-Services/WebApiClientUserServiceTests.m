@@ -23,7 +23,7 @@
 
 - (void)setUp {
 	[super setUp];
-	mockClient = OCMStrictProtocolMock(@protocol(WebApiClient));
+	mockClient = OCMProtocolMock(@protocol(WebApiClient));
 	userService = [[WebApiClientUserService alloc] init];
 	userService.client = mockClient;
 }
@@ -39,7 +39,7 @@
 	newUser.password = @"pass";
 
 	// sub the client call to return a successfully registered user
-	OCMExpect([mockClient requestAPI:equalTo(@"register") withPathVariables:nil parameters:newUser data:nil finished:[OCMArg checkWithBlock:^BOOL(id obj) {
+	OCMStub([mockClient requestAPI:equalTo(@"register") withPathVariables:nil parameters:newUser data:nil finished:[OCMArg checkWithBlock:^BOOL(id obj) {
 		void (^block)(id<WebApiResponse> response, NSError *error) = obj;
 		BRAppUser *regUser = [BRAppUser new];
 		regUser.email = newUser.email;
