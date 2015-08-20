@@ -62,4 +62,31 @@
 	assertThatBool(called, isTrue());
 }
 
+- (void)testRegisterUserValidationError {
+	BRAppUser *newUser = [BRAppUser new];
+	newUser.email = @"email";
+	newUser.password = @"pass";
+	
+	// sub the client call to return a validation error object, using the standardized "code" and "message" object properties
+	OCMStub([mockClient requestAPI:equalTo(@"register") withPathVariables:nil parameters:newUser data:nil finished:[OCMArg checkWithBlock:^BOOL(id obj) {
+		void (^block)(id<WebApiResponse> response, NSError *error) = obj;
+		NSError *error = [NSError errorWithDomain:@"SomeDomain" code:111
+										 userInfo:@{NSURLErrorFailingURLErrorKey : [NSURL URLWithString:@"http://localhost/register"]}];
+		block(@{ @"responseObject" : @{ @"code" : @12345, @"message" : @"That email is already registered." }, @"statusCode" : @422}, error);
+		return YES;
+	}]]);
+	
+	__block BOOL called = NO;
+	[userService registerNewUser:newUser finished:^(id<BRUser> user, NSError *error) {
+		assertThat(error, notNilValue());
+		assertThat(error.domain, equalTo(BRServiceValidationErrorDomain));
+		assertThat([error localizedDescription], equalTo(@"That email is already registered."));
+		assertThatInteger([error code], equalToInteger(12345));
+		called = YES;
+	}];
+	
+	OCMVerifyAll((id)mockClient);
+	assertThatBool(called, isTrue());
+}
+
 @end
