@@ -204,8 +204,10 @@
 			[self setRoute:nil forTask:dataTask];
 		}];
 		[self setRoute:route forTask:dataTask];
-		[[NSNotificationCenter defaultCenter] postNotificationName:WebApiClientRequestWillBeginNotification object:route
-														  userInfo:@{WebApiClientURLRequestNotificationKey : req}];
+		dispatch_async(dispatch_get_main_queue(), ^{
+			[[NSNotificationCenter defaultCenter] postNotificationName:WebApiClientRequestWillBeginNotification object:route
+															  userInfo:@{WebApiClientURLRequestNotificationKey : req}];
+		});
 		[dataTask resume];
 	});
 }
