@@ -17,7 +17,7 @@
 #import "WebApiClientEnvironment.h"
 #import "WebApiDataMapper.h"
 
-NSString * const WebApiClientSupportAppApiKeyDefaultHTTPHeaderName = @"Authorization";
+NSString * const WebApiClientSupportAppApiKeyDefaultHTTPHeaderName = @"X-App-API-Key";
 NSString * const WebApiClientSupportAppIdDefaultHTTPHeaderName = @"X-App-ID";
 
 static NSString * const kRoutePropertyPattern = @"_pattern";
