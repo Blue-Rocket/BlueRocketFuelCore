@@ -10,6 +10,7 @@
 
 #import "AFNetworkingWebApiClient.h"
 #import "BRSimpleEntityReference.h"
+#import "WebApiClientEnvironment.h"
 
 @interface AFNetworkingWebApiClientTests : BaseNetworkTestingSupport
 
@@ -21,8 +22,58 @@
 
 - (void)setUp {
 	[super setUp];
-	[self http]; // start up HTTP server, configure port in environment
-	client = [[AFNetworkingWebApiClient alloc] initWithEnvironment:self.testEnvironment];
+	BREnvironment *env = [self.testEnvironment copy];
+	env[WebApiClientSupportServerPortEnvironmentKey] = [NSString stringWithFormat:@"%u", [self.http listeningPort]];
+	NSLog(@"Environment port set to %@", env[WebApiClientSupportServerPortEnvironmentKey]);
+	client = [[AFNetworkingWebApiClient alloc] initWithEnvironment:env];
+}
+
+- (void)testNotificationsSuccess {
+	[self.http handleMethod:@"GET" withPath:@"/test" block:^(RouteRequest *request, RouteResponse *response) {
+		[self respondWithJSON:@"{\"success\":true}" response:response status:200];
+	}];
+	
+	id<WebApiRoute> route = [client routeForName:@"test" error:nil];
+	
+	__block BOOL willBegin = NO;
+	[self expectationForNotification:WebApiClientRequestWillBeginNotification object:route handler:^BOOL(NSNotification *note) {
+		NSURLRequest *req = [note userInfo][WebApiClientURLRequestNotificationKey];
+		NSURLResponse *res = [note userInfo][WebApiClientURLResponseNotificationKey];
+		assertThat(req.URL.absoluteString, equalTo([self httpURLForRelativePath:@"test"].absoluteString));
+		assertThat(res, nilValue());
+		willBegin = YES;
+		return YES;
+	}];
+
+	__block BOOL didBegin = NO;
+	[self expectationForNotification:WebApiClientRequestDidBeginNotification object:route handler:^BOOL(NSNotification *note) {
+		didBegin = YES;
+		NSURLRequest *req = [note userInfo][WebApiClientURLRequestNotificationKey];
+		NSURLResponse *res = [note userInfo][WebApiClientURLResponseNotificationKey];
+		assertThat(req.URL.absoluteString, equalTo([self httpURLForRelativePath:@"test"].absoluteString));
+		assertThat(res, nilValue());
+		return YES;
+	}];
+	
+	__block BOOL didSucceed = NO;
+	[self expectationForNotification:WebApiClientRequestDidSucceedNotification object:route handler:^BOOL(NSNotification *note) {
+		didSucceed = YES;
+		NSURLRequest *req = [note userInfo][WebApiClientURLRequestNotificationKey];
+		NSURLResponse *res = [note userInfo][WebApiClientURLResponseNotificationKey];
+		assertThat(req.URL.absoluteString, equalTo([self httpURLForRelativePath:@"test"].absoluteString));
+		assertThat(res, notNilValue());
+		return YES;
+	}];
+	
+	XCTestExpectation *requestExpectation = [self expectationWithDescription:@"HTTP request"];
+	[client requestAPI:@"test" withPathVariables:nil parameters:nil data:nil finished:^(id<WebApiResponse> response, NSError *error) {
+		assertThatBool(willBegin, isTrue());
+		assertThatBool(didBegin, isTrue());
+		assertThatBool(didSucceed, isFalse());
+		[requestExpectation fulfill];
+	}];
+	
+	[self waitForExpectationsWithTimeout:2 handler:nil];
 }
 
 - (void)testInvokeError404 {

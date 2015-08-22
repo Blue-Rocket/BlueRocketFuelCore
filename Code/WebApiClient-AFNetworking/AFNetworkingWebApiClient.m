@@ -29,14 +29,13 @@
 		[self initializeURLSessionManager];
 	}
 	NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
-	[center addObserver:self selector:@selector(taskDidResume:) name:AFNetworkingTaskDidResumeNotification object:nil];
+	// NOTE: had problems getting AFNetworkingTaskDidResumeNotification to work with unit tests: two swizzling didn't work
 	[center addObserver:self selector:@selector(taskDidComplete:) name:AFNetworkingTaskDidCompleteNotification object:nil];
 	return self;
 }
 
 - (void)dealloc {
 	NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
-	[center removeObserver:self name:AFNetworkingTaskDidResumeNotification object:nil];
 	[center removeObserver:self name:AFNetworkingTaskDidCompleteNotification object:nil];
 }
 
@@ -89,8 +88,7 @@
 
 #pragma mark - Notifications
 
-- (void)taskDidResume:(NSNotification *)notification {
-	NSURLSessionTask *task = notification.object;
+- (void)taskDidResume:(NSURLSessionTask *)task {
 	id<WebApiRoute> route = [self routeForTask:task];
 	if ( route ) {
 		[[NSNotificationCenter defaultCenter] postNotificationName:WebApiClientRequestDidBeginNotification object:route
@@ -122,6 +120,8 @@
 }
 
 #pragma mark - Public API
+
+static void * AFNetworkingWebApiClientTaskStateContext = &AFNetworkingWebApiClientTaskStateContext;
 
 - (void)requestAPI:(NSString *)name withPathVariables:(id)pathVariables parameters:(id)parameters data:(id)data
 		  finished:(void (^)(id<WebApiResponse>, NSError *))callback {
@@ -208,8 +208,23 @@
 			[[NSNotificationCenter defaultCenter] postNotificationName:WebApiClientRequestWillBeginNotification object:route
 															  userInfo:@{WebApiClientURLRequestNotificationKey : req}];
 		});
+		[dataTask addObserver:self forKeyPath:@"state" options:NSKeyValueObservingOptionNew context:AFNetworkingWebApiClientTaskStateContext];
 		[dataTask resume];
 	});
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
+	if ( context == AFNetworkingWebApiClientTaskStateContext ) {
+		NSURLSessionTaskState state = [change[NSKeyValueChangeNewKey] integerValue];
+		if ( state == NSURLSessionTaskStateRunning ) {
+			dispatch_async(dispatch_get_main_queue(), ^{
+				[self taskDidResume:object];
+			});
+		}
+		[object removeObserver:self forKeyPath:@"state" context:AFNetworkingWebApiClientTaskStateContext];
+	} else {
+		[super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
+	}
 }
 
 @end

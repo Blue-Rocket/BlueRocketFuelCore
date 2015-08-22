@@ -6,7 +6,7 @@ inhibit_all_warnings!
 target :BlueRocketFuelCore do
 	pod 'AFNetworking',				'~> 2.5'
 	pod 'BRCocoaLumberjack',		'~> 2.0'
-	pod 'BREnvironment',			'~> 1.1'
+	pod 'BREnvironment',			'~> 1.2'
 	pod 'MAObjCRuntime', 			'~> 0.0.1'
 	pod 'Masonry',					'~> 0.6'
 	pod 'RestKit/ObjectMapping',	'~> 0.24'
