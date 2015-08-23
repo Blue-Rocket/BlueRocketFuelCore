@@ -9,9 +9,9 @@
 #import "AFNetworkingWebApiClient.h"
 
 #import <AFNetworking/AFHTTPSessionManager.h>
-#import <BlueRocketFuelCore/NSString+BR.h>
 #import <BRCocoaLumberjack/BRCocoaLumberjack.h>
 #import <BREnvironment/BREnvironment.h>
+#import "NSString+BR.h"
 #import "WebApiDataMapper.h"
 
 @implementation AFNetworkingWebApiClient {
@@ -29,13 +29,14 @@
 		[self initializeURLSessionManager];
 	}
 	NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
-	// NOTE: had problems getting AFNetworkingTaskDidResumeNotification to work with unit tests: two swizzling didn't work
+	[center addObserver:self selector:@selector(taskDidResume:) name:AFNetworkingTaskDidResumeNotification object:nil];
 	[center addObserver:self selector:@selector(taskDidComplete:) name:AFNetworkingTaskDidCompleteNotification object:nil];
 	return self;
 }
 
 - (void)dealloc {
 	NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
+	[center removeObserver:self name:AFNetworkingTaskDidResumeNotification object:nil];
 	[center removeObserver:self name:AFNetworkingTaskDidCompleteNotification object:nil];
 }
 
@@ -88,7 +89,8 @@
 
 #pragma mark - Notifications
 
-- (void)taskDidResume:(NSURLSessionTask *)task {
+- (void)taskDidResume:(NSNotification *)note {
+	NSURLSessionTask *task = note.object;
 	id<WebApiRoute> route = [self routeForTask:task];
 	if ( route ) {
 		[[NSNotificationCenter defaultCenter] postNotificationName:WebApiClientRequestDidBeginNotification object:route
@@ -117,6 +119,7 @@
 	if ( note ) {
 		[[NSNotificationCenter defaultCenter] postNotification:note];
 	}
+	[self setRoute:nil forTask:task];
 }
 
 #pragma mark - Public API
@@ -179,7 +182,7 @@ static void * AFNetworkingWebApiClientTaskStateContext = &AFNetworkingWebApiClie
 		
 		[self addAuthorizationHeadersToRequest:req forRoute:route];
 		
-		NSURLSessionDataTask *dataTask = [manager dataTaskWithRequest:req completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
+		__block NSURLSessionDataTask *dataTask = [manager dataTaskWithRequest:req completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
 			NSMutableDictionary *apiResponse = [[NSMutableDictionary alloc] initWithCapacity:4];
 			if ( [response isKindOfClass:[NSHTTPURLResponse class]] ) {
 				NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)response;
@@ -201,30 +204,14 @@ static void * AFNetworkingWebApiClientTaskStateContext = &AFNetworkingWebApiClie
 			} else {
 				handleResponse(responseObject, error);
 			}
-			[self setRoute:nil forTask:dataTask];
 		}];
 		[self setRoute:route forTask:dataTask];
 		dispatch_async(dispatch_get_main_queue(), ^{
 			[[NSNotificationCenter defaultCenter] postNotificationName:WebApiClientRequestWillBeginNotification object:route
 															  userInfo:@{WebApiClientURLRequestNotificationKey : req}];
 		});
-		[dataTask addObserver:self forKeyPath:@"state" options:NSKeyValueObservingOptionNew context:AFNetworkingWebApiClientTaskStateContext];
 		[dataTask resume];
 	});
-}
-
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
-	if ( context == AFNetworkingWebApiClientTaskStateContext ) {
-		NSURLSessionTaskState state = [change[NSKeyValueChangeNewKey] integerValue];
-		if ( state == NSURLSessionTaskStateRunning ) {
-			dispatch_async(dispatch_get_main_queue(), ^{
-				[self taskDidResume:object];
-			});
-		}
-		[object removeObserver:self forKeyPath:@"state" context:AFNetworkingWebApiClientTaskStateContext];
-	} else {
-		[super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
-	}
 }
 
 @end

@@ -10,6 +10,7 @@
 #import <BlueRocketFuelCore/BRAppUser.h>
 #import <BlueRocketFuelCore/BREntity.h>
 #import <BlueRocketFuelCore/BREntityReference.h>
+#import <BlueRocketFuelCore/BRJSON.h>
 #import <BlueRocketFuelCore/BRKeychainService.h>
 #import <BlueRocketFuelCore/BRLocalizable.h>
 #import <BlueRocketFuelCore/BRServiceConstants.h>

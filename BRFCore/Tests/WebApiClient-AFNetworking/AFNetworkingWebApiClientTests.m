@@ -8,6 +8,7 @@
 
 #import "BaseNetworkTestingSupport.h"
 
+#import <AFNetworking/AFURLSessionManager.h>
 #import "AFNetworkingWebApiClient.h"
 #import "BRSimpleEntityReference.h"
 #import "WebApiClientEnvironment.h"

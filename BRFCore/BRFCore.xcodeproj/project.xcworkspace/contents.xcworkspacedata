@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:BlueRocketFuelCore.xcodeproj">
+      location = "self:BRFCore.xcodeproj">
    </FileRef>
 </Workspace>

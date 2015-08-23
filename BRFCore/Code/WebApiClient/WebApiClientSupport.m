@@ -8,12 +8,12 @@
 
 #import "WebApiClientSupport.h"
 
-#import <BlueRocketFuelCore/NSString+BR.h>
 #import <BRCocoaLumberjack/BRCocoaLumberjack.h>
 #import <BREnvironment/BREnvironment.h>
 #import <MAObjCRuntime/MARTNSObject.h>
 #import <MAObjCRuntime/RTProperty.h>
 #import <SOCKit/SOCKit.h>
+#import "NSString+BR.h"
 #import "WebApiClientEnvironment.h"
 #import "WebApiDataMapper.h"
 
