@@ -11,6 +11,7 @@
 #import <AFNetworking/AFURLSessionManager.h>
 #import "AFNetworkingWebApiClient.h"
 #import "BRSimpleEntityReference.h"
+#import "FileWebApiResource.h"
 #import "WebApiClientEnvironment.h"
 
 @interface AFNetworkingWebApiClientTests : BaseNetworkTestingSupport
@@ -214,6 +215,84 @@
 		called = YES;
 	}];
 	assertThatBool([self processMainRunLoopAtMost:10 stop:&called], equalTo(@YES));
+}
+
+- (void)testFileUpload {
+	NSURL *fileURL = [self.bundle URLForResource:@"upload-test.txt" withExtension:nil];
+	[self.http handleMethod:@"POST" withPath:@"/file/test_file" block:^(RouteRequest *request, RouteResponse *response) {
+		// decode our multipart boundary ID
+		NSString *contentType = [request header:@"Content-Type"];
+		assertThat(contentType, startsWith(@"multipart/form-data"));
+		NSUInteger paramsIdx = [contentType rangeOfString:@";"].location;
+		assertThatUnsignedInteger(paramsIdx, greaterThan(@0));
+		NSArray *contentParams = [[contentType substringFromIndex:(paramsIdx + 1)] componentsSeparatedByString:@";"];
+		assertThatUnsignedInteger(contentParams.count, greaterThan(@0));
+		NSString *boundaryParam = contentParams[[contentParams indexOfObjectPassingTest:^BOOL(id obj, NSUInteger idx, BOOL *stop) {
+			return [[(NSString *)obj stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] hasPrefix:@"boundary"];
+		}]];
+		NSString *boundary = [[boundaryParam componentsSeparatedByString:@"="] lastObject];
+		assertThat(boundary, notNilValue());
+
+		NSString *bodyData = [[NSString alloc] initWithData:[request body] encoding:NSUTF8StringEncoding];
+		NSScanner *scanner = [[NSScanner alloc] initWithString:bodyData];
+		scanner.charactersToBeSkipped = nil;
+		[scanner scanUpToString:[NSString stringWithFormat:@"--%@\r\n", boundary] intoString:NULL];
+		[scanner scanString:[NSString stringWithFormat:@"--%@\r\n", boundary] intoString:NULL];
+		
+		// read part header data
+		NSString *partContentDisposition = nil;
+		NSString *partContentType = nil;
+		NSString *partContentBody = nil;
+		NSCharacterSet *headerDelimSet = [NSCharacterSet characterSetWithCharactersInString:@": "];
+		NSString *str = nil;
+		while ( true ) {
+			[scanner scanUpToCharactersFromSet:headerDelimSet intoString:&str];
+			[scanner scanCharactersFromSet:headerDelimSet intoString:NULL];
+			if ( [str caseInsensitiveCompare:@"Content-Disposition"] == NSOrderedSame ) {
+				[scanner scanUpToCharactersFromSet:[NSCharacterSet newlineCharacterSet] intoString:&partContentDisposition];
+			} else if ( [str caseInsensitiveCompare:@"Content-Type"] == NSOrderedSame ) {
+				[scanner scanUpToCharactersFromSet:[NSCharacterSet newlineCharacterSet] intoString:&partContentType];
+			} else {
+				[scanner scanUpToCharactersFromSet:[NSCharacterSet newlineCharacterSet] intoString:NULL];
+			}
+			str = nil;
+			[scanner scanCharactersFromSet:[NSCharacterSet newlineCharacterSet] intoString:&str];
+			if ( [str length] > 2 ) {
+				break;
+			}
+		}
+		[scanner scanUpToString:[NSString stringWithFormat:@"\r\n--%@--", boundary] intoString:&partContentBody];
+		
+		assertThat(partContentType, equalTo(@"text/plain"));
+		
+		paramsIdx = [partContentDisposition rangeOfString:@";"].location;
+		assertThat([partContentDisposition substringToIndex:paramsIdx], equalTo(@"form-data"));
+		contentParams = [[partContentDisposition substringFromIndex:(paramsIdx + 1)] componentsSeparatedByString:@";"];
+		NSMutableDictionary *partDisposition = [NSMutableDictionary new];
+		for ( NSString *param in contentParams ) {
+			NSArray *comps = [[param stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] componentsSeparatedByString:@"="];
+			assertThat(comps, hasCountOf(2));
+			partDisposition[comps[0]] = [comps[1] stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"\""]];
+		}
+		
+		assertThat(partDisposition, equalTo(@{ @"name" : @"test_file", @"filename" : @"upload-test.txt"}));
+		
+		// verify file content
+		
+		assertThat(partContentBody, equalTo(@"Hello, server!\n"));
+		
+		[self respondWithJSON:@"{\"success\":true}" response:response status:200];
+	}];
+	
+	FileWebApiResource *r = [[FileWebApiResource alloc] initWithURL:fileURL name:@"test_file" MIMEType:@"application/json"];
+	XCTestExpectation *requestExpectation = [self expectationWithDescription:@"HTTP request"];
+	[client requestAPI:@"file" withPathVariables:r parameters:nil data:r finished:^(id<WebApiResponse> response, NSError *error) {
+		assertThat(response.responseObject, equalTo(@{@"success" : @YES}));
+		assertThat(error, nilValue());
+		[requestExpectation fulfill];
+	}];
+	
+	[self waitForExpectationsWithTimeout:2 handler:nil];
 }
 
 @end

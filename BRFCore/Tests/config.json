@@ -31,6 +31,10 @@
 			"saveDoc" : {
 				"method" : "PUT",
 				"path" : "document/:uniqueId"
+			},
+			"file" : {
+				"method" : "POST",
+				"path" : "file/:name"
 			}
 		}
 	}

@@ -71,6 +71,8 @@
 		C9A8A0361B8A4E3D000B9169 /* RestKitWebApiDataMapperTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A8A0281B8A4E3D000B9169 /* RestKitWebApiDataMapperTests.m */; };
 		C9A8A0371B8A4E3D000B9169 /* WebApiClientUserServiceTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A8A02A1B8A4E3D000B9169 /* WebApiClientUserServiceTests.m */; };
 		C9A8A03A1B8A5112000B9169 /* BRJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A8A0391B8A5112000B9169 /* BRJSON.m */; };
+		C9A8A0401B8A7558000B9169 /* FileWebApiResource.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A8A03F1B8A7558000B9169 /* FileWebApiResource.m */; };
+		C9A8A0421B8A8642000B9169 /* upload-test.txt in Resources */ = {isa = PBXBuildFile; fileRef = C9A8A0411B8A8616000B9169 /* upload-test.txt */; };
 		EA2D55BAC1F29F01EBCF2969 /* libPods-BRFCore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 07D714E2304D4D5A716F0270 /* libPods-BRFCore.a */; };
 /* End PBXBuildFile section */
 
@@ -237,6 +239,10 @@
 		C9A8A0381B8A5112000B9169 /* BRJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRJSON.h; sourceTree = "<group>"; };
 		C9A8A0391B8A5112000B9169 /* BRJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRJSON.m; sourceTree = "<group>"; };
 		C9A8A03C1B8A5207000B9169 /* BlueRocketFuelCore.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; name = BlueRocketFuelCore.podspec; path = ../BlueRocketFuelCore.podspec; sourceTree = "<group>"; };
+		C9A8A03D1B8A716E000B9169 /* WebApiResource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebApiResource.h; sourceTree = "<group>"; };
+		C9A8A03E1B8A7558000B9169 /* FileWebApiResource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileWebApiResource.h; sourceTree = "<group>"; };
+		C9A8A03F1B8A7558000B9169 /* FileWebApiResource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileWebApiResource.m; sourceTree = "<group>"; };
+		C9A8A0411B8A8616000B9169 /* upload-test.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "upload-test.txt"; sourceTree = "<group>"; };
 		CF8901992F8C7787AC0F1E10 /* Pods-BRFCore-BRFCoreTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BRFCore-BRFCoreTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-BRFCore-BRFCoreTests/Pods-BRFCore-BRFCoreTests.release.xcconfig"; sourceTree = "<group>"; };
 		D2337E9FBC5C179A64F55FAB /* Pods-BRFCore-BRFCoreTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BRFCore-BRFCoreTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BRFCore-BRFCoreTests/Pods-BRFCore-BRFCoreTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -416,6 +422,8 @@
 		C9A89FAA1B8A4DDB000B9169 /* WebApiClient */ = {
 			isa = PBXGroup;
 			children = (
+				C9A8A03E1B8A7558000B9169 /* FileWebApiResource.h */,
+				C9A8A03F1B8A7558000B9169 /* FileWebApiResource.m */,
 				C9A89FAB1B8A4DDB000B9169 /* NSDictionary+WebApiClient.h */,
 				C9A89FAC1B8A4DDB000B9169 /* NSDictionary+WebApiClient.m */,
 				C9A89FAD1B8A4DDB000B9169 /* WebApiClient.h */,
@@ -425,6 +433,7 @@
 				C9A89FB11B8A4DDB000B9169 /* WebApiClientSupport.h */,
 				C9A89FB21B8A4DDB000B9169 /* WebApiClientSupport.m */,
 				C9A89FB31B8A4DDB000B9169 /* WebApiDataMapper.h */,
+				C9A8A03D1B8A716E000B9169 /* WebApiResource.h */,
 				C9A89FB41B8A4DDB000B9169 /* WebApiResponse.h */,
 				C9A89FB51B8A4DDB000B9169 /* WebApiRotue.m */,
 				C9A89FB61B8A4DDB000B9169 /* WebApiRoute.h */,
@@ -533,6 +542,7 @@
 			isa = PBXGroup;
 			children = (
 				C9A8A0241B8A4E3D000B9169 /* AFNetworkingWebApiClientTests.m */,
+				C9A8A0411B8A8616000B9169 /* upload-test.txt */,
 			);
 			path = "WebApiClient-AFNetworking";
 			sourceTree = "<group>";
@@ -664,6 +674,7 @@
 				C9A8A0311B8A4E3D000B9169 /* Environment.plist in Resources */,
 				C9A8A02D1B8A4E3D000B9169 /* config.json in Resources */,
 				C9A8A0331B8A4E3D000B9169 /* strings.json in Resources */,
+				C9A8A0421B8A8642000B9169 /* upload-test.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -774,6 +785,7 @@
 				C9A89FED1B8A4DDB000B9169 /* NSDate+BR.m in Sources */,
 				C9A89FF81B8A4DDB000B9169 /* UIFont+BR.m in Sources */,
 				C9A89FE71B8A4DDB000B9169 /* BRKeychainService.m in Sources */,
+				C9A8A0401B8A7558000B9169 /* FileWebApiResource.m in Sources */,
 				C9A8A0141B8A4DDB000B9169 /* BRWebServiceResponse.m in Sources */,
 				C9A8A00F1B8A4DDB000B9169 /* BRProfileViewWebServiceRequest.m in Sources */,
 				C9A8A00B1B8A4DDB000B9169 /* BRAuthenticatedWebServiceRequest.m in Sources */,

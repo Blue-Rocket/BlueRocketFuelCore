@@ -205,7 +205,7 @@ static NSString * const kRoutePropertyDataMapperInstance = @"_dataMapper";
 	return mapper;
 }
 
-- (void)requestAPI:(NSString *)name withPathVariables:(id)pathVariables parameters:(NSDictionary *)parameters data:(id)data
+- (void)requestAPI:(NSString *)name withPathVariables:(id)pathVariables parameters:(NSDictionary *)parameters data:(id<WebApiResource>)data
 		  finished:(void (^)(id<WebApiResponse>, NSError *))callback {
 	// extending classes probably want to do something useful here
 }

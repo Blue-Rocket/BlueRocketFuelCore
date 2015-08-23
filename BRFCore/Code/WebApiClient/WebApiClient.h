@@ -40,6 +40,8 @@ extern NSString * const WebApiClientURLRequestNotificationKey;
 /** A notification user info key for a @c NSURLResponse object representing the response from an API endpoint. */
 extern NSString * const WebApiClientURLResponseNotificationKey;
 
+@protocol WebApiResource;
+
 /**
  A WebApiClient provides a centralized way for an application to interact with a web-based API based on named URL routes.
  */
@@ -65,7 +67,7 @@ extern NSString * const WebApiClientURLResponseNotificationKey;
  @param data Optional data to send as the request content.
  @param callback A callback block to invoke with the response.
  */
-- (void)requestAPI:(NSString *)name withPathVariables:(id)pathVariables parameters:(id)parameters data:(id)data
+- (void)requestAPI:(NSString *)name withPathVariables:(id)pathVariables parameters:(id)parameters data:(id<WebApiResource>)data
 		  finished:(void (^)(id<WebApiResponse> response, NSError *error))callback;
 
 @end

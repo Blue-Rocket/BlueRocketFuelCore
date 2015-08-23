@@ -38,7 +38,7 @@ Pod::Spec.new do |s|
     sp.source_files = 'BRFCore/Code/Core.h', 'BRFCore/Code/Core'
     sp.dependency 'BREnvironment',     '~> 1.1'
     sp.dependency 'BRCocoaLumberjack'
-    sp.ios.frameworks = 'Security'
+    sp.ios.frameworks = 'MobileCoreServices', 'Security'
   end
   
   s.subspec 'Logging' do |sp|

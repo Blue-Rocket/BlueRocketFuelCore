@@ -13,6 +13,7 @@
 #import <BREnvironment/BREnvironment.h>
 #import "NSString+BR.h"
 #import "WebApiDataMapper.h"
+#import "WebApiResource.h"
 
 @implementation AFNetworkingWebApiClient {
 	AFHTTPSessionManager *manager;
@@ -51,6 +52,10 @@
 
 - (AFHTTPRequestSerializer *)requestSerializationForRoute:(id<WebApiRoute>)route URL:(NSURL *)url parameters:(id)parameters data:(id)data error:(NSError * __autoreleasing *)error {
 	WebApiSerialization type = route.serialization;
+	if ( data != nil && (type != WebApiSerializationForm || type != WebApiSerializationNone) ) {
+		// for data uploads, need to serialize into the body
+		type = WebApiSerializationForm;
+	}
 	AFHTTPRequestSerializer *ser;
 	switch ( type ) {
 		case WebApiSerializationForm:
@@ -138,7 +143,7 @@
 
 static void * AFNetworkingWebApiClientTaskStateContext = &AFNetworkingWebApiClientTaskStateContext;
 
-- (void)requestAPI:(NSString *)name withPathVariables:(id)pathVariables parameters:(id)parameters data:(id)data
+- (void)requestAPI:(NSString *)name withPathVariables:(id)pathVariables parameters:(id)parameters data:(id<WebApiResource>)data
 		  finished:(void (^)(id<WebApiResponse>, NSError *))callback {
 	
 	void (^doCallback)(id<WebApiResponse>, NSError *) = ^(id<WebApiResponse> response, NSError *error) {
@@ -186,7 +191,7 @@ static void * AFNetworkingWebApiClientTaskStateContext = &AFNetworkingWebApiClie
 		NSMutableURLRequest *req = nil;
 		if ( route.serialization != WebApiSerializationNone && data != nil ) {
 			req = [ser multipartFormRequestWithMethod:route.method URLString:[url absoluteString] parameters:reqParameters constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
-				// TODO
+				[formData appendPartWithInputStream:data.inputStream name:data.name fileName:data.fileName length:data.length mimeType:data.MIMEType];
 			} error:&error];
 		} else {
 			req = [ser requestWithMethod:route.method URLString:[url absoluteString] parameters:reqParameters error:&error];
