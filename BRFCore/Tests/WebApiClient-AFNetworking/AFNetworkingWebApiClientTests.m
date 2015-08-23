@@ -31,6 +31,7 @@
 
 - (void)testNotificationsSuccess {
 	[self.http handleMethod:@"GET" withPath:@"/test" block:^(RouteRequest *request, RouteResponse *response) {
+		//[NSThread sleepForTimeInterval:1]; // respond slowly, to ensure have chance to check for task identifier
 		[self respondWithJSON:@"{\"success\":true}" response:response status:200];
 	}];
 	
@@ -53,6 +54,9 @@
 		NSURLResponse *res = [note userInfo][WebApiClientURLResponseNotificationKey];
 		assertThat(req.URL.absoluteString, equalTo([self httpURLForRelativePath:@"test"].absoluteString));
 		assertThat(res, nilValue());
+		
+		// make sure task identifier is tracked appropriately
+		assertThat(client.activeTaskIdentifiers, hasCountOf(1));
 		return YES;
 	}];
 	
@@ -63,6 +67,10 @@
 		NSURLResponse *res = [note userInfo][WebApiClientURLResponseNotificationKey];
 		assertThat(req.URL.absoluteString, equalTo([self httpURLForRelativePath:@"test"].absoluteString));
 		assertThat(res, notNilValue());
+
+		// make sure task identifier is released appropriately
+		assertThat(client.activeTaskIdentifiers, isEmpty());
+		
 		return YES;
 	}];
 	

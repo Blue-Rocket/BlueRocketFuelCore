@@ -69,12 +69,24 @@
 	return ser;
 }
 
-- (id<WebApiRoute>)routeForTask:(NSURLSessionTask *)task {
+- (NSArray *)activeTaskIdentifiers {
+	NSArray *idents = nil;
+	[lock lock];
+	idents = [tasksToRoutes allKeys];
+	[lock unlock];
+	return idents;
+}
+
+- (id<WebApiRoute>)routeForActiveTaskIdentifier:(NSUInteger)identifier {
 	id<WebApiRoute> route = nil;
 	[lock lock];
-	route = tasksToRoutes[@(task.taskIdentifier)];
+	route = tasksToRoutes[@(identifier)];
 	[lock unlock];
 	return route;
+}
+
+- (id<WebApiRoute>)routeForTask:(NSURLSessionTask *)task {
+	return [self routeForActiveTaskIdentifier:task.taskIdentifier];
 }
 
 - (void)setRoute:(id<WebApiRoute>)route forTask:(NSURLSessionTask *)task {
@@ -104,6 +116,7 @@
 	if ( !route ) {
 		return;
 	}
+	[self setRoute:nil forTask:task];
 	NSError *error = notification.userInfo[AFNetworkingTaskDidCompleteErrorKey];
 	NSNotification *note = nil;
 	if ( error ) {
@@ -119,7 +132,6 @@
 	if ( note ) {
 		[[NSNotificationCenter defaultCenter] postNotification:note];
 	}
-	[self setRoute:nil forTask:task];
 }
 
 #pragma mark - Public API
@@ -182,7 +194,7 @@ static void * AFNetworkingWebApiClientTaskStateContext = &AFNetworkingWebApiClie
 		
 		[self addAuthorizationHeadersToRequest:req forRoute:route];
 		
-		__block NSURLSessionDataTask *dataTask = [manager dataTaskWithRequest:req completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
+		__block NSURLSessionDataTask *task = [manager dataTaskWithRequest:req completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
 			NSMutableDictionary *apiResponse = [[NSMutableDictionary alloc] initWithCapacity:4];
 			if ( [response isKindOfClass:[NSHTTPURLResponse class]] ) {
 				NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)response;
@@ -205,12 +217,12 @@ static void * AFNetworkingWebApiClientTaskStateContext = &AFNetworkingWebApiClie
 				handleResponse(responseObject, error);
 			}
 		}];
-		[self setRoute:route forTask:dataTask];
+		[self setRoute:route forTask:task];
 		dispatch_async(dispatch_get_main_queue(), ^{
 			[[NSNotificationCenter defaultCenter] postNotificationName:WebApiClientRequestWillBeginNotification object:route
 															  userInfo:@{WebApiClientURLRequestNotificationKey : req}];
 		});
-		[dataTask resume];
+		[task resume];
 	});
 }
 
