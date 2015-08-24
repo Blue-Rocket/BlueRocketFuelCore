@@ -28,7 +28,7 @@
 #import "BRAppConfigEnvironmentProvider.h"
 #import "BRFullScreeNotificationViewDelegate.h"
 #import "BRFullScreenNotificationView.h"
-#import "BRLogging.h"
+#import "BRSimpleLogging.h"
 #import "BRWebServiceRequest.h"
 #import "NSBundle+BR.h"
 #import "NSDictionary+BR.h"

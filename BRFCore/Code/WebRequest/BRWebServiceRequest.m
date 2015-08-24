@@ -27,7 +27,7 @@
 #import <BREnvironment/BREnvironment.h>
 #import "BRAppDelegate.h"
 #import "BRAppUser.h"
-#import "BRLogging.h"
+#import "BRSimpleLogging.h"
 #import "BRReachability.h"
 #import "BRWebServiceRequest.h"
 #import "NSBundle+BR.h"

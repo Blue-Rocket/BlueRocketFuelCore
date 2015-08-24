@@ -22,11 +22,11 @@
 //  THE SOFTWARE.
 //
 
-#import "BRLogging.h"
+#import "BRSimpleLogging.h"
 
 #import <BREnvironment/BREnvironment.h>
 
-@implementation BRLogging
+@implementation BRSimpleLogging
 
 + (BOOL)shouldLogForObject:(id)object type:(NSString *)type {
     BOOL shouldLog = true;

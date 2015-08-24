@@ -20,7 +20,7 @@
 		C9A89FED1B8A4DDB000B9169 /* NSDate+BR.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A89F7F1B8A4DDB000B9169 /* NSDate+BR.m */; };
 		C9A89FEE1B8A4DDB000B9169 /* NSDictionary+BR.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A89F811B8A4DDB000B9169 /* NSDictionary+BR.m */; };
 		C9A89FEF1B8A4DDB000B9169 /* NSString+BR.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A89F831B8A4DDB000B9169 /* NSString+BR.m */; };
-		C9A89FF01B8A4DDB000B9169 /* BRLogging.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A89F871B8A4DDB000B9169 /* BRLogging.m */; };
+		C9A89FF01B8A4DDB000B9169 /* BRSimpleLogging.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A89F871B8A4DDB000B9169 /* BRSimpleLogging.m */; };
 		C9A89FF11B8A4DDB000B9169 /* BRFullScreenNotificationView.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A89F8B1B8A4DDB000B9169 /* BRFullScreenNotificationView.m */; };
 		C9A89FF21B8A4DDB000B9169 /* BROptionsTray.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A89F8E1B8A4DDB000B9169 /* BROptionsTray.m */; };
 		C9A89FF31B8A4DDB000B9169 /* NSObject+BRLocalizableUI.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A89F901B8A4DDB000B9169 /* NSObject+BRLocalizableUI.m */; };
@@ -135,8 +135,8 @@
 		C9A89F821B8A4DDB000B9169 /* NSString+BR.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+BR.h"; sourceTree = "<group>"; };
 		C9A89F831B8A4DDB000B9169 /* NSString+BR.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+BR.m"; sourceTree = "<group>"; };
 		C9A89F841B8A4DDB000B9169 /* Core.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Core.h; path = Code/Core.h; sourceTree = "<group>"; };
-		C9A89F861B8A4DDB000B9169 /* BRLogging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRLogging.h; sourceTree = "<group>"; };
-		C9A89F871B8A4DDB000B9169 /* BRLogging.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRLogging.m; sourceTree = "<group>"; };
+		C9A89F861B8A4DDB000B9169 /* BRSimpleLogging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRSimpleLogging.h; sourceTree = "<group>"; };
+		C9A89F871B8A4DDB000B9169 /* BRSimpleLogging.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRSimpleLogging.m; sourceTree = "<group>"; };
 		C9A89F881B8A4DDB000B9169 /* Logging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Logging.h; path = Code/Logging.h; sourceTree = "<group>"; };
 		C9A89F8A1B8A4DDB000B9169 /* BRFullScreenNotificationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRFullScreenNotificationView.h; sourceTree = "<group>"; };
 		C9A89F8B1B8A4DDB000B9169 /* BRFullScreenNotificationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRFullScreenNotificationView.m; sourceTree = "<group>"; };
@@ -380,8 +380,8 @@
 		C9A89F851B8A4DDB000B9169 /* Logging */ = {
 			isa = PBXGroup;
 			children = (
-				C9A89F861B8A4DDB000B9169 /* BRLogging.h */,
-				C9A89F871B8A4DDB000B9169 /* BRLogging.m */,
+				C9A89F861B8A4DDB000B9169 /* BRSimpleLogging.h */,
+				C9A89F871B8A4DDB000B9169 /* BRSimpleLogging.m */,
 			);
 			path = Logging;
 			sourceTree = "<group>";
@@ -790,7 +790,7 @@
 				C9A89FF61B8A4DDB000B9169 /* UIBarButtonItem+BR.m in Sources */,
 				C9A89FF41B8A4DDB000B9169 /* PushNoAnimationSegue.m in Sources */,
 				C9A89FE81B8A4DDB000B9169 /* BRServiceConstants.m in Sources */,
-				C9A89FF01B8A4DDB000B9169 /* BRLogging.m in Sources */,
+				C9A89FF01B8A4DDB000B9169 /* BRSimpleLogging.m in Sources */,
 				C9A89FED1B8A4DDB000B9169 /* NSDate+BR.m in Sources */,
 				C9A89FF81B8A4DDB000B9169 /* UIFont+BR.m in Sources */,
 				C9A89FE71B8A4DDB000B9169 /* BRKeychainService.m in Sources */,

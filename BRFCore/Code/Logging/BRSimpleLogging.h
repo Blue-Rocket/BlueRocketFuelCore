@@ -34,14 +34,14 @@
 
 
 #ifdef DEBUG
-#define BRInfoLog(fmt, ...) [BRLogging logForObject:self function:__PRETTY_FUNCTION__ line:__LINE__ type:BRLogType message:(fmt),##__VA_ARGS__]
-#define BRTag() [BRLogging tagForObject:self function:__PRETTY_FUNCTION__ line:__LINE__ type:BRTagLogType]
-#define BRToDo(fmt, ...) [BRLogging logToDoForObject:self function:__PRETTY_FUNCTION__ line:__LINE__ type:BRToDoLogType message:(fmt),##__VA_ARGS__]
-#define BRFixMe(fmt, ...) [BRLogging logFixMeForObject:self function:__PRETTY_FUNCTION__ line:__LINE__ type:BRFixMeLogType message:(fmt),##__VA_ARGS__]
-#define BRDebugLog(fmt, ...) [BRLogging logForObject:self function:__PRETTY_FUNCTION__ line:__LINE__ type:BRDebugLogType message:(fmt),##__VA_ARGS__]
-#define BRWarnLog(fmt, ...) [BRLogging logImportantForObject:self function:__PRETTY_FUNCTION__ line:__LINE__ type:BRWarnLogType message:(fmt),##__VA_ARGS__]
-#define BRErrorLog(fmt, ...) [BRLogging logImportantForObject:self function:__PRETTY_FUNCTION__ line:__LINE__ type:BRErrorLogType message:(fmt),##__VA_ARGS__]
-#define BRFatalLog(fmt, ...) if([BRLogging logImportantForObject:self function:__PRETTY_FUNCTION__ line:__LINE__ type:BRFatalLogType message:(fmt),##__VA_ARGS__]){NSLog(@"\n%@",[NSThread callStackSymbols]);[NSException raise:NSInvalidArgumentException format:@"Fatal Log"];}
+#define BRInfoLog(fmt, ...) [BRSimpleLogging logForObject:self function:__PRETTY_FUNCTION__ line:__LINE__ type:BRLogType message:(fmt),##__VA_ARGS__]
+#define BRTag() [BRSimpleLogging tagForObject:self function:__PRETTY_FUNCTION__ line:__LINE__ type:BRTagLogType]
+#define BRToDo(fmt, ...) [BRSimpleLogging logToDoForObject:self function:__PRETTY_FUNCTION__ line:__LINE__ type:BRToDoLogType message:(fmt),##__VA_ARGS__]
+#define BRFixMe(fmt, ...) [BRSimpleLogging logFixMeForObject:self function:__PRETTY_FUNCTION__ line:__LINE__ type:BRFixMeLogType message:(fmt),##__VA_ARGS__]
+#define BRDebugLog(fmt, ...) [BRSimpleLogging logForObject:self function:__PRETTY_FUNCTION__ line:__LINE__ type:BRDebugLogType message:(fmt),##__VA_ARGS__]
+#define BRWarnLog(fmt, ...) [BRSimpleLogging logImportantForObject:self function:__PRETTY_FUNCTION__ line:__LINE__ type:BRWarnLogType message:(fmt),##__VA_ARGS__]
+#define BRErrorLog(fmt, ...) [BRSimpleLogging logImportantForObject:self function:__PRETTY_FUNCTION__ line:__LINE__ type:BRErrorLogType message:(fmt),##__VA_ARGS__]
+#define BRFatalLog(fmt, ...) if([BRSimpleLogging logImportantForObject:self function:__PRETTY_FUNCTION__ line:__LINE__ type:BRFatalLogType message:(fmt),##__VA_ARGS__]){NSLog(@"\n%@",[NSThread callStackSymbols]);[NSException raise:NSInvalidArgumentException format:@"Fatal Log"];}
 #else
 #define BRInfoLog(...)
 #define BRTag()
@@ -56,7 +56,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface BRLogging : NSObject
+@interface BRSimpleLogging : NSObject
 
 + (BOOL)tagForObject:(id)object function:(const char[])function line:(int)line type:(NSString *)type;
 + (BOOL)logForObject:(id)object function:(const char[])function line:(int)line type:(NSString *)type message:(NSString *)format,...;
