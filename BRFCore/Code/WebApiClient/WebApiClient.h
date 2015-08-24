@@ -10,6 +10,8 @@
 
 #import "NSDictionary+WebApiClient.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 /** An error domain for web api client errors. */
 extern NSString * const WebApiClientErrorDomain;
 
@@ -67,7 +69,12 @@ extern NSString * const WebApiClientURLResponseNotificationKey;
  @param data Optional data to send as the request content.
  @param callback A callback block to invoke with the response.
  */
-- (void)requestAPI:(NSString *)name withPathVariables:(id)pathVariables parameters:(id)parameters data:(id<WebApiResource>)data
-		  finished:(void (^)(id<WebApiResponse> response, NSError *error))callback;
+- (void)requestAPI:(NSString *)name
+ withPathVariables:(nullable id)pathVariables
+		parameters:(nullable id)parameters
+			  data:(nullable id<WebApiResource>)data
+		  finished:(void (^)(id<WebApiResponse> response, NSError * __nullable error))callback;
 
 @end
+
+NS_ASSUME_NONNULL_END

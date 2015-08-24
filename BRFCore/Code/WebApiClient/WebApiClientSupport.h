@@ -12,6 +12,8 @@
 @protocol BRUserService;
 @class BREnvironment;
 
+NS_ASSUME_NONNULL_BEGIN
+
 /** The HTTP header name to put the @c appApiKey value in. */
 extern NSString * const WebApiClientSupportAppApiKeyDefaultHTTPHeaderName;
 
@@ -21,13 +23,13 @@ extern NSString * const WebApiClientSupportAppIdDefaultHTTPHeaderName;
 @interface WebApiClientSupport : NSObject <WebApiClient>
 
 /** An API key to add as a header value to each request. */
-@property (nonatomic, strong) NSString *appApiKey;
+@property (nonatomic, strong, nullable) NSString *appApiKey;
 
 /** The HTTP header name to use for the API key. */
 @property (nonatomic, strong) NSString *appApiKeyHTTPHeaderName;
 
 /** An application ID to add as a heder value to each request. */
-@property (nonatomic, strong) NSString *appId;
+@property (nonatomic, strong, nullable) NSString *appId;
 
 /** The HTTP header name to use for the application ID. */
 @property (nonatomic, strong) NSString *appIdHTTPHeaderName;
@@ -77,7 +79,7 @@ extern NSString * const WebApiClientSupportAppIdDefaultHTTPHeaderName;
               The localized message @c web.api.missingRoute will be returned.
  @return The route associated with @c name, or @c nil if not registered.
  */
-- (id<WebApiRoute>)routeForName:(NSString *)name error:(NSError * __autoreleasing *)error;
+- (nullable id<WebApiRoute>)routeForName:(NSString *)name error:(NSError * __autoreleasing *)error;
 
 /**
  Get a base URL for the routes managed by this client.
@@ -107,7 +109,10 @@ extern NSString * const WebApiClientSupportAppIdDefaultHTTPHeaderName;
               The localized message @c web.api.missingRoutePath will be returned.
  @return The URL instance.
  */
-- (NSURL *)URLForRoute:(id<WebApiRoute>)route pathVariables:(id)pathVariables parameters:(id)parameters error:(NSError * __autoreleasing *)error;;
+- (NSURL *)URLForRoute:(id<WebApiRoute>)route
+		 pathVariables:(nullable id)pathVariables
+			parameters:(nullable id)parameters
+				 error:(NSError * __autoreleasing *)error;
 
 /**
  Get a data mapper for a specific route.
@@ -115,10 +120,14 @@ extern NSString * const WebApiClientSupportAppIdDefaultHTTPHeaderName;
  @param route The route to get a data mapper for.
  @return The configured data mapper, or @c nil if no data mapper configured for the given route.
  */
-- (id<WebApiDataMapper>)dataMapperForRoute:(id<WebApiRoute>)route;
+- (nullable id<WebApiDataMapper>)dataMapperForRoute:(id<WebApiRoute>)route;
 
 /**
  Add authorization headers to a request for a given route.
+ 
+ This method will populate the @c appApiKeyHTTPHeaderName and @c appIdHTTPHeaderName, if the @c appApiKey and @c appId properties are non-nil.
+ If a @c userService is configured and that returns an authenticated active user, an @c Authorization header will be added using a @c token
+ scheme with a the user's @c authenticationToken value.
  
  @param request The request to add headers to.
  @param route The route.
@@ -126,3 +135,5 @@ extern NSString * const WebApiClientSupportAppIdDefaultHTTPHeaderName;
 - (void)addAuthorizationHeadersToRequest:(NSMutableURLRequest *)request forRoute:(id<WebApiRoute>)route;
 
 @end
+
+NS_ASSUME_NONNULL_END
