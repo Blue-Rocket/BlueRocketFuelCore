@@ -4,10 +4,9 @@ platform :ios, '8.4'
 inhibit_all_warnings!
 
 target :LineWaiter do
-	pod 'AFNetworking',        '~> 2.5'
+	pod 'AFNetworking',        '~> 2.6'
 	pod 'BRCocoaLumberjack',   '~> 2.0'
 	pod 'BlueRocketFuelCore'
-	pod 'BlocksKit',          '~> 2.2.5'
 	
 	target :LineWaiterTests do
 		pod 'OCHamcrest',			'~> 4.1'
