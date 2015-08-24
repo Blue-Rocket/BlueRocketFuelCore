@@ -11,6 +11,7 @@
 #import <AFNetworking/AFURLSessionManager.h>
 #import "AFNetworkingWebApiClient.h"
 #import "BRSimpleEntityReference.h"
+#import "DataWebApiResource.h"
 #import "FileWebApiResource.h"
 #import "WebApiClientEnvironment.h"
 
@@ -217,25 +218,26 @@
 	assertThatBool([self processMainRunLoopAtMost:10 stop:&called], equalTo(@YES));
 }
 
-- (void)testFileUpload {
-	NSURL *fileURL = [self.bundle URLForResource:@"upload-test.txt" withExtension:nil];
-	[self.http handleMethod:@"POST" withPath:@"/file/test_file" block:^(RouteRequest *request, RouteResponse *response) {
-		// decode our multipart boundary ID
-		NSString *contentType = [request header:@"Content-Type"];
-		assertThat(contentType, startsWith(@"multipart/form-data"));
-		NSUInteger paramsIdx = [contentType rangeOfString:@";"].location;
-		assertThatUnsignedInteger(paramsIdx, greaterThan(@0));
-		NSArray *contentParams = [[contentType substringFromIndex:(paramsIdx + 1)] componentsSeparatedByString:@";"];
-		assertThatUnsignedInteger(contentParams.count, greaterThan(@0));
-		NSString *boundaryParam = contentParams[[contentParams indexOfObjectPassingTest:^BOOL(id obj, NSUInteger idx, BOOL *stop) {
-			return [[(NSString *)obj stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] hasPrefix:@"boundary"];
-		}]];
-		NSString *boundary = [[boundaryParam componentsSeparatedByString:@"="] lastObject];
-		assertThat(boundary, notNilValue());
+- (NSDictionary *)extractMultipartFormParts:(RouteRequest *)request {
+	NSMutableDictionary *result = [NSMutableDictionary new];
+	
+	NSString *contentType = [request header:@"Content-Type"];
+	assertThat(contentType, startsWith(@"multipart/form-data"));
+	NSUInteger paramsIdx = [contentType rangeOfString:@";"].location;
+	assertThatUnsignedInteger(paramsIdx, greaterThan(@0));
+	NSArray *contentParams = [[contentType substringFromIndex:(paramsIdx + 1)] componentsSeparatedByString:@";"];
+	assertThatUnsignedInteger(contentParams.count, greaterThan(@0));
+	NSString *boundaryParam = contentParams[[contentParams indexOfObjectPassingTest:^BOOL(id obj, NSUInteger idx, BOOL *stop) {
+		return [[(NSString *)obj stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] hasPrefix:@"boundary"];
+	}]];
+	NSString *boundary = [[boundaryParam componentsSeparatedByString:@"="] lastObject];
+	assertThat(boundary, notNilValue());
 
-		NSString *bodyData = [[NSString alloc] initWithData:[request body] encoding:NSUTF8StringEncoding];
-		NSScanner *scanner = [[NSScanner alloc] initWithString:bodyData];
-		scanner.charactersToBeSkipped = nil;
+	NSString *bodyData = [[NSString alloc] initWithData:[request body] encoding:NSUTF8StringEncoding];
+	NSScanner *scanner = [[NSScanner alloc] initWithString:bodyData];
+	scanner.charactersToBeSkipped = nil;
+	while ( ![scanner isAtEnd] ) {
+		// read part headers
 		[scanner scanUpToString:[NSString stringWithFormat:@"--%@\r\n", boundary] intoString:NULL];
 		[scanner scanString:[NSString stringWithFormat:@"--%@\r\n", boundary] intoString:NULL];
 		
@@ -261,10 +263,9 @@
 				break;
 			}
 		}
-		[scanner scanUpToString:[NSString stringWithFormat:@"\r\n--%@--", boundary] intoString:&partContentBody];
-		
-		assertThat(partContentType, equalTo(@"text/plain"));
-		
+		[scanner scanUpToString:[NSString stringWithFormat:@"\r\n--%@--\r\n", boundary] intoString:&partContentBody];
+		[scanner scanString:[NSString stringWithFormat:@"\r\n--%@--\r\n", boundary] intoString:NULL];
+
 		paramsIdx = [partContentDisposition rangeOfString:@";"].location;
 		assertThat([partContentDisposition substringToIndex:paramsIdx], equalTo(@"form-data"));
 		contentParams = [[partContentDisposition substringFromIndex:(paramsIdx + 1)] componentsSeparatedByString:@";"];
@@ -275,12 +276,28 @@
 			partDisposition[comps[0]] = [comps[1] stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"\""]];
 		}
 		
-		assertThat(partDisposition, equalTo(@{ @"name" : @"test_file", @"filename" : @"upload-test.txt"}));
-		
-		// verify file content
-		
-		assertThat(partContentBody, equalTo(@"Hello, server!\n"));
-		
+		if ( [partContentType length] > 0 ) {
+			// file
+			DataWebApiResource *r = [[DataWebApiResource alloc] initWithData:[partContentBody dataUsingEncoding:NSUTF8StringEncoding]
+																		name:partDisposition[@"name"]
+																	fileName:(partDisposition[@"filename"] != nil ? partDisposition[@"filename"] : partDisposition[@"name"])
+																	MIMEType:partContentType];
+			result[partDisposition[@"name"]] = r;
+		} else {
+			result[partDisposition[@"name"]] = partContentBody;
+		}
+	}
+	return result;
+}
+
+- (void)testFileUpload {
+	NSURL *fileURL = [self.bundle URLForResource:@"upload-test.txt" withExtension:nil];
+	[self.http handleMethod:@"POST" withPath:@"/file/test_file" block:^(RouteRequest *request, RouteResponse *response) {
+		NSDictionary *bodyParts = [self extractMultipartFormParts:request];
+		DataWebApiResource *rsrc = bodyParts[@"test_file"];
+		assertThat(rsrc.MIMEType, equalTo(@"text/plain"));
+		assertThat(rsrc.fileName, equalTo(@"upload-test.txt"));
+		assertThat([[NSString alloc] initWithData:rsrc.data encoding:NSUTF8StringEncoding], equalTo(@"Hello, server!\n"));
 		[self respondWithJSON:@"{\"success\":true}" response:response status:200];
 	}];
 	
