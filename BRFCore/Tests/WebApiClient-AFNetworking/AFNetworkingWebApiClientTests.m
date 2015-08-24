@@ -240,4 +240,22 @@
 	[self waitForExpectationsWithTimeout:2 handler:nil];
 }
 
+- (void)testFormPOST {
+	NSDictionary *formParameters = @{@"one" : @"two", @"three" : @"four"};
+	[self.http handleMethod:@"POST" withPath:@"/form" block:^(RouteRequest *request, RouteResponse *response) {
+		NSDictionary *bodyParts = [self extractMultipartFormParts:request];
+		assertThat(bodyParts, equalTo(formParameters));
+		[self respondWithJSON:@"{\"success\":true}" response:response status:200];
+	}];
+	
+	XCTestExpectation *requestExpectation = [self expectationWithDescription:@"HTTP request"];
+	[client requestAPI:@"form-post" withPathVariables:nil parameters:formParameters data:nil finished:^(id<WebApiResponse> response, NSError *error) {
+		assertThat(response.responseObject, equalTo(@{@"success" : @YES}));
+		assertThat(error, nilValue());
+		[requestExpectation fulfill];
+	}];
+	
+	[self waitForExpectationsWithTimeout:2 handler:nil];
+}
+
 @end

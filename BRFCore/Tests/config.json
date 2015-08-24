@@ -35,6 +35,11 @@
 			"file" : {
 				"method" : "POST",
 				"path" : "file/:name"
+			},
+			"form-post" : {
+				"method" : "POST",
+				"path" : "form",
+				"serialization" : 2
 			}
 		}
 	}

@@ -189,9 +189,11 @@ static void * AFNetworkingWebApiClientTaskStateContext = &AFNetworkingWebApiClie
 			reqParameters = [self dictionaryForParametersObject:parameters];
 		}
 		NSMutableURLRequest *req = nil;
-		if ( route.serialization != WebApiSerializationNone && data != nil ) {
+		if ( route.serialization == WebApiSerializationForm || (route.serialization != WebApiSerializationNone && data != nil) ) {
 			req = [ser multipartFormRequestWithMethod:route.method URLString:[url absoluteString] parameters:reqParameters constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
-				[formData appendPartWithInputStream:data.inputStream name:data.name fileName:data.fileName length:data.length mimeType:data.MIMEType];
+				if ( data ) {
+					[formData appendPartWithInputStream:data.inputStream name:data.name fileName:data.fileName length:data.length mimeType:data.MIMEType];
+				}
 			} error:&error];
 		} else {
 			req = [ser requestWithMethod:route.method URLString:[url absoluteString] parameters:reqParameters error:&error];

@@ -121,17 +121,26 @@
 	NSString *bodyData = [[NSString alloc] initWithData:[request body] encoding:NSUTF8StringEncoding];
 	NSScanner *scanner = [[NSScanner alloc] initWithString:bodyData];
 	scanner.charactersToBeSkipped = nil;
+	NSCharacterSet *headerDelimSet = [NSCharacterSet characterSetWithCharactersInString:@": "];
+
 	while ( ![scanner isAtEnd] ) {
+		NSString *str = nil;
+
 		// read part headers
-		[scanner scanUpToString:[NSString stringWithFormat:@"--%@\r\n", boundary] intoString:NULL];
-		[scanner scanString:[NSString stringWithFormat:@"--%@\r\n", boundary] intoString:NULL];
+		[scanner scanUpToString:[NSString stringWithFormat:@"--%@", boundary] intoString:NULL];
+		if ( ![scanner scanString:[NSString stringWithFormat:@"--%@", boundary] intoString:NULL] ) {
+			break;
+		}
+		if ( [scanner scanString:@"--\r\n" intoString:NULL] ) {
+			break;
+		} else if ( ![scanner scanString:@"\r\n" intoString:NULL] ) {
+			break;
+		}
 		
 		// read part header data
 		NSString *partContentDisposition = nil;
 		NSString *partContentType = nil;
 		NSString *partContentBody = nil;
-		NSCharacterSet *headerDelimSet = [NSCharacterSet characterSetWithCharactersInString:@": "];
-		NSString *str = nil;
 		while ( true ) {
 			[scanner scanUpToCharactersFromSet:headerDelimSet intoString:&str];
 			[scanner scanCharactersFromSet:headerDelimSet intoString:NULL];
@@ -148,8 +157,10 @@
 				break;
 			}
 		}
-		[scanner scanUpToString:[NSString stringWithFormat:@"\r\n--%@--\r\n", boundary] intoString:&partContentBody];
-		[scanner scanString:[NSString stringWithFormat:@"\r\n--%@--\r\n", boundary] intoString:NULL];
+		[scanner scanUpToString:[NSString stringWithFormat:@"\r\n--%@", boundary] intoString:&partContentBody];
+		[scanner scanString:@"\r\n" intoString:NULL];
+		
+		// at this point, scanner is at --Boundary or --\r\n(EOF)
 		
 		paramsIdx = [partContentDisposition rangeOfString:@";"].location;
 		assertThat([partContentDisposition substringToIndex:paramsIdx], equalTo(@"form-data"));
