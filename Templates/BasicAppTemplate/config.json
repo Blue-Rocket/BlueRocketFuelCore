@@ -1,0 +1,53 @@
+{
+	"webservice" : {
+		"api" : {
+			"ping" : {
+				"method" : "GET",
+				"path" : "ping"
+			},
+			"register" : {
+				"method" : "POST",
+				"path" : "register",
+				"dataMapper" : "RestKitWebApiDataMapper",
+				"dataMapperRequestRootKeyPath" : "user",
+				"preventUserInteraction" : true
+			},
+			"login" : {
+				"method" : "POST",
+				"path" : "login",
+				"dataMapper" : "RestKitWebApiDataMapper",
+				"dataMapperRequestRootKeyPath" : "user",
+				"preventUserInteraction" : true
+			},
+			"profileView" : {
+				"method" : "GET",
+				"path" : "users"
+			},
+			"profileEdit" : {
+				"method" : "PUT",
+				"path" : "users"
+			},
+			"resetPassword" : {
+				"path" : "password_resets",
+				"method" : "POST"
+			}
+		}
+	},
+	"optionsTray" : [
+		{
+			"title" : "Main",
+			"resourceName" : "Main",
+			"resourceType" : "storyboard"
+		},
+		{
+			"title" : "Profile",
+			"resourceName" : "Profile",
+			"resourceType" : "storyboard"
+		},
+		{
+			"title" : "About",
+			"resourceName" : "About",
+			"resourceType" : "xib"
+		}
+	]
+}
