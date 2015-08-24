@@ -174,9 +174,9 @@
 				5CB0E0A1B301840357E19344 /* Check Pods Manifest.lock */,
 				C9A8A0811B8AE3F5000B9169 /* Sources */,
 				C9A8A0821B8AE3F5000B9169 /* Frameworks */,
+				C9A8A0AE1B8AFE75000B9169 /* Increment build version */,
 				C9A8A0831B8AE3F5000B9169 /* Resources */,
 				0957E1D0750D48D6C4F29F70 /* Copy Pods Resources */,
-				C9A8A0AE1B8AFE75000B9169 /* Increment build version */,
 				C9A8A0AF1B8AFE97000B9169 /* Install environment */,
 			);
 			buildRules = (
