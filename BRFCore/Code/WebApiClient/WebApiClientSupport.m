@@ -35,7 +35,6 @@ static NSString * const kRoutePropertyDataMapperInstance = @"_dataMapper";
 - (id)initWithEnvironment:(BREnvironment *)theEnvironment {
 	if ( (self = [super init]) ) {
 		routes = [[NSMutableDictionary alloc] initWithCapacity:16];
-		//environment = theEnvironment;
 		self.appApiKey = theEnvironment[WebApiClientSupportAppApiKeyEnvironmentKey];
 		self.appApiKeyHTTPHeaderName = WebApiClientSupportAppApiKeyDefaultHTTPHeaderName;
 		self.appIdHTTPHeaderName = WebApiClientSupportAppIdDefaultHTTPHeaderName;
