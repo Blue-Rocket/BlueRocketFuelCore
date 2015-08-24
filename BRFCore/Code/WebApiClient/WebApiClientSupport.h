@@ -19,7 +19,7 @@ extern NSString * const WebApiClientSupportAppIdDefaultHTTPHeaderName;
 
 @interface WebApiClientSupport : NSObject <WebApiClient>
 
-@property (nonatomic, strong) BREnvironment *environment;
+@property (nonatomic, readonly) BREnvironment *environment;
 @property (nonatomic, strong) NSString *appApiKey;
 @property (nonatomic, strong) NSString *appApiKeyHTTPHeaderName;
 @property (nonatomic, strong) NSString *appId;
