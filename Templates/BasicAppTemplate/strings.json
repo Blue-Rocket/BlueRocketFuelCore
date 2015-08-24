@@ -1,0 +1,124 @@
+{
+	"error" : {
+		"general" : "Something unexpected happened, sorry about that! %@",
+		"network" : {
+			"unkown" :  "We’re sorry, an unknown server problem has occurred. Please try again later.",
+			"host" : "Unknown host: %@",
+			"connection" : "It looks like you may have lost Internet connection. Please check your settings and try again.",
+			"unsupported" : "Unsupported URL: %@",
+			"slow" : "This is taking a little longer than expected. Please wait…",
+			"timeout" : "It looks like you may be experiencing a slow Internet connection. Please try again later.",
+			"404" : "“%@” could not be found.",
+		}
+	},
+	"button" : {
+		"ok" : "OK",
+		"edit" : "Edit",
+		"skip" : "Skip",
+		"done" : "Done"
+	},
+	"about" : {
+		"title" : "About",
+		"name" : "Line Waiter",
+		"text" : "A hip description goes here."
+	},
+	"validation" : {
+		"user" : {
+			"email" : {
+				"missing" : "Please enter your email.",
+				"format" : "The email addres you entered does not appear to be valid.",
+				"taken" : "The email you entered has already been registered."
+			},
+			"firstName" : {
+				"missing" : "Please enter your first name."
+			},
+			"lastName" : {
+				"missing" : "Please enter your last name."
+			},
+			"password" : {
+				"missing" : "Please enter a password.",
+				"minLength" : "Your password must be at least %@ characters."
+			},
+			"passwordAgain" : {
+				"missing" : "Please enter your password again.",
+				"mismatch" : "Your passwords do not match. Please re-enter both."
+			}
+		}
+	},
+	"register" : {
+		"title" : "Register",
+		"submit" : "Join",
+		"error" : {
+			"name" : {
+				"title" : "Missing Name",
+				"body" : "Please enter your name."
+			},
+			"email" : {
+				"missing" : {
+					"title" : "Missing Email",
+					"body" : "Please enter your email address."
+				},
+				"format" : {
+					"title" : "Invalid Email",
+					"body" : "The format of the email addres you entered does not appear to be correct."
+				}
+			},
+			"password" : {
+				"missing" : {
+					"title" : "Specify a Password",
+					"body" : "Please enter a password you would like to use."
+				},
+				"confirm" : {
+					"title" : "Confirm Password",
+					"body" : "Please re-type your password to confirm."
+				},
+				"match" : {
+					"title" : "Password Confirmation",
+					"body" : "The confirmation password you entered does not match. Please re-enter both."
+				}
+			},
+			"invalid" : {
+				"title" : "Username Taken",
+				"body" : "A user with that email has already been registered."
+			}
+		},
+		"login" : "Sign In",
+		"member" : "Already a member?",
+		"form" : {
+			"firstName" : "First name",
+		"lastName" : "Last name",
+			"email" : "Email",
+			"password" : "Password",
+			"confirmPassword" : "Confirm Password"
+		}
+	},
+	"login" : {
+		"title" : "Sign In",
+		"submit" : "Go",
+		"error" : {
+			"email" : "Please enter the email you used when you registered.",
+			"password" : "Please enter the password you selected when you registered.",
+			"invalid" : "Please check your email and password and try again.",
+		},
+		"register" : "Register",
+		"new" : "New Member?",
+		"form" : {
+			"username" : "Email",
+			"password" : "Password"
+		}
+	},
+	"main" : {
+		"title" : "Main View Placeholder"
+	},
+	"profile" : {
+		"title" : "Profile",
+		"edit" : {
+			"title" : "Edit Profile"
+		}
+	},
+	"options" : {
+		"about" : "About",
+		"profile" : "Profile",
+		"logout" : "Sign Out"
+	}
+}

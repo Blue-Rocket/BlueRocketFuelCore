@@ -1,0 +1,28 @@
+source 'https://github.com/CocoaPods/Specs.git'
+platform :ios, '8.4'
+
+inhibit_all_warnings!
+
+target :BasicAppTemplate do
+	pod 'AFNetworking',        '~> 2.6'
+	pod 'BRCocoaLumberjack',   '~> 2.0'
+	pod 'BlueRocketFuelCore'
+	
+	target :BasicAppTemplateTests do
+		pod 'OCHamcrest',			'~> 4.1'
+		pod 'OCMock',				'~> 3.1'
+		pod 'CocoaHTTPServer',		'~> 2.3'
+		pod 'RoutingHTTPServer', 	'~> 1.0'
+	end
+	
+end
+
+post_install do |installer|
+	installer.pods_project.build_configurations.each do |config|
+		if config.name == 'Debug'
+			# for Debug, add LOGGING=1 macro to support BRCocoaLumberjack logging within pods themselves
+			config.build_settings['GCC_PREPROCESSOR_DEFINITIONS'] ||= ['$(inherited)', 'DEBUG=1'] # shouldn't do anything
+			config.build_settings['GCC_PREPROCESSOR_DEFINITIONS'] |= ['LOGGING=1']
+		end
+	end
+end

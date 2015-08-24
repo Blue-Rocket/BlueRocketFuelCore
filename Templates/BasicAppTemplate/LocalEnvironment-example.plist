@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+	Copy this file to LocalEnvironment.plist, then modify as desired to tweak the 
+	logging settings for the application. Logging occurs at the class-name level,
+	with a single "default" level used to control the default setting for all loggers.
+	Valid levels, in increasing verbosity, are: ERROR, WARN, INFO, DEBUG, TRACE.
+-->
+<plist version="1.0">
+<dict>
+	<key>logging</key>
+	<dict>
+		<key>default</key>
+		<string>debug</string>
+	</dict>
+</dict>
+</plist>
