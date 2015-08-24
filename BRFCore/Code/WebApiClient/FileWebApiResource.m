@@ -23,10 +23,6 @@
 @synthesize MIMEType;
 @synthesize name;
 
-- (id)init {
-	return [self initWithURL:nil name:nil MIMEType:nil];
-}
-
 - (id)initWithURL:(NSURL *)fileURL name:(NSString *)aName MIMEType:(NSString *)theMIMEType {
 	if ( (self = [super init]) ) {
 		url = fileURL;
