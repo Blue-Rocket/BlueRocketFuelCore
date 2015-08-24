@@ -21,6 +21,22 @@
  */
 - (NSString *)asURLQueryParameterString;
 
+/**
+ Transform a serialization enum into a string.
+ 
+ @param serialization The serialization enum to transform.
+ @return A string value for the enum.
+ */
+ + (NSString *)nameForWebApiSerialization:(WebApiSerialization)serialization;
+
+/**
+ Transform a serialization name into an enum value.
+ 
+ @param string The serialization name to transform. This must be a valid string as returned from nameForWebApiSerialization:.
+ @return An enum value.
+ */
+ + (WebApiSerialization)webApiSerializationForName:(NSString *)string;
+ 
 @end
 
 /**
@@ -32,6 +48,7 @@
 @property (nonatomic, readwrite) NSString *path;
 @property (nonatomic, readwrite) NSString *method;
 @property (nonatomic, readwrite) WebApiSerialization serialization;
+@property (nonatomic, readwrite) NSString *serializationName;
 @property (nonatomic, readwrite) NSString *contentType;
 @property (nonatomic, readwrite) NSString *dataMapper;
 @property (nonatomic, readwrite, getter=isPreventUserInteraction) BOOL preventUserInteraction;

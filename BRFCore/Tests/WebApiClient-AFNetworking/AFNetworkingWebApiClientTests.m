@@ -255,6 +255,14 @@
 		[requestExpectation fulfill];
 	}];
 	
+	// also test using the serializationName form in config.json, to the same endpoint
+	XCTestExpectation *requestAltExpectation = [self expectationWithDescription:@"HTTP alt request"];
+	[client requestAPI:@"form-post-alt" withPathVariables:nil parameters:formParameters data:nil finished:^(id<WebApiResponse> response, NSError *error) {
+		assertThat(response.responseObject, equalTo(@{@"success" : @YES}));
+		assertThat(error, nilValue());
+		[requestAltExpectation fulfill];
+	}];
+	
 	[self waitForExpectationsWithTimeout:2 handler:nil];
 }
 

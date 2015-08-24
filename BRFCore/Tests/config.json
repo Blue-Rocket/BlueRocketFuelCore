@@ -40,6 +40,11 @@
 				"method" : "POST",
 				"path" : "form",
 				"serialization" : 2
+			},
+			"form-post-alt" : {
+				"method" : "POST",
+				"path" : "form",
+				"serializationName" : "form"
 			}
 		}
 	}

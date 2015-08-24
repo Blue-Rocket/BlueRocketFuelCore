@@ -74,6 +74,7 @@
 		C9A8A0401B8A7558000B9169 /* FileWebApiResource.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A8A03F1B8A7558000B9169 /* FileWebApiResource.m */; };
 		C9A8A0421B8A8642000B9169 /* upload-test.txt in Resources */ = {isa = PBXBuildFile; fileRef = C9A8A0411B8A8616000B9169 /* upload-test.txt */; };
 		C9A8A0451B8A9719000B9169 /* DataWebApiResource.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A8A0441B8A9719000B9169 /* DataWebApiResource.m */; };
+		C9A8A0471B8AC581000B9169 /* NSDictionary_WebApiClientTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A8A0461B8AC581000B9169 /* NSDictionary_WebApiClientTests.m */; };
 		EA2D55BAC1F29F01EBCF2969 /* libPods-BRFCore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 07D714E2304D4D5A716F0270 /* libPods-BRFCore.a */; };
 /* End PBXBuildFile section */
 
@@ -246,6 +247,7 @@
 		C9A8A0411B8A8616000B9169 /* upload-test.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "upload-test.txt"; sourceTree = "<group>"; };
 		C9A8A0431B8A9719000B9169 /* DataWebApiResource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataWebApiResource.h; sourceTree = "<group>"; };
 		C9A8A0441B8A9719000B9169 /* DataWebApiResource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataWebApiResource.m; sourceTree = "<group>"; };
+		C9A8A0461B8AC581000B9169 /* NSDictionary_WebApiClientTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSDictionary_WebApiClientTests.m; sourceTree = "<group>"; };
 		CF8901992F8C7787AC0F1E10 /* Pods-BRFCore-BRFCoreTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BRFCore-BRFCoreTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-BRFCore-BRFCoreTests/Pods-BRFCore-BRFCoreTests.release.xcconfig"; sourceTree = "<group>"; };
 		D2337E9FBC5C179A64F55FAB /* Pods-BRFCore-BRFCoreTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BRFCore-BRFCoreTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BRFCore-BRFCoreTests/Pods-BRFCore-BRFCoreTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -525,8 +527,8 @@
 				C9A8A01A1B8A4E3D000B9169 /* BaseTestingSupport.m */,
 				C9A8A01B1B8A4E3D000B9169 /* config.json */,
 				C9A8A01C1B8A4E3D000B9169 /* Core */,
-				C9A8A0231B8A4E3D000B9169 /* WebApiClient-AFNetworking */,
 				C9A8A0251B8A4E3D000B9169 /* WebApiClient-Core */,
+				C9A8A0231B8A4E3D000B9169 /* WebApiClient-AFNetworking */,
 				C9A8A0271B8A4E3D000B9169 /* WebApiClient-RestKit */,
 				C9A8A0291B8A4E3D000B9169 /* WebApiClient-Services */,
 			);
@@ -556,6 +558,7 @@
 			isa = PBXGroup;
 			children = (
 				C9A8A0261B8A4E3D000B9169 /* WebApiClientSupportTests.m */,
+				C9A8A0461B8AC581000B9169 /* NSDictionary_WebApiClientTests.m */,
 			);
 			path = "WebApiClient-Core";
 			sourceTree = "<group>";
@@ -816,6 +819,7 @@
 				C9A8A0301B8A4E3D000B9169 /* NSString_BRTests.m in Sources */,
 				C9A8A0361B8A4E3D000B9169 /* RestKitWebApiDataMapperTests.m in Sources */,
 				C9A8A0341B8A4E3D000B9169 /* AFNetworkingWebApiClientTests.m in Sources */,
+				C9A8A0471B8AC581000B9169 /* NSDictionary_WebApiClientTests.m in Sources */,
 				C9A8A02F1B8A4E3D000B9169 /* NSDate_BRTests.m in Sources */,
 				C9A8A02B1B8A4E3D000B9169 /* BaseNetworkTestingSupport.m in Sources */,
 				C9A8A02C1B8A4E3D000B9169 /* BaseTestingSupport.m in Sources */,

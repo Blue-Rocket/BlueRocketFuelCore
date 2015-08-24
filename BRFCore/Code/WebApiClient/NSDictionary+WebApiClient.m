@@ -19,6 +19,8 @@ static CFStringRef CreateURLEncodedQueryParameterString(CFStringRef string) {
 
 @implementation NSDictionary (WebApiClient)
 
+#pragma mark - WebApiRoute
+
 - (NSString *)name {
 	return self[NSStringFromSelector(@selector(name))];
 }
@@ -32,7 +34,12 @@ static CFStringRef CreateURLEncodedQueryParameterString(CFStringRef string) {
 }
 
 - (WebApiSerialization)serialization {
-	return [self[NSStringFromSelector(@selector(serialization))] unsignedIntegerValue];
+	id val = self[NSStringFromSelector(@selector(serialization))];
+	if ( val ) {
+		return [val unsignedIntegerValue];
+	}
+	val = self[NSStringFromSelector(@selector(serializationName))];
+	return [NSDictionary webApiSerializationForName:val];
 }
 
 - (NSString *)contentType {
@@ -76,6 +83,39 @@ static CFStringRef CreateURLEncodedQueryParameterString(CFStringRef string) {
 	return self[NSStringFromSelector(@selector(responseHeaders))];
 }
 
+#pragma mark - Utilities
+
++ (NSString *)nameForWebApiSerialization:(WebApiSerialization)serialization {
+	switch ( serialization ) {
+		case WebApiSerializationJSON:
+			return @"json";
+			
+		case WebApiSerializationForm:
+			return @"form";
+			
+		case WebApiSerializationURL:
+			return @"url";
+			
+		case WebApiSerializationNone:
+			return @"none";
+	}
+	return @"json";
+}
+
++ (WebApiSerialization)webApiSerializationForName:(NSString *)string {
+	string = [string lowercaseString];
+	if ( [string isEqualToString:@"json"] ) {
+		return WebApiSerializationJSON;
+	} else if ( [string isEqualToString:@"form"] ) {
+		return WebApiSerializationForm;
+	} else if ( [string isEqualToString:@"url"] ) {
+		return WebApiSerializationURL;
+	} else if ( [string isEqualToString:@"none"] ) {
+		return WebApiSerializationNone;
+	}
+	return 0;
+}
+
 @end
 
 @implementation NSMutableDictionary (WebApiClient)
@@ -109,6 +149,15 @@ static CFStringRef CreateURLEncodedQueryParameterString(CFStringRef string) {
 - (void)setSerialization:(WebApiSerialization)serialization {
 	NSString *key = NSStringFromSelector(@selector(serialization));
 	self[key] = @(serialization);
+}
+
+- (NSString *)serializationName {
+	WebApiSerialization ser = [self serialization];
+	return [NSDictionary nameForWebApiSerialization:ser];
+}
+
+- (void)setSerializationName:(NSString *)name {
+	[self setSerialization:[NSDictionary webApiSerializationForName:name]];
 }
 
 - (void)setContentType:(NSString *)contentType {
