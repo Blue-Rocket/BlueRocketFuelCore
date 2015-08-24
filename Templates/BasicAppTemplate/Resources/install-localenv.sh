@@ -13,7 +13,7 @@ else
 fi
 
 # Check for environment stuff to copy, presumably set by a scheme pre-build script
-targetEnv=`/usr/libexec/PlistBuddy -c "Print :X-${PRODUCT_NAME}-Target" "${buildDir}/Environment.plist"`
+targetEnv=`/usr/libexec/PlistBuddy -c "Print :X-App-Target" "${buildDir}/Environment.plist"`
 if [ -n "${targetEnv}" ]; then
 	echo "Target environment: ${targetEnv}"
 	${PROJECT_DIR}/Resources/merge-env-plists.sh "${targetEnv}"
