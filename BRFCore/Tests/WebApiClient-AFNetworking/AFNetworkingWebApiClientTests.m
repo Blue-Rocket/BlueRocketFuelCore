@@ -33,7 +33,6 @@
 
 - (void)testNotificationsSuccess {
 	[self.http handleMethod:@"GET" withPath:@"/test" block:^(RouteRequest *request, RouteResponse *response) {
-		//[NSThread sleepForTimeInterval:1]; // respond slowly, to ensure have chance to check for task identifier
 		[self respondWithJSON:@"{\"success\":true}" response:response status:200];
 	}];
 	
