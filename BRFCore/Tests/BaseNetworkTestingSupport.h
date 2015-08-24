@@ -74,5 +74,14 @@
 - (void)respondWithJSONTemplate:(NSString *)name parameters:(NSDictionary *)parameters
 					   response:(RouteResponse *)response status:(NSInteger)statusCode;
 
+/**
+ Extract @c multipart/form-data parts from a HTTP request.
+ 
+ @param request The request.
+ @return A dictionary with part names for keys, and associated values. If a part is a file attachment, then the 
+         value will be provided as a @c DataWebApiResource instance.
+ */
+- (NSDictionary *)extractMultipartFormParts:(RouteRequest *)request;
+
 @end
 
