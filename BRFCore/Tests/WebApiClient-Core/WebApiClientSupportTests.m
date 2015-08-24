@@ -8,7 +8,9 @@
 
 #import "BaseNetworkTestingSupport.h"
 
+#import <OCMock/OCMock.h>
 #import "BRAppUser.h"
+#import "BRUserService.h"
 #import "WebApiClientSupport.h"
 #import "RestKitWebApiDataMapper.h"
 
@@ -116,6 +118,27 @@
 	NSDictionary *headers = [req allHTTPHeaderFields];
 	assertThat(headers, equalTo(@{ @"X-App-API-Key" : @"test_token",
 								   @"X-App-ID" : @"MyTestId"}));
+}
+
+- (void)testAddAuthenticationHTTPHeadersWithUserService {
+	id<BRUserService> userService = OCMProtocolMock(@protocol(BRUserService));
+	id<BRUser> user = OCMProtocolMock(@protocol(BRUser));
+	OCMStub([userService activeUser]).andReturn(user);
+	OCMStub([user isAuthenticated]).andReturn(YES);
+	OCMStub([user authenticationToken]).andReturn(@"foobar");
+	
+	NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://localhost/foo"]];
+	id<WebApiRoute> route = [client routeForName:@"register" error:nil];
+	client.appId = @"MyTestId";
+	client.userService = userService;
+	[client addAuthorizationHeadersToRequest:req forRoute:route];
+	NSDictionary *headers = [req allHTTPHeaderFields];
+	assertThat(headers, equalTo(@{ @"X-App-API-Key" : @"test_token",
+								   @"X-App-ID" : @"MyTestId",
+								   @"Authorization" : @"token foobar"}));
+	
+	OCMVerifyAll((id)user);
+	OCMVerifyAll((id)userService);
 }
 
 @end

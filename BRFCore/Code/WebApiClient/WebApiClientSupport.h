@@ -9,6 +9,7 @@
 #import "WebApiClient.h"
 
 @protocol WebApiDataMapper;
+@protocol BRUserService;
 @class BREnvironment;
 
 /** The HTTP header name to put the @c appApiKey value in. */
@@ -30,6 +31,9 @@ extern NSString * const WebApiClientSupportAppIdDefaultHTTPHeaderName;
 
 /** The HTTP header name to use for the application ID. */
 @property (nonatomic, strong) NSString *appIdHTTPHeaderName;
+
+/** A user service to use for authorization support. */
+@property (nonatomic, weak, nullable) id<BRUserService> userService;
 
 /**
  Init with a custom environment.

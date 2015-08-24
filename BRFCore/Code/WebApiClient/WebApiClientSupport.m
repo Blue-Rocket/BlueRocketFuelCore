@@ -13,6 +13,7 @@
 #import <MAObjCRuntime/MARTNSObject.h>
 #import <MAObjCRuntime/RTProperty.h>
 #import <SOCKit/SOCKit.h>
+#import "BRUserService.h"
 #import "NSString+BR.h"
 #import "WebApiClientEnvironment.h"
 #import "WebApiDataMapper.h"
@@ -210,9 +211,17 @@ static NSString * const kRoutePropertyDataMapperInstance = @"_dataMapper";
 }
 
 - (void)addAuthorizationHeadersToRequest:(NSMutableURLRequest *)request forRoute:(id<WebApiRoute>)route {
-	// TODO: the App token should be passed as a custom X-Whatever HTTP header, while Authorization is used for the actual user's token!
-	[request setValue:self.appApiKey forHTTPHeaderField:self.appApiKeyHTTPHeaderName];
-	[request setValue:self.appId forHTTPHeaderField:self.appIdHTTPHeaderName];
+	if ( self.appApiKey ) {
+		[request setValue:self.appApiKey forHTTPHeaderField:self.appApiKeyHTTPHeaderName];
+	}
+	if ( self.appId ) {
+		[request setValue:self.appId forHTTPHeaderField:self.appIdHTTPHeaderName];
+	}
+	id<BRUser> activeUser = [self.userService activeUser];
+	if ( activeUser.authenticated ) {
+		// toss in a standard auth token header
+		[request setValue:[NSString stringWithFormat:@"token %@", activeUser.authenticationToken] forHTTPHeaderField:@"Authorization"];
+	}
 }
 
 @end

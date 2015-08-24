@@ -16,9 +16,10 @@
 @property (nonatomic, readonly, getter=isNewUser) BOOL newUser;
 @property (nonatomic, readonly, getter=isAuthenticated) BOOL authenticated;
 
-@property (nonatomic, strong) NSString *firstName;
-@property (nonatomic, strong) NSString *lastName;
-@property (nonatomic, strong) NSString *email;
+@property (nonatomic, readonly) NSString *firstName;
+@property (nonatomic, readonly) NSString *lastName;
+@property (nonatomic, readonly) NSString *email;
+@property (nonatomic, readonly) NSString *authenticationToken;
 
 /**
  Get the current user. This may return an anonymous user (non-authenticated) or @c nil.
@@ -42,6 +43,10 @@
  API for a user for registration purposes.
  */
 @protocol BRUserRegistration <BRUser>
+
+@property (nonatomic, readwrite) NSString *firstName;
+@property (nonatomic, readwrite) NSString *lastName;
+@property (nonatomic, readwrite) NSString *email;
 
 @property (nonatomic, strong) NSString *password;
 @property (nonatomic, strong) NSString *passwordAgain;
