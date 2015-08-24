@@ -284,7 +284,7 @@
 		[self respondWithJSON:@"{\"success\":true}" response:response status:200];
 	}];
 	
-	FileWebApiResource *r = [[FileWebApiResource alloc] initWithURL:fileURL name:@"test_file" MIMEType:@"application/json"];
+	FileWebApiResource *r = [[FileWebApiResource alloc] initWithURL:fileURL name:@"test_file" MIMEType:nil];
 	XCTestExpectation *requestExpectation = [self expectationWithDescription:@"HTTP request"];
 	[client requestAPI:@"file" withPathVariables:r parameters:nil data:r finished:^(id<WebApiResponse> response, NSError *error) {
 		assertThat(response.responseObject, equalTo(@{@"success" : @YES}));

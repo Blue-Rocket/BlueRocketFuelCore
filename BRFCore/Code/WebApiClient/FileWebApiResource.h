@@ -8,6 +8,8 @@
 
 #import "WebApiResource.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  File based implementation of @c WebApiResource.
  */
@@ -18,8 +20,10 @@
  
  @param fileURL A URL to a file.
  @param name The name to associate with the file.
- @param 
+ @param MIMEType The MIME type to use. If @c nil then the MIME type will be determined from the path extension of the URL.
  */
-- (id)initWithURL:(NSURL *)fileURL name:(NSString *)name MIMEType:(NSString *)MIMEType;
+- (id)initWithURL:(NSURL *)fileURL name:(NSString *)name MIMEType:(nullable NSString *)MIMEType;
 
 @end
+
+NS_ASSUME_NONNULL_END

@@ -39,10 +39,16 @@
 
 - (void)setupFileDetails {
 	fileName = [url lastPathComponent];
-	NSString *fileExtension = [url pathExtension];
-	NSString *UTI = (__bridge_transfer NSString *)UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, (__bridge CFStringRef)fileExtension, NULL);
-	NSString *contentType = (__bridge_transfer NSString *)UTTypeCopyPreferredTagWithClass((__bridge CFStringRef)UTI, kUTTagClassMIMEType);
-	MIMEType = ([contentType length] > 0 ? contentType : @"application/octet-stream");
+	if ( [MIMEType length] < 1 ) {
+		// determine MIME type based on file extension
+		NSString *fileExtension = [url pathExtension];
+		NSString *contentType = nil;
+		if ( [fileExtension length] > 0 ) {
+			NSString *UTI = (__bridge_transfer NSString *)UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, (__bridge CFStringRef)fileExtension, NULL);
+			contentType = (__bridge_transfer NSString *)UTTypeCopyPreferredTagWithClass((__bridge CFStringRef)UTI, kUTTagClassMIMEType);
+		}
+		MIMEType = ([contentType length] > 0 ? contentType : @"application/octet-stream");
+	}
 	NSFileManager *fm = [NSFileManager new];
 	NSDictionary *attr = [fm attributesOfItemAtPath:[url path] error:nil];
 	length = [attr[NSFileSize] longLongValue];
