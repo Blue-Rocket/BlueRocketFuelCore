@@ -25,7 +25,12 @@
 		return nil;
 	}
 	NSData *data = [[NSData alloc] initWithContentsOfFile:path];
-	return [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+	NSError *error = nil;
+	id result = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
+	if ( error ) {
+		NSLog(@"Error loading strings.json: %@", [error localizedDescription]);
+	}
+	return result;
 }
 
 + (NSDictionary *)appConfig {
@@ -43,7 +48,12 @@
 		return nil;
 	}
 	NSData *data = [[NSData alloc] initWithContentsOfFile:path];
-	return[NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+	NSError *error = nil;
+	id result = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
+	if ( error ) {
+		NSLog(@"Error loading config.json: %@", [error localizedDescription]);
+	}
+	return result;
 }
 
 @end
