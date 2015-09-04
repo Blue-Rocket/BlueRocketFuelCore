@@ -17,7 +17,9 @@ NSString * const RestKitWebApiRoutePropertyResponseRootKeyPath = @"dataMapperRes
 
 @implementation RestKitWebApiDataMapper {
 	NSMutableDictionary *requestRouteMappers;
+	NSMutableDictionary *requestRouteBlockMappers;
 	NSMutableDictionary *responseRouteMappers;
+	NSMutableDictionary *responseRouteBlockMappers;
 }
 
 + (instancetype)sharedDataMapper {
@@ -32,7 +34,9 @@ NSString * const RestKitWebApiRoutePropertyResponseRootKeyPath = @"dataMapperRes
 - (id)init {
 	if ( (self = [super init]) ) {
 		requestRouteMappers = [[NSMutableDictionary alloc] initWithCapacity:8];
+		requestRouteBlockMappers = [[NSMutableDictionary alloc] initWithCapacity:8];
 		responseRouteMappers = [[NSMutableDictionary alloc] initWithCapacity:8];
+		responseRouteBlockMappers = [[NSMutableDictionary alloc] initWithCapacity:8];
 	}
 	return self;
 }
@@ -41,8 +45,16 @@ NSString * const RestKitWebApiRoutePropertyResponseRootKeyPath = @"dataMapperRes
 	requestRouteMappers[name] = objectMapping;
 }
 
+- (void)registerRequestMappingBlock:(RestKitWebApiDataMapperBlock)block forRouteName:(NSString *)name {
+	requestRouteBlockMappers[name] = [block copy];
+}
+
 - (void)registerResponseObjectMapping:(RKObjectMapping *)objectMapping forRouteName:(NSString *)name {
 	responseRouteMappers[name] = objectMapping;
+}
+
+- (void)registerResponseMappingBlock:(RestKitWebApiDataMapperBlock)block forRouteName:(NSString *)name {
+	responseRouteBlockMappers[name] = [block copy];
 }
 
 - (id<RKMappingOperationDataSource>)dataSourceForMappingOperation:(RKMappingOperation *)mappingOperation {
@@ -62,12 +74,20 @@ NSString * const RestKitWebApiRoutePropertyResponseRootKeyPath = @"dataMapperRes
 	return objectMapper;
 }
 
+- (RestKitWebApiDataMapperBlock)requestMappingBlockForRoute:(id<WebApiRoute>)route {
+	return requestRouteBlockMappers[route.name];
+}
+
 - (RKObjectMapping *)responseObjectMappingForRoute:(id<WebApiRoute>)route data:(id)response {
 	RKObjectMapping *objectMapper = responseRouteMappers[route.name];
 	if ( !objectMapper ) {
 		// TODO: automatic, convention based lookup? Could base off of response data, for example.
 	}
 	return objectMapper;
+}
+
+- (RestKitWebApiDataMapperBlock)responseMappingBlockForRoute:(id<WebApiRoute>)route {
+	return responseRouteBlockMappers[route.name];
 }
 
 #pragma mark - WebApiDataMapper
@@ -103,6 +123,13 @@ NSString * const RestKitWebApiRoutePropertyResponseRootKeyPath = @"dataMapperRes
 	}
 	NSMutableDictionary *encoded = mappingOperation.destinationObject;
 	encoded = [self wrapEncoding:encoded withKeyPath:route[RestKitWebApiRoutePropertyRequestRootKeyPath]];
+	
+	// check for block mapper
+	RestKitWebApiDataMapperBlock blockMapper = [self requestMappingBlockForRoute:route];
+	if ( blockMapper ) {
+		encoded = blockMapper(encoded, route, error);
+	}
+	
 	return encoded;
 }
 
@@ -123,7 +150,15 @@ NSString * const RestKitWebApiRoutePropertyResponseRootKeyPath = @"dataMapperRes
 			*error = mappingOperation.error;
 		}
 	}
-	return mappingOperation.destinationObject;
+	id result = mappingOperation.destinationObject;
+
+	// check for block mapper
+	RestKitWebApiDataMapperBlock blockMapper = [self responseMappingBlockForRoute:route];
+	if ( blockMapper ) {
+		result = blockMapper(result, route, error);
+	}
+	
+	return result;
 }
 
 @end

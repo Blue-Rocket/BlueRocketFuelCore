@@ -12,6 +12,8 @@
 
 @class RKObjectMapping;
 
+typedef id(^RestKitWebApiDataMapperBlock)(id sourceObject, id<WebApiRoute>route, NSError * __autoreleasing *error);
+
 /**
  A WebApiRoute property for a root object property to wrap the encoded request object in. This provides
  a way to wrap the request in a top-level object, for example wrap a @c User object so the request looks
@@ -38,8 +40,36 @@ extern NSString * const RestKitWebApiRoutePropertyResponseRootKeyPath;
  */
 + (instancetype)sharedDataMapper;
 
+/**
+ Register an object mapping for use when encoding an object for sending in a request.
+ 
+ @param objectMapping The mapping to register.
+ @param name          The route name to register the mapping with.
+ */
 - (void)registerRequestObjectMapping:(RKObjectMapping *)objectMapping forRouteName:(NSString *)name;
 
+/**
+ Register a block to invoke after any object encoding has been performed on a request object.
+ 
+ @param block The block to invoke, which must return the desired final encoded object.
+ @param name  The route name to register the mapping with.
+ */
+- (void)registerRequestMappingBlock:(RestKitWebApiDataMapperBlock)block forRouteName:(NSString *)name;
+
+/**
+ Register an object mapping for use when mapping a response to an object.
+ 
+ @param objectMapping The mapping to register.
+ @param name          The route name to register the mapping with.
+ */
 - (void)registerResponseObjectMapping:(RKObjectMapping *)objectMapping forRouteName:(NSString *)name;
+
+/**
+ Register a block to invoke after any object mapping has been performed on a response object.
+ 
+ @param block The block to invoke, which must return the desired final mapped object.
+ @param name  The route name to register the mapping with.
+ */
+- (void)registerResponseMappingBlock:(RestKitWebApiDataMapperBlock)block forRouteName:(NSString *)name;
 
 @end
