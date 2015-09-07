@@ -10,11 +10,11 @@
 
 #import <BRCocoaLumberjack/BRCocoaLumberjack.h>
 #import <BREnvironment/BREnvironment.h>
+#import <BRLocalize/Core.h>
 #import <MAObjCRuntime/MARTNSObject.h>
 #import <MAObjCRuntime/RTProperty.h>
 #import <SOCKit/SOCKit.h>
 #import "BRUserService.h"
-#import "NSString+BR.h"
 #import "WebApiClientEnvironment.h"
 #import "WebApiDataMapper.h"
 

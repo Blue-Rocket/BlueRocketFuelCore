@@ -25,13 +25,13 @@
 #import "BRAppDelegate.h"
 
 #import <BREnvironment/BREnvironment.h>
+#import <BRLocalize/Core.h>
 #import "BRAppConfigEnvironmentProvider.h"
 #import "BRFullScreeNotificationViewDelegate.h"
 #import "BRFullScreenNotificationView.h"
 #import "BRSimpleLogging.h"
 #import "BRWebServiceRequest.h"
 #import "NSBundle+BR.h"
-#import "NSDictionary+BR.h"
 
 @interface BRAppDelegate () <BRFullScreeNotificationViewDelegate> {
     int networkActivityIndicatorUseCount;
@@ -174,10 +174,10 @@
 
 - (void)applicationDidEncounterUnkownNetworkError:(NSError *)error forRequest:(BRWebServiceRequest *)request {
     
-    NSString *template = [BRApp.strings localizedString:@"error.network.unknown.message" withDefault:@"%d"];
+    NSString *template = [BRApp.strings stringForKeyPath:@"error.network.unknown.message" withDefault:@"%d"];
     
     UIAlertView *alertView = [[UIAlertView alloc]
-                              initWithTitle:[BRApp.strings localizedString:@"error.network.unkown.title" withDefault:@"Netowrk Error"]
+                              initWithTitle:[BRApp.strings stringForKeyPath:@"error.network.unkown.title" withDefault:@"Netowrk Error"]
                               message:[NSString stringWithFormat:template,error.code]
                               delegate:nil
                               cancelButtonTitle:@"OK"
@@ -190,8 +190,8 @@
     
     
     UIAlertView *alertView = [[UIAlertView alloc]
-                              initWithTitle:[BRApp.strings localizedString:@"error.network.connection.title" withDefault:@"No Internet Connection"]
-                              message:[BRApp.strings localizedString:@"error.network.connection.message" withDefault:@"It looks like you may have lost\nInternet connection. Check your settings and try again."]
+                              initWithTitle:[BRApp.strings stringForKeyPath:@"error.network.connection.title" withDefault:@"No Internet Connection"]
+                              message:[BRApp.strings stringForKeyPath:@"error.network.connection.message" withDefault:@"It looks like you may have lost\nInternet connection. Check your settings and try again."]
                               delegate:nil
                               cancelButtonTitle:@"OK"
                               otherButtonTitles:nil];
@@ -201,10 +201,10 @@
 
 - (void)applicationDidEncounterNetworkHostNotFoundError:(NSError *)error forRequest:(BRWebServiceRequest *)request {
     
-    NSString *template = [BRApp.strings localizedString:@"error.network.host.message" withDefault:@"The host\n\"%@\"\ncould not be found."];
+    NSString *template = [BRApp.strings stringForKeyPath:@"error.network.host.message" withDefault:@"The host\n\"%@\"\ncould not be found."];
     
     UIAlertView *alertView = [[UIAlertView alloc]
-                              initWithTitle:[BRApp.strings localizedString:@"error.network.host.title" withDefault:@"Unknown Host"]
+                              initWithTitle:[BRApp.strings stringForKeyPath:@"error.network.host.title" withDefault:@"Unknown Host"]
                               message:[NSString stringWithFormat:template,request.url]
                               delegate:nil
                               cancelButtonTitle:@"OK"
@@ -215,10 +215,10 @@
 
 - (void)applicationDidEncounterUnsupportedURLError:(NSError *)error forRequest:(BRWebServiceRequest *)request {
     
-    NSString *template = [BRApp.strings localizedString:@"error.network.unsupported.message" withDefault:@"The URL \"%@\" is not supported."];
+    NSString *template = [BRApp.strings stringForKeyPath:@"error.network.unsupported.message" withDefault:@"The URL \"%@\" is not supported."];
     
     UIAlertView *alertView = [[UIAlertView alloc]
-                              initWithTitle:[BRApp.strings localizedString:@"error.network.unsupported.title" withDefault:@"Unsupported URL"]
+                              initWithTitle:[BRApp.strings stringForKeyPath:@"error.network.unsupported.title" withDefault:@"Unsupported URL"]
                               message:[NSString stringWithFormat:template,request.url]
                               delegate:nil
                               cancelButtonTitle:@"OK"
@@ -227,10 +227,10 @@
 }
 
 - (void)applicationDidEncounterNetworkConnectionTimedOut:(NSError *)error forRequest:(BRWebServiceRequest *)request {
-    NSString *template = [BRApp.strings localizedString:@"error.network.timeout.message" withDefault:@"%@"];
+    NSString *template = [BRApp.strings stringForKeyPath:@"error.network.timeout.message" withDefault:@"%@"];
 
     UIAlertView *alertView = [[UIAlertView alloc]
-                              initWithTitle:[BRApp.strings localizedString:@"error.network.timeout.title" withDefault:@"Connection Timed Out"]
+                              initWithTitle:[BRApp.strings stringForKeyPath:@"error.network.timeout.title" withDefault:@"Connection Timed Out"]
                               message:[NSString stringWithFormat:template,request.url]
                               delegate:nil
                               cancelButtonTitle:@"OK"
@@ -239,10 +239,10 @@
 }
 
 - (void)applicationDidEncounter404NotFoundError:(NSError *)error forRequest:(BRWebServiceRequest *)request {
-    NSString *template = [BRApp.strings localizedString:@"error.network.404.message" withDefault:@"%@"];
+    NSString *template = [BRApp.strings stringForKeyPath:@"error.network.404.message" withDefault:@"%@"];
     
     UIAlertView *alertView = [[UIAlertView alloc]
-                              initWithTitle:[BRApp.strings localizedString:@"error.network.404.title" withDefault:@"Resource Not Found"]
+                              initWithTitle:[BRApp.strings stringForKeyPath:@"error.network.404.title" withDefault:@"Resource Not Found"]
                               message:[NSString stringWithFormat:template,request.url]
                               delegate:nil
                               cancelButtonTitle:@"OK"

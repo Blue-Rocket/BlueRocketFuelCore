@@ -24,9 +24,7 @@
 
 #import <UIKit/UIKit.h>
 
-#import "BRLocalizable.h"
-
-@interface UILabel (BR) <BRLocalizable>
+@interface UILabel (BR)
 
 - (void)setText:(NSString *)text withHTMLFormatting:(NSURL *)htmlURL;
 - (void)boldSubstring:(NSString *)substring;

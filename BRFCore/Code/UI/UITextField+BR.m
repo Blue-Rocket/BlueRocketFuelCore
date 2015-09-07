@@ -24,17 +24,7 @@
 
 #import "UITextField+BR.h"
 
-#import "NSString+BR.h"
-
 @implementation UITextField (BR)
-
-- (void)localizeWithAppStrings:(NSDictionary *)strings {
-	NSString *orig = [self placeholder];
-	NSString *localized = [orig localizedStringWithAppStrings:strings];
-	if ( orig && ![orig isEqualToString:localized] ) {
-		[self setPlaceholder:localized];
-	}
-}
 
 - (void)setPlaceholderColor:(UIColor *)color {
     [self setValue:color forKeyPath:@"_placeholderLabel.textColor"];

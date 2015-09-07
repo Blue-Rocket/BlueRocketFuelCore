@@ -28,7 +28,6 @@
 #import <BREnvironment/BREnvironment.h>
 #import <CommonCrypto/CommonDigest.h>
 #import "NSBundle+BR.h"
-#import "NSDictionary+BR.h"
 
 static NSRegularExpression *kValidEmailRegex = nil;
 static NSMutableDictionary *kPhoneRegexes = nil;
@@ -118,23 +117,6 @@ static NSMutableDictionary *kPhoneRegexes = nil;
         if (i.length) [list addObject:i];
     }
     return list;
-}
-
-- (NSString *)localizedString {
-	return [self localizedStringWithAppStrings:[NSBundle appStrings]];
-}
-
-- (NSString *)localizedStringWithAppStrings:(NSDictionary *)strings {
-    NSString *finalString = self;
-    NSString *string = [self stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-    if ( string.length > 2 && [string characterAtIndex:0] == '{' && [string characterAtIndex:string.length-1] == '}' ) {
-        NSString *key = [string substringWithRange:NSMakeRange(1, string.length - 2)];
-        string = [strings localizedString:key];
-		if ( string && [string isKindOfClass:[NSString class]] && ![string isEqualToString:key] ) {
-			finalString = string;
-		}
-    }
-    return finalString;
 }
 
 - (NSString *)stringAsNumeralsOnly {

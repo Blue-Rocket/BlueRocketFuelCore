@@ -25,6 +25,7 @@
 #import "BRAppUser.h"
 
 #import <BREnvironment/BREnvironment.h>
+#import <BRLocalize/Core.h>
 #import "BRSimpleKeychainService.h"
 #import "NSString+BR.h"
 

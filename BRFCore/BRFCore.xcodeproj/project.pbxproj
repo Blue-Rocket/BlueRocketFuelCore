@@ -18,22 +18,17 @@
 		C9A89FEB1B8A4DDB000B9169 /* BRUserService.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A89F7B1B8A4DDB000B9169 /* BRUserService.m */; };
 		C9A89FEC1B8A4DDB000B9169 /* NSBundle+BR.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A89F7D1B8A4DDB000B9169 /* NSBundle+BR.m */; };
 		C9A89FED1B8A4DDB000B9169 /* NSDate+BR.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A89F7F1B8A4DDB000B9169 /* NSDate+BR.m */; };
-		C9A89FEE1B8A4DDB000B9169 /* NSDictionary+BR.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A89F811B8A4DDB000B9169 /* NSDictionary+BR.m */; };
 		C9A89FEF1B8A4DDB000B9169 /* NSString+BR.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A89F831B8A4DDB000B9169 /* NSString+BR.m */; };
 		C9A89FF01B8A4DDB000B9169 /* BRSimpleLogging.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A89F871B8A4DDB000B9169 /* BRSimpleLogging.m */; };
 		C9A89FF11B8A4DDB000B9169 /* BRFullScreenNotificationView.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A89F8B1B8A4DDB000B9169 /* BRFullScreenNotificationView.m */; };
 		C9A89FF21B8A4DDB000B9169 /* BROptionsTray.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A89F8E1B8A4DDB000B9169 /* BROptionsTray.m */; };
-		C9A89FF31B8A4DDB000B9169 /* NSObject+BRLocalizableUI.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A89F901B8A4DDB000B9169 /* NSObject+BRLocalizableUI.m */; };
 		C9A89FF41B8A4DDB000B9169 /* PushNoAnimationSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A89F921B8A4DDB000B9169 /* PushNoAnimationSegue.m */; };
 		C9A89FF51B8A4DDB000B9169 /* ReplaceNoAnimationSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A89F941B8A4DDB000B9169 /* ReplaceNoAnimationSegue.m */; };
 		C9A89FF61B8A4DDB000B9169 /* UIBarButtonItem+BR.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A89F961B8A4DDB000B9169 /* UIBarButtonItem+BR.m */; };
-		C9A89FF71B8A4DDB000B9169 /* UIButton+BR.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A89F981B8A4DDB000B9169 /* UIButton+BR.m */; };
 		C9A89FF81B8A4DDB000B9169 /* UIFont+BR.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A89F9A1B8A4DDB000B9169 /* UIFont+BR.m */; };
 		C9A89FF91B8A4DDB000B9169 /* UIImage+BR.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A89F9C1B8A4DDB000B9169 /* UIImage+BR.m */; };
 		C9A89FFA1B8A4DDB000B9169 /* UIImage+ImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A89F9E1B8A4DDB000B9169 /* UIImage+ImageEffects.m */; };
 		C9A89FFB1B8A4DDB000B9169 /* UILabel+BR.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A89FA01B8A4DDB000B9169 /* UILabel+BR.m */; };
-		C9A89FFC1B8A4DDB000B9169 /* UINavigationItem+BR.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A89FA21B8A4DDB000B9169 /* UINavigationItem+BR.m */; };
-		C9A89FFD1B8A4DDB000B9169 /* UISegmentedControl+BR.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A89FA41B8A4DDB000B9169 /* UISegmentedControl+BR.m */; };
 		C9A89FFE1B8A4DDB000B9169 /* UITextField+BR.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A89FA61B8A4DDB000B9169 /* UITextField+BR.m */; };
 		C9A89FFF1B8A4DDB000B9169 /* UIView+BR.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A89FA81B8A4DDB000B9169 /* UIView+BR.m */; };
 		C9A8A0001B8A4DDB000B9169 /* NSDictionary+WebApiClient.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A89FAC1B8A4DDB000B9169 /* NSDictionary+WebApiClient.m */; };
@@ -63,7 +58,6 @@
 		C9A8A02D1B8A4E3D000B9169 /* config.json in Resources */ = {isa = PBXBuildFile; fileRef = C9A8A01B1B8A4E3D000B9169 /* config.json */; };
 		C9A8A02E1B8A4E3D000B9169 /* BRAppUserTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A8A01D1B8A4E3D000B9169 /* BRAppUserTests.m */; };
 		C9A8A02F1B8A4E3D000B9169 /* NSDate_BRTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A8A01E1B8A4E3D000B9169 /* NSDate_BRTests.m */; };
-		C9A8A0301B8A4E3D000B9169 /* NSString_BRTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A8A01F1B8A4E3D000B9169 /* NSString_BRTests.m */; };
 		C9A8A0311B8A4E3D000B9169 /* Environment.plist in Resources */ = {isa = PBXBuildFile; fileRef = C9A8A0201B8A4E3D000B9169 /* Environment.plist */; };
 		C9A8A0331B8A4E3D000B9169 /* strings.json in Resources */ = {isa = PBXBuildFile; fileRef = C9A8A0221B8A4E3D000B9169 /* strings.json */; };
 		C9A8A0341B8A4E3D000B9169 /* AFNetworkingWebApiClientTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A8A0241B8A4E3D000B9169 /* AFNetworkingWebApiClientTests.m */; };
@@ -105,6 +99,7 @@
 		4D22872C0290E9130E13C9F2 /* libPods-BRFCore-BRFCoreTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BRFCore-BRFCoreTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7C4FA78132C66D3025A883D3 /* Pods-BRFCore.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BRFCore.release.xcconfig"; path = "Pods/Target Support Files/Pods-BRFCore/Pods-BRFCore.release.xcconfig"; sourceTree = "<group>"; };
 		C13BFD3959ACABD1D3EDB895 /* Pods-BRFCore.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BRFCore.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BRFCore/Pods-BRFCore.debug.xcconfig"; sourceTree = "<group>"; };
+		C98DC9911B9D36060067D6A6 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		C9A89F4D1B8A4C67000B9169 /* libBRFCore.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libBRFCore.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9A89F581B8A4C67000B9169 /* BRFCoreTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BRFCoreTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9A89F681B8A4DDB000B9169 /* BlueRocketFuelCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BlueRocketFuelCore.h; path = Code/BlueRocketFuelCore.h; sourceTree = "<group>"; };
@@ -116,7 +111,6 @@
 		C9A89F6F1B8A4DDB000B9169 /* BREntityReference.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BREntityReference.h; sourceTree = "<group>"; };
 		C9A89F701B8A4DDB000B9169 /* BRKeychainService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRKeychainService.h; sourceTree = "<group>"; };
 		C9A89F711B8A4DDB000B9169 /* BRKeychainService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRKeychainService.m; sourceTree = "<group>"; };
-		C9A89F721B8A4DDB000B9169 /* BRLocalizable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRLocalizable.h; sourceTree = "<group>"; };
 		C9A89F731B8A4DDB000B9169 /* BRServiceConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRServiceConstants.h; sourceTree = "<group>"; };
 		C9A89F741B8A4DDB000B9169 /* BRServiceConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRServiceConstants.m; sourceTree = "<group>"; };
 		C9A89F751B8A4DDB000B9169 /* BRSimpleEntityReference.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRSimpleEntityReference.h; sourceTree = "<group>"; };
@@ -130,8 +124,6 @@
 		C9A89F7D1B8A4DDB000B9169 /* NSBundle+BR.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSBundle+BR.m"; sourceTree = "<group>"; };
 		C9A89F7E1B8A4DDB000B9169 /* NSDate+BR.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+BR.h"; sourceTree = "<group>"; };
 		C9A89F7F1B8A4DDB000B9169 /* NSDate+BR.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+BR.m"; sourceTree = "<group>"; };
-		C9A89F801B8A4DDB000B9169 /* NSDictionary+BR.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+BR.h"; sourceTree = "<group>"; };
-		C9A89F811B8A4DDB000B9169 /* NSDictionary+BR.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+BR.m"; sourceTree = "<group>"; };
 		C9A89F821B8A4DDB000B9169 /* NSString+BR.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+BR.h"; sourceTree = "<group>"; };
 		C9A89F831B8A4DDB000B9169 /* NSString+BR.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+BR.m"; sourceTree = "<group>"; };
 		C9A89F841B8A4DDB000B9169 /* Core.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Core.h; path = Code/Core.h; sourceTree = "<group>"; };
@@ -143,16 +135,12 @@
 		C9A89F8C1B8A4DDB000B9169 /* BRFullScreeNotificationViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRFullScreeNotificationViewDelegate.h; sourceTree = "<group>"; };
 		C9A89F8D1B8A4DDB000B9169 /* BROptionsTray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BROptionsTray.h; sourceTree = "<group>"; };
 		C9A89F8E1B8A4DDB000B9169 /* BROptionsTray.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BROptionsTray.m; sourceTree = "<group>"; };
-		C9A89F8F1B8A4DDB000B9169 /* NSObject+BRLocalizableUI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+BRLocalizableUI.h"; sourceTree = "<group>"; };
-		C9A89F901B8A4DDB000B9169 /* NSObject+BRLocalizableUI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+BRLocalizableUI.m"; sourceTree = "<group>"; };
 		C9A89F911B8A4DDB000B9169 /* PushNoAnimationSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PushNoAnimationSegue.h; sourceTree = "<group>"; };
 		C9A89F921B8A4DDB000B9169 /* PushNoAnimationSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PushNoAnimationSegue.m; sourceTree = "<group>"; };
 		C9A89F931B8A4DDB000B9169 /* ReplaceNoAnimationSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReplaceNoAnimationSegue.h; sourceTree = "<group>"; };
 		C9A89F941B8A4DDB000B9169 /* ReplaceNoAnimationSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReplaceNoAnimationSegue.m; sourceTree = "<group>"; };
 		C9A89F951B8A4DDB000B9169 /* UIBarButtonItem+BR.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+BR.h"; sourceTree = "<group>"; };
 		C9A89F961B8A4DDB000B9169 /* UIBarButtonItem+BR.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBarButtonItem+BR.m"; sourceTree = "<group>"; };
-		C9A89F971B8A4DDB000B9169 /* UIButton+BR.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+BR.h"; sourceTree = "<group>"; };
-		C9A89F981B8A4DDB000B9169 /* UIButton+BR.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+BR.m"; sourceTree = "<group>"; };
 		C9A89F991B8A4DDB000B9169 /* UIFont+BR.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIFont+BR.h"; sourceTree = "<group>"; };
 		C9A89F9A1B8A4DDB000B9169 /* UIFont+BR.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIFont+BR.m"; sourceTree = "<group>"; };
 		C9A89F9B1B8A4DDB000B9169 /* UIImage+BR.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+BR.h"; sourceTree = "<group>"; };
@@ -161,10 +149,6 @@
 		C9A89F9E1B8A4DDB000B9169 /* UIImage+ImageEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ImageEffects.m"; sourceTree = "<group>"; };
 		C9A89F9F1B8A4DDB000B9169 /* UILabel+BR.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+BR.h"; sourceTree = "<group>"; };
 		C9A89FA01B8A4DDB000B9169 /* UILabel+BR.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+BR.m"; sourceTree = "<group>"; };
-		C9A89FA11B8A4DDB000B9169 /* UINavigationItem+BR.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationItem+BR.h"; sourceTree = "<group>"; };
-		C9A89FA21B8A4DDB000B9169 /* UINavigationItem+BR.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationItem+BR.m"; sourceTree = "<group>"; };
-		C9A89FA31B8A4DDB000B9169 /* UISegmentedControl+BR.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UISegmentedControl+BR.h"; sourceTree = "<group>"; };
-		C9A89FA41B8A4DDB000B9169 /* UISegmentedControl+BR.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UISegmentedControl+BR.m"; sourceTree = "<group>"; };
 		C9A89FA51B8A4DDB000B9169 /* UITextField+BR.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextField+BR.h"; sourceTree = "<group>"; };
 		C9A89FA61B8A4DDB000B9169 /* UITextField+BR.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextField+BR.m"; sourceTree = "<group>"; };
 		C9A89FA71B8A4DDB000B9169 /* UIView+BR.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+BR.h"; sourceTree = "<group>"; };
@@ -230,7 +214,6 @@
 		C9A8A01B1B8A4E3D000B9169 /* config.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = config.json; sourceTree = "<group>"; };
 		C9A8A01D1B8A4E3D000B9169 /* BRAppUserTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRAppUserTests.m; sourceTree = "<group>"; };
 		C9A8A01E1B8A4E3D000B9169 /* NSDate_BRTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSDate_BRTests.m; sourceTree = "<group>"; };
-		C9A8A01F1B8A4E3D000B9169 /* NSString_BRTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSString_BRTests.m; sourceTree = "<group>"; };
 		C9A8A0201B8A4E3D000B9169 /* Environment.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Environment.plist; path = ../Tests/Environment.plist; sourceTree = "<group>"; };
 		C9A8A0211B8A4E3D000B9169 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = ../Tests/Info.plist; sourceTree = "<group>"; };
 		C9A8A0221B8A4E3D000B9169 /* strings.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = strings.json; path = ../Tests/strings.json; sourceTree = "<group>"; };
@@ -355,7 +338,6 @@
 				C9A8A0391B8A5112000B9169 /* BRJSON.m */,
 				C9A89F701B8A4DDB000B9169 /* BRKeychainService.h */,
 				C9A89F711B8A4DDB000B9169 /* BRKeychainService.m */,
-				C9A89F721B8A4DDB000B9169 /* BRLocalizable.h */,
 				C9A89F731B8A4DDB000B9169 /* BRServiceConstants.h */,
 				C9A89F741B8A4DDB000B9169 /* BRServiceConstants.m */,
 				C9A89F751B8A4DDB000B9169 /* BRSimpleEntityReference.h */,
@@ -369,8 +351,6 @@
 				C9A89F7D1B8A4DDB000B9169 /* NSBundle+BR.m */,
 				C9A89F7E1B8A4DDB000B9169 /* NSDate+BR.h */,
 				C9A89F7F1B8A4DDB000B9169 /* NSDate+BR.m */,
-				C9A89F801B8A4DDB000B9169 /* NSDictionary+BR.h */,
-				C9A89F811B8A4DDB000B9169 /* NSDictionary+BR.m */,
 				C9A89F821B8A4DDB000B9169 /* NSString+BR.h */,
 				C9A89F831B8A4DDB000B9169 /* NSString+BR.m */,
 			);
@@ -394,16 +374,12 @@
 				C9A89F8C1B8A4DDB000B9169 /* BRFullScreeNotificationViewDelegate.h */,
 				C9A89F8D1B8A4DDB000B9169 /* BROptionsTray.h */,
 				C9A89F8E1B8A4DDB000B9169 /* BROptionsTray.m */,
-				C9A89F8F1B8A4DDB000B9169 /* NSObject+BRLocalizableUI.h */,
-				C9A89F901B8A4DDB000B9169 /* NSObject+BRLocalizableUI.m */,
 				C9A89F911B8A4DDB000B9169 /* PushNoAnimationSegue.h */,
 				C9A89F921B8A4DDB000B9169 /* PushNoAnimationSegue.m */,
 				C9A89F931B8A4DDB000B9169 /* ReplaceNoAnimationSegue.h */,
 				C9A89F941B8A4DDB000B9169 /* ReplaceNoAnimationSegue.m */,
 				C9A89F951B8A4DDB000B9169 /* UIBarButtonItem+BR.h */,
 				C9A89F961B8A4DDB000B9169 /* UIBarButtonItem+BR.m */,
-				C9A89F971B8A4DDB000B9169 /* UIButton+BR.h */,
-				C9A89F981B8A4DDB000B9169 /* UIButton+BR.m */,
 				C9A89F991B8A4DDB000B9169 /* UIFont+BR.h */,
 				C9A89F9A1B8A4DDB000B9169 /* UIFont+BR.m */,
 				C9A89F9B1B8A4DDB000B9169 /* UIImage+BR.h */,
@@ -412,10 +388,6 @@
 				C9A89F9E1B8A4DDB000B9169 /* UIImage+ImageEffects.m */,
 				C9A89F9F1B8A4DDB000B9169 /* UILabel+BR.h */,
 				C9A89FA01B8A4DDB000B9169 /* UILabel+BR.m */,
-				C9A89FA11B8A4DDB000B9169 /* UINavigationItem+BR.h */,
-				C9A89FA21B8A4DDB000B9169 /* UINavigationItem+BR.m */,
-				C9A89FA31B8A4DDB000B9169 /* UISegmentedControl+BR.h */,
-				C9A89FA41B8A4DDB000B9169 /* UISegmentedControl+BR.m */,
 				C9A89FA51B8A4DDB000B9169 /* UITextField+BR.h */,
 				C9A89FA61B8A4DDB000B9169 /* UITextField+BR.m */,
 				C9A89FA71B8A4DDB000B9169 /* UIView+BR.h */,
@@ -540,7 +512,6 @@
 			children = (
 				C9A8A01D1B8A4E3D000B9169 /* BRAppUserTests.m */,
 				C9A8A01E1B8A4E3D000B9169 /* NSDate_BRTests.m */,
-				C9A8A01F1B8A4E3D000B9169 /* NSString_BRTests.m */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -582,6 +553,7 @@
 		C9A8A03B1B8A515D000B9169 /* Packaging */ = {
 			isa = PBXGroup;
 			children = (
+				C98DC9911B9D36060067D6A6 /* README.md */,
 				C9A8A03C1B8A5207000B9169 /* BlueRocketFuelCore.podspec */,
 				C9A89F681B8A4DDB000B9169 /* BlueRocketFuelCore.h */,
 				C9A89F841B8A4DDB000B9169 /* Core.h */,
@@ -771,7 +743,6 @@
 				C9A89FFA1B8A4DDB000B9169 /* UIImage+ImageEffects.m in Sources */,
 				C9A8A00A1B8A4DDB000B9169 /* BRAppDelegate.m in Sources */,
 				C9A8A0111B8A4DDB000B9169 /* BRRegisterWebServiceRequest.m in Sources */,
-				C9A89FFD1B8A4DDB000B9169 /* UISegmentedControl+BR.m in Sources */,
 				C9A89FE91B8A4DDB000B9169 /* BRSimpleEntityReference.m in Sources */,
 				C9A89FEC1B8A4DDB000B9169 /* NSBundle+BR.m in Sources */,
 				C9A89FF21B8A4DDB000B9169 /* BROptionsTray.m in Sources */,
@@ -780,11 +751,9 @@
 				C9A8A0001B8A4DDB000B9169 /* NSDictionary+WebApiClient.m in Sources */,
 				C9A8A00C1B8A4DDB000B9169 /* BRLoginWebServiceRequest.m in Sources */,
 				C9A8A0101B8A4DDB000B9169 /* BRReachability.m in Sources */,
-				C9A89FF71B8A4DDB000B9169 /* UIButton+BR.m in Sources */,
 				C9A8A0041B8A4DDB000B9169 /* WebApiRotue.m in Sources */,
 				C9A89FEF1B8A4DDB000B9169 /* NSString+BR.m in Sources */,
 				C9A8A0071B8A4DDB000B9169 /* RestKitWebApiDataMapper.m in Sources */,
-				C9A89FF31B8A4DDB000B9169 /* NSObject+BRLocalizableUI.m in Sources */,
 				C9A8A0451B8A9719000B9169 /* DataWebApiResource.m in Sources */,
 				C9A8A03A1B8A5112000B9169 /* BRJSON.m in Sources */,
 				C9A89FF61B8A4DDB000B9169 /* UIBarButtonItem+BR.m in Sources */,
@@ -799,12 +768,10 @@
 				C9A8A00F1B8A4DDB000B9169 /* BRProfileViewWebServiceRequest.m in Sources */,
 				C9A8A00B1B8A4DDB000B9169 /* BRAuthenticatedWebServiceRequest.m in Sources */,
 				C9A89FE51B8A4DDB000B9169 /* BRAppConfigEnvironmentProvider.m in Sources */,
-				C9A89FFC1B8A4DDB000B9169 /* UINavigationItem+BR.m in Sources */,
 				C9A8A00D1B8A4DDB000B9169 /* BRPingWebServiceRequest.m in Sources */,
 				C9A89FEB1B8A4DDB000B9169 /* BRUserService.m in Sources */,
 				C9A8A0021B8A4DDB000B9169 /* WebApiClientEnvironment.m in Sources */,
 				C9A8A0121B8A4DDB000B9169 /* BRUserWebServiceRequest.m in Sources */,
-				C9A89FEE1B8A4DDB000B9169 /* NSDictionary+BR.m in Sources */,
 				C9A89FEA1B8A4DDB000B9169 /* BRSimpleKeychainService.m in Sources */,
 				C9A89FFE1B8A4DDB000B9169 /* UITextField+BR.m in Sources */,
 				C9A8A0081B8A4DDB000B9169 /* WebApiClientUserService.m in Sources */,
@@ -816,7 +783,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				C9A8A0371B8A4E3D000B9169 /* WebApiClientUserServiceTests.m in Sources */,
-				C9A8A0301B8A4E3D000B9169 /* NSString_BRTests.m in Sources */,
 				C9A8A0361B8A4E3D000B9169 /* RestKitWebApiDataMapperTests.m in Sources */,
 				C9A8A0341B8A4E3D000B9169 /* AFNetworkingWebApiClientTests.m in Sources */,
 				C9A8A0471B8AC581000B9169 /* NSDictionary_WebApiClientTests.m in Sources */,

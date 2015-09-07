@@ -23,17 +23,8 @@
 //
 
 #import "UIBarButtonItem+BR.h"
-#import "NSString+BR.h"
 
 @implementation UIBarButtonItem (BR)
-
-- (void)localizeWithAppStrings:(NSDictionary *)strings {
-	NSString *orig = self.title;
-	NSString *localized = [orig localizedStringWithAppStrings:strings];
-	if ( orig && ![orig isEqualToString:localized] ) {
-		self.title = localized;
-	}
-}
 
 - (CGRect)frameInView:(UIView *)v {
     

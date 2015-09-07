@@ -8,10 +8,9 @@
 
 #import "WebApiClientActivitySupport.h"
 
+#import <BRLocalize/Core.h>
 #import <Masonry/Masonry.h>
 #import "WebApiClient.h"
-#import "NSBundle+BR.h"
-#import "NSDictionary+BR.h"
 #import "UIImage+ImageEffects.h"
 
 @implementation WebApiClientActivitySupport {
@@ -128,7 +127,7 @@
 	label.textAlignment = NSTextAlignmentCenter;
 	label.numberOfLines = 0;
 	label.lineBreakMode = NSLineBreakByWordWrapping;
-	label.text = [[NSBundle appStrings] localizedString:@"error.network.slow" withDefault:@"This is taking a little longer than expected. Please wait..."];
+	label.text = [[NSBundle appStrings] stringForKeyPath:@"error.network.slow" withDefault:@"This is taking a little longer than expected. Please wait..."];
 	label.textColor = [UIColor whiteColor];
 	[label setContentHuggingPriority:UILayoutPriorityRequired forAxis:UILayoutConstraintAxisVertical];
 	[indicatorView addSubview:label];

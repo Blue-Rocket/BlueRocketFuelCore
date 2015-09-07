@@ -28,14 +28,8 @@
 
 @interface NSBundle (BR)
 
-/** Decode application strings file from a JSON file named @c strings. */
-@property (nonatomic, readonly) NSDictionary *appStrings;
-
 /** Decode application config values from a JSON file name @c config. */
 @property (nonatomic, readonly) NSDictionary *appConfig;
-
-/** Get application strings from the main bundle, caching the results. */
-+ (NSDictionary *)appStrings;
 
 /** Get application config from the main bundle, caching the results. */
 + (NSDictionary *)appConfig;

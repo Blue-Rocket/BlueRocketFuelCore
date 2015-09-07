@@ -31,23 +31,6 @@
 + (NSString *)commaSeparatedStringFromArray:(NSArray *)array prefixSymbol:(NSString *)symbol;
 - (NSMutableArray *)arrayFromCommaSeparatedList;
 
-/**
- Localize the receiver by replacing template strings in the form of @c {keyPath} with a localized 
- mapping of @c keyPath from the standard application JSON strings resource.
- 
- @return Localized copy of the receiver, or the reciever if a localization is not available.
- */
-- (NSString *)localizedString;
-
-/**
- Localize the receiver by replacing template strings in the form of @c {keyPath} with a localized
- mapping of @c keyPath from a specific application JSON strings resource.
- 
- @param strings The application strings.
- @return Localized copy of the receiver, or the reciever if a localization is not available.
- */
-- (NSString *)localizedStringWithAppStrings:(NSDictionary *)strings;
-
 - (BOOL)isValidEmailFormat;
 - (NSString *)stringAsNumeralsOnly;
 - (NSString *)stringFormatedAsPhoneNumber;

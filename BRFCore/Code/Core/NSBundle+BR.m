@@ -10,29 +10,6 @@
 
 @implementation NSBundle (BR)
 
-+ (NSDictionary *)appStrings {
-	static NSDictionary *appStrings = nil;
-	static dispatch_once_t onceToken;
-	dispatch_once(&onceToken, ^{
-		appStrings = [NSBundle mainBundle].appStrings;
-	});
-	return appStrings;
-}
-
-- (NSDictionary *)appStrings {
-	NSString *path = [self pathForResource:@"strings" ofType:@"json"];
-	if ( !path ) {
-		return nil;
-	}
-	NSData *data = [[NSData alloc] initWithContentsOfFile:path];
-	NSError *error = nil;
-	id result = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
-	if ( error ) {
-		NSLog(@"Error loading strings.json: %@", [error localizedDescription]);
-	}
-	return result;
-}
-
 + (NSDictionary *)appConfig {
 	static NSDictionary *appConfig = nil;
 	static dispatch_once_t onceToken;

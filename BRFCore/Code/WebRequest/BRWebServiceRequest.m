@@ -25,13 +25,13 @@
 #import <UIKit/UIKit.h>
 
 #import <BREnvironment/BREnvironment.h>
+#import <BRLocalize/Core.h>
 #import "BRAppDelegate.h"
 #import "BRAppUser.h"
 #import "BRSimpleLogging.h"
 #import "BRReachability.h"
 #import "BRWebServiceRequest.h"
 #import "NSBundle+BR.h"
-#import "NSDictionary+BR.h"
 #import "NSString+BR.h"
 #import "UIImage+ImageEffects.h"
 
@@ -317,7 +317,7 @@ static UIActivityIndicatorView *fullScreenSpinner;
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0,0,s.width - 40,s.height)];
     label.textAlignment = NSTextAlignmentCenter;
     label.numberOfLines = 0;
-    label.text = [[NSBundle appStrings] localizedString:@"error.network.slow" withDefault:@"This is taking a little longer than expected. Please wait..."];
+    label.text = [[NSBundle appStrings] stringForKeyPath:@"error.network.slow" withDefault:@"This is taking a little longer than expected. Please wait..."];
     [label sizeToFit];
     CGRect r = label.frame;
     r.origin.x = rintf(s.width/2 - r.size.width/2);

@@ -12,7 +12,6 @@
 #import <BlueRocketFuelCore/BREntityReference.h>
 #import <BlueRocketFuelCore/BRJSON.h>
 #import <BlueRocketFuelCore/BRKeychainService.h>
-#import <BlueRocketFuelCore/BRLocalizable.h>
 #import <BlueRocketFuelCore/BRServiceConstants.h>
 #import <BlueRocketFuelCore/BRSimpleEntityReference.h>
 #import <BlueRocketFuelCore/BRSimpleKeychainService.h>
@@ -20,5 +19,4 @@
 #import <BlueRocketFuelCore/BRUserService.h>
 #import <BlueRocketFuelCore/NSBundle+BR.h>
 #import <BlueRocketFuelCore/NSDate+BR.h>
-#import <BlueRocketFuelCore/NSDictionary+BR.h>
 #import <BlueRocketFuelCore/NSString+BR.h>
