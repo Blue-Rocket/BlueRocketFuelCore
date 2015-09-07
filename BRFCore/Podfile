@@ -7,7 +7,7 @@ target :BRFCore do
 	pod 'AFNetworking',				'~> 2.5'
 	pod 'BRCocoaLumberjack',		'~> 2.0'
 	pod 'BREnvironment',			'~> 1.2'
-	pod 'BRLocalize',				:git => 'https://github.com/Blue-Rocket/BRLocalizable.git', :branch => 'master'
+	pod 'BRLocalize',				'~> 0.9'
 	pod 'MAObjCRuntime', 			'~> 0.0.1'
 	pod 'Masonry',					'~> 0.6'
 	pod 'RestKit/ObjectMapping',	'~> 0.24'
