@@ -8,6 +8,8 @@
 
 #import "BREntity.h"
 
+@protocol BRKeychainService;
+
 /**
  Basic API for an application user.
  */
@@ -29,11 +31,29 @@
 + (instancetype)currentUser;
 
 /**
+ Get the current user. This may return an anonymous user (non-authenticated) or @c nil.
+ 
+ @param userDefaults The user defaults to load the user preferences from. If @c nil the standard user defaults will be used.
+ @param keychain     The keychain to load secure preferences from. If @c nil the standard keychain will be used.
+ @return The current user instance.
+ */
++ (instancetype)currentUserFromUserDefaults:(NSUserDefaults *)userDefaults keychain:(id<BRKeychainService>)keychain;
+
+/**
  Set the current user to a new instance.
  
  @param theUser The new user instance, or @c nil to clear the current user.
  */
 + (void)replaceCurrentUser:(id<BRUser>)theUser;
+
+/**
+ Set the current user to a new instance.
+ 
+ @param theUser      The new user instance, or @c nil to clear the current user.
+ @param userDefaults The user defaults to save the user preferences to. If @c nil the standard user defaults will be used.
+ @param keychain     The keychain to save secure preferences to. If @c nil the standard keychain will be used.
+ */
++ (void)replaceCurrentUser:(id<BRUser>)theUser inUserDefaults:(NSUserDefaults *)userDefaults keychain:(id<BRKeychainService>)keychain;
 
 @end
 

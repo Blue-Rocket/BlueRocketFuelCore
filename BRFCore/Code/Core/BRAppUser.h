@@ -26,6 +26,8 @@
 
 extern NSString * const BREnvironmentKeyPasswordMinLength;
 
+@protocol BRKeychainService;
+
 @interface BRAppUser : NSObject <BRUser, BRUserRegistration>
 
 @property (nonatomic, strong) NSString *authenticationToken;
@@ -43,5 +45,60 @@ extern NSString * const BREnvironmentKeyPasswordMinLength;
 @property (nonatomic, strong) NSString *passwordAgain;
 
 - (void)initializeWithDictionary:(NSDictionary *)dictionary;
+
+/**
+ Persist user details so they can be restored later via @c load.
+ 
+ @param userDefaults The user defaults to save non-secure preferences to. If not provided, the standard user defaults will be used.
+ @param keychain The keychain service to save secure preferences to. If not provided, the shared keychain service will be used.
+ */
+- (void)saveToUserDefaults:(NSUserDefaults *)userDefaults keychain:(id<BRKeychainService>)keychain;
+
+/**
+ Load any previously saved details.
+ 
+ @param userDefaults The user defaults to load non-secure preferences from. If not provided, the standard user defaults will be used.
+ @param keychain The keychain service to load secure preferences from. If not provided, the shared keychain service will be used.
+ */
+- (void)loadFromUserDefaults:(NSUserDefaults *)userDefaults keychain:(id<BRKeychainService>)keychain;
+
+#pragma mark - Persistence support
+
+/**
+ Persist or delete a preference for a key.
+ 
+ @param value        The preference object to persist. If @c nil or @c NSNull, delete any persisted value for the given key.
+ @param key          The unique key to persist the preference as.
+ @param userDefaults The user defaults to persist to. If not provided, the standard user defaults will be used.
+ */
++ (void)setPreferencesValue:(id)value forKey:(NSString *)key inUserDefaults:(NSUserDefaults *)userDefaults;
+
+/**
+ Read a persisted perference object.
+ 
+ @param key The key of the preference to read.
+ 
+ @return The preference value, or @c nil if not available.
+ */
++ (id)preferencesValueForKey:(NSString *)key inUserDefaults:(NSUserDefaults *)userDefaults;
+
+/**
+ Securely persist or delete a preference for a key.
+ 
+ @param value The preference object to persist. If @c nil, delete any persisted value for the given key.
+ @param key   The unique key to persist the preference as.
+ @param keychain The keychain service to persist to. If not provided, the shared keychain service will be used.
+ */
++ (void)setSecurePreferencesValue:(NSString *)value forKey:(NSString *)key inKeychain:(id<BRKeychainService>)keychain;
+
+/**
+ Read a persisted perference object stored via @c setSecurePreferencesValue:forKey.
+ 
+ @param key      The key of the preference to read.
+ @param keychain The keychain service to persist to. If not provided, the shared keychain service will be used.
+ 
+ @return The preference value, or @c nil if not available.
+ */
++ (id)securePreferencesValueForKey:(NSString *)key inKeychain:(id<BRKeychainService>)keychain;
 
 @end

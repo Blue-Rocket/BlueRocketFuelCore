@@ -43,32 +43,47 @@ static NSString *const BRAppUserAuthenticationTokenPreference = @"BRAppUserAuthe
 
 static id CurrentUser;
 
-@implementation BRAppUser
+@implementation BRAppUser {
+	id<BRKeychainService> keychainService;
+}
 
 + (instancetype)currentUser {
-    static dispatch_once_t pred = 0;
-    dispatch_once(&pred, ^{
+	return [self currentUserFromUserDefaults:nil keychain:nil];
+}
+
++ (instancetype)currentUserFromUserDefaults:(NSUserDefaults *)userDefaults keychain:(id<BRKeychainService>)keychain {
+	static dispatch_once_t pred = 0;
+	dispatch_once(&pred, ^{
 		BRAppUser *user = [[self alloc] init];
-		[user load];
+		[user loadFromUserDefaults:userDefaults	keychain:keychain];
 		CurrentUser = user;
-    });
-    return CurrentUser;
+	});
+	return CurrentUser;
 }
 
 + (void)replaceCurrentUser:(BRAppUser *)theUser {
+	[self replaceCurrentUser:theUser inUserDefaults:nil keychain:nil];
+}
+
++ (void)replaceCurrentUser:(id<BRUser>)theUser inUserDefaults:(NSUserDefaults *)userDefaults keychain:(id<BRKeychainService>)keychain {
 	NSParameterAssert(theUser == nil || [theUser isKindOfClass:[self class]]);
 	CurrentUser = theUser;
-	NSUserDefaults *def = [NSUserDefaults standardUserDefaults];
+	if ( !userDefaults ) {
+		userDefaults = [NSUserDefaults standardUserDefaults];
+	}
+	if ( !keychain ) {
+		keychain = [BRSimpleKeychainService sharedService];
+	}
 	if ( theUser == nil ) {
 		[@[BRAppUserRecordIdPreference, BRAppUserTypePreference, BRAppUserNamePreference, BRAppUserFirstNamePreference, BRAppUserLastNamePreference] enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-			[def removeObjectForKey:obj];
+			[userDefaults removeObjectForKey:obj];
 		}];
-		[def synchronize];
+		[userDefaults synchronize];
 		[@[BRAppUserAuthenticationTokenPreference, BRKeychainServiceKeyPassword, BRKeychainServiceKeyUsername] enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-			[[BRSimpleKeychainService sharedService] setStringValue:nil forKey:(NSString *)obj];
+			[keychain setStringValue:nil forKey:(NSString *)obj];
 		}];
 	} else {
-		[theUser save];
+		[(BRAppUser *)theUser saveToUserDefaults:userDefaults keychain:keychain];
 	}
 }
 
@@ -99,29 +114,34 @@ static id CurrentUser;
     self.authenticationToken = nil;
 }
 
-- (void)save {
-	[BRAppUser setPreferencesValue:self.uniqueId forKey:BRAppUserRecordIdPreference];
-	[BRAppUser setPreferencesValue:self.type forKey:BRAppUserTypePreference];
-	[BRAppUser setPreferencesValue:self.name forKey:BRAppUserNamePreference];
-	[BRAppUser setPreferencesValue:self.firstName forKey:BRAppUserFirstNamePreference];
-	[BRAppUser setPreferencesValue:self.lastName forKey:BRAppUserLastNamePreference];
-	[BRAppUser setPreferencesValue:self.website forKey:BRAppUserWebsitePreference];
-	[BRAppUser setPreferencesValue:self.phone forKey:BRAppUserPhonePreference];
-	[BRAppUser setPreferencesValue:self.address forKey:BRAppUserAddressPreference];
+- (void)saveToUserDefaults:(NSUserDefaults *)userDefaults keychain:(id<BRKeychainService>)keychain {
+	if ( keychain ) {
+		keychainService = keychain;
+	} else {
+		keychain = keychainService;
+	}
+	[BRAppUser setPreferencesValue:self.uniqueId forKey:BRAppUserRecordIdPreference inUserDefaults:userDefaults];
+	[BRAppUser setPreferencesValue:self.type forKey:BRAppUserTypePreference inUserDefaults:userDefaults];
+	[BRAppUser setPreferencesValue:self.name forKey:BRAppUserNamePreference inUserDefaults:userDefaults];
+	[BRAppUser setPreferencesValue:self.firstName forKey:BRAppUserFirstNamePreference inUserDefaults:userDefaults];
+	[BRAppUser setPreferencesValue:self.lastName forKey:BRAppUserLastNamePreference inUserDefaults:userDefaults];
+	[BRAppUser setPreferencesValue:self.website forKey:BRAppUserWebsitePreference inUserDefaults:userDefaults];
+	[BRAppUser setPreferencesValue:self.phone forKey:BRAppUserPhonePreference inUserDefaults:userDefaults];
+	[BRAppUser setPreferencesValue:self.address forKey:BRAppUserAddressPreference inUserDefaults:userDefaults];
 	if ( _email ) {
-		[BRAppUser setSecurePreferencesValue:_email forKey:BRKeychainServiceKeyUsername];
+		[BRAppUser setSecurePreferencesValue:_email forKey:BRKeychainServiceKeyUsername inKeychain:keychain];
 		if ( self == CurrentUser ) {
 			_email = nil;
 		}
 	}
 	if ( _authenticationToken ) {
-		[BRAppUser setSecurePreferencesValue:_authenticationToken forKey:BRAppUserAuthenticationTokenPreference];
+		[BRAppUser setSecurePreferencesValue:_authenticationToken forKey:BRAppUserAuthenticationTokenPreference inKeychain:keychain];
 		if ( self == CurrentUser ) {
 			_authenticationToken = nil;
 		}
 	}
 	if ( _password ) {
-		[BRAppUser setSecurePreferencesValue:_password forKey:BRKeychainServiceKeyPassword];
+		[BRAppUser setSecurePreferencesValue:_password forKey:BRKeychainServiceKeyPassword inKeychain:keychain];
 		if ( self == CurrentUser ) {
 			_password = nil;
 		}
@@ -129,33 +149,35 @@ static id CurrentUser;
 	if ( self == CurrentUser ) {
 		_passwordAgain = nil;
 	}
-	[[NSUserDefaults standardUserDefaults] synchronize];
+	[(userDefaults ? userDefaults : [NSUserDefaults standardUserDefaults]) synchronize];
 }
 
-- (void)load {
-	self.uniqueId = [BRAppUser preferencesValueForKey:BRAppUserRecordIdPreference];
-	self.type = [BRAppUser preferencesValueForKey:BRAppUserTypePreference];
-	self.name = [BRAppUser preferencesValueForKey:BRAppUserNamePreference];
-	self.firstName = [BRAppUser preferencesValueForKey:BRAppUserFirstNamePreference];
-	self.lastName = [BRAppUser preferencesValueForKey:BRAppUserLastNamePreference];
-	self.website = [BRAppUser preferencesValueForKey:BRAppUserWebsitePreference];
-	self.phone = [BRAppUser preferencesValueForKey:BRAppUserPhonePreference];
-	self.address = [BRAppUser preferencesValueForKey:BRAppUserAddressPreference];
+- (void)loadFromUserDefaults:(NSUserDefaults *)userDefaults keychain:(id<BRKeychainService>)keychain {
+	self.uniqueId = [BRAppUser preferencesValueForKey:BRAppUserRecordIdPreference inUserDefaults:userDefaults];
+	self.type = [BRAppUser preferencesValueForKey:BRAppUserTypePreference inUserDefaults:userDefaults];
+	self.name = [BRAppUser preferencesValueForKey:BRAppUserNamePreference inUserDefaults:userDefaults];
+	self.firstName = [BRAppUser preferencesValueForKey:BRAppUserFirstNamePreference inUserDefaults:userDefaults];
+	self.lastName = [BRAppUser preferencesValueForKey:BRAppUserLastNamePreference inUserDefaults:userDefaults];
+	self.website = [BRAppUser preferencesValueForKey:BRAppUserWebsitePreference inUserDefaults:userDefaults];
+	self.phone = [BRAppUser preferencesValueForKey:BRAppUserPhonePreference inUserDefaults:userDefaults];
+	self.address = [BRAppUser preferencesValueForKey:BRAppUserAddressPreference inUserDefaults:userDefaults];
+	
+	keychainService = keychain; // maintain reference for secure fields
 }
 
 - (NSString *)email {
 	// fetch from secure storage every time if we are the active user
-	return (self == CurrentUser ? [BRAppUser securePreferencesValueForKey:BRKeychainServiceKeyUsername] : _email);
+	return (self == CurrentUser ? [BRAppUser securePreferencesValueForKey:BRKeychainServiceKeyUsername inKeychain:keychainService] : _email);
 }
 
 - (NSString *)authenticationToken {
 	// fetch from secure storage every time if we are the active user
-	return (self == CurrentUser ? [BRAppUser securePreferencesValueForKey:BRAppUserAuthenticationTokenPreference] : _authenticationToken);
+	return (self == CurrentUser ? [BRAppUser securePreferencesValueForKey:BRAppUserAuthenticationTokenPreference inKeychain:keychainService] : _authenticationToken);
 }
 
 - (NSString *)password {
 	// fetch from secure storage every time if we are the active user
-	return (self == CurrentUser ? [BRAppUser securePreferencesValueForKey:BRKeychainServiceKeyPassword] : _password);
+	return (self == CurrentUser ? [BRAppUser securePreferencesValueForKey:BRKeychainServiceKeyPassword inKeychain:keychainService] : _password);
 }
 
 - (BOOL)isNewUser {
@@ -168,30 +190,42 @@ static id CurrentUser;
 
 #pragma mark - Persistence support
 
-+ (void)setPreferencesValue:(id)value forKey:(NSString *)key {
++ (void)setPreferencesValue:(id)value forKey:(NSString *)key inUserDefaults:(NSUserDefaults *)userDefaults {
 	if ( !key ) {
 		return;
+	}
+	if ( !userDefaults ) {
+		userDefaults = [NSUserDefaults standardUserDefaults];
 	}
 	if ( [value isKindOfClass:[NSNull class]] ) {
 			value = nil;
 	}
 	if ( !value ) {
-		[[NSUserDefaults standardUserDefaults] removeObjectForKey:key];
+		[userDefaults removeObjectForKey:key];
 	} else {
-		[[NSUserDefaults standardUserDefaults] setObject:value forKey:key];
+		[userDefaults setObject:value forKey:key];
 	}
 }
 
-+ (id)preferencesValueForKey:(NSString *)key {
-    return [[NSUserDefaults standardUserDefaults] objectForKey:key];
++ (id)preferencesValueForKey:(NSString *)key inUserDefaults:(NSUserDefaults *)userDefaults {
+	if ( !userDefaults ) {
+		userDefaults = [NSUserDefaults standardUserDefaults];
+	}
+    return [userDefaults objectForKey:key];
 }
 
-+ (void)setSecurePreferencesValue:(NSString *)value forKey:(NSString *)key {
-	[[BRSimpleKeychainService sharedService] setStringValue:value forKey:key];
++ (void)setSecurePreferencesValue:(NSString *)value forKey:(NSString *)key inKeychain:(id<BRKeychainService>)keychain {
+	if ( !keychain ) {
+		keychain = [BRSimpleKeychainService sharedService];
+	}
+	[keychain setStringValue:value forKey:key];
 }
 
-+ (id)securePreferencesValueForKey:(NSString *)key {
-	return [[BRSimpleKeychainService sharedService] stringValueForKey:key];
++ (id)securePreferencesValueForKey:(NSString *)key inKeychain:(id<BRKeychainService>)keychain {
+	if ( !keychain ) {
+		keychain = [BRSimpleKeychainService sharedService];
+	}
+	return [keychain stringValueForKey:key];
 }
 
 #pragma mark - Validation
