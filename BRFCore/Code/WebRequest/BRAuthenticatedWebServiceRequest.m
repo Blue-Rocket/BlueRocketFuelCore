@@ -28,8 +28,8 @@
 @implementation BRAuthenticatedWebServiceRequest
 
 - (void)initializeHeaders {
-    if (CurrentAppUser.authenticationToken) {
-        [self.request setValue:CurrentAppUser.authenticationToken forHTTPHeaderField:@"USER-AUTHORIZATION"];
+    if ([BRAppUser currentUser].authenticationToken) {
+        [self.request setValue:[BRAppUser currentUser].authenticationToken forHTTPHeaderField:@"USER-AUTHORIZATION"];
     }
 }
 

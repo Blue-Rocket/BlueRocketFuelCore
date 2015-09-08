@@ -70,16 +70,13 @@
 	}];
 }
 
-- (void)loginWithEmail:(NSString *)email password:(NSString *)password finished:(void (^)(id<BRUser>, NSError *))callback {
+- (void)loginWithUserDetails:(id<BRUserRegistration>)userDetails finished:(void (^)(id<BRUser> user, NSError *error))callback {
 	void (^doCallback)(id<BRUser>, NSError *) = ^(id<BRUser> user, NSError *error) {
 		if ( callback ) {
 			callback(user, error);
 		}
 	};
-	id<BRUserRegistration> newUser = [self newUser];
-	newUser.email = email;
-	newUser.password = password;
-	[self.client requestAPI:WebApiRouteLogin withPathVariables:nil parameters:newUser data:nil finished:^(id<WebApiResponse> response, NSError *error) {
+	[self.client requestAPI:WebApiRouteLogin withPathVariables:nil parameters:userDetails data:nil finished:^(id<WebApiResponse> response, NSError *error) {
 		log4Debug(@"Got login response: %@; error: %@", response, error);
 		BRAppUser *user = nil;
 		if ( error ) {

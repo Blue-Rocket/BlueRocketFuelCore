@@ -54,11 +54,10 @@ extern NSString * const BRUserServiceNotificationLogoutDidSucceed;
 /**
  Log in with a non-social user account.
  
- @param email The email to login as.
- @param password The password to attempt with.
+ @param userDetails The user details, with an appropriate username and password available.
  @param callback The block to invoke with the login result.
  */
-- (void)loginWithEmail:(NSString *)email password:(NSString *)password finished:(void (^)(id<BRUser> user, NSError *error))callback;
+- (void)loginWithUserDetails:(id<BRUserRegistration>)userDetails finished:(void (^)(id<BRUser> user, NSError *error))callback;
 
 /**
  Request a password be reset for a given email.

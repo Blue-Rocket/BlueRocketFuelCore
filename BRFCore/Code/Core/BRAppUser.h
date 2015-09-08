@@ -26,8 +26,6 @@
 
 extern NSString * const BREnvironmentKeyPasswordMinLength;
 
-#define CurrentAppUser [BRAppUser currentUser]
-
 @interface BRAppUser : NSObject <BRUser, BRUserRegistration>
 
 @property (nonatomic, strong) NSString *authenticationToken;
