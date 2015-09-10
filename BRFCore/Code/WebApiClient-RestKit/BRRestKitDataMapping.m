@@ -31,11 +31,15 @@ static Class kAppUserClass;
 }
 
 + (NSString * (^)(RKObjectMapping *mapping, NSString *sourceKey))sourceToDestinationKeyTransformationBlock {
-	return ^(RKObjectMapping *mapping, NSString *sourceKey) {
-		NSValueTransformer *normalizedKey = [[NSValueTransformer valueTransformerForName:TTTSnakeCaseStringTransformerName] reverseTransformedValue:sourceKey];
-		NSString *destKey = [[NSValueTransformer valueTransformerForName:TTTLlamaCaseStringTransformerName] transformedValue:normalizedKey];
-		return destKey;
-	};
+	static NSString * (^xform)(RKObjectMapping *mapping, NSString *sourceKey);
+	if ( !xform ) {
+		xform = ^(RKObjectMapping *mapping, NSString *sourceKey) {
+			NSValueTransformer *normalizedKey = [[NSValueTransformer valueTransformerForName:TTTSnakeCaseStringTransformerName] reverseTransformedValue:sourceKey];
+			NSString *destKey = [[NSValueTransformer valueTransformerForName:TTTLlamaCaseStringTransformerName] transformedValue:normalizedKey];
+			return destKey;
+		};
+	}
+	return xform;
 }
 
 + (void)registerObjectMappings:(RestKitWebApiDataMapper *)dataMapper {
