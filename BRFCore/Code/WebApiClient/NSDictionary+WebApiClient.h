@@ -64,4 +64,12 @@
 @property (nonatomic, readwrite) id responseObject;
 @property (nonatomic, readwrite) NSDictionary *responseHeaders;
 
+/**
+ Set an object on the receiver if non-nil, otherwise remove that key.
+ 
+ @param object The object to set, or @c nil to remove any value associated with @c key.
+ @param key The key of the object to set or remove.
+ */
+- (void)setOrRemoveObject:(id)object forKey:(NSString *)key;
+
 @end

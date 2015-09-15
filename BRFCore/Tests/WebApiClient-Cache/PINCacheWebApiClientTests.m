@@ -77,7 +77,6 @@
 
 	XCTestExpectation *requestExpectation = [self expectationWithDescription:@"Request"];
 	[cachingClient requestAPI:@"test" withPathVariables:nil parameters:nil data:nil finished:^(id<WebApiResponse> response, NSError *error) {
-		assertThat(response.route.name, equalTo(@"test"));
 		assertThat(response.responseObject, equalTo(@{@"success" : @YES}));
 		assertThat(error, nilValue());
 		[requestExpectation fulfill];
@@ -92,7 +91,6 @@
 	
 	__block BOOL called = NO;
 	[cachingClient requestAPI:@"doc" withPathVariables:@{@"uniqueId" : @123 } parameters:nil data:nil finished:^(id<WebApiResponse> response, NSError *error) {
-		assertThat(response.route.name, equalTo(@"doc"));
 		assertThat(response.responseObject, equalTo(@{@"success" : @YES}));
 		assertThat(error, nilValue());
 		called = YES;
@@ -110,7 +108,6 @@
 	
 	__block BOOL called = NO;
 	[cachingClient requestAPI:@"doc" withPathVariables:docRef parameters:nil data:nil finished:^(id<WebApiResponse> response, NSError *error) {
-		assertThat(response.route.name, equalTo(@"doc"));
 		assertThat(response.responseObject, equalTo(@{@"success" : @YES}));
 		assertThat(error, nilValue());
 		called = YES;
@@ -127,7 +124,6 @@
 	
 	__block BOOL called = NO;
 	[cachingClient requestAPI:@"test" withPathVariables:nil parameters:@{@"foo" : @"bar"} data:nil finished:^(id<WebApiResponse> response, NSError *error) {
-		assertThat(response.route.name, equalTo(@"test"));
 		assertThat(response.responseObject, equalTo(@{@"success" : @YES}));
 		assertThat(error, nilValue());
 		called = YES;
@@ -148,7 +144,6 @@
 	
 	__block BOOL called = NO;
 	[cachingClient requestAPI:@"test" withPathVariables:nil parameters:docRef data:nil finished:^(id<WebApiResponse> response, NSError *error) {
-		assertThat(response.route.name, equalTo(@"test"));
 		assertThat(response.responseObject, equalTo(@{@"success" : @YES}));
 		assertThat(error, nilValue());
 		called = YES;
