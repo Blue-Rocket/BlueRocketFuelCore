@@ -18,6 +18,6 @@
 @interface NSMutableDictionary (MutableCachingWebApiRoute)
 
 /** A maximum cache time, in seconds. */
-@property (nonatomic, readwrite) NSTimeInterval cache;
+@property (nonatomic, readwrite) NSTimeInterval cacheTTL;
 
 @end

@@ -93,8 +93,8 @@ static id<WebApiClient> SharedGlobalClient;
 	id<WebApiRoute> route = [self.client routeForName:name error:nil];
 	NSTimeInterval cacheTTL = 0;
 	NSString *cacheKey = nil;
-	if ( [route respondsToSelector:@selector(cache)] ) {
-		cacheTTL = ((id<CachingWebApiRoute>)route).cache;
+	if ( [route respondsToSelector:@selector(cacheTTL)] ) {
+		cacheTTL = ((id<CachingWebApiRoute>)route).cacheTTL;
 		if ( cacheTTL > 0 ) {
 			// look in cache for this data
 			cacheKey = [self cacheKeyForRoute:route pathVariables:pathVariables parameters:parameters];

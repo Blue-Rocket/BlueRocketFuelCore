@@ -14,6 +14,6 @@
 @protocol CachingWebApiRoute <WebApiRoute>
 
 /** A maximum cache time, in seconds. */
-@property (nonatomic, readonly) NSTimeInterval cache;
+@property (nonatomic, readonly) NSTimeInterval cacheTTL;
 
 @end

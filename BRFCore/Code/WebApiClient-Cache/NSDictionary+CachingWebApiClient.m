@@ -12,8 +12,8 @@
 
 @implementation NSDictionary (CachingWebApiRoute)
 
-- (NSTimeInterval)cache {
-	id val = self[NSStringFromSelector(@selector(cache))];
+- (NSTimeInterval)cacheTTL {
+	id val = self[NSStringFromSelector(@selector(cacheTTL))];
 	return [val doubleValue];
 }
 
@@ -21,8 +21,8 @@
 
 @implementation NSMutableDictionary (CachingWebApiRoute)
 
-- (void)setCache:(NSTimeInterval)cache {
-	[self setOrRemoveObject:@(cache) forKey:NSStringFromSelector(@selector(cache))];
+- (void)setCacheTTL:(NSTimeInterval)ttl {
+	[self setOrRemoveObject:@(ttl) forKey:NSStringFromSelector(@selector(cacheTTL))];
 }
 
 @end

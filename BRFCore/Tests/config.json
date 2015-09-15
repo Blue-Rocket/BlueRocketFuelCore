@@ -23,12 +23,12 @@
 			"test" : {
 				"method" : "GET",
 				"path" : "test",
-				"cache" : 3,
+				"cacheTTL" : 3,
 			},
 			"doc" : {
 				"method" : "GET",
 				"path" : "document/:uniqueId",
-				"cache" : 3,
+				"cacheTTL" : 3,
 			},
 			"saveDoc" : {
 				"method" : "PUT",
