@@ -33,7 +33,7 @@ static IMP original_willMoveToWindow;//(id, SEL, UIWindow *);
 
 static void brrf_willMoveToWindow(id self, SEL _cmd, UIWindow * window) {
 	((void(*)(id,SEL,UIWindow *))original_willMoveToWindow)(self, _cmd, window);
-	if ( ![self conformsToProtocol:@protocol(BRLocalizable)] ) {
+	if ( !(window && [self conformsToProtocol:@protocol(BRLocalizable)]) ) {
 		return;
 	}
 	NSDictionary *strings = [NSBundle appStrings];

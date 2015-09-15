@@ -23,13 +23,13 @@ PODS:
   - BRCocoaLumberjack (2.0.1):
     - CocoaLumberjack (~> 2.0)
   - BREnvironment (1.2.0)
-  - BRLocalize (0.9.0):
-    - BRLocalize/All (= 0.9.0)
-  - BRLocalize/All (0.9.0):
+  - BRLocalize (0.9.1):
+    - BRLocalize/All (= 0.9.1)
+  - BRLocalize/All (0.9.1):
     - BRLocalize/Core
     - BRLocalize/UI
-  - BRLocalize/Core (0.9.0)
-  - BRLocalize/UI (0.9.0):
+  - BRLocalize/Core (0.9.1)
+  - BRLocalize/UI (0.9.1):
     - BRLocalize/Core
   - CocoaAsyncSocket (7.4.2)
   - CocoaHTTPServer (2.3):
@@ -49,6 +49,7 @@ PODS:
   - Masonry (0.6.2)
   - OCHamcrest (4.1.1)
   - OCMock (3.1.2)
+  - PINCache (2.0)
   - RestKit/ObjectMapping (0.25.0):
     - ISO8601DateFormatterValueTransformer (~> 0.6.1)
     - RestKit/Support
@@ -68,32 +69,23 @@ DEPENDENCIES:
   - AFNetworking (~> 2.5)
   - BRCocoaLumberjack (~> 2.0)
   - BREnvironment (~> 1.2)
-  - BRLocalize (from `https://github.com/Blue-Rocket/BRLocalizable.git`, branch `master`)
+  - BRLocalize (~> 0.9)
   - CocoaHTTPServer (~> 2.3)
   - MAObjCRuntime (~> 0.0.1)
   - Masonry (~> 0.6)
   - OCHamcrest (~> 4.1)
   - OCMock (~> 3.1)
+  - PINCache (~> 2.0)
   - RestKit/ObjectMapping (~> 0.24)
   - RoutingHTTPServer (~> 1.0)
   - SOCKit (~> 1.1)
   - TransformerKit/String (~> 0.5)
 
-EXTERNAL SOURCES:
-  BRLocalize:
-    :branch: master
-    :git: https://github.com/Blue-Rocket/BRLocalizable.git
-
-CHECKOUT OPTIONS:
-  BRLocalize:
-    :commit: c9f58b6b2a992161bc8b5cf219ab73303899ab67
-    :git: https://github.com/Blue-Rocket/BRLocalizable.git
-
 SPEC CHECKSUMS:
   AFNetworking: 79f7eb1a0fcfa7beb409332b2ca49afe9ce53b05
   BRCocoaLumberjack: 529d9525681ea2514d3d607011267848bc337bbe
   BREnvironment: 021cc4ef4d2dfbe9b90e42265cadd3c5f942eb2b
-  BRLocalize: 31acf754b2b645f61c0c3ba99aeacd5ba205a404
+  BRLocalize: ae240c67587ff408a377b486d2c3a8de1f48aebd
   CocoaAsyncSocket: f5783bdedd232d91b89769bc4b5a1580aed518ad
   CocoaHTTPServer: 5624681fc3473d43b18202f635f9b3abb013b530
   CocoaLumberjack: 019d1361244274a6138c788c6cb80baabc13fb8f
@@ -102,6 +94,7 @@ SPEC CHECKSUMS:
   Masonry: 362e8a1cc0beada4a4c4832d5e863da2a51533be
   OCHamcrest: 6f03ffa81d12feab872638490a44ab0a6d3aca10
   OCMock: a10ea9f0a6e921651f96f78b6faee95ebc813b92
+  PINCache: ca953ba93ce1edde056fdd99121ee65b295a08c9
   RestKit: a4fcaf3d4bb2c204679856a46d596160bf208095
   RKValueTransformers: 66ac5e4f077fdbe3496e792d89eeff4c3eb67701
   RoutingHTTPServer: fab8b13e725f26720500c146d43c98c11ebc4d47

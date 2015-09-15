@@ -10,6 +10,7 @@ target :BRFCore do
 	pod 'BRLocalize',				'~> 0.9'
 	pod 'MAObjCRuntime', 			'~> 0.0.1'
 	pod 'Masonry',					'~> 0.6'
+	pod 'PINCache',					'~> 2.0'
 	pod 'RestKit/ObjectMapping',	'~> 0.24'
 	pod 'SOCKit',             		'~> 1.1'
 	pod 'TransformerKit/String',    '~> 0.5'
