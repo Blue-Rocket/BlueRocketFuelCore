@@ -22,11 +22,13 @@
 			},
 			"test" : {
 				"method" : "GET",
-				"path" : "test"
+				"path" : "test",
+				"cache" : 30,
 			},
 			"doc" : {
 				"method" : "GET",
-				"path" : "document/:uniqueId"
+				"path" : "document/:uniqueId",
+				"cache" : 30,
 			},
 			"saveDoc" : {
 				"method" : "PUT",

@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 Blue Rocket. Distributable under the terms of the Apache License, Version 2.0.
 //
 
-#import "WebApiClient.h"
+#import "SupportingWebApiClient.h"
 
 @protocol WebApiDataMapper;
 @protocol BRUserService;
@@ -20,7 +20,7 @@ extern NSString * const WebApiClientSupportAppApiKeyDefaultHTTPHeaderName;
 /** The HTTP header name to put the @c appId value in. */
 extern NSString * const WebApiClientSupportAppIdDefaultHTTPHeaderName;
 
-@interface WebApiClientSupport : NSObject <WebApiClient>
+@interface WebApiClientSupport : NSObject <SupportingWebApiClient>
 
 /** An API key to add as a header value to each request. */
 @property (nonatomic, strong, nullable) NSString *appApiKey;
@@ -72,16 +72,6 @@ extern NSString * const WebApiClientSupportAppIdDefaultHTTPHeaderName;
 - (void)registerRoute:(id<WebApiRoute>)route forName:(NSString *)name;
 
 /**
- Get a previously registered route by its name.
- 
- @param name The name of the route to get.
- @param error An error if the route is not registered. Pass @c nil if you don't need the error.
-              The localized message @c web.api.missingRoute will be returned.
- @return The route associated with @c name, or @c nil if not registered.
- */
-- (nullable id<WebApiRoute>)routeForName:(NSString *)name error:(NSError * __autoreleasing *)error;
-
-/**
  Get a base URL for the routes managed by this client.
  
  @return The base URL, wich is composed of the URL protocol, host, and port.
@@ -98,21 +88,6 @@ extern NSString * const WebApiClientSupportAppIdDefaultHTTPHeaderName;
  @param parameters A parameters object, such as a dictionary or arbitrary model object.
  */
 - (NSDictionary *)dictionaryForParametersObject:(id)parameters;
-
-/**
- Get a @c URL instance for a route.
- 
- @param route The route.
- @param pathVariables An optional path variables object. All path variables will be resolved against this object.
- @param parameters An optional parameters object to encode as the query component of the request URL.
- @param error An error if the route has no associated path. Pass @c nil if you don't need the error.
-              The localized message @c web.api.missingRoutePath will be returned.
- @return The URL instance.
- */
-- (NSURL *)URLForRoute:(id<WebApiRoute>)route
-		 pathVariables:(nullable id)pathVariables
-			parameters:(nullable id)parameters
-				 error:(NSError * __autoreleasing *)error;
 
 /**
  Get a data mapper for a specific route.
