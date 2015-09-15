@@ -8,15 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
-@protocol WebApiRoute;
-
 /**
  A WebApiResponse object represents a response to a HTTP URL request.
  */
 @protocol  WebApiResponse <NSObject>
-
-/** The route used by the client. */
-@property (nonatomic, readonly) id<WebApiRoute> route;
 
 /** The HTTP status code of the receiver. */
 @property (nonatomic, readonly) NSInteger statusCode;

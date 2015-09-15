@@ -53,14 +53,6 @@
 @property (nonatomic, readwrite) NSString *dataMapper;
 @property (nonatomic, readwrite, getter=isPreventUserInteraction) BOOL preventUserInteraction;
 
-/**
- Set an object for a given key, or remove the value associated with a given key.
- 
- @param object The object to set, or @c nil if the key should be removed.
- @param key    The key of the object to set or remove.
- */
-- (void)setOrRemoveObject:(id)object forKey:(NSString *)key;
-
 @end
 
 /**
@@ -68,7 +60,6 @@
  */
 @interface NSMutableDictionary (MutableWebApiResponse)
 
-@property (nonatomic, readwrite) id<WebApiRoute> route;
 @property (nonatomic, readwrite) NSInteger statusCode;
 @property (nonatomic, readwrite) id responseObject;
 @property (nonatomic, readwrite) NSDictionary *responseHeaders;

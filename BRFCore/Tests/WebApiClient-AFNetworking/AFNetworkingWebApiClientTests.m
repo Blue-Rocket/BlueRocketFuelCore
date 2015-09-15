@@ -122,7 +122,6 @@
 
 	__block BOOL called = NO;
 	[client requestAPI:@"test" withPathVariables:nil parameters:nil data:nil finished:^(id<WebApiResponse> response, NSError *error) {
-		assertThat(response.route.name, equalTo(@"test"));
 		assertThat(response.responseObject, equalTo(@{@"success" : @YES}));
 		assertThat(error, nilValue());
 		called = YES;
@@ -137,7 +136,6 @@
 	
 	__block BOOL called = NO;
 	[client requestAPI:@"doc" withPathVariables:@{@"uniqueId" : @123 } parameters:nil data:nil finished:^(id<WebApiResponse> response, NSError *error) {
-		assertThat(response.route.name, equalTo(@"doc"));
 		assertThat(response.responseObject, equalTo(@{@"success" : @YES}));
 		assertThat(error, nilValue());
 		called = YES;
@@ -155,7 +153,6 @@
 	
 	__block BOOL called = NO;
 	[client requestAPI:@"doc" withPathVariables:docRef parameters:nil data:nil finished:^(id<WebApiResponse> response, NSError *error) {
-		assertThat(response.route.name, equalTo(@"doc"));
 		assertThat(response.responseObject, equalTo(@{@"success" : @YES}));
 		assertThat(error, nilValue());
 		called = YES;
@@ -172,7 +169,6 @@
 	
 	__block BOOL called = NO;
 	[client requestAPI:@"test" withPathVariables:nil parameters:@{@"foo" : @"bar"} data:nil finished:^(id<WebApiResponse> response, NSError *error) {
-		assertThat(response.route.name, equalTo(@"test"));
 		assertThat(response.responseObject, equalTo(@{@"success" : @YES}));
 		assertThat(error, nilValue());
 		called = YES;
@@ -193,7 +189,6 @@
 	
 	__block BOOL called = NO;
 	[client requestAPI:@"test" withPathVariables:nil parameters:docRef data:nil finished:^(id<WebApiResponse> response, NSError *error) {
-		assertThat(response.route.name, equalTo(@"test"));
 		assertThat(response.responseObject, equalTo(@{@"success" : @YES}));
 		assertThat(error, nilValue());
 		called = YES;
@@ -215,7 +210,6 @@
 	
 	__block BOOL called = NO;
 	[client requestAPI:@"saveDoc" withPathVariables:docRef parameters:docRef data:nil finished:^(id<WebApiResponse> response, NSError *error) {
-		assertThat(response.route.name, equalTo(@"saveDoc"));
 		assertThat(response.responseObject, equalTo(@{@"success" : @YES}));
 		assertThat(error, nilValue());
 		called = YES;
@@ -237,7 +231,6 @@
 	FileWebApiResource *r = [[FileWebApiResource alloc] initWithURL:fileURL name:@"test_file" MIMEType:nil];
 	XCTestExpectation *requestExpectation = [self expectationWithDescription:@"HTTP request"];
 	[client requestAPI:@"file" withPathVariables:r parameters:nil data:r finished:^(id<WebApiResponse> response, NSError *error) {
-		assertThat(response.route.name, equalTo(@"file"));
 		assertThat(response.responseObject, equalTo(@{@"success" : @YES}));
 		assertThat(error, nilValue());
 		[requestExpectation fulfill];
