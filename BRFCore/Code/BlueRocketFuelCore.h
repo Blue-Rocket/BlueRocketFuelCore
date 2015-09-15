@@ -34,6 +34,7 @@ FOUNDATION_EXPORT const unsigned char BlueRocketFuelCoreVersionString[];
 #import <BlueRocketFuelCore/Logging.h>
 #import <BlueRocketFuelCore/UI.h>
 #import <BlueRocketFuelCore/WebApiClient-AFNetworking.h>
+#import <BlueRocketFuelCore/WebApiClient-Cache.h>
 #import <BlueRocketFuelCore/WebApiClient-Core.h>
 #import <BlueRocketFuelCore/WebApiClient-RestKit.h>
 #import <BlueRocketFuelCore/WebApiClient-Services.h>

@@ -27,7 +27,8 @@ Pod::Spec.new do |s|
     sp.dependency 'BlueRocketFuelCore/Logging'
     sp.dependency 'BlueRocketFuelCore/UI'
     sp.dependency 'BlueRocketFuelCore/WebApiClient'
-    sp.dependency 'BlueRocketFuelCore/WebApiClient-AFNetworking'
+	sp.dependency 'BlueRocketFuelCore/WebApiClient-AFNetworking'
+	sp.dependency 'BlueRocketFuelCore/WebApiClient-Cache'
     sp.dependency 'BlueRocketFuelCore/WebApiClient-RestKit'
     sp.dependency 'BlueRocketFuelCore/WebApiClient-Services'
     sp.dependency 'BlueRocketFuelCore/WebApiClient-UI'
@@ -63,6 +64,12 @@ Pod::Spec.new do |s|
     sp.source_files = 'BRFCore/Code/WebApiClient-AFNetworking.h', 'BRFCore/Code/WebApiClient-AFNetworking'
     sp.dependency 'BlueRocketFuelCore/WebApiClient'
     sp.dependency 'AFNetworking/NSURLSession', '~> 2.5'
+  end
+
+  s.subspec 'WebApiClient-Cache' do |sp|
+    sp.source_files = 'BRFCore/Code/WebApiClient-Cache.h', 'BRFCore/Code/WebApiClient-Cache'
+    sp.dependency 'BlueRocketFuelCore/WebApiClient'
+    sp.dependency 'PINCache', '~> 2.0'
   end
 
   s.subspec 'WebApiClient-RestKit' do |sp|

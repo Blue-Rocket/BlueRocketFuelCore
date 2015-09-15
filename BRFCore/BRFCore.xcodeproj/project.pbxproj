@@ -69,6 +69,9 @@
 		C9A8A0421B8A8642000B9169 /* upload-test.txt in Resources */ = {isa = PBXBuildFile; fileRef = C9A8A0411B8A8616000B9169 /* upload-test.txt */; };
 		C9A8A0451B8A9719000B9169 /* DataWebApiResource.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A8A0441B8A9719000B9169 /* DataWebApiResource.m */; };
 		C9A8A0471B8AC581000B9169 /* NSDictionary_WebApiClientTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A8A0461B8AC581000B9169 /* NSDictionary_WebApiClientTests.m */; };
+		C9C67FCF1BA79C6900933430 /* WebApiClientPINCache.m in Sources */ = {isa = PBXBuildFile; fileRef = C9C67FCD1BA79C6900933430 /* WebApiClientPINCache.m */; };
+		C9C67FD21BA79D9F00933430 /* WebApiClientCacheEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = C9C67FD11BA79D9F00933430 /* WebApiClientCacheEntry.m */; };
+		C9C67FD61BA7A29600933430 /* NSDictionary+CachingWebApiClient.m in Sources */ = {isa = PBXBuildFile; fileRef = C9C67FD51BA7A29600933430 /* NSDictionary+CachingWebApiClient.m */; };
 		EA2D55BAC1F29F01EBCF2969 /* libPods-BRFCore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 07D714E2304D4D5A716F0270 /* libPods-BRFCore.a */; };
 /* End PBXBuildFile section */
 
@@ -231,6 +234,14 @@
 		C9A8A0431B8A9719000B9169 /* DataWebApiResource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataWebApiResource.h; sourceTree = "<group>"; };
 		C9A8A0441B8A9719000B9169 /* DataWebApiResource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataWebApiResource.m; sourceTree = "<group>"; };
 		C9A8A0461B8AC581000B9169 /* NSDictionary_WebApiClientTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSDictionary_WebApiClientTests.m; sourceTree = "<group>"; };
+		C9C67FCC1BA79C6900933430 /* WebApiClientPINCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebApiClientPINCache.h; sourceTree = "<group>"; };
+		C9C67FCD1BA79C6900933430 /* WebApiClientPINCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebApiClientPINCache.m; sourceTree = "<group>"; };
+		C9C67FCE1BA79C6900933430 /* WebApiClient-Cache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "WebApiClient-Cache.h"; path = "Code/WebApiClient-Cache.h"; sourceTree = "<group>"; };
+		C9C67FD01BA79D9F00933430 /* WebApiClientCacheEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebApiClientCacheEntry.h; sourceTree = "<group>"; };
+		C9C67FD11BA79D9F00933430 /* WebApiClientCacheEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebApiClientCacheEntry.m; sourceTree = "<group>"; };
+		C9C67FD31BA7A20A00933430 /* CachingWebApiRoute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CachingWebApiRoute.h; sourceTree = "<group>"; };
+		C9C67FD41BA7A29600933430 /* NSDictionary+CachingWebApiClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+CachingWebApiClient.h"; sourceTree = "<group>"; };
+		C9C67FD51BA7A29600933430 /* NSDictionary+CachingWebApiClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+CachingWebApiClient.m"; sourceTree = "<group>"; };
 		CF8901992F8C7787AC0F1E10 /* Pods-BRFCore-BRFCoreTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BRFCore-BRFCoreTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-BRFCore-BRFCoreTests/Pods-BRFCore-BRFCoreTests.release.xcconfig"; sourceTree = "<group>"; };
 		D2337E9FBC5C179A64F55FAB /* Pods-BRFCore-BRFCoreTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BRFCore-BRFCoreTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BRFCore-BRFCoreTests/Pods-BRFCore-BRFCoreTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -317,6 +328,7 @@
 				C9A89F891B8A4DDB000B9169 /* UI */,
 				C9A89FAA1B8A4DDB000B9169 /* WebApiClient */,
 				C9A89FB71B8A4DDB000B9169 /* WebApiClient-AFNetworking */,
+				C9C67FCB1BA79C6900933430 /* WebApiClient-Cache */,
 				C9A89FBC1B8A4DDB000B9169 /* WebApiClient-RestKit */,
 				C9A89FC31B8A4DDB000B9169 /* WebApiClient-Services */,
 				C9A89FC71B8A4DDB000B9169 /* WebApiClient-UI */,
@@ -560,6 +572,7 @@
 				C9A89F881B8A4DDB000B9169 /* Logging.h */,
 				C9A89FA91B8A4DDB000B9169 /* UI.h */,
 				C9A89FBB1B8A4DDB000B9169 /* WebApiClient-Core.h */,
+				C9C67FCE1BA79C6900933430 /* WebApiClient-Cache.h */,
 				C9A89FBA1B8A4DDB000B9169 /* WebApiClient-AFNetworking.h */,
 				C9A89FC21B8A4DDB000B9169 /* WebApiClient-RestKit.h */,
 				C9A89FC61B8A4DDB000B9169 /* WebApiClient-Services.h */,
@@ -567,6 +580,20 @@
 				C9A89FE41B8A4DDB000B9169 /* WebRequest.h */,
 			);
 			name = Packaging;
+			sourceTree = "<group>";
+		};
+		C9C67FCB1BA79C6900933430 /* WebApiClient-Cache */ = {
+			isa = PBXGroup;
+			children = (
+				C9C67FD31BA7A20A00933430 /* CachingWebApiRoute.h */,
+				C9C67FD41BA7A29600933430 /* NSDictionary+CachingWebApiClient.h */,
+				C9C67FD51BA7A29600933430 /* NSDictionary+CachingWebApiClient.m */,
+				C9C67FCC1BA79C6900933430 /* WebApiClientPINCache.h */,
+				C9C67FCD1BA79C6900933430 /* WebApiClientPINCache.m */,
+				C9C67FD01BA79D9F00933430 /* WebApiClientCacheEntry.h */,
+				C9C67FD11BA79D9F00933430 /* WebApiClientCacheEntry.m */,
+			);
+			path = "WebApiClient-Cache";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -729,6 +756,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C9A89FF91B8A4DDB000B9169 /* UIImage+BR.m in Sources */,
+				C9C67FD21BA79D9F00933430 /* WebApiClientCacheEntry.m in Sources */,
 				C9A89FE61B8A4DDB000B9169 /* BRAppUser.m in Sources */,
 				C9A89FF51B8A4DDB000B9169 /* ReplaceNoAnimationSegue.m in Sources */,
 				C9A8A0031B8A4DDB000B9169 /* WebApiClientSupport.m in Sources */,
@@ -747,8 +775,10 @@
 				C9A89FEC1B8A4DDB000B9169 /* NSBundle+BR.m in Sources */,
 				C9A89FF21B8A4DDB000B9169 /* BROptionsTray.m in Sources */,
 				C9A89FFB1B8A4DDB000B9169 /* UILabel+BR.m in Sources */,
+				C9C67FCF1BA79C6900933430 /* WebApiClientPINCache.m in Sources */,
 				C9A8A0091B8A4DDB000B9169 /* WebApiClientActivitySupport.m in Sources */,
 				C9A8A0001B8A4DDB000B9169 /* NSDictionary+WebApiClient.m in Sources */,
+				C9C67FD61BA7A29600933430 /* NSDictionary+CachingWebApiClient.m in Sources */,
 				C9A8A00C1B8A4DDB000B9169 /* BRLoginWebServiceRequest.m in Sources */,
 				C9A8A0101B8A4DDB000B9169 /* BRReachability.m in Sources */,
 				C9A8A0041B8A4DDB000B9169 /* WebApiRotue.m in Sources */,

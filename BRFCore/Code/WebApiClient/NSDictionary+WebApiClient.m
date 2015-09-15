@@ -70,6 +70,10 @@ static CFStringRef CreateURLEncodedQueryParameterString(CFStringRef string) {
 
 #pragma mark - WebApiResponse
 
+- (id<WebApiRoute>)route {
+	return self[NSStringFromSelector(@selector(route))];
+}
+
 - (NSInteger)statusCode {
 	NSNumber *val = self[NSStringFromSelector(@selector(statusCode))];
 	return [val integerValue];
@@ -173,6 +177,10 @@ static CFStringRef CreateURLEncodedQueryParameterString(CFStringRef string) {
 }
 
 #pragma mark - WebApiResponse
+
+- (void)setRoute:(id<WebApiRoute>)route {
+	[self setOrRemoveObject:route forKey:NSStringFromSelector(@selector(route))];
+}
 
 - (void)setStatusCode:(NSInteger)statusCode {
 	[self setOrRemoveObject:@(statusCode) forKey:NSStringFromSelector(@selector(statusCode))];
