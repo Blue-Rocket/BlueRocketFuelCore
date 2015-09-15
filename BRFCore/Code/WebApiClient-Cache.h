@@ -8,5 +8,5 @@
 
 #import <BlueRocketFuelCore/CachingWebApiRoute.h>
 #import <BlueRocketFuelCore/NSDictionary+CachingWebApiClient.h>
+#import <BlueRocketFuelCore/PINCacheWebApiClient.h>
 #import <BlueRocketFuelCore/WebApiClientCacheEntry.h>
-#import <BlueRocketFuelCore/WebApiClientPINCache.h>
