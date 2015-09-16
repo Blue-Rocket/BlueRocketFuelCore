@@ -28,11 +28,6 @@
 	userService.client = mockClient;
 }
 
-- (void)tearDown {
-	
-	[super tearDown];
-}
-
 - (void)testRegisterUser {
 	BRAppUser *newUser = [BRAppUser new];
 	newUser.email = @"email";
