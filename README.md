@@ -35,6 +35,10 @@ The **UI** module provides UI components and support for the following areas:
 
 The **WebApiClient-RestKit** module provides provides mapping support for the core domain objects. The [BRRestKitDataMapping](https://github.com/Blue-Rocket/BlueRocketFuelCore/blob/msm/BRFCore/Code/WebApiClient-RestKit/BRRestKitDataMapping.m) class is a good starting point for applications to extend: it registers object mappers for the [BRAppUser](https://github.com/Blue-Rocket/BlueRocketFuelCore/blob/msm/Code/BRFCore/Core/BRAppUser.h) domain object for the standardized `login` and `register` route names.
 
+# Module: WebApiClient-Services
+
+The **WebApiClient-Services** module provides a **WebApiClient** implementation of the `BRUserService` API, to handle login and registration tasks.
+
 # Module: WebRequest
 
 The **WebRequest** module provides a HTTP client framework based on `NSURLConnection` that can be configured via the `Core` module configuration framework along with some simple conventions.
