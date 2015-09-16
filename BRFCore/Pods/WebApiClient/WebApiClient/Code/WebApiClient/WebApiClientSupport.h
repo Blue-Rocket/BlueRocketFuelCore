@@ -8,6 +8,7 @@
 
 #import "SupportingWebApiClient.h"
 
+@protocol WebApiAuthorizationProvider;
 @protocol WebApiDataMapper;
 @class BREnvironment;
 
@@ -20,6 +21,9 @@ extern NSString * const WebApiClientSupportAppApiKeyDefaultHTTPHeaderName;
 extern NSString * const WebApiClientSupportAppIdDefaultHTTPHeaderName;
 
 @interface WebApiClientSupport : NSObject <SupportingWebApiClient>
+
+/** A provider of authorization details. */
+@property (nonatomic, weak, nullable) id<WebApiAuthorizationProvider> authorizationProvider;
 
 /** An API key to add as a header value to each request. */
 @property (nonatomic, strong, nullable) NSString *appApiKey;
@@ -97,8 +101,7 @@ extern NSString * const WebApiClientSupportAppIdDefaultHTTPHeaderName;
  Add authorization headers to a request for a given route.
  
  This method will populate the @c appApiKeyHTTPHeaderName and @c appIdHTTPHeaderName, if the @c appApiKey and @c appId properties are non-nil.
- If a @c userService is configured and that returns an authenticated active user, an @c Authorization header will be added using a @c token
- scheme with a the user's @c authenticationToken value.
+ If an @c authorizationProvider is configured @c configureAuthorizationForRoute:request: will be invoked.
  
  @param request The request to add headers to.
  @param route The route.

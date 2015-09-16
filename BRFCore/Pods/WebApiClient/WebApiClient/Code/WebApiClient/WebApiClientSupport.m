@@ -14,6 +14,7 @@
 #import <MAObjCRuntime/MARTNSObject.h>
 #import <MAObjCRuntime/RTProperty.h>
 #import <SOCKit/SOCKit.h>
+#import "WebApiAuthorizationProvider.h"
 #import "WebApiClientEnvironment.h"
 #import "WebApiDataMapper.h"
 
@@ -215,6 +216,9 @@ static NSString * const kRoutePropertyDataMapperInstance = @"_dataMapper";
 	}
 	if ( self.appId ) {
 		[request setValue:self.appId forHTTPHeaderField:self.appIdHTTPHeaderName];
+	}
+	if ( self.authorizationProvider ) {
+		[self.authorizationProvider configureAuthorizationForRoute:route request:request];
 	}
 }
 

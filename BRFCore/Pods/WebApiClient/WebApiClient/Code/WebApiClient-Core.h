@@ -8,6 +8,7 @@
 
 #import <WebApiClient/FileWebApiResource.h>
 #import <WebApiClient/NSDictionary+WebApiClient.h>
+#import <WebApiClient/WebApiAuthorizationProvider.h>
 #import <WebApiClient/WebApiClient.h>
 #import <WebApiClient/WebApiClientEnvironment.h>
 #import <WebApiClient/WebApiClientSupport.h>
