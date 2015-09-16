@@ -7,4 +7,3 @@
 //
 
 #import <BlueRocketFuelCore/BRRestKitDataMapping.h>
-#import <BlueRocketFuelCore/RestKitWebApiDataMapper.h>

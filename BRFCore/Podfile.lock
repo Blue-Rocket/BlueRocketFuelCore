@@ -1,15 +1,4 @@
 PODS:
-  - AFNetworking (2.6.0):
-    - AFNetworking/NSURLConnection (= 2.6.0)
-    - AFNetworking/NSURLSession (= 2.6.0)
-    - AFNetworking/Reachability (= 2.6.0)
-    - AFNetworking/Security (= 2.6.0)
-    - AFNetworking/Serialization (= 2.6.0)
-    - AFNetworking/UIKit (= 2.6.0)
-  - AFNetworking/NSURLConnection (2.6.0):
-    - AFNetworking/Reachability
-    - AFNetworking/Security
-    - AFNetworking/Serialization
   - AFNetworking/NSURLSession (2.6.0):
     - AFNetworking/Reachability
     - AFNetworking/Security
@@ -17,9 +6,6 @@ PODS:
   - AFNetworking/Reachability (2.6.0)
   - AFNetworking/Security (2.6.0)
   - AFNetworking/Serialization (2.6.0)
-  - AFNetworking/UIKit (2.6.0):
-    - AFNetworking/NSURLConnection
-    - AFNetworking/NSURLSession
   - BRCocoaLumberjack (2.0.1):
     - CocoaLumberjack (~> 2.0)
   - BREnvironment (1.2.0)
@@ -46,9 +32,8 @@ PODS:
   - ISO8601DateFormatterValueTransformer (0.6.1):
     - RKValueTransformers (~> 1.1.0)
   - MAObjCRuntime (0.0.1)
-  - Masonry (0.6.2)
-  - OCHamcrest (4.1.1)
-  - OCMock (3.1.2)
+  - OCHamcrest (4.2.0)
+  - OCMock (3.1.5)
   - PINCache (2.0)
   - RestKit/ObjectMapping (0.25.0):
     - ISO8601DateFormatterValueTransformer (~> 0.6.1)
@@ -64,22 +49,39 @@ PODS:
   - TransformerKit/String (0.5.4):
     - TransformerKit/Core
   - TransitionKit (2.1.1)
+  - WebApiClient (0.9.0):
+    - WebApiClient/All (= 0.9.0)
+  - WebApiClient/AFNetworking (0.9.0):
+    - AFNetworking/NSURLSession (~> 2.5)
+    - WebApiClient/Core
+  - WebApiClient/All (0.9.0):
+    - WebApiClient/AFNetworking
+    - WebApiClient/Cache
+    - WebApiClient/Core
+    - WebApiClient/RestKit
+  - WebApiClient/Cache (0.9.0):
+    - PINCache (~> 2.0)
+    - WebApiClient/Core
+  - WebApiClient/Core (0.9.0):
+    - BRCocoaLumberjack (~> 2.0)
+    - BREnvironment (~> 1.1)
+    - BRLocalize/Core
+    - MAObjCRuntime (~> 0.0.1)
+    - SOCKit (~> 1.1)
+  - WebApiClient/RestKit (0.9.0):
+    - RestKit/ObjectMapping (~> 0.24)
+    - TransformerKit/String (~> 0.5)
+    - WebApiClient/Core
 
 DEPENDENCIES:
-  - AFNetworking (~> 2.5)
   - BRCocoaLumberjack (~> 2.0)
   - BREnvironment (~> 1.2)
   - BRLocalize (~> 0.9)
   - CocoaHTTPServer (~> 2.3)
-  - MAObjCRuntime (~> 0.0.1)
-  - Masonry (~> 0.6)
   - OCHamcrest (~> 4.1)
   - OCMock (~> 3.1)
-  - PINCache (~> 2.0)
-  - RestKit/ObjectMapping (~> 0.24)
   - RoutingHTTPServer (~> 1.0)
-  - SOCKit (~> 1.1)
-  - TransformerKit/String (~> 0.5)
+  - WebApiClient (~> 0.9)
 
 SPEC CHECKSUMS:
   AFNetworking: 79f7eb1a0fcfa7beb409332b2ca49afe9ce53b05
@@ -91,9 +93,8 @@ SPEC CHECKSUMS:
   CocoaLumberjack: 019d1361244274a6138c788c6cb80baabc13fb8f
   ISO8601DateFormatterValueTransformer: 52da467d6ec899d6aedda8e48280ac92e8ee97e6
   MAObjCRuntime: a6a1d95acbfa3784d66cb35bd42904e47943b488
-  Masonry: 362e8a1cc0beada4a4c4832d5e863da2a51533be
-  OCHamcrest: 6f03ffa81d12feab872638490a44ab0a6d3aca10
-  OCMock: a10ea9f0a6e921651f96f78b6faee95ebc813b92
+  OCHamcrest: c14c0b3f4c4e99363e5b87d97bae38c4438b6d5d
+  OCMock: 4c2925291f80407c3738dd1db14d21d0cc278864
   PINCache: ca953ba93ce1edde056fdd99121ee65b295a08c9
   RestKit: a4fcaf3d4bb2c204679856a46d596160bf208095
   RKValueTransformers: 66ac5e4f077fdbe3496e792d89eeff4c3eb67701
@@ -101,5 +102,6 @@ SPEC CHECKSUMS:
   SOCKit: c7376ac262bea9115b8f749358f762522a47d392
   TransformerKit: 0a235de1030a23d47c86706c0316b4a0c7105d73
   TransitionKit: 3a14b6acc7cf2d1dd3e454e24dbad1cfab9a1ef1
+  WebApiClient: a65b433aa963f251126fcd1a151d698ac174ab3f
 
 COCOAPODS: 0.38.2

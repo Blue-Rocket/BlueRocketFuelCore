@@ -4,16 +4,10 @@ platform :ios, '8.1'
 inhibit_all_warnings!
 
 target :BRFCore do
-	pod 'AFNetworking',				'~> 2.5'
 	pod 'BRCocoaLumberjack',		'~> 2.0'
 	pod 'BREnvironment',			'~> 1.2'
 	pod 'BRLocalize',				'~> 0.9'
-	pod 'MAObjCRuntime', 			'~> 0.0.1'
-	pod 'Masonry',					'~> 0.6'
-	pod 'PINCache',					'~> 2.0'
-	pod 'RestKit/ObjectMapping',	'~> 0.24'
-	pod 'SOCKit',             		'~> 1.1'
-	pod 'TransformerKit/String',    '~> 0.5'
+	pod 'WebApiClient',				'~> 0.9'
 	
 	target :BRFCoreTests do
 		pod 'OCHamcrest',			'~> 4.1'

@@ -31,16 +31,8 @@
 		C9A89FFB1B8A4DDB000B9169 /* UILabel+BR.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A89FA01B8A4DDB000B9169 /* UILabel+BR.m */; };
 		C9A89FFE1B8A4DDB000B9169 /* UITextField+BR.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A89FA61B8A4DDB000B9169 /* UITextField+BR.m */; };
 		C9A89FFF1B8A4DDB000B9169 /* UIView+BR.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A89FA81B8A4DDB000B9169 /* UIView+BR.m */; };
-		C9A8A0001B8A4DDB000B9169 /* NSDictionary+WebApiClient.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A89FAC1B8A4DDB000B9169 /* NSDictionary+WebApiClient.m */; };
-		C9A8A0011B8A4DDB000B9169 /* WebApiClient.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A89FAE1B8A4DDB000B9169 /* WebApiClient.m */; };
-		C9A8A0021B8A4DDB000B9169 /* WebApiClientEnvironment.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A89FB01B8A4DDB000B9169 /* WebApiClientEnvironment.m */; };
-		C9A8A0031B8A4DDB000B9169 /* WebApiClientSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A89FB21B8A4DDB000B9169 /* WebApiClientSupport.m */; };
-		C9A8A0041B8A4DDB000B9169 /* WebApiRotue.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A89FB51B8A4DDB000B9169 /* WebApiRotue.m */; };
-		C9A8A0051B8A4DDB000B9169 /* AFNetworkingWebApiClient.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A89FB91B8A4DDB000B9169 /* AFNetworkingWebApiClient.m */; };
 		C9A8A0061B8A4DDB000B9169 /* BRRestKitDataMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A89FBE1B8A4DDB000B9169 /* BRRestKitDataMapping.m */; };
-		C9A8A0071B8A4DDB000B9169 /* RestKitWebApiDataMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A89FC01B8A4DDB000B9169 /* RestKitWebApiDataMapper.m */; };
 		C9A8A0081B8A4DDB000B9169 /* WebApiClientUserService.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A89FC51B8A4DDB000B9169 /* WebApiClientUserService.m */; };
-		C9A8A0091B8A4DDB000B9169 /* WebApiClientActivitySupport.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A89FC91B8A4DDB000B9169 /* WebApiClientActivitySupport.m */; };
 		C9A8A00A1B8A4DDB000B9169 /* BRAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A89FCD1B8A4DDB000B9169 /* BRAppDelegate.m */; };
 		C9A8A00B1B8A4DDB000B9169 /* BRAuthenticatedWebServiceRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A89FCF1B8A4DDB000B9169 /* BRAuthenticatedWebServiceRequest.m */; };
 		C9A8A00C1B8A4DDB000B9169 /* BRLoginWebServiceRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A89FD11B8A4DDB000B9169 /* BRLoginWebServiceRequest.m */; };
@@ -60,19 +52,8 @@
 		C9A8A02F1B8A4E3D000B9169 /* NSDate_BRTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A8A01E1B8A4E3D000B9169 /* NSDate_BRTests.m */; };
 		C9A8A0311B8A4E3D000B9169 /* Environment.plist in Resources */ = {isa = PBXBuildFile; fileRef = C9A8A0201B8A4E3D000B9169 /* Environment.plist */; };
 		C9A8A0331B8A4E3D000B9169 /* strings.json in Resources */ = {isa = PBXBuildFile; fileRef = C9A8A0221B8A4E3D000B9169 /* strings.json */; };
-		C9A8A0341B8A4E3D000B9169 /* AFNetworkingWebApiClientTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A8A0241B8A4E3D000B9169 /* AFNetworkingWebApiClientTests.m */; };
-		C9A8A0351B8A4E3D000B9169 /* WebApiClientSupportTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A8A0261B8A4E3D000B9169 /* WebApiClientSupportTests.m */; };
-		C9A8A0361B8A4E3D000B9169 /* RestKitWebApiDataMapperTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A8A0281B8A4E3D000B9169 /* RestKitWebApiDataMapperTests.m */; };
 		C9A8A0371B8A4E3D000B9169 /* WebApiClientUserServiceTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A8A02A1B8A4E3D000B9169 /* WebApiClientUserServiceTests.m */; };
 		C9A8A03A1B8A5112000B9169 /* BRJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A8A0391B8A5112000B9169 /* BRJSON.m */; };
-		C9A8A0401B8A7558000B9169 /* FileWebApiResource.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A8A03F1B8A7558000B9169 /* FileWebApiResource.m */; };
-		C9A8A0421B8A8642000B9169 /* upload-test.txt in Resources */ = {isa = PBXBuildFile; fileRef = C9A8A0411B8A8616000B9169 /* upload-test.txt */; };
-		C9A8A0451B8A9719000B9169 /* DataWebApiResource.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A8A0441B8A9719000B9169 /* DataWebApiResource.m */; };
-		C9A8A0471B8AC581000B9169 /* NSDictionary_WebApiClientTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A8A0461B8AC581000B9169 /* NSDictionary_WebApiClientTests.m */; };
-		C9C67FCF1BA79C6900933430 /* PINCacheWebApiClient.m in Sources */ = {isa = PBXBuildFile; fileRef = C9C67FCD1BA79C6900933430 /* PINCacheWebApiClient.m */; };
-		C9C67FD21BA79D9F00933430 /* WebApiClientCacheEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = C9C67FD11BA79D9F00933430 /* WebApiClientCacheEntry.m */; };
-		C9C67FD61BA7A29600933430 /* NSDictionary+CachingWebApiClient.m in Sources */ = {isa = PBXBuildFile; fileRef = C9C67FD51BA7A29600933430 /* NSDictionary+CachingWebApiClient.m */; };
-		C9C67FDA1BA7D7C600933430 /* PINCacheWebApiClientTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C9C67FD91BA7D7C600933430 /* PINCacheWebApiClientTests.m */; };
 		EA2D55BAC1F29F01EBCF2969 /* libPods-BRFCore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 07D714E2304D4D5A716F0270 /* libPods-BRFCore.a */; };
 /* End PBXBuildFile section */
 
@@ -158,34 +139,11 @@
 		C9A89FA71B8A4DDB000B9169 /* UIView+BR.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+BR.h"; sourceTree = "<group>"; };
 		C9A89FA81B8A4DDB000B9169 /* UIView+BR.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+BR.m"; sourceTree = "<group>"; };
 		C9A89FA91B8A4DDB000B9169 /* UI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UI.h; path = Code/UI.h; sourceTree = "<group>"; };
-		C9A89FAB1B8A4DDB000B9169 /* NSDictionary+WebApiClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+WebApiClient.h"; sourceTree = "<group>"; };
-		C9A89FAC1B8A4DDB000B9169 /* NSDictionary+WebApiClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+WebApiClient.m"; sourceTree = "<group>"; };
-		C9A89FAD1B8A4DDB000B9169 /* WebApiClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebApiClient.h; sourceTree = "<group>"; };
-		C9A89FAE1B8A4DDB000B9169 /* WebApiClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebApiClient.m; sourceTree = "<group>"; };
-		C9A89FAF1B8A4DDB000B9169 /* WebApiClientEnvironment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebApiClientEnvironment.h; sourceTree = "<group>"; };
-		C9A89FB01B8A4DDB000B9169 /* WebApiClientEnvironment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebApiClientEnvironment.m; sourceTree = "<group>"; };
-		C9A89FB11B8A4DDB000B9169 /* WebApiClientSupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebApiClientSupport.h; sourceTree = "<group>"; };
-		C9A89FB21B8A4DDB000B9169 /* WebApiClientSupport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebApiClientSupport.m; sourceTree = "<group>"; };
-		C9A89FB31B8A4DDB000B9169 /* WebApiDataMapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebApiDataMapper.h; sourceTree = "<group>"; };
-		C9A89FB41B8A4DDB000B9169 /* WebApiResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebApiResponse.h; sourceTree = "<group>"; };
-		C9A89FB51B8A4DDB000B9169 /* WebApiRotue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebApiRotue.m; sourceTree = "<group>"; };
-		C9A89FB61B8A4DDB000B9169 /* WebApiRoute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebApiRoute.h; sourceTree = "<group>"; };
-		C9A89FB81B8A4DDB000B9169 /* AFNetworkingWebApiClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFNetworkingWebApiClient.h; sourceTree = "<group>"; };
-		C9A89FB91B8A4DDB000B9169 /* AFNetworkingWebApiClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFNetworkingWebApiClient.m; sourceTree = "<group>"; };
-		C9A89FBA1B8A4DDB000B9169 /* WebApiClient-AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "WebApiClient-AFNetworking.h"; path = "Code/WebApiClient-AFNetworking.h"; sourceTree = "<group>"; };
-		C9A89FBB1B8A4DDB000B9169 /* WebApiClient-Core.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "WebApiClient-Core.h"; path = "Code/WebApiClient-Core.h"; sourceTree = "<group>"; };
 		C9A89FBD1B8A4DDB000B9169 /* BRRestKitDataMapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRRestKitDataMapping.h; sourceTree = "<group>"; };
 		C9A89FBE1B8A4DDB000B9169 /* BRRestKitDataMapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRRestKitDataMapping.m; sourceTree = "<group>"; };
-		C9A89FBF1B8A4DDB000B9169 /* RestKitWebApiDataMapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RestKitWebApiDataMapper.h; sourceTree = "<group>"; };
-		C9A89FC01B8A4DDB000B9169 /* RestKitWebApiDataMapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RestKitWebApiDataMapper.m; sourceTree = "<group>"; };
-		C9A89FC11B8A4DDB000B9169 /* RestKitWebApiMapperProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RestKitWebApiMapperProvider.h; sourceTree = "<group>"; };
-		C9A89FC21B8A4DDB000B9169 /* WebApiClient-RestKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "WebApiClient-RestKit.h"; path = "Code/WebApiClient-RestKit.h"; sourceTree = "<group>"; };
 		C9A89FC41B8A4DDB000B9169 /* WebApiClientUserService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebApiClientUserService.h; sourceTree = "<group>"; };
 		C9A89FC51B8A4DDB000B9169 /* WebApiClientUserService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebApiClientUserService.m; sourceTree = "<group>"; };
 		C9A89FC61B8A4DDB000B9169 /* WebApiClient-Services.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "WebApiClient-Services.h"; path = "Code/WebApiClient-Services.h"; sourceTree = "<group>"; };
-		C9A89FC81B8A4DDB000B9169 /* WebApiClientActivitySupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebApiClientActivitySupport.h; sourceTree = "<group>"; };
-		C9A89FC91B8A4DDB000B9169 /* WebApiClientActivitySupport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebApiClientActivitySupport.m; sourceTree = "<group>"; };
-		C9A89FCA1B8A4DDB000B9169 /* WebApiClient-UI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "WebApiClient-UI.h"; path = "Code/WebApiClient-UI.h"; sourceTree = "<group>"; };
 		C9A89FCC1B8A4DDB000B9169 /* BRAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRAppDelegate.h; sourceTree = "<group>"; };
 		C9A89FCD1B8A4DDB000B9169 /* BRAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRAppDelegate.m; sourceTree = "<group>"; };
 		C9A89FCE1B8A4DDB000B9169 /* BRAuthenticatedWebServiceRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRAuthenticatedWebServiceRequest.h; sourceTree = "<group>"; };
@@ -221,30 +179,11 @@
 		C9A8A0201B8A4E3D000B9169 /* Environment.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Environment.plist; path = ../Tests/Environment.plist; sourceTree = "<group>"; };
 		C9A8A0211B8A4E3D000B9169 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = ../Tests/Info.plist; sourceTree = "<group>"; };
 		C9A8A0221B8A4E3D000B9169 /* strings.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = strings.json; path = ../Tests/strings.json; sourceTree = "<group>"; };
-		C9A8A0241B8A4E3D000B9169 /* AFNetworkingWebApiClientTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFNetworkingWebApiClientTests.m; sourceTree = "<group>"; };
-		C9A8A0261B8A4E3D000B9169 /* WebApiClientSupportTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebApiClientSupportTests.m; sourceTree = "<group>"; };
-		C9A8A0281B8A4E3D000B9169 /* RestKitWebApiDataMapperTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RestKitWebApiDataMapperTests.m; sourceTree = "<group>"; };
 		C9A8A02A1B8A4E3D000B9169 /* WebApiClientUserServiceTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebApiClientUserServiceTests.m; sourceTree = "<group>"; };
 		C9A8A0381B8A5112000B9169 /* BRJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRJSON.h; sourceTree = "<group>"; };
 		C9A8A0391B8A5112000B9169 /* BRJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRJSON.m; sourceTree = "<group>"; };
 		C9A8A03C1B8A5207000B9169 /* BlueRocketFuelCore.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; name = BlueRocketFuelCore.podspec; path = ../BlueRocketFuelCore.podspec; sourceTree = "<group>"; };
-		C9A8A03D1B8A716E000B9169 /* WebApiResource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebApiResource.h; sourceTree = "<group>"; };
-		C9A8A03E1B8A7558000B9169 /* FileWebApiResource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileWebApiResource.h; sourceTree = "<group>"; };
-		C9A8A03F1B8A7558000B9169 /* FileWebApiResource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileWebApiResource.m; sourceTree = "<group>"; };
-		C9A8A0411B8A8616000B9169 /* upload-test.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "upload-test.txt"; sourceTree = "<group>"; };
-		C9A8A0431B8A9719000B9169 /* DataWebApiResource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataWebApiResource.h; sourceTree = "<group>"; };
-		C9A8A0441B8A9719000B9169 /* DataWebApiResource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataWebApiResource.m; sourceTree = "<group>"; };
-		C9A8A0461B8AC581000B9169 /* NSDictionary_WebApiClientTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSDictionary_WebApiClientTests.m; sourceTree = "<group>"; };
-		C9C67FCC1BA79C6900933430 /* PINCacheWebApiClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PINCacheWebApiClient.h; sourceTree = "<group>"; };
-		C9C67FCD1BA79C6900933430 /* PINCacheWebApiClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PINCacheWebApiClient.m; sourceTree = "<group>"; };
-		C9C67FCE1BA79C6900933430 /* WebApiClient-Cache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "WebApiClient-Cache.h"; path = "Code/WebApiClient-Cache.h"; sourceTree = "<group>"; };
-		C9C67FD01BA79D9F00933430 /* WebApiClientCacheEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebApiClientCacheEntry.h; sourceTree = "<group>"; };
-		C9C67FD11BA79D9F00933430 /* WebApiClientCacheEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebApiClientCacheEntry.m; sourceTree = "<group>"; };
-		C9C67FD31BA7A20A00933430 /* CachingWebApiRoute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CachingWebApiRoute.h; sourceTree = "<group>"; };
-		C9C67FD41BA7A29600933430 /* NSDictionary+CachingWebApiClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+CachingWebApiClient.h"; sourceTree = "<group>"; };
-		C9C67FD51BA7A29600933430 /* NSDictionary+CachingWebApiClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+CachingWebApiClient.m"; sourceTree = "<group>"; };
-		C9C67FD71BA7CBD400933430 /* SupportingWebApiClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SupportingWebApiClient.h; sourceTree = "<group>"; };
-		C9C67FD91BA7D7C600933430 /* PINCacheWebApiClientTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PINCacheWebApiClientTests.m; sourceTree = "<group>"; };
+		C9ED94751BA8FBBD00DE842F /* WebApiClient-RestKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "WebApiClient-RestKit.h"; path = "Code/WebApiClient-RestKit.h"; sourceTree = "<group>"; };
 		CF8901992F8C7787AC0F1E10 /* Pods-BRFCore-BRFCoreTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BRFCore-BRFCoreTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-BRFCore-BRFCoreTests/Pods-BRFCore-BRFCoreTests.release.xcconfig"; sourceTree = "<group>"; };
 		D2337E9FBC5C179A64F55FAB /* Pods-BRFCore-BRFCoreTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BRFCore-BRFCoreTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BRFCore-BRFCoreTests/Pods-BRFCore-BRFCoreTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -329,12 +268,8 @@
 				C9A89F691B8A4DDB000B9169 /* Core */,
 				C9A89F851B8A4DDB000B9169 /* Logging */,
 				C9A89F891B8A4DDB000B9169 /* UI */,
-				C9A89FAA1B8A4DDB000B9169 /* WebApiClient */,
-				C9A89FB71B8A4DDB000B9169 /* WebApiClient-AFNetworking */,
-				C9C67FCB1BA79C6900933430 /* WebApiClient-Cache */,
 				C9A89FBC1B8A4DDB000B9169 /* WebApiClient-RestKit */,
 				C9A89FC31B8A4DDB000B9169 /* WebApiClient-Services */,
-				C9A89FC71B8A4DDB000B9169 /* WebApiClient-UI */,
 				C9A89FCB1B8A4DDB000B9169 /* WebRequest */,
 			);
 			path = Code;
@@ -411,48 +346,11 @@
 			path = UI;
 			sourceTree = "<group>";
 		};
-		C9A89FAA1B8A4DDB000B9169 /* WebApiClient */ = {
-			isa = PBXGroup;
-			children = (
-				C9A8A0431B8A9719000B9169 /* DataWebApiResource.h */,
-				C9A8A0441B8A9719000B9169 /* DataWebApiResource.m */,
-				C9A8A03E1B8A7558000B9169 /* FileWebApiResource.h */,
-				C9A8A03F1B8A7558000B9169 /* FileWebApiResource.m */,
-				C9A89FAB1B8A4DDB000B9169 /* NSDictionary+WebApiClient.h */,
-				C9A89FAC1B8A4DDB000B9169 /* NSDictionary+WebApiClient.m */,
-				C9C67FD71BA7CBD400933430 /* SupportingWebApiClient.h */,
-				C9A89FAD1B8A4DDB000B9169 /* WebApiClient.h */,
-				C9A89FAE1B8A4DDB000B9169 /* WebApiClient.m */,
-				C9A89FAF1B8A4DDB000B9169 /* WebApiClientEnvironment.h */,
-				C9A89FB01B8A4DDB000B9169 /* WebApiClientEnvironment.m */,
-				C9A89FB11B8A4DDB000B9169 /* WebApiClientSupport.h */,
-				C9A89FB21B8A4DDB000B9169 /* WebApiClientSupport.m */,
-				C9A89FB31B8A4DDB000B9169 /* WebApiDataMapper.h */,
-				C9A8A03D1B8A716E000B9169 /* WebApiResource.h */,
-				C9A89FB41B8A4DDB000B9169 /* WebApiResponse.h */,
-				C9A89FB61B8A4DDB000B9169 /* WebApiRoute.h */,
-				C9A89FB51B8A4DDB000B9169 /* WebApiRotue.m */,
-			);
-			path = WebApiClient;
-			sourceTree = "<group>";
-		};
-		C9A89FB71B8A4DDB000B9169 /* WebApiClient-AFNetworking */ = {
-			isa = PBXGroup;
-			children = (
-				C9A89FB81B8A4DDB000B9169 /* AFNetworkingWebApiClient.h */,
-				C9A89FB91B8A4DDB000B9169 /* AFNetworkingWebApiClient.m */,
-			);
-			path = "WebApiClient-AFNetworking";
-			sourceTree = "<group>";
-		};
 		C9A89FBC1B8A4DDB000B9169 /* WebApiClient-RestKit */ = {
 			isa = PBXGroup;
 			children = (
 				C9A89FBD1B8A4DDB000B9169 /* BRRestKitDataMapping.h */,
 				C9A89FBE1B8A4DDB000B9169 /* BRRestKitDataMapping.m */,
-				C9A89FBF1B8A4DDB000B9169 /* RestKitWebApiDataMapper.h */,
-				C9A89FC01B8A4DDB000B9169 /* RestKitWebApiDataMapper.m */,
-				C9A89FC11B8A4DDB000B9169 /* RestKitWebApiMapperProvider.h */,
 			);
 			path = "WebApiClient-RestKit";
 			sourceTree = "<group>";
@@ -464,15 +362,6 @@
 				C9A89FC51B8A4DDB000B9169 /* WebApiClientUserService.m */,
 			);
 			path = "WebApiClient-Services";
-			sourceTree = "<group>";
-		};
-		C9A89FC71B8A4DDB000B9169 /* WebApiClient-UI */ = {
-			isa = PBXGroup;
-			children = (
-				C9A89FC81B8A4DDB000B9169 /* WebApiClientActivitySupport.h */,
-				C9A89FC91B8A4DDB000B9169 /* WebApiClientActivitySupport.m */,
-			);
-			path = "WebApiClient-UI";
 			sourceTree = "<group>";
 		};
 		C9A89FCB1B8A4DDB000B9169 /* WebRequest */ = {
@@ -515,10 +404,6 @@
 				C9A8A01A1B8A4E3D000B9169 /* BaseTestingSupport.m */,
 				C9A8A01B1B8A4E3D000B9169 /* config.json */,
 				C9A8A01C1B8A4E3D000B9169 /* Core */,
-				C9A8A0251B8A4E3D000B9169 /* WebApiClient-Core */,
-				C9A8A0231B8A4E3D000B9169 /* WebApiClient-AFNetworking */,
-				C9C67FD81BA7D7C600933430 /* WebApiClient-Cache */,
-				C9A8A0271B8A4E3D000B9169 /* WebApiClient-RestKit */,
 				C9A8A0291B8A4E3D000B9169 /* WebApiClient-Services */,
 			);
 			path = Tests;
@@ -531,32 +416,6 @@
 				C9A8A01E1B8A4E3D000B9169 /* NSDate_BRTests.m */,
 			);
 			path = Core;
-			sourceTree = "<group>";
-		};
-		C9A8A0231B8A4E3D000B9169 /* WebApiClient-AFNetworking */ = {
-			isa = PBXGroup;
-			children = (
-				C9A8A0241B8A4E3D000B9169 /* AFNetworkingWebApiClientTests.m */,
-				C9A8A0411B8A8616000B9169 /* upload-test.txt */,
-			);
-			path = "WebApiClient-AFNetworking";
-			sourceTree = "<group>";
-		};
-		C9A8A0251B8A4E3D000B9169 /* WebApiClient-Core */ = {
-			isa = PBXGroup;
-			children = (
-				C9A8A0261B8A4E3D000B9169 /* WebApiClientSupportTests.m */,
-				C9A8A0461B8AC581000B9169 /* NSDictionary_WebApiClientTests.m */,
-			);
-			path = "WebApiClient-Core";
-			sourceTree = "<group>";
-		};
-		C9A8A0271B8A4E3D000B9169 /* WebApiClient-RestKit */ = {
-			isa = PBXGroup;
-			children = (
-				C9A8A0281B8A4E3D000B9169 /* RestKitWebApiDataMapperTests.m */,
-			);
-			path = "WebApiClient-RestKit";
 			sourceTree = "<group>";
 		};
 		C9A8A0291B8A4E3D000B9169 /* WebApiClient-Services */ = {
@@ -576,37 +435,11 @@
 				C9A89F841B8A4DDB000B9169 /* Core.h */,
 				C9A89F881B8A4DDB000B9169 /* Logging.h */,
 				C9A89FA91B8A4DDB000B9169 /* UI.h */,
-				C9A89FBB1B8A4DDB000B9169 /* WebApiClient-Core.h */,
-				C9C67FCE1BA79C6900933430 /* WebApiClient-Cache.h */,
-				C9A89FBA1B8A4DDB000B9169 /* WebApiClient-AFNetworking.h */,
-				C9A89FC21B8A4DDB000B9169 /* WebApiClient-RestKit.h */,
+				C9ED94751BA8FBBD00DE842F /* WebApiClient-RestKit.h */,
 				C9A89FC61B8A4DDB000B9169 /* WebApiClient-Services.h */,
-				C9A89FCA1B8A4DDB000B9169 /* WebApiClient-UI.h */,
 				C9A89FE41B8A4DDB000B9169 /* WebRequest.h */,
 			);
 			name = Packaging;
-			sourceTree = "<group>";
-		};
-		C9C67FCB1BA79C6900933430 /* WebApiClient-Cache */ = {
-			isa = PBXGroup;
-			children = (
-				C9C67FD31BA7A20A00933430 /* CachingWebApiRoute.h */,
-				C9C67FD41BA7A29600933430 /* NSDictionary+CachingWebApiClient.h */,
-				C9C67FD51BA7A29600933430 /* NSDictionary+CachingWebApiClient.m */,
-				C9C67FCC1BA79C6900933430 /* PINCacheWebApiClient.h */,
-				C9C67FCD1BA79C6900933430 /* PINCacheWebApiClient.m */,
-				C9C67FD01BA79D9F00933430 /* WebApiClientCacheEntry.h */,
-				C9C67FD11BA79D9F00933430 /* WebApiClientCacheEntry.m */,
-			);
-			path = "WebApiClient-Cache";
-			sourceTree = "<group>";
-		};
-		C9C67FD81BA7D7C600933430 /* WebApiClient-Cache */ = {
-			isa = PBXGroup;
-			children = (
-				C9C67FD91BA7D7C600933430 /* PINCacheWebApiClientTests.m */,
-			);
-			path = "WebApiClient-Cache";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -694,7 +527,6 @@
 				C9A8A0311B8A4E3D000B9169 /* Environment.plist in Resources */,
 				C9A8A02D1B8A4E3D000B9169 /* config.json in Resources */,
 				C9A8A0331B8A4E3D000B9169 /* strings.json in Resources */,
-				C9A8A0421B8A8642000B9169 /* upload-test.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -769,18 +601,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				C9A89FF91B8A4DDB000B9169 /* UIImage+BR.m in Sources */,
-				C9C67FD21BA79D9F00933430 /* WebApiClientCacheEntry.m in Sources */,
 				C9A89FE61B8A4DDB000B9169 /* BRAppUser.m in Sources */,
 				C9A89FF51B8A4DDB000B9169 /* ReplaceNoAnimationSegue.m in Sources */,
-				C9A8A0031B8A4DDB000B9169 /* WebApiClientSupport.m in Sources */,
 				C9A8A0131B8A4DDB000B9169 /* BRWebServiceRequest.m in Sources */,
 				C9A8A0151B8A4DDB000B9169 /* ResetPasswordWebServiceRequest.m in Sources */,
 				C9A89FF11B8A4DDB000B9169 /* BRFullScreenNotificationView.m in Sources */,
 				C9A8A0061B8A4DDB000B9169 /* BRRestKitDataMapping.m in Sources */,
-				C9A8A0051B8A4DDB000B9169 /* AFNetworkingWebApiClient.m in Sources */,
 				C9A89FFF1B8A4DDB000B9169 /* UIView+BR.m in Sources */,
 				C9A8A00E1B8A4DDB000B9169 /* BRProfileEditWebServiceRequest.m in Sources */,
-				C9A8A0011B8A4DDB000B9169 /* WebApiClient.m in Sources */,
 				C9A89FFA1B8A4DDB000B9169 /* UIImage+ImageEffects.m in Sources */,
 				C9A8A00A1B8A4DDB000B9169 /* BRAppDelegate.m in Sources */,
 				C9A8A0111B8A4DDB000B9169 /* BRRegisterWebServiceRequest.m in Sources */,
@@ -788,16 +616,9 @@
 				C9A89FEC1B8A4DDB000B9169 /* NSBundle+BR.m in Sources */,
 				C9A89FF21B8A4DDB000B9169 /* BROptionsTray.m in Sources */,
 				C9A89FFB1B8A4DDB000B9169 /* UILabel+BR.m in Sources */,
-				C9C67FCF1BA79C6900933430 /* PINCacheWebApiClient.m in Sources */,
-				C9A8A0091B8A4DDB000B9169 /* WebApiClientActivitySupport.m in Sources */,
-				C9A8A0001B8A4DDB000B9169 /* NSDictionary+WebApiClient.m in Sources */,
-				C9C67FD61BA7A29600933430 /* NSDictionary+CachingWebApiClient.m in Sources */,
 				C9A8A00C1B8A4DDB000B9169 /* BRLoginWebServiceRequest.m in Sources */,
 				C9A8A0101B8A4DDB000B9169 /* BRReachability.m in Sources */,
-				C9A8A0041B8A4DDB000B9169 /* WebApiRotue.m in Sources */,
 				C9A89FEF1B8A4DDB000B9169 /* NSString+BR.m in Sources */,
-				C9A8A0071B8A4DDB000B9169 /* RestKitWebApiDataMapper.m in Sources */,
-				C9A8A0451B8A9719000B9169 /* DataWebApiResource.m in Sources */,
 				C9A8A03A1B8A5112000B9169 /* BRJSON.m in Sources */,
 				C9A89FF61B8A4DDB000B9169 /* UIBarButtonItem+BR.m in Sources */,
 				C9A89FF41B8A4DDB000B9169 /* PushNoAnimationSegue.m in Sources */,
@@ -806,14 +627,12 @@
 				C9A89FED1B8A4DDB000B9169 /* NSDate+BR.m in Sources */,
 				C9A89FF81B8A4DDB000B9169 /* UIFont+BR.m in Sources */,
 				C9A89FE71B8A4DDB000B9169 /* BRKeychainService.m in Sources */,
-				C9A8A0401B8A7558000B9169 /* FileWebApiResource.m in Sources */,
 				C9A8A0141B8A4DDB000B9169 /* BRWebServiceResponse.m in Sources */,
 				C9A8A00F1B8A4DDB000B9169 /* BRProfileViewWebServiceRequest.m in Sources */,
 				C9A8A00B1B8A4DDB000B9169 /* BRAuthenticatedWebServiceRequest.m in Sources */,
 				C9A89FE51B8A4DDB000B9169 /* BRAppConfigEnvironmentProvider.m in Sources */,
 				C9A8A00D1B8A4DDB000B9169 /* BRPingWebServiceRequest.m in Sources */,
 				C9A89FEB1B8A4DDB000B9169 /* BRUserService.m in Sources */,
-				C9A8A0021B8A4DDB000B9169 /* WebApiClientEnvironment.m in Sources */,
 				C9A8A0121B8A4DDB000B9169 /* BRUserWebServiceRequest.m in Sources */,
 				C9A89FEA1B8A4DDB000B9169 /* BRSimpleKeychainService.m in Sources */,
 				C9A89FFE1B8A4DDB000B9169 /* UITextField+BR.m in Sources */,
@@ -826,14 +645,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				C9A8A0371B8A4E3D000B9169 /* WebApiClientUserServiceTests.m in Sources */,
-				C9A8A0361B8A4E3D000B9169 /* RestKitWebApiDataMapperTests.m in Sources */,
-				C9A8A0341B8A4E3D000B9169 /* AFNetworkingWebApiClientTests.m in Sources */,
-				C9A8A0471B8AC581000B9169 /* NSDictionary_WebApiClientTests.m in Sources */,
 				C9A8A02F1B8A4E3D000B9169 /* NSDate_BRTests.m in Sources */,
-				C9C67FDA1BA7D7C600933430 /* PINCacheWebApiClientTests.m in Sources */,
 				C9A8A02B1B8A4E3D000B9169 /* BaseNetworkTestingSupport.m in Sources */,
 				C9A8A02C1B8A4E3D000B9169 /* BaseTestingSupport.m in Sources */,
-				C9A8A0351B8A4E3D000B9169 /* WebApiClientSupportTests.m in Sources */,
 				C9A8A02E1B8A4E3D000B9169 /* BRAppUserTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

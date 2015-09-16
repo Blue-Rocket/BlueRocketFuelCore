@@ -26,12 +26,8 @@ Pod::Spec.new do |s|
     sp.dependency 'BlueRocketFuelCore/Core'
     sp.dependency 'BlueRocketFuelCore/Logging'
     sp.dependency 'BlueRocketFuelCore/UI'
-    sp.dependency 'BlueRocketFuelCore/WebApiClient'
-	sp.dependency 'BlueRocketFuelCore/WebApiClient-AFNetworking'
-	sp.dependency 'BlueRocketFuelCore/WebApiClient-Cache'
     sp.dependency 'BlueRocketFuelCore/WebApiClient-RestKit'
     sp.dependency 'BlueRocketFuelCore/WebApiClient-Services'
-    sp.dependency 'BlueRocketFuelCore/WebApiClient-UI'
     sp.dependency 'BlueRocketFuelCore/WebRequest'
   end
   
@@ -53,42 +49,16 @@ Pod::Spec.new do |s|
     sp.dependency 'BlueRocketFuelCore/Core'
   end
 
-  s.subspec 'WebApiClient' do |sp|
-    sp.source_files = 'BRFCore/Code/WebApiClient-Core.h', 'BRFCore/Code/WebApiClient'
-    sp.dependency 'BlueRocketFuelCore/Core'
-	sp.dependency 'MAObjCRuntime', '~> 0.0.1'
-	sp.dependency 'SOCKit',        '~> 1.1'
-  end
-
-  s.subspec 'WebApiClient-AFNetworking' do |sp|
-    sp.source_files = 'BRFCore/Code/WebApiClient-AFNetworking.h', 'BRFCore/Code/WebApiClient-AFNetworking'
-    sp.dependency 'BlueRocketFuelCore/WebApiClient'
-    sp.dependency 'AFNetworking/NSURLSession', '~> 2.5'
-  end
-
-  s.subspec 'WebApiClient-Cache' do |sp|
-    sp.source_files = 'BRFCore/Code/WebApiClient-Cache.h', 'BRFCore/Code/WebApiClient-Cache'
-    sp.dependency 'BlueRocketFuelCore/WebApiClient'
-    sp.dependency 'PINCache', '~> 2.0'
-  end
-
   s.subspec 'WebApiClient-RestKit' do |sp|
     sp.source_files = 'BRFCore/Code/WebApiClient-RestKit.h', 'BRFCore/Code/WebApiClient-RestKit'
-    sp.dependency 'BlueRocketFuelCore/WebApiClient'
-    sp.dependency 'RestKit/ObjectMapping', '~> 0.24'
-    sp.dependency 'TransformerKit/String', '~> 0.5'
+    sp.dependency 'BlueRocketFuelCore/Core'
+    sp.dependency 'WebApiClient/RestKit'
   end
 
   s.subspec 'WebApiClient-Services' do |sp|
     sp.source_files = 'BRFCore/Code/WebApiClient-Services.h', 'BRFCore/Code/WebApiClient-Services'
-    sp.dependency 'BlueRocketFuelCore/WebApiClient'
-  end
-
-  s.subspec 'WebApiClient-UI' do |sp|
-    sp.source_files = 'BRFCore/Code/WebApiClient-UI.h', 'BRFCore/Code/WebApiClient-UI'
-    sp.dependency 'BlueRocketFuelCore/WebApiClient'
-    sp.dependency 'BlueRocketFuelCore/UI'
-    sp.dependency 'Masonry', '~> 0.6'
+    sp.dependency 'BlueRocketFuelCore/Core'
+    sp.dependency 'WebApiClient/Core'
   end
 
   s.subspec 'WebRequest' do |sp|

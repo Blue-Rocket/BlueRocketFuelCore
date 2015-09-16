@@ -9,8 +9,8 @@
 #import "BRRestKitDataMapping.h"
 
 #import <TransformerKit/TTTStringTransformers.h>
+#import <WebApiClient/WebApiRoute.h>
 #import "BRAppUser.h"
-#import "WebApiRoute.h"
 
 static Class kAppUserClass;
 
