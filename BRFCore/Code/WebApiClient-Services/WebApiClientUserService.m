@@ -28,6 +28,18 @@
 	return [self.appUserClass currentUser];
 }
 
+#pragma mark - WebApiAuthorizationProvider
+
+- (void)configureAuthorizationForRoute:(id<WebApiRoute>)route request:(NSMutableURLRequest *)request {
+	id<BRUser> activeUser = [self activeUser];
+	if ( activeUser.authenticated ) {
+		// toss in a standard auth token header
+		[request setValue:[NSString stringWithFormat:@"token %@", activeUser.authenticationToken] forHTTPHeaderField:@"Authorization"];
+	}
+}
+
+#pragma mark - Public API
+
 - (NSError *)errorForResponse:(id<WebApiResponse>)response error:(NSError *)error {
 	NSError *result = error;
 	if ( response.statusCode == 422 ) {
