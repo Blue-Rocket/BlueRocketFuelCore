@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		C5BB68D733CF728177D4340A /* libPods-BRFCore-BRFCoreTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D22872C0290E9130E13C9F2 /* libPods-BRFCore-BRFCoreTests.a */; };
+		C972EB161BAFCBB8007FAA59 /* UIImage_BRTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C972EB141BAFCA17007FAA59 /* UIImage_BRTests.m */; settings = {ASSET_TAGS = (); }; };
 		C9A89F591B8A4C67000B9169 /* libBRFCore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C9A89F4D1B8A4C67000B9169 /* libBRFCore.a */; };
 		C9A89FE51B8A4DDB000B9169 /* BRAppConfigEnvironmentProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A89F6B1B8A4DDB000B9169 /* BRAppConfigEnvironmentProvider.m */; };
 		C9A89FE61B8A4DDB000B9169 /* BRAppUser.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A89F6D1B8A4DDB000B9169 /* BRAppUser.m */; };
@@ -83,6 +84,7 @@
 		4D22872C0290E9130E13C9F2 /* libPods-BRFCore-BRFCoreTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BRFCore-BRFCoreTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7C4FA78132C66D3025A883D3 /* Pods-BRFCore.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BRFCore.release.xcconfig"; path = "Pods/Target Support Files/Pods-BRFCore/Pods-BRFCore.release.xcconfig"; sourceTree = "<group>"; };
 		C13BFD3959ACABD1D3EDB895 /* Pods-BRFCore.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BRFCore.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BRFCore/Pods-BRFCore.debug.xcconfig"; sourceTree = "<group>"; };
+		C972EB141BAFCA17007FAA59 /* UIImage_BRTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIImage_BRTests.m; sourceTree = "<group>"; };
 		C98DC9911B9D36060067D6A6 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		C9A89F4D1B8A4C67000B9169 /* libBRFCore.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libBRFCore.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9A89F581B8A4C67000B9169 /* BRFCoreTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BRFCoreTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -224,6 +226,14 @@
 				CF8901992F8C7787AC0F1E10 /* Pods-BRFCore-BRFCoreTests.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		C972EB131BAFCA17007FAA59 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				C972EB141BAFCA17007FAA59 /* UIImage_BRTests.m */,
+			);
+			path = UI;
 			sourceTree = "<group>";
 		};
 		C9A89F441B8A4C67000B9169 = {
@@ -399,6 +409,7 @@
 				C9A8A01A1B8A4E3D000B9169 /* BaseTestingSupport.m */,
 				C9A8A01B1B8A4E3D000B9169 /* config.json */,
 				C9A8A01C1B8A4E3D000B9169 /* Core */,
+				C972EB131BAFCA17007FAA59 /* UI */,
 				C9A8A0291B8A4E3D000B9169 /* WebApiClient-Services */,
 			);
 			path = Tests;
@@ -643,6 +654,7 @@
 				C9A8A02B1B8A4E3D000B9169 /* BaseNetworkTestingSupport.m in Sources */,
 				C9A8A02C1B8A4E3D000B9169 /* BaseTestingSupport.m in Sources */,
 				C9A8A02E1B8A4E3D000B9169 /* BRAppUserTests.m in Sources */,
+				C972EB161BAFCBB8007FAA59 /* UIImage_BRTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

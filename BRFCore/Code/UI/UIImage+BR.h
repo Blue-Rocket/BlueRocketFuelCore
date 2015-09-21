@@ -1,30 +1,33 @@
 //
 //  Created by Shawn McKee on 11/21/13.
 //
-//  Copyright (c) 2015 Blue Rocket, Inc. All rights reserved.
-//
-//  Permission is hereby granted, free of charge, to any person obtaining a copy
-//  of this software and associated documentation files (the "Software"), to deal
-//  in the Software without restriction, including without limitation the rights
-//  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-//  copies of the Software, and to permit persons to whom the Software is
-//  furnished to do so, subject to the following conditions:
-//
-//  The above copyright notice and this permission notice shall be included in
-//  all copies or substantial portions of the Software.
-//
-//  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-//  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-//  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-//  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-//  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-//  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-//  THE SOFTWARE.
+//  Copyright (c) 2015 Blue Rocket, Inc. Distributable under the terms of the Apache License, Version 2.0.
 //
 
 #import <UIKit/UIKit.h>
 
 @interface UIImage (BR)
+
+/**
+ Calcualte a size to aspect-fit a given size into a maximum size.
+ 
+ @param size    The size to scale.
+ @param maxSize The maximum allowed size.
+ 
+ @return The @c size transformed to maintain its aspect ratio but scaled to fit within @c maxSize.
+ */
++ (CGSize)size:(CGSize)size toFit:(CGSize)maxSize;
+
+/**
+ Calculate a size to aspect-fill a given size into a maximum size.
+ 
+ @param size    The size to scale.
+ @param maxSize The maximum allowed size.
+ 
+ @return The @c size transformed to maintain its aspect ratio but scaled to maximually fill @c maxSize. 
+         The final size can thus be larger than @c maxSize in one direction.
+ */
++ (CGSize)size:(CGSize)size toFill:(CGSize)maxSize;
 
 - (UIImage *)resizedImageByWidth:(NSUInteger)width;
 - (UIImage *)resizedImageByHeight:(NSUInteger)height;
