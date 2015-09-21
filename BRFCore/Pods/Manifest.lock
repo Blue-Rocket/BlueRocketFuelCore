@@ -9,13 +9,13 @@ PODS:
   - BRCocoaLumberjack (2.0.1):
     - CocoaLumberjack (~> 2.0)
   - BREnvironment (1.2.0)
-  - BRLocalize (0.9.1):
-    - BRLocalize/All (= 0.9.1)
-  - BRLocalize/All (0.9.1):
+  - BRLocalize (0.9.2):
+    - BRLocalize/All (= 0.9.2)
+  - BRLocalize/All (0.9.2):
     - BRLocalize/Core
     - BRLocalize/UI
-  - BRLocalize/Core (0.9.1)
-  - BRLocalize/UI (0.9.1):
+  - BRLocalize/Core (0.9.2)
+  - BRLocalize/UI (0.9.2):
     - BRLocalize/Core
   - CocoaAsyncSocket (7.4.2)
   - CocoaHTTPServer (2.3):
@@ -51,31 +51,31 @@ PODS:
   - TransformerKit/String (0.5.4):
     - TransformerKit/Core
   - TransitionKit (2.1.1)
-  - WebApiClient (0.9.1):
-    - WebApiClient/All (= 0.9.1)
-  - WebApiClient/AFNetworking (0.9.1):
+  - WebApiClient (0.9.2):
+    - WebApiClient/All (= 0.9.2)
+  - WebApiClient/AFNetworking (0.9.2):
     - AFNetworking/NSURLSession (~> 2.5)
     - WebApiClient/Core
-  - WebApiClient/All (0.9.1):
+  - WebApiClient/All (0.9.2):
     - WebApiClient/AFNetworking
     - WebApiClient/Cache
     - WebApiClient/Core
     - WebApiClient/RestKit
     - WebApiClient/UI
-  - WebApiClient/Cache (0.9.1):
+  - WebApiClient/Cache (0.9.2):
     - PINCache (~> 2.0)
     - WebApiClient/Core
-  - WebApiClient/Core (0.9.1):
+  - WebApiClient/Core (0.9.2):
     - BRCocoaLumberjack (~> 2.0)
     - BREnvironment (~> 1.1)
     - BRLocalize/Core
     - MAObjCRuntime (~> 0.0.1)
     - SOCKit (~> 1.1)
-  - WebApiClient/RestKit (0.9.1):
+  - WebApiClient/RestKit (0.9.2):
     - RestKit/ObjectMapping (~> 0.24)
     - TransformerKit/String (~> 0.5)
     - WebApiClient/Core
-  - WebApiClient/UI (0.9.1):
+  - WebApiClient/UI (0.9.2):
     - ImageEffects (~> 1.0)
     - MAObjCRuntime (~> 0.0.1)
     - Masonry (~> 0.6)
@@ -86,6 +86,7 @@ DEPENDENCIES:
   - BREnvironment (~> 1.2)
   - BRLocalize (~> 0.9)
   - CocoaHTTPServer (~> 2.3)
+  - ImageEffects (~> 1.0)
   - OCHamcrest (~> 4.1)
   - OCMock (~> 3.1)
   - RoutingHTTPServer (~> 1.0)
@@ -95,7 +96,7 @@ SPEC CHECKSUMS:
   AFNetworking: 79f7eb1a0fcfa7beb409332b2ca49afe9ce53b05
   BRCocoaLumberjack: 529d9525681ea2514d3d607011267848bc337bbe
   BREnvironment: 021cc4ef4d2dfbe9b90e42265cadd3c5f942eb2b
-  BRLocalize: ae240c67587ff408a377b486d2c3a8de1f48aebd
+  BRLocalize: 3eb33cebaa0739f90292c549b2d6751fa7c1b47c
   CocoaAsyncSocket: f5783bdedd232d91b89769bc4b5a1580aed518ad
   CocoaHTTPServer: 5624681fc3473d43b18202f635f9b3abb013b530
   CocoaLumberjack: 019d1361244274a6138c788c6cb80baabc13fb8f
@@ -112,6 +113,6 @@ SPEC CHECKSUMS:
   SOCKit: c7376ac262bea9115b8f749358f762522a47d392
   TransformerKit: 0a235de1030a23d47c86706c0316b4a0c7105d73
   TransitionKit: 3a14b6acc7cf2d1dd3e454e24dbad1cfab9a1ef1
-  WebApiClient: ce33dff648f6f5d1b41e63f1a370b107f019d51d
+  WebApiClient: 283b7d920dbcb781e054929c86c83ed4503dde80
 
 COCOAPODS: 0.38.2

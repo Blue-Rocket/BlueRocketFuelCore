@@ -19,7 +19,9 @@ NS_ASSUME_NONNULL_BEGIN
  
  @b Note that HTTP response data is cached based on URLs only, including query parameters.
  
- @b Note that all response objects must conform to @c NSCoding to work with @c PINCache.
+ @b Note that all response objects must conform to @c NSCoding to work with @c PINCache. If any
+ mapping is configured for the route, the _mapped_ response object is cached and as such _that_
+ object must conform to @c NSCoding.
  */
 @interface PINCacheWebApiClient : NSObject <WebApiClient>
 

@@ -26,6 +26,7 @@
 
 #import <BREnvironment/BREnvironment.h>
 #import <BRLocalize/Core.h>
+#import <ImageEffects/ImageEffects.h>
 #import "BRAppDelegate.h"
 #import "BRAppUser.h"
 #import "BRSimpleLogging.h"
@@ -33,7 +34,6 @@
 #import "BRWebServiceRequest.h"
 #import "NSBundle+BR.h"
 #import "NSString+BR.h"
-#import "UIImage+ImageEffects.h"
 
 //#import "UIImage+ImageEffects.h"
 
@@ -332,8 +332,10 @@ static UIActivityIndicatorView *fullScreenSpinner;
     UIImage *snapshotImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     
-    // TODO:
-    fullScreenSpinnerView.backgroundColor = [UIColor colorWithPatternImage:[snapshotImage applyBlurWithRadius:3 tintColor:[UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.65] saturationDeltaFactor:1 maskImage:nil]];
+	fullScreenSpinnerView.backgroundColor = [UIColor colorWithPatternImage:[snapshotImage blurredImageWithSize:CGSizeMake(3, 3)
+																									 tintColor:[UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.65]
+																						 saturationDeltaFactor:1
+																									 maskImage:nil]];
     
     fullScreenSpinnerView.alpha = 0.0;
     [screenView addSubview:fullScreenSpinnerView];

@@ -27,7 +27,6 @@
 		C9A89FF61B8A4DDB000B9169 /* UIBarButtonItem+BR.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A89F961B8A4DDB000B9169 /* UIBarButtonItem+BR.m */; };
 		C9A89FF81B8A4DDB000B9169 /* UIFont+BR.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A89F9A1B8A4DDB000B9169 /* UIFont+BR.m */; };
 		C9A89FF91B8A4DDB000B9169 /* UIImage+BR.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A89F9C1B8A4DDB000B9169 /* UIImage+BR.m */; };
-		C9A89FFA1B8A4DDB000B9169 /* UIImage+ImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A89F9E1B8A4DDB000B9169 /* UIImage+ImageEffects.m */; };
 		C9A89FFB1B8A4DDB000B9169 /* UILabel+BR.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A89FA01B8A4DDB000B9169 /* UILabel+BR.m */; };
 		C9A89FFE1B8A4DDB000B9169 /* UITextField+BR.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A89FA61B8A4DDB000B9169 /* UITextField+BR.m */; };
 		C9A89FFF1B8A4DDB000B9169 /* UIView+BR.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A89FA81B8A4DDB000B9169 /* UIView+BR.m */; };
@@ -130,8 +129,6 @@
 		C9A89F9A1B8A4DDB000B9169 /* UIFont+BR.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIFont+BR.m"; sourceTree = "<group>"; };
 		C9A89F9B1B8A4DDB000B9169 /* UIImage+BR.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+BR.h"; sourceTree = "<group>"; };
 		C9A89F9C1B8A4DDB000B9169 /* UIImage+BR.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+BR.m"; sourceTree = "<group>"; };
-		C9A89F9D1B8A4DDB000B9169 /* UIImage+ImageEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+ImageEffects.h"; sourceTree = "<group>"; };
-		C9A89F9E1B8A4DDB000B9169 /* UIImage+ImageEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ImageEffects.m"; sourceTree = "<group>"; };
 		C9A89F9F1B8A4DDB000B9169 /* UILabel+BR.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+BR.h"; sourceTree = "<group>"; };
 		C9A89FA01B8A4DDB000B9169 /* UILabel+BR.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+BR.m"; sourceTree = "<group>"; };
 		C9A89FA51B8A4DDB000B9169 /* UITextField+BR.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextField+BR.h"; sourceTree = "<group>"; };
@@ -334,8 +331,6 @@
 				C9A89F9A1B8A4DDB000B9169 /* UIFont+BR.m */,
 				C9A89F9B1B8A4DDB000B9169 /* UIImage+BR.h */,
 				C9A89F9C1B8A4DDB000B9169 /* UIImage+BR.m */,
-				C9A89F9D1B8A4DDB000B9169 /* UIImage+ImageEffects.h */,
-				C9A89F9E1B8A4DDB000B9169 /* UIImage+ImageEffects.m */,
 				C9A89F9F1B8A4DDB000B9169 /* UILabel+BR.h */,
 				C9A89FA01B8A4DDB000B9169 /* UILabel+BR.m */,
 				C9A89FA51B8A4DDB000B9169 /* UITextField+BR.h */,
@@ -609,7 +604,6 @@
 				C9A8A0061B8A4DDB000B9169 /* BRRestKitDataMapping.m in Sources */,
 				C9A89FFF1B8A4DDB000B9169 /* UIView+BR.m in Sources */,
 				C9A8A00E1B8A4DDB000B9169 /* BRProfileEditWebServiceRequest.m in Sources */,
-				C9A89FFA1B8A4DDB000B9169 /* UIImage+ImageEffects.m in Sources */,
 				C9A8A00A1B8A4DDB000B9169 /* BRAppDelegate.m in Sources */,
 				C9A8A0111B8A4DDB000B9169 /* BRRegisterWebServiceRequest.m in Sources */,
 				C9A89FE91B8A4DDB000B9169 /* BRSimpleEntityReference.m in Sources */,

@@ -65,6 +65,7 @@ Pod::Spec.new do |s|
     sp.source_files = 'BRFCore/Code/WebRequest.h', 'BRFCore/Code/WebRequest'
     sp.dependency 'BlueRocketFuelCore/Logging'
     sp.dependency 'BlueRocketFuelCore/UI'
+	sp.dependency 'ImageEffects',	'~> 1.0'
   end
 
 end

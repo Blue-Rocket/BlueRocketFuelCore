@@ -14,7 +14,6 @@
 #import <BlueRocketFuelCore/UIBarButtonItem+BR.h>
 #import <BlueRocketFuelCore/UIFont+BR.h>
 #import <BlueRocketFuelCore/UIImage+BR.h>
-#import <BlueRocketFuelCore/UIImage+ImageEffects.h>
 #import <BlueRocketFuelCore/UILabel+BR.h>
 #import <BlueRocketFuelCore/UITextField+BR.h>
 #import <BlueRocketFuelCore/UIView+BR.h>

@@ -2,7 +2,7 @@
 
 The **WebApiClient** module provides a HTTP client framework based on _routes_ configured via the `Core` module configuration framework with support for _object mapping_ for transforming requests and responses between native objects and serialized forms, such as JSON. This module provides just a protocol based API and some scaffolding classes to support the API, but does not provide an actual full implementation itself, so that different HTTP back-ends can be used as needed.
 
-## Client
+# Module: Core
 
 The [WebApiClient](https://github.com/Blue-Rocket/WebApiClient/blob/master/WebApiClient/Code/WebApiClient/WebApiClient.h) protocol defines the main HTTP client entry point for applications to use. The API is purposefully simple and based on asynchronous block callbacks:
 
@@ -72,13 +72,13 @@ The [WebApiDataMapper](https://github.com/Blue-Rocket/WebApiClient/blob/master/W
 @end
 ```
 
-# Module: WebApiClient-AFNetworking
+# Module: AFNetworking
 
-The **WebApiClient-AFNetworking** module provides a full implementation of the `WebApiClient` API, based on [AFNetworking][afn] and `NSURLSession`.
+The **AFNetworking** module provides a full implementation of the `WebApiClient` API, based on [AFNetworking][afn] and `NSURLSession`.
 
 ## Route configuration
 
-Routes can be configured in code via the `registerRoute:forName:` method, but more conveniently they can be configured via the standard BRFC `config.json` file. The `webservice.api` key will be inspected by default, and can be an object representing all the routes that should be registered for the application. For example, the following JSON would register two routes, `login` and `register`:
+Routes can be configured in code via the `registerRoute:forName:` method, but more conveniently they can be configured via [BREnvironment][brenv]. The `webservice.api` key will be inspected by default, and can be a dictionary representing all the routes that should be registered for the application. For example, the following JSON would register two routes, `login` and `register`:
 
 ```json
 {
@@ -98,9 +98,28 @@ Routes can be configured in code via the `registerRoute:forName:` method, but mo
 ```
 
 
-# Module: WebApiClient-RestKit
+# Module: Cache
 
-The **WebApiClient-RestKit** module provides an _object mapping_ implementation for the `WebApiClient` API based on the [RestKit][rk]. It provides a way to transform native objects into JSON, and vice versa. This module only makes use of the `RestKit/ObjectMapping` module, so it does not conflict with AFNetworking 2. In fact, part of the motivation for WebApiClient was to be able to use AFNetworking 2 with RestKit's object mapping support because RestKit's networking layer is based on AFNetworking 1. In some respects the WebApiClient API provides some of the same scaffolding that the full RestKit project provides.
+The **Cache** module provides response caching support to the `WebApiClient` API by providing the `PINCacheWebApiClient` proxy  that can cache result objects using [PINCache][pcache]. Caching support is enabled by configuring a `cacheTTL` property on routes, for example:
+
+```json
+{
+	"webservice" : {
+		"api" : {
+			"info" : {
+				"method" : "GET",
+				"path" : "infrequentlyupdated/info",
+				"cacheTTL" : 3600
+			}
+		}
+	}
+}
+```
+
+
+# Module: RestKit
+
+The **RestKit** module provides an _object mapping_ implementation for the `WebApiClient` API based on the [RestKit][rk]. It provides a way to transform native objects into JSON, and vice versa. This module only makes use of the `RestKit/ObjectMapping` module, so it does not conflict with AFNetworking 2. In fact, part of the motivation for WebApiClient was to be able to use AFNetworking 2 with RestKit's object mapping support because RestKit's networking layer is based on AFNetworking 1. In some respects the WebApiClient API provides some of the same scaffolding that the full RestKit project provides.
 
 ## Mapping configuration
 
@@ -160,7 +179,28 @@ This can be done by adding a `dataMapperRequestRootKeyPath` property (or `dataMa
 }
 ```
 
+
+# Module: UI
+
+The **UI** module provides some UI utilities, such as the `WebApiClientActivitySupport` class that listens to route requests and for those that specify `preventUserInteraction` with a truthy value will throw up a full-screen "request taking too long" view to let the user of the app know it's waiting for a response. For example, a route can be configured like:
+
+```JSON
+{
+	"webservice" : {
+		"api" : {
+			"login" : {
+				"method" : "POST",
+				"path" : "user/login",
+				"preventUserInteraction" : true
+			}
+		}
+	}
+}
+```
+
+
  [cocoapods]: https://cocoapods.org/
  [brenv]: https://github.com/Blue-Rocket/BREnvironment
  [afn]: https://github.com/AFNetworking/AFNetworking
  [rk]: https://github.com/RestKit/RestKit
+ [pcache]: https://github.com/pinterest/PINCache

@@ -24,7 +24,7 @@
 
 #import "UIView+BRLocalize.h"
 
-#import <objc/objc-runtime.h>
+#import <objc/runtime.h>
 #import "BRLocalizable.h"
 #import "NSBundle+BRLocalize.h"
 #import "NSString+BRLocalize.h"
