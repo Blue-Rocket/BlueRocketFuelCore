@@ -87,6 +87,24 @@ static id CurrentUser;
 	}
 }
 
+#pragma mark - NSCopying
+
+- (id)copyWithZone:(NSZone *)zone {
+	BRAppUser *copy = [[[self class] allocWithZone:zone] init];
+	copy.uniqueId = self.uniqueId;
+	copy.type = self.type;
+	copy.email = self.email;
+	copy.name = self.name;
+	copy.firstName = self.firstName;
+	copy.lastName = self.lastName;
+	copy.phone = self.phone;
+	copy.website = self.website;
+	copy.address = self.address;
+	return copy;
+}
+
+#pragma mark -
+
 - (void)initializeWithDictionary:(NSDictionary *)dictionary {
     self.uniqueId = [NSString stringWithFormat:@"%lu",[[dictionary objectForKey:@"id"] unsignedLongValue]];
     self.email = [dictionary objectForKey:@"email"];

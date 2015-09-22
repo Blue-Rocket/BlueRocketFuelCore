@@ -28,7 +28,7 @@ extern NSString * const BREnvironmentKeyPasswordMinLength;
 
 @protocol BRKeychainService;
 
-@interface BRAppUser : NSObject <BRUser, BRUserRegistration>
+@interface BRAppUser : NSObject <BRUser, BRUserRegistration, NSCopying>
 
 @property (nonatomic, strong) NSString *authenticationToken;
 
