@@ -124,10 +124,16 @@
 	NSError *error = notification.userInfo[AFNetworkingTaskDidCompleteErrorKey];
 	NSNotification *note = nil;
 	if ( error ) {
+		NSMutableDictionary *info = [[NSMutableDictionary alloc] initWithCapacity:4];
+		info[NSUnderlyingErrorKey] = error;
+		if ( task.originalRequest ) {
+			info[WebApiClientURLRequestNotificationKey] = task.originalRequest;
+		}
+		if ( task.response ) {
+			info[WebApiClientURLResponseNotificationKey] = task.response;
+		}
 		note = [[NSNotification alloc] initWithName:WebApiClientRequestDidFailNotification object:route
-										   userInfo:@{NSUnderlyingErrorKey : error,
-													  WebApiClientURLRequestNotificationKey : task.originalRequest,
-													  WebApiClientURLResponseNotificationKey : task.response}];
+										   userInfo:info];
 	} else {
 		note = [[NSNotification alloc] initWithName:WebApiClientRequestDidSucceedNotification object:route
 										   userInfo:@{WebApiClientURLRequestNotificationKey : task.originalRequest,

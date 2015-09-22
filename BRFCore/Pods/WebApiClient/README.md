@@ -1,8 +1,10 @@
 # WebApiClient
 
-The **WebApiClient** module provides a HTTP client framework based on _routes_ configured via the `Core` module configuration framework with support for _object mapping_ for transforming requests and responses between native objects and serialized forms, such as JSON. This module provides just a protocol based API and some scaffolding classes to support the API, but does not provide an actual full implementation itself, so that different HTTP back-ends can be used as needed.
+**WebApiClient** is an application framework aimed at making RESTful web service requests in a standardized way. The project is divided into modules, staring with a **Core** module and then branching off into various supporting modules.
 
 # Module: Core
+
+The **Core** module provides a HTTP client framework based on _routes_ with support for _object mapping_ for transforming requests and responses between native objects and serialized forms, such as JSON. This module provides just a protocol based API and some scaffolding classes to support the API, but does not provide an actual full implementation itself, so that different HTTP back-ends can be used as needed (see the **AFNetworking** module provides a full implementation).
 
 The [WebApiClient](https://github.com/Blue-Rocket/WebApiClient/blob/master/WebApiClient/Code/WebApiClient/WebApiClient.h) protocol defines the main HTTP client entry point for applications to use. The API is purposefully simple and based on asynchronous block callbacks:
 
