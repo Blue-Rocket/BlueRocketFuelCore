@@ -36,7 +36,7 @@
 
 - (NSString*)JSONString {
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ssZ"];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSSZ"];
     return [dateFormatter stringFromDate:self];
 }
 
