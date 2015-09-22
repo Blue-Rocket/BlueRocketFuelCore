@@ -11,6 +11,7 @@
 #import <TransformerKit/TTTStringTransformers.h>
 #import <WebApiClient/WebApiRoute.h>
 #import "BRAppUser.h"
+#import "WebApiClientUserService.h"
 
 static Class kAppUserClass;
 

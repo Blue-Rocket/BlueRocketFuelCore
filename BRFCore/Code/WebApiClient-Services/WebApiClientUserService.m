@@ -11,6 +11,11 @@
 #import <BRCocoaLumberjack/BRCocoaLumberjack.h>
 #import "BRAppUser.h"
 
+NSString * const WebApiRouteRegister = @"register";
+NSString * const WebApiRouteLogin = @"login";
+NSString * const WebApiRouteGetUser = @"user";
+NSString * const WebApiRouteUpdateUser = @"userUpdate";
+
 @implementation WebApiClientUserService
 
 - (id)init {
@@ -61,7 +66,7 @@
 	return result;
 }
 
-- (void)registerNewUser:(id<BRUserRegistration>)newUser finished:(void (^)(id<BRUser>, NSError *))callback {
+- (void)registerNewUser:(id<BRUserRegistration>)newUser finished:(void (^)(id<BRUser> _Nullable, NSError * _Nullable))callback {
 	void (^doCallback)(id<BRUser>, NSError *) = ^(id<BRUser> user, NSError *error) {
 		if ( callback ) {
 			callback(user, error);
@@ -82,7 +87,7 @@
 	}];
 }
 
-- (void)loginWithUserDetails:(id<BRUserRegistration>)userDetails finished:(void (^)(id<BRUser> user, NSError *error))callback {
+- (void)loginWithUserDetails:(id<BRUserRegistration>)userDetails finished:(void (^)(id<BRUser> _Nullable, NSError * _Nullable))callback {
 	void (^doCallback)(id<BRUser>, NSError *) = ^(id<BRUser> user, NSError *error) {
 		if ( callback ) {
 			callback(user, error);
@@ -104,7 +109,44 @@
 	}];
 }
 
-- (void)requestPasswordReset:(NSString *)email  finished:(void (^)(BOOL success, NSError *error))callback {
+- (void)updateUserDetails:(id<BRUserRegistration>)userDetails finished:(void (^)(id<BRUser> _Nullable, NSError * _Nullable))callback {
+	void (^doCallback)(id<BRUser>, NSError *) = ^(id<BRUser> user, NSError *error) {
+		if ( callback ) {
+			callback(user, error);
+		}
+	};
+	NSString *userId = userDetails.uniqueId;
+	NSDictionary *params = @{ @"userId" : (userId ? userId : [NSNull null]) };
+	[self.client requestAPI:WebApiRouteUpdateUser withPathVariables:params parameters:userDetails data:nil finished:^(id<WebApiResponse>  _Nonnull response, NSError * _Nullable error) {
+		BRAppUser *user = nil;
+		if ( !error ) {
+			user = response.responseObject;
+		}
+		if ( user ) {
+			[self.appUserClass replaceCurrentUser:user];
+		}
+		doCallback([self activeUser], error);
+	}];
+}
+
+- (void)fetchUserDetails:(void (^)(id<BRUser> _Nullable, NSError * _Nullable))callback {
+	void (^doCallback)(id<BRUser>, NSError *) = ^(id<BRUser> user, NSError *error) {
+		if ( callback ) {
+			callback(user, error);
+		}
+	};
+	NSString *userId = [self activeUser].uniqueId;
+	NSDictionary *params = @{ @"userId" : (userId ? userId : [NSNull null]) };
+	[self.client requestAPI:WebApiRouteGetUser withPathVariables:params parameters:nil data:nil finished:^(id<WebApiResponse>  _Nonnull response, NSError * _Nullable error) {
+		BRAppUser *user = nil;
+		if ( !error ) {
+			user = response.responseObject;
+		}
+		doCallback(user, error);
+	}];
+}
+
+- (void)requestPasswordReset:(NSString *)email  finished:(void (^)(BOOL, NSError * _Nullable))callback {
 	void (^doCallback)(BOOL, NSError *) = ^(BOOL success, NSError *error) {
 		if ( callback ) {
 			callback(success, error);

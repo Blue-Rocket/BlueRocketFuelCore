@@ -20,6 +20,11 @@
 				"path" : "user/:userId",
 				"dataMapper" : "RestKitWebApiDataMapper"
 			},
+			"userUpdate" : {
+				"method" : "PUT",
+				"path" : "user/:userId",
+				"dataMapper" : "RestKitWebApiDataMapper"
+			},
 			"test" : {
 				"method" : "GET",
 				"path" : "test",

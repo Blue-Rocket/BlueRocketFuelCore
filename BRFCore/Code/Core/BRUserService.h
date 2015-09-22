@@ -9,6 +9,8 @@
 #import "BRUser.h"
 #import "BRServiceConstants.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 /** Error code for when invalid credentials are used. */
 extern const NSInteger BRUserServiceErrorInvalidCredentials;
 
@@ -41,7 +43,7 @@ extern NSString * const BRUserServiceNotificationLogoutDidSucceed;
  
  @return The active user, or `nil` if none available.
  */
-- (id<BRUser>)activeUser;
+- (nullable id<BRUser>)activeUser;
 
 /**
  Register and log in as a new user.
@@ -49,7 +51,7 @@ extern NSString * const BRUserServiceNotificationLogoutDidSucceed;
  @param newUser The new user details to register. This should be an instance previously returned by `newUser:`.
  @param callback The block to invoke with the registration result. The block will be passed the active user if successful, or an error otherwise.
  */
-- (void)registerNewUser:(id<BRUserRegistration>)newUser finished:(void (^)(id<BRUser> user, NSError *error))callback;
+- (void)registerNewUser:(id<BRUserRegistration>)newUser finished:(void (^)(id<BRUser> _Nullable user, NSError * _Nullable error))callback;
 
 /**
  Log in with a non-social user account.
@@ -57,7 +59,22 @@ extern NSString * const BRUserServiceNotificationLogoutDidSucceed;
  @param userDetails The user details, with an appropriate username and password available.
  @param callback The block to invoke with the login result.
  */
-- (void)loginWithUserDetails:(id<BRUserRegistration>)userDetails finished:(void (^)(id<BRUser> user, NSError *error))callback;
+- (void)loginWithUserDetails:(id<BRUserRegistration>)userDetails finished:(void (^)(id<BRUser> _Nullable user, NSError * _Nullable error))callback;
+
+/**
+ Fetch the active user's details from the server.
+ 
+ @param callback The block to invoke with the fetch result.
+ */
+- (void)fetchUserDetails:(void (^)(id<BRUser> _Nullable user, NSError * _Nullable error))callback;
+
+/**
+ Update an existing user's details.
+ 
+ @param userDetails The user details.
+ @param callback The block to invoke with the update result.
+ */
+- (void)updateUserDetails:(id<BRUserRegistration>)userDetails finished:(void (^)(id<BRUser> _Nullable user, NSError * _Nullable error))callback;
 
 /**
  Request a password be reset for a given email.
@@ -69,7 +86,7 @@ extern NSString * const BRUserServiceNotificationLogoutDidSucceed;
  @param email The email address of the user to request the password reset for.
  @param callback The block to invoke with the login result.
  */
-- (void)requestPasswordReset:(NSString *)email  finished:(void (^)(BOOL success, NSError *error))callback;
+- (void)requestPasswordReset:(NSString *)email  finished:(void (^)(BOOL success, NSError * _Nullable error))callback;
 
 /**
  Log out.
@@ -77,3 +94,5 @@ extern NSString * const BRUserServiceNotificationLogoutDidSucceed;
 - (void)logout;
 
 @end
+
+NS_ASSUME_NONNULL_END

@@ -9,6 +9,19 @@
 #import <WebApiClient/WebApiClient-Core.h>
 #import "BRUserService.h"
 
+
+/** A standard route name for user registration. */
+extern NSString * const WebApiRouteRegister;
+
+/** A standard route name for user login. */
+extern NSString * const WebApiRouteLogin;
+
+/** A standard route name for getting a user profile (account details). */
+extern NSString * const WebApiRouteGetUser;
+
+/** A standard route name for updating a user profile (account details). */
+extern NSString * const WebApiRouteUpdateUser;
+
 /**
  Implementation of @c BRUserService using @c WebApiClient for login and registration requests.
  This class also conforms to @c WebApiAuthorizationProvider so that it can act as an authentication
