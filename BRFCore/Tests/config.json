@@ -23,7 +23,8 @@
 			"userUpdate" : {
 				"method" : "PUT",
 				"path" : "user/:userId",
-				"dataMapper" : "RestKitWebApiDataMapper"
+				"dataMapper" : "RestKitWebApiDataMapper",
+				"preventUserInteraction" : true
 			},
 			"test" : {
 				"method" : "GET",
