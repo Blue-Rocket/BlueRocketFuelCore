@@ -266,4 +266,39 @@ static NSMutableDictionary *kPhoneRegexes = nil;
             ];  
 }
 
+- (NSString *)numberStringFromTemplate:(NSString *)filter {
+	NSUInteger onOriginal = 0, onFilter = 0, onOutput = 0;
+	const NSUInteger maxFilter = filter.length;
+	const NSUInteger maxOriginal = self.length;
+	unichar outputString[maxFilter];
+	
+	static NSCharacterSet *NumbersOnly;
+	if ( !NumbersOnly ) {
+		NumbersOnly = [NSCharacterSet characterSetWithCharactersInString:@"0123456789"];
+	}
+	
+	while ( onFilter < maxFilter && onOriginal < maxOriginal ) {
+		unichar filterChar = [filter characterAtIndex:onFilter];
+		unichar originalChar = [self characterAtIndex:onOriginal];
+		if ( filterChar == '#' ) {
+			if ( [NumbersOnly characterIsMember:originalChar] ) {
+				outputString[onOutput] = originalChar;
+				onOriginal++;
+				onFilter++;
+				onOutput++;
+			} else {
+				onOriginal++;
+			}
+		} else {
+			outputString[onOutput] = filterChar;
+			onOutput++;
+			onFilter++;
+			if ( originalChar == filterChar ) {
+				onOriginal++;
+			}
+		}
+	}
+	return [NSString stringWithCharacters:outputString length:onOutput];
+}
+
 @end

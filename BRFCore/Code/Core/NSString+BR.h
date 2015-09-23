@@ -56,4 +56,17 @@
  */
 - (BOOL)isValidEmailAddress;
 
+/**
+ Format the receiver as as string of numbers using a template pattern.
+ 
+ This method will look for number characters to "fill in" a pattern where @c # represents a placeholder for a digit
+ in the output string.
+ 
+ @param pattern A pattern template, where the @c # character represents a number to fill in from the receiver
+                and any other character is added to the output string as-is.
+ 
+ @return The formatted string.
+ */
+- (NSString *)numberStringFromTemplate:(NSString *)pattern;
+
 @end
