@@ -48,8 +48,14 @@ static Class kAppUserClass;
 	RKObjectMapping *apiUserEncoding = [appUserMapping inverseMapping];
 	[dataMapper registerRequestObjectMapping:apiUserEncoding forRouteName:WebApiRouteLogin];
 	[dataMapper registerResponseObjectMapping:appUserMapping forRouteName:WebApiRouteLogin];
+	
 	[dataMapper registerRequestObjectMapping:apiUserEncoding forRouteName:WebApiRouteRegister];
 	[dataMapper registerResponseObjectMapping:appUserMapping forRouteName:WebApiRouteRegister];
+
+	[dataMapper registerResponseObjectMapping:appUserMapping forRouteName:WebApiRouteGetUser];
+
+	[dataMapper registerRequestObjectMapping:apiUserEncoding forRouteName:WebApiRouteUpdateUser];
+	[dataMapper registerResponseObjectMapping:appUserMapping forRouteName:WebApiRouteUpdateUser];
 }
 
 + (RKObjectMapping *)appUserMapping {
