@@ -24,11 +24,12 @@
 
 #import <Foundation/Foundation.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface NSString (BR)
 
-
 + (NSString *)commaSeparatedStringFromArray:(NSArray *)array;
-+ (NSString *)commaSeparatedStringFromArray:(NSArray *)array prefixSymbol:(NSString *)symbol;
++ (NSString *)commaSeparatedStringFromArray:(NSArray *)array prefixSymbol:(nullable NSString *)symbol;
 - (NSMutableArray *)arrayFromCommaSeparatedList;
 
 - (BOOL)isValidEmailFormat;
@@ -47,7 +48,7 @@
  @param locale The locale to test, or @c nil for the current locale.
  @return @c YES if the reciever appears to be a valid phone number for the given locale.
  */
-- (BOOL)isValidPhoneNumberForLocale:(NSLocale *)locale;
+- (BOOL)isValidPhoneNumberForLocale:(nullable NSLocale *)locale;
 
 /**
  Test if the receiver has a valid email address syntax.
@@ -55,6 +56,10 @@
  @return @c YES if the receiver has a valid email syntax.
  */
 - (BOOL)isValidEmailAddress;
+
+/// -----
+/// @name Formatting
+/// -----
 
 /**
  Format the receiver as as string of numbers using a template pattern.
@@ -69,4 +74,18 @@
  */
 - (NSString *)numberStringFromTemplate:(NSString *)pattern;
 
+/**
+ Replace a range of characters with a given string using a number template pattern.
+ 
+ @param range  The range of characters in the receiver to replace.
+ @param string The string to replace with.
+ @param filter The pattern template, where the @c # character represents a number to fill in from the receiver, after
+               updating the characters.
+ 
+ @return The resulting formatted string.
+ */
+- (NSString *)numberStringByReplacingCharactersInRange:(NSRange)range withString:(NSString *)string template:(NSString *)filter;
+
 @end
+
+NS_ASSUME_NONNULL_END

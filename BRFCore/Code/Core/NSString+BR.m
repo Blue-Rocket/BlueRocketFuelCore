@@ -31,6 +31,7 @@
 
 static NSRegularExpression *kValidEmailRegex = nil;
 static NSMutableDictionary *kPhoneRegexes = nil;
+static NSCharacterSet *NumbersOnlyCharacterSet = nil;
 
 @implementation NSString (BR)
 
@@ -266,22 +267,28 @@ static NSMutableDictionary *kPhoneRegexes = nil;
             ];  
 }
 
++ (NSCharacterSet *)numbersOnlyCharacterSet {
+	NSCharacterSet *set = NumbersOnlyCharacterSet;
+	if ( !set ) {
+		set = [NSCharacterSet characterSetWithCharactersInString:@"0123456789"];
+		NumbersOnlyCharacterSet = set;
+	}
+	return set;
+}
+
 - (NSString *)numberStringFromTemplate:(NSString *)filter {
 	NSUInteger onOriginal = 0, onFilter = 0, onOutput = 0;
 	const NSUInteger maxFilter = filter.length;
 	const NSUInteger maxOriginal = self.length;
 	unichar outputString[maxFilter];
 	
-	static NSCharacterSet *NumbersOnly;
-	if ( !NumbersOnly ) {
-		NumbersOnly = [NSCharacterSet characterSetWithCharactersInString:@"0123456789"];
-	}
+	NSCharacterSet *numbersOnlySet = [NSString numbersOnlyCharacterSet];
 	
 	while ( onFilter < maxFilter && onOriginal < maxOriginal ) {
 		unichar filterChar = [filter characterAtIndex:onFilter];
 		unichar originalChar = [self characterAtIndex:onOriginal];
 		if ( filterChar == '#' ) {
-			if ( [NumbersOnly characterIsMember:originalChar] ) {
+			if ( [numbersOnlySet characterIsMember:originalChar] ) {
 				outputString[onOutput] = originalChar;
 				onOriginal++;
 				onFilter++;
@@ -299,6 +306,18 @@ static NSMutableDictionary *kPhoneRegexes = nil;
 		}
 	}
 	return [NSString stringWithCharacters:outputString length:onOutput];
+}
+
+- (NSString *)numberStringByReplacingCharactersInRange:(NSRange)range withString:(NSString *)string template:(NSString *)filter {
+	NSString *changedString = [[self stringByReplacingCharactersInRange:range withString:string] numberStringFromTemplate:filter];
+	if ( range.length > string.length ) {
+		// deleted some characters: remove any non-digit values from end of changed string to allow deleting backwards
+		NSCharacterSet *numbersOnlySet = [NSString numbersOnlyCharacterSet];
+		while ( changedString.length > 0 && [numbersOnlySet characterIsMember:[changedString characterAtIndex:(changedString.length - 1)]] == NO ) {
+			changedString = [changedString substringToIndex:(changedString.length - 1)];
+		}
+	}
+	return changedString;
 }
 
 @end

@@ -33,4 +33,14 @@
 	assertThat([@"12/3456" numberStringFromTemplate:pattern], equalTo(@"12/3456"));
 }
 
+- (void)testDeleteMonthYearValues {
+	NSString *pattern = @"##/####";
+	assertThat([@"12/3456" numberStringByReplacingCharactersInRange:NSMakeRange(6, 1) withString:@"" template:pattern], equalTo(@"12/345"));
+	assertThat([@"12/345" numberStringByReplacingCharactersInRange:NSMakeRange(5, 1) withString:@"" template:pattern], equalTo(@"12/34"));
+	assertThat([@"12/34" numberStringByReplacingCharactersInRange:NSMakeRange(4, 1) withString:@"" template:pattern], equalTo(@"12/3"));
+	assertThat([@"12/3" numberStringByReplacingCharactersInRange:NSMakeRange(3, 1) withString:@"" template:pattern], equalTo(@"12"));
+	assertThat([@"12" numberStringByReplacingCharactersInRange:NSMakeRange(1, 1) withString:@"" template:pattern], equalTo(@"1"));
+	assertThat([@"1" numberStringByReplacingCharactersInRange:NSMakeRange(0, 1) withString:@"" template:pattern], equalTo(@""));
+}
+
 @end
