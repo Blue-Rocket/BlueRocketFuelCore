@@ -162,6 +162,13 @@ NSString * const WebApiRouteUpdateUser = @"userUpdate";
 
 - (void)logout {
 	[self.appUserClass replaceCurrentUser:nil];
+	
+	// clear out any cookies associated with our client
+	NSHTTPCookieStorage *cookies = [NSHTTPCookieStorage sharedHTTPCookieStorage];
+	for ( NSHTTPCookie *cookie in [self.client cookiesForAPI:nil inCookieStorage:cookies] ) {
+		[cookies deleteCookie:cookie];
+	}
+	
 	[[NSNotificationCenter defaultCenter] postNotificationName:BRUserServiceNotificationLogoutDidSucceed object:nil userInfo:nil];
 }
 
