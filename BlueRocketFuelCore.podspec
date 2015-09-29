@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
   s.name         = 'BlueRocketFuelCore'
-  s.version      = '0.8.3'
+  s.version      = '0.8.4'
   s.summary      = 'This framework helps to jump start iOS development.'
 
   s.description        = <<-DESC
