@@ -109,7 +109,7 @@ NSString * const WebApiRouteUpdateUser = @"userUpdate";
 	}];
 }
 
-- (void)updateUserDetails:(id<BRUserRegistration>)userDetails finished:(void (^)(id<BRUser> _Nullable, NSError * _Nullable))callback {
+- (void)updateUserDetails:(id<BRUserRegistration>)userDetails finished:(nullable void (^)(id<BRUser> _Nullable, NSError * _Nullable))callback {
 	void (^doCallback)(id<BRUser>, NSError *) = ^(id<BRUser> user, NSError *error) {
 		if ( callback ) {
 			callback(user, error);
@@ -130,18 +130,24 @@ NSString * const WebApiRouteUpdateUser = @"userUpdate";
 	}];
 }
 
-- (void)fetchUserDetails:(void (^)(id<BRUser> _Nullable, NSError * _Nullable))callback {
+- (void)fetchUserDetails:(const BOOL)update finished:(nullable void (^)(id<BRUser> _Nullable, NSError * _Nullable))callback {
 	void (^doCallback)(id<BRUser>, NSError *) = ^(id<BRUser> user, NSError *error) {
 		if ( callback ) {
 			callback(user, error);
 		}
 	};
-	NSString *userId = [self activeUser].uniqueId;
+	id<BRUser> activeUser = [self activeUser];
+	NSString *userId = activeUser.uniqueId;
 	NSDictionary *params = @{ @"userId" : (userId ? userId : [NSNull null]) };
 	[self.client requestAPI:WebApiRouteGetUser withPathVariables:params parameters:nil data:nil finished:^(id<WebApiResponse>  _Nonnull response, NSError * _Nullable error) {
-		BRAppUser *user = nil;
+		id<BRUser> user = nil;
 		if ( !error ) {
 			user = response.responseObject;
+		}
+		if ( user && update && [user isDifferentFrom:activeUser] ) {
+			log4Debug(@"User details fetched from server differ from local cached copy: updating with server values.");
+			[self.appUserClass replaceCurrentUser:user];
+			[[NSNotificationCenter defaultCenter] postNotificationName:BRUserServiceNotificationUserDetailsDidChange object:user userInfo:nil];
 		}
 		doCallback(user, error);
 	}];

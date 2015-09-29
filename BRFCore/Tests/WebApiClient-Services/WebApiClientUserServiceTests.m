@@ -103,7 +103,7 @@
 	}]]);
 	
 	XCTestExpectation *callbackExpectation = [self expectationWithDescription:@"Callback"];
-	[userService fetchUserDetails:^(id<BRUser>  _Nullable user, NSError * _Nullable error) {
+	[userService fetchUserDetails:NO finished:^(id<BRUser>  _Nullable user, NSError * _Nullable error) {
 		assertThat(user.uniqueId, equalTo(@"test-id"));
 		assertThat(user.email, equalTo(@"email"));
 		assertThatBool(user.newUser, isFalse());
@@ -113,6 +113,44 @@
 	}];
 	[self waitForExpectationsWithTimeout:2 handler:nil];
 	OCMVerifyAll((id)mockClient);
+}
+
+- (void)testFetchAndChangeUserDetails {
+	BRAppUser *origUser = [BRAppUser new];
+	origUser.uniqueId = @"test-id";
+	origUser.name = @"orig";
+	origUser.authenticationToken = @"token";
+	[BRAppUser replaceCurrentUser:origUser];
+	
+	BRAppUser *updateUser = [BRAppUser new];
+	updateUser.uniqueId = @"test-id";
+	updateUser.name = @"updated";
+	
+	// sub the client call to return a successfully updated user
+	XCTestExpectation *clientExpectation = [self expectationWithDescription:@"GET"];
+	OCMStub([mockClient requestAPI:equalTo(@"user") withPathVariables:equalTo(@{@"userId" : origUser.uniqueId}) parameters:nil data:nil finished:[OCMArg checkWithBlock:^BOOL(id obj) {
+		void (^block)(id<WebApiResponse> response, NSError *error) = obj;
+		block(@{ @"responseObject" : updateUser, @"statusCode" : @200}, nil);
+		[clientExpectation fulfill];
+		return YES;
+	}]]);
+	
+	[self expectationForNotification:BRUserServiceNotificationUserDetailsDidChange object:nil handler:^BOOL(NSNotification * _Nonnull notification) {
+		assertThat(notification.object, sameInstance(updateUser));
+		assertThatBool([NSThread isMainThread], describedAs(@"Should be on main thread", isTrue(), nil));
+		return YES;
+	}];
+	XCTestExpectation *callbackExpectation = [self expectationWithDescription:@"Callback"];
+	[userService fetchUserDetails:YES finished:^(id<BRUser>  _Nullable user, NSError * _Nullable error) {
+		assertThat(user, sameInstance(updateUser));
+		assertThatBool(user.newUser, isFalse());
+		assertThatBool(user.authenticated, isTrue());
+		assertThatBool([NSThread isMainThread], describedAs(@"Should be on main thread", isTrue(), nil));
+		[callbackExpectation fulfill];
+	}];
+	[self waitForExpectationsWithTimeout:2 handler:nil];
+	OCMVerifyAll((id)mockClient);
+	assertThat([BRAppUser currentUser].email, equalTo(@"updated"));
 }
 
 - (void)testChangeUserDetails {

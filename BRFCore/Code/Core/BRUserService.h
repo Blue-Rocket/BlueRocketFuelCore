@@ -67,9 +67,10 @@ extern NSString * const BRUserServiceNotificationUserDetailsDidChange;
 /**
  Fetch the active user's details from the server.
  
+ @param update   If @YES and the fetched user details returned from the server differ from the active user's details, then replace the active user details with those from the server.
  @param callback The block to invoke with the fetch result.
  */
-- (void)fetchUserDetails:(void (^)(id<BRUser> _Nullable user, NSError * _Nullable error))callback;
+- (void)fetchUserDetails:(BOOL)update finished:(nullable void (^)(id<BRUser> _Nullable user, NSError * _Nullable error))callback;
 
 /**
  Update an existing user's details.
@@ -77,7 +78,7 @@ extern NSString * const BRUserServiceNotificationUserDetailsDidChange;
  @param userDetails The user details.
  @param callback The block to invoke with the update result.
  */
-- (void)updateUserDetails:(id<BRUserRegistration>)userDetails finished:(void (^)(id<BRUser> _Nullable user, NSError * _Nullable error))callback;
+- (void)updateUserDetails:(id<BRUserRegistration>)userDetails finished:(nullable void (^)(id<BRUser> _Nullable user, NSError * _Nullable error))callback;
 
 /**
  Request a password be reset for a given email.
