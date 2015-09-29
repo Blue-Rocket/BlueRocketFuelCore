@@ -33,7 +33,7 @@ PODS:
   - ISO8601DateFormatterValueTransformer (0.6.1):
     - RKValueTransformers (~> 1.1.0)
   - MAObjCRuntime (0.0.1)
-  - Masonry (0.6.2)
+  - Masonry (0.6.3)
   - OCHamcrest (4.2.0)
   - OCMock (3.1.5)
   - PINCache (2.1)
@@ -51,31 +51,31 @@ PODS:
   - TransformerKit/String (0.5.4):
     - TransformerKit/Core
   - TransitionKit (2.1.1)
-  - WebApiClient (0.9.3):
-    - WebApiClient/All (= 0.9.3)
-  - WebApiClient/AFNetworking (0.9.3):
+  - WebApiClient (0.9.4):
+    - WebApiClient/All (= 0.9.4)
+  - WebApiClient/AFNetworking (0.9.4):
     - AFNetworking/NSURLSession (~> 2.5)
     - WebApiClient/Core
-  - WebApiClient/All (0.9.3):
+  - WebApiClient/All (0.9.4):
     - WebApiClient/AFNetworking
     - WebApiClient/Cache
     - WebApiClient/Core
     - WebApiClient/RestKit
     - WebApiClient/UI
-  - WebApiClient/Cache (0.9.3):
+  - WebApiClient/Cache (0.9.4):
     - PINCache (~> 2.0)
     - WebApiClient/Core
-  - WebApiClient/Core (0.9.3):
+  - WebApiClient/Core (0.9.4):
     - BRCocoaLumberjack (~> 2.0)
     - BREnvironment (~> 1.1)
     - BRLocalize/Core
     - MAObjCRuntime (~> 0.0.1)
     - SOCKit (~> 1.1)
-  - WebApiClient/RestKit (0.9.3):
+  - WebApiClient/RestKit (0.9.4):
     - RestKit/ObjectMapping (~> 0.24)
     - TransformerKit/String (~> 0.5)
     - WebApiClient/Core
-  - WebApiClient/UI (0.9.3):
+  - WebApiClient/UI (0.9.4):
     - ImageEffects (~> 1.0)
     - MAObjCRuntime (~> 0.0.1)
     - Masonry (~> 0.6)
@@ -103,7 +103,7 @@ SPEC CHECKSUMS:
   ImageEffects: 6f92f55ae12c4010642f84dcc2d7e21246666cf9
   ISO8601DateFormatterValueTransformer: 52da467d6ec899d6aedda8e48280ac92e8ee97e6
   MAObjCRuntime: a6a1d95acbfa3784d66cb35bd42904e47943b488
-  Masonry: 362e8a1cc0beada4a4c4832d5e863da2a51533be
+  Masonry: ff105a956abcd19a618b2028b121cb638d7a8e2f
   OCHamcrest: c14c0b3f4c4e99363e5b87d97bae38c4438b6d5d
   OCMock: 4c2925291f80407c3738dd1db14d21d0cc278864
   PINCache: 0581b0a7578fc0bbc6c7a8b70b0615388bea064c
@@ -113,6 +113,6 @@ SPEC CHECKSUMS:
   SOCKit: c7376ac262bea9115b8f749358f762522a47d392
   TransformerKit: 0a235de1030a23d47c86706c0316b4a0c7105d73
   TransitionKit: 3a14b6acc7cf2d1dd3e454e24dbad1cfab9a1ef1
-  WebApiClient: c5f5f7b3459057e5f34db69e38d9f0941ae535a1
+  WebApiClient: 4b168d9967661b690e4a8f0563005635ebcabd32
 
 COCOAPODS: 0.38.2

@@ -75,6 +75,16 @@ extern NSString * const WebApiClientURLResponseNotificationKey;
 			  data:(nullable id<WebApiResource>)data
 		  finished:(void (^)(id<WebApiResponse> response, NSError * __nullable error))callback;
 
+/**
+ Get all available cookies for a single request or all requests.
+ 
+ @param name      The name of the API endpoint route to get applicable cookies for, or @c nil to get all cookies for all routes.
+ @param cookieJar The cookie storage to extract the cookies from. Pass @c nil to use the shared cookie storage provided by the OS.
+ 
+ @return An array of all applicable cookies.
+ */
+- (NSArray<NSHTTPCookie *> *)cookiesForAPI:(nullable NSString *)name inCookieStorage:(nullable NSHTTPCookieStorage *)cookieJar;
+
 @end
 
 NS_ASSUME_NONNULL_END

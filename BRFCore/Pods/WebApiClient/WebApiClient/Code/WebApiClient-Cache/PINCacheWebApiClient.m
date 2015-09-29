@@ -45,6 +45,7 @@ static id<WebApiClient> SharedGlobalClient;
 	if ( (self = [super init]) ) {
 		entryCache = theEntryCache;
 		dataCache = theDataCache;
+		log4Debug(@"WebApiClient entry cache dir: %@", [theEntryCache.diskCache.cacheURL path]);
 	}
 	return self;
 }
@@ -69,8 +70,17 @@ static id<WebApiClient> SharedGlobalClient;
 	}
 	NSMutableString *key = [[NSMutableString alloc] initWithCapacity:64];
 	[key appendString:route.method];
-	[key appendString:[url host]];
-	[key appendString:[[url port] stringValue]];
+	if ( url.scheme ) {
+		[key appendString:url.scheme];
+	}
+	[key appendString:@"://"];
+	if ( url.host ) {
+		[key appendString:url.host];
+	}
+	if ( url.port ) {
+		[key appendString:@":"];
+		[key appendString:[[url port] stringValue]];
+	}
 	[key appendString:[url path]];
 	
 	if ( [[url query] length] > 0 ) {
@@ -101,8 +111,21 @@ static id<WebApiClient> SharedGlobalClient;
 	return [self MD5Hash:key];
 }
 
+- (NSArray<NSHTTPCookie *> *)cookiesForAPI:(NSString *)name inCookieStorage:(NSHTTPCookieStorage *)cookieJar {
+	return [self.client cookiesForAPI:name inCookieStorage:cookieJar];
+}
+
 - (void)requestAPI:(NSString * __nonnull)name withPathVariables:(nullable id)pathVariables parameters:(nullable id)parameters
 			  data:(nullable id<WebApiResource>)data finished:(void (^ __nonnull)(id<WebApiResponse> __nonnull, NSError * __nullable))callback {
+	void (^doCallback)(id<WebApiResponse> __nonnull, NSError * __nullable) = ^(id<WebApiResponse> __nonnull response, NSError * __nullable error){
+		if ( [NSThread isMainThread] ) {
+			callback(response, error);
+		} else {
+			dispatch_async(dispatch_get_main_queue(), ^{
+				callback(response, error);
+			});
+		}
+	};
 	id<WebApiRoute> route = [self.client routeForName:name error:nil];
 	NSTimeInterval cacheTTL = 0;
 	NSString *cacheKey = nil;
@@ -125,7 +148,7 @@ static id<WebApiClient> SharedGlobalClient;
 					[weakEntryCache setObject:entry forKey:cacheKey block:nil];
 				}];
 			}
-			callback(response, error);
+			doCallback(response, error);
 		}];
 	};
 	if ( cacheKey ) {
@@ -137,7 +160,7 @@ static id<WebApiClient> SharedGlobalClient;
 					[dataCache objectForKey:cacheKey block:^(PINCache *cache, NSString *key, id __nullable object) {
 						id<WebApiResponse> response = object;
 						if ( response ) {
-							callback(response, nil);
+							doCallback(response, nil);
 						} else {
 							// cached data missing from cache; make request
 							delegateRequest();

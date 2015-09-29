@@ -108,6 +108,16 @@ extern NSString * const WebApiClientSupportAppIdDefaultHTTPHeaderName;
  */
 - (void)addAuthorizationHeadersToRequest:(NSMutableURLRequest *)request forRoute:(id<WebApiRoute>)route;
 
+/**
+ Find available cookies for a specific route, or all routes.
+ 
+ @param name      The name of the API endpoint route to get applicable cookies for, or @c nil to get all cookies for the @c baseApiURL configured on the receiver.
+ @param cookieJar The cookie storage to extract the cookies from. Pass @c nil to use the shared cookie storage provided by the OS.
+ 
+ @return An array of all applicable cookies.
+ */
+- (NSArray<NSHTTPCookie *> *)cookiesForAPI:(nullable NSString *)name inCookieStorage:(nullable NSHTTPCookieStorage *)cookieJar;
+
 @end
 
 NS_ASSUME_NONNULL_END

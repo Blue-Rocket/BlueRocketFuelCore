@@ -60,6 +60,7 @@
  */
 @interface NSMutableDictionary (MutableWebApiResponse)
 
+@property (nonatomic, readwrite) NSString *routeName;
 @property (nonatomic, readwrite) NSInteger statusCode;
 @property (nonatomic, readwrite) id responseObject;
 @property (nonatomic, readwrite) NSDictionary *responseHeaders;

@@ -13,6 +13,9 @@
  */
 @protocol  WebApiResponse <NSObject>
 
+/** The name of the route associated with this response. */
+@property (nonatomic, readonly) NSString *routeName;
+
 /** The HTTP status code of the receiver. */
 @property (nonatomic, readonly) NSInteger statusCode;
 

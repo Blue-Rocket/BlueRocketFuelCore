@@ -180,18 +180,20 @@ static void * AFNetworkingWebApiClientTaskStateContext = &AFNetworkingWebApiClie
 		NSError *error = nil;
 		NSDictionary *reqParameters = nil;
 		id reqData = data;
-		if ( dataMapper ) {
-			id encoded = [dataMapper performEncodingWithObject:parameters route:route error:&error];
-			if ( !encoded ) {
-				return doCallback(nil, error);
-			}
-			if ( [encoded isKindOfClass:[NSDictionary class]] ) {
-				reqParameters = encoded;
+		if ( parameters ) {
+			if ( dataMapper ) {
+				id encoded = [dataMapper performEncodingWithObject:parameters route:route error:&error];
+				if ( !encoded ) {
+					return doCallback(nil, error);
+				}
+				if ( [encoded isKindOfClass:[NSDictionary class]] ) {
+					reqParameters = encoded;
+				} else {
+					reqData = encoded;
+				}
 			} else {
-				reqData = encoded;
+				reqParameters = [self dictionaryForParametersObject:parameters];
 			}
-		} else {
-			reqParameters = [self dictionaryForParametersObject:parameters];
 		}
 		NSMutableURLRequest *req = nil;
 		if ( route.serialization == WebApiSerializationForm || (route.serialization != WebApiSerializationNone && data != nil) ) {
@@ -208,6 +210,7 @@ static void * AFNetworkingWebApiClientTaskStateContext = &AFNetworkingWebApiClie
 		
 		__block NSURLSessionDataTask *task = [manager dataTaskWithRequest:req completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
 			NSMutableDictionary *apiResponse = [[NSMutableDictionary alloc] initWithCapacity:4];
+			apiResponse.routeName = name;
 			if ( [response isKindOfClass:[NSHTTPURLResponse class]] ) {
 				NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)response;
 				apiResponse.statusCode = httpResponse.statusCode;
@@ -217,7 +220,7 @@ static void * AFNetworkingWebApiClientTaskStateContext = &AFNetworkingWebApiClie
 				apiResponse.responseObject = finalResponseObject;
 				doCallback(apiResponse, finalError);
 			};
-			if ( dataMapper && !error ) {
+			if ( dataMapper && responseObject && !error ) {
 				dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
 					NSError *decodeError = nil;
 					id decoded = [dataMapper performMappingWithSourceObject:responseObject route:route error:&decodeError];

@@ -222,4 +222,17 @@ static NSString * const kRoutePropertyDataMapperInstance = @"_dataMapper";
 	}
 }
 
+- (NSArray<NSHTTPCookie *> *)cookiesForAPI:(nullable NSString *)name inCookieStorage:(nullable NSHTTPCookieStorage *)cookieJar {
+	NSMutableArray *result = [[NSMutableArray alloc] initWithCapacity:8];
+	NSURL *cookieURL = ([name length] ? [self URLForRoute:[self routeForName:name error:nil] pathVariables:nil parameters:nil error:nil] : baseApiURL);
+	NSHTTPCookieStorage *jar = (cookieJar ? cookieJar : [NSHTTPCookieStorage sharedHTTPCookieStorage]);
+	if ( cookieURL ) {
+		NSArray *found = [jar cookiesForURL:baseApiURL];
+		if ( found ) {
+			[result addObjectsFromArray:found];
+		}
+	}
+	return result;
+}
+
 @end
