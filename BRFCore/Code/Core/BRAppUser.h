@@ -62,6 +62,15 @@ extern NSString * const BREnvironmentKeyPasswordMinLength;
  */
 - (void)loadFromUserDefaults:(NSUserDefaults *)userDefaults keychain:(id<BRKeychainService>)keychain;
 
+/**
+ Test if the receiver has different property values from another @c BRAppUser instance.
+ 
+ @param other The user to compare the receiver to.
+ 
+ @return YES if any property differs other than @c authenticationToken, @c password, or @c passwordAgain.
+ */
+- (BOOL)isDifferentFromBRAppUser:(BRAppUser *)other;
+
 #pragma mark - Persistence support
 
 /**

@@ -37,4 +37,60 @@
 	assertThat(active.passwordAgain, nilValue());
 }
 
+- (void)testSame {
+	BRAppUser *user = [BRAppUser new];
+	user.name = @"n";
+	user.email = @"e@e";
+	user.firstName = @"f";
+	user.lastName = @"l";
+	user.uniqueId = @"u";
+	user.address = @"a";
+	user.website = @"w";
+	
+	BRAppUser *user2 = [user copy];
+	assertThatBool([user isDifferentFrom:user2], isFalse());
+}
+
+
+- (void)testDifferent {
+	BRAppUser *user = [BRAppUser new];
+	user.name = @"n";
+	user.email = @"e@e";
+	user.firstName = @"f";
+	user.lastName = @"l";
+	user.uniqueId = @"u";
+	user.address = @"a";
+	user.website = @"w";
+	
+	BRAppUser *user2;
+	
+	user2 = [user copy];
+	user2.name = @"!";
+	assertThatBool([user isDifferentFrom:user2], isTrue());
+	
+	user2 = [user copy];
+	user2.email = @"!";
+	assertThatBool([user isDifferentFrom:user2], isTrue());
+	
+	user2 = [user copy];
+	user2.firstName = @"!";
+	assertThatBool([user isDifferentFrom:user2], isTrue());
+	
+	user2 = [user copy];
+	user2.lastName = @"!";
+	assertThatBool([user isDifferentFrom:user2], isTrue());
+	
+	user2 = [user copy];
+	user2.uniqueId = @"!";
+	assertThatBool([user isDifferentFrom:user2], isTrue());
+	
+	user2 = [user copy];
+	user2.address = @"!";
+	assertThatBool([user isDifferentFrom:user2], isTrue());
+	
+	user2 = [user copy];
+	user2.website = @"!";
+	assertThatBool([user isDifferentFrom:user2], isTrue());
+}
+
 @end

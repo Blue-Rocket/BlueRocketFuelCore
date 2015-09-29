@@ -87,6 +87,28 @@ static id CurrentUser;
 	}
 }
 
+- (BOOL)isDifferentFrom:(id<BREntity>)other {
+	if ( [other isKindOfClass:[self class]] == NO ) {
+		// not same class: immediately result in YES
+		return YES;
+	}
+	return [self isDifferentFromBRAppUser:(BRAppUser *)other];
+}
+
+#define ObjectPropertiesSame(prop) ((self.prop == nil && other.prop == nil) || [self.prop isEqual:other.prop])
+
+- (BOOL)isDifferentFromBRAppUser:(BRAppUser *)other {
+	return ((ObjectPropertiesSame(uniqueId)
+			 && ObjectPropertiesSame(type)
+			 && ObjectPropertiesSame(email)
+			 && ObjectPropertiesSame(firstName)
+			 && ObjectPropertiesSame(lastName)
+			 && ObjectPropertiesSame(name)
+			 && ObjectPropertiesSame(phone)
+			 && ObjectPropertiesSame(website)
+			 && ObjectPropertiesSame(address)) == NO);
+}
+
 #pragma mark - NSCopying
 
 - (id)copyWithZone:(NSZone *)zone {
