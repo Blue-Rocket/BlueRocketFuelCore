@@ -50,6 +50,7 @@
 		assertThat(user.email, equalTo(@"email"));
 		assertThatBool(user.newUser, isFalse());
 		assertThatBool(user.authenticated, isTrue());
+		assertThatBool([NSThread isMainThread], describedAs(@"Should be on main thread", isTrue(), nil));
 		called = YES;
 	}];
 	
@@ -77,6 +78,7 @@
 		assertThat(error.domain, equalTo(BRServiceValidationErrorDomain));
 		assertThat([error localizedDescription], equalTo(@"That email is already registered."));
 		assertThatInteger([error code], equalToInteger(12345));
+		assertThatBool([NSThread isMainThread], describedAs(@"Should be on main thread", isTrue(), nil));
 		called = YES;
 	}];
 	
@@ -106,6 +108,7 @@
 		assertThat(user.email, equalTo(@"email"));
 		assertThatBool(user.newUser, isFalse());
 		assertThatBool(user.authenticated, isTrue());
+		assertThatBool([NSThread isMainThread], describedAs(@"Should be on main thread", isTrue(), nil));
 		[callbackExpectation fulfill];
 	}];
 	[self waitForExpectationsWithTimeout:2 handler:nil];
@@ -130,6 +133,7 @@
 	
 	[self expectationForNotification:BRUserServiceNotificationUserDetailsDidChange object:nil handler:^BOOL(NSNotification * _Nonnull notification) {
 		assertThat(notification.object, sameInstance(updateUser));
+		assertThatBool([NSThread isMainThread], describedAs(@"Should be on main thread", isTrue(), nil));
 		return YES;
 	}];
 	XCTestExpectation *callbackExpectation = [self expectationWithDescription:@"Callback"];
@@ -137,6 +141,7 @@
 		assertThat(user, sameInstance(updateUser));
 		assertThatBool(user.newUser, isFalse());
 		assertThatBool(user.authenticated, isTrue());
+		assertThatBool([NSThread isMainThread], describedAs(@"Should be on main thread", isTrue(), nil));
 		[callbackExpectation fulfill];
 	}];
 	[self waitForExpectationsWithTimeout:2 handler:nil];
