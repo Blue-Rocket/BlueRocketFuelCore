@@ -95,7 +95,7 @@ static id CurrentUser;
 	return [self isDifferentFromBRAppUser:(BRAppUser *)other];
 }
 
-#define ObjectPropertiesSame(prop) ((self.prop == nil && other.prop == nil) || [self.prop isEqual:other.prop])
+#define ObjectPropertiesSame(prop) ((self.prop == nil && other.prop == nil) || (self.prop != nil && [self.prop isEqual:other.prop]))
 
 - (BOOL)isDifferentFromBRAppUser:(BRAppUser *)other {
 	return ((ObjectPropertiesSame(uniqueId)

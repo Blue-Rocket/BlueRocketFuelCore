@@ -93,4 +93,15 @@
 	assertThatBool([user isDifferentFrom:user2], isTrue());
 }
 
+- (void)testDifferentToNil {
+	BRAppUser *user = [BRAppUser new];
+	user.email = @"e@e";
+	
+	BRAppUser *user2;
+	
+	user2 = [user copy];
+	user2.email = nil;
+	assertThatBool([user isDifferentFrom:user2], isTrue());
+}
+
 @end
