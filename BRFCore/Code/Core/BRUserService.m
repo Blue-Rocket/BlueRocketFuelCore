@@ -14,3 +14,4 @@ const NSInteger BRUserServiceErrorEmailInUse = 40001;
 NSString * const BRUserServiceNotificationLoginDidSucceed = @"UserServiceLoginDidSucceed";
 NSString * const BRUserServiceNotificationLoginDidFail = @"UserServiceLoginDidFail";
 NSString * const BRUserServiceNotificationLogoutDidSucceed = @"UserServiceLogoutDidSucceed";
+NSString * const BRUserServiceNotificationUserDetailsDidChange = @"UserServiceUserDetailsDidChange";

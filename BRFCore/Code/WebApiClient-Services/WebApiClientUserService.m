@@ -124,6 +124,7 @@ NSString * const WebApiRouteUpdateUser = @"userUpdate";
 		}
 		if ( user ) {
 			[self.appUserClass replaceCurrentUser:user];
+			[[NSNotificationCenter defaultCenter] postNotificationName:BRUserServiceNotificationUserDetailsDidChange object:user userInfo:nil];
 		}
 		doCallback([self activeUser], error);
 	}];

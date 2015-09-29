@@ -112,7 +112,7 @@
 	OCMVerifyAll((id)mockClient);
 }
 
-- (void)testUpdateUserDetails {
+- (void)testChangeUserDetails {
 	BRAppUser *newUser = [BRAppUser new];
 	newUser.uniqueId = @"test-id";
 	[BRAppUser replaceCurrentUser:newUser];
@@ -120,22 +120,21 @@
 	BRAppUser *updateUser = [BRAppUser new];
 	updateUser.uniqueId = @"test-id";
 	updateUser.email = @"updated";
-	
-	// sub the client call to return a successfully registered user
+
+	// sub the client call to return a successfully updated user
 	OCMStub([mockClient requestAPI:equalTo(@"userUpdate") withPathVariables:@{ @"userId" : newUser.uniqueId } parameters:updateUser data:nil finished:[OCMArg checkWithBlock:^BOOL(id obj) {
 		void (^block)(id<WebApiResponse> response, NSError *error) = obj;
-		BRAppUser *regUser = [BRAppUser new];
-		regUser.email = @"updated";
-		regUser.uniqueId = @"test-id";
-		regUser.authenticationToken = @"token";
-		block(@{ @"responseObject" : regUser, @"statusCode" : @200}, nil);
+		block(@{ @"responseObject" : updateUser, @"statusCode" : @200}, nil);
 		return YES;
 	}]]);
 	
+	[self expectationForNotification:BRUserServiceNotificationUserDetailsDidChange object:nil handler:^BOOL(NSNotification * _Nonnull notification) {
+		assertThat(notification.object, sameInstance(updateUser));
+		return YES;
+	}];
 	XCTestExpectation *callbackExpectation = [self expectationWithDescription:@"Callback"];
 	[userService updateUserDetails:updateUser finished:^(id<BRUser>  _Nullable user, NSError * _Nullable error) {
-		assertThat(user.uniqueId, equalTo(@"test-id"));
-		assertThat(user.email, equalTo(@"updated"));
+		assertThat(user, sameInstance(updateUser));
 		assertThatBool(user.newUser, isFalse());
 		assertThatBool(user.authenticated, isTrue());
 		[callbackExpectation fulfill];

@@ -26,6 +26,9 @@ extern NSString * const BRUserServiceNotificationLoginDidFail;
 /** Notification sent after the user has logged out. */
 extern NSString * const BRUserServiceNotificationLogoutDidSucceed;
 
+/** Notification sent after the active user's details have been updated. The object will be the active BRUser instance. */
+extern NSString * const BRUserServiceNotificationUserDetailsDidChange;
+
 /**
  API for user services, such as authentication and registration.
  */
