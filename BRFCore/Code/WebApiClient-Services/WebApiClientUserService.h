@@ -35,4 +35,16 @@ extern NSString * const WebApiRouteUpdateUser;
 /** The @c WebApiClient implementation to use. */
 @property (nonatomic, strong) id<WebApiClient> client;
 
+/**
+ Flag to enable including the API authorization header for requests that are not included in the
+ @c internalHostNames property when responding to @c WebApiAuthorizationProvider methods.
+ */
+@property (nonatomic, assign, getter=isIncludeAuthorizationOnExternalRequests) BOOL includeAuthorizationOnExternalRequests;
+
+/**
+ A set of host names that are considered @i internal, when @c includeAuthorizationOnExternalRequests is @c NO.
+ Defaults to host specified in the @c BREnvironment key @c WebApiClientSupportServerHostEnvironmentKey.
+ */
+@property (nonatomic, strong) NSSet<NSString *> *internalHostNames;
+
 @end

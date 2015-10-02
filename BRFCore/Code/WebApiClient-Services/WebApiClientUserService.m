@@ -9,6 +9,7 @@
 #import "WebApiClientUserService.h"
 
 #import <BRCocoaLumberjack/BRCocoaLumberjack.h>
+#import <BREnvironment/BREnvironment.h>
 #import "BRAppUser.h"
 
 NSString * const WebApiRouteRegister = @"register";
@@ -21,6 +22,7 @@ NSString * const WebApiRouteUpdateUser = @"userUpdate";
 - (id)init {
 	if ( (self = [super init]) ) {
 		self.appUserClass = [BRAppUser class];
+		self.internalHostNames = [NSSet setWithObject:[BREnvironment sharedEnvironment][WebApiClientSupportServerHostEnvironmentKey]];
 	}
 	return self;
 }
@@ -36,10 +38,17 @@ NSString * const WebApiRouteUpdateUser = @"userUpdate";
 #pragma mark - WebApiAuthorizationProvider
 
 - (void)configureAuthorizationForRoute:(id<WebApiRoute>)route request:(NSMutableURLRequest *)request {
-	id<BRUser> activeUser = [self activeUser];
-	if ( activeUser.authenticated ) {
-		// toss in a standard auth token header
-		[request setValue:[NSString stringWithFormat:@"token %@", activeUser.authenticationToken] forHTTPHeaderField:@"Authorization"];
+	BOOL include = YES;
+	if ( self.includeAuthorizationOnExternalRequests == NO ) {
+		// check if external request or not
+		include = [self.internalHostNames containsObject:request.URL.host];
+	}
+	if ( include ) {
+		id<BRUser> activeUser = [self activeUser];
+		if ( activeUser.authenticated ) {
+			// toss in a standard auth token header
+			[request setValue:[NSString stringWithFormat:@"token %@", activeUser.authenticationToken] forHTTPHeaderField:@"Authorization"];
+		}
 	}
 }
 
