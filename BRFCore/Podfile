@@ -1,0 +1,20 @@
+source 'https://github.com/CocoaPods/Specs.git'
+platform :ios, '8.1'
+
+inhibit_all_warnings!
+
+target :BRFCore do
+	pod 'BRCocoaLumberjack',		'~> 2.0'
+	pod 'BREnvironment',			'~> 1.2'
+	pod 'BRLocalize',				'~> 0.9'
+	pod 'ImageEffects',				'~> 1.0'
+	pod 'WebApiClient',				'~> 0.9'
+	
+	target :BRFCoreTests do
+		pod 'OCHamcrest',			'~> 4.1'
+		pod 'OCMock',				'~> 3.1'
+		pod 'CocoaHTTPServer',		'~> 2.3'
+		pod 'RoutingHTTPServer', 	'~> 1.0'
+	end
+	
+end

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>App_webservice_host</key>
+	<string>myapp.herokuapp.com</string>
+	<key>App_webservice_port</key>
+	<integer>80</integer>
+	<key>App_webservice_protocol</key>
+	<string>http</string>
+	<key>App_webservice_token</key>
+	<string>token</string>
+	<key>X-App-Target</key>
+	<string>Development</string>
+</dict>
+</plist>

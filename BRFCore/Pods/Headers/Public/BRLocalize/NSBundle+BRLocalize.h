@@ -1,0 +1,1 @@
+../../../BRLocalize/BRLocalize/Code/Core/NSBundle+BRLocalize.h

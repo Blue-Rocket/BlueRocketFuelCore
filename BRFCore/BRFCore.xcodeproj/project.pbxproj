@@ -1,0 +1,839 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		C5BB68D733CF728177D4340A /* libPods-BRFCore-BRFCoreTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D22872C0290E9130E13C9F2 /* libPods-BRFCore-BRFCoreTests.a */; };
+		C96D0B661BB32ED900AC8D30 /* NSString_BRTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C96D0B651BB32ED900AC8D30 /* NSString_BRTests.m */; settings = {ASSET_TAGS = (); }; };
+		C972EB161BAFCBB8007FAA59 /* UIImage_BRTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C972EB141BAFCA17007FAA59 /* UIImage_BRTests.m */; settings = {ASSET_TAGS = (); }; };
+		C9A89F591B8A4C67000B9169 /* libBRFCore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C9A89F4D1B8A4C67000B9169 /* libBRFCore.a */; };
+		C9A89FE51B8A4DDB000B9169 /* BRAppConfigEnvironmentProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A89F6B1B8A4DDB000B9169 /* BRAppConfigEnvironmentProvider.m */; };
+		C9A89FE61B8A4DDB000B9169 /* BRAppUser.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A89F6D1B8A4DDB000B9169 /* BRAppUser.m */; };
+		C9A89FE71B8A4DDB000B9169 /* BRKeychainService.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A89F711B8A4DDB000B9169 /* BRKeychainService.m */; };
+		C9A89FE81B8A4DDB000B9169 /* BRServiceConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A89F741B8A4DDB000B9169 /* BRServiceConstants.m */; };
+		C9A89FE91B8A4DDB000B9169 /* BRSimpleEntityReference.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A89F761B8A4DDB000B9169 /* BRSimpleEntityReference.m */; };
+		C9A89FEA1B8A4DDB000B9169 /* BRSimpleKeychainService.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A89F781B8A4DDB000B9169 /* BRSimpleKeychainService.m */; };
+		C9A89FEB1B8A4DDB000B9169 /* BRUserService.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A89F7B1B8A4DDB000B9169 /* BRUserService.m */; };
+		C9A89FEC1B8A4DDB000B9169 /* NSBundle+BR.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A89F7D1B8A4DDB000B9169 /* NSBundle+BR.m */; };
+		C9A89FED1B8A4DDB000B9169 /* NSDate+BR.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A89F7F1B8A4DDB000B9169 /* NSDate+BR.m */; };
+		C9A89FEF1B8A4DDB000B9169 /* NSString+BR.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A89F831B8A4DDB000B9169 /* NSString+BR.m */; };
+		C9A89FF01B8A4DDB000B9169 /* BRSimpleLogging.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A89F871B8A4DDB000B9169 /* BRSimpleLogging.m */; };
+		C9A89FF11B8A4DDB000B9169 /* BRFullScreenNotificationView.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A89F8B1B8A4DDB000B9169 /* BRFullScreenNotificationView.m */; };
+		C9A89FF21B8A4DDB000B9169 /* BROptionsTray.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A89F8E1B8A4DDB000B9169 /* BROptionsTray.m */; };
+		C9A89FF41B8A4DDB000B9169 /* PushNoAnimationSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A89F921B8A4DDB000B9169 /* PushNoAnimationSegue.m */; };
+		C9A89FF51B8A4DDB000B9169 /* ReplaceNoAnimationSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A89F941B8A4DDB000B9169 /* ReplaceNoAnimationSegue.m */; };
+		C9A89FF61B8A4DDB000B9169 /* UIBarButtonItem+BR.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A89F961B8A4DDB000B9169 /* UIBarButtonItem+BR.m */; };
+		C9A89FF81B8A4DDB000B9169 /* UIFont+BR.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A89F9A1B8A4DDB000B9169 /* UIFont+BR.m */; };
+		C9A89FF91B8A4DDB000B9169 /* UIImage+BR.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A89F9C1B8A4DDB000B9169 /* UIImage+BR.m */; };
+		C9A89FFB1B8A4DDB000B9169 /* UILabel+BR.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A89FA01B8A4DDB000B9169 /* UILabel+BR.m */; };
+		C9A89FFE1B8A4DDB000B9169 /* UITextField+BR.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A89FA61B8A4DDB000B9169 /* UITextField+BR.m */; };
+		C9A89FFF1B8A4DDB000B9169 /* UIView+BR.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A89FA81B8A4DDB000B9169 /* UIView+BR.m */; };
+		C9A8A0061B8A4DDB000B9169 /* BRRestKitDataMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A89FBE1B8A4DDB000B9169 /* BRRestKitDataMapping.m */; };
+		C9A8A0081B8A4DDB000B9169 /* WebApiClientUserService.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A89FC51B8A4DDB000B9169 /* WebApiClientUserService.m */; };
+		C9A8A00A1B8A4DDB000B9169 /* BRAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A89FCD1B8A4DDB000B9169 /* BRAppDelegate.m */; };
+		C9A8A00B1B8A4DDB000B9169 /* BRAuthenticatedWebServiceRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A89FCF1B8A4DDB000B9169 /* BRAuthenticatedWebServiceRequest.m */; };
+		C9A8A00C1B8A4DDB000B9169 /* BRLoginWebServiceRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A89FD11B8A4DDB000B9169 /* BRLoginWebServiceRequest.m */; };
+		C9A8A00D1B8A4DDB000B9169 /* BRPingWebServiceRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A89FD31B8A4DDB000B9169 /* BRPingWebServiceRequest.m */; };
+		C9A8A00E1B8A4DDB000B9169 /* BRProfileEditWebServiceRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A89FD51B8A4DDB000B9169 /* BRProfileEditWebServiceRequest.m */; };
+		C9A8A00F1B8A4DDB000B9169 /* BRProfileViewWebServiceRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A89FD71B8A4DDB000B9169 /* BRProfileViewWebServiceRequest.m */; };
+		C9A8A0101B8A4DDB000B9169 /* BRReachability.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A89FD91B8A4DDB000B9169 /* BRReachability.m */; };
+		C9A8A0111B8A4DDB000B9169 /* BRRegisterWebServiceRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A89FDB1B8A4DDB000B9169 /* BRRegisterWebServiceRequest.m */; };
+		C9A8A0121B8A4DDB000B9169 /* BRUserWebServiceRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A89FDD1B8A4DDB000B9169 /* BRUserWebServiceRequest.m */; };
+		C9A8A0131B8A4DDB000B9169 /* BRWebServiceRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A89FDF1B8A4DDB000B9169 /* BRWebServiceRequest.m */; };
+		C9A8A0141B8A4DDB000B9169 /* BRWebServiceResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A89FE11B8A4DDB000B9169 /* BRWebServiceResponse.m */; };
+		C9A8A0151B8A4DDB000B9169 /* ResetPasswordWebServiceRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A89FE31B8A4DDB000B9169 /* ResetPasswordWebServiceRequest.m */; };
+		C9A8A02B1B8A4E3D000B9169 /* BaseNetworkTestingSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A8A0181B8A4E3D000B9169 /* BaseNetworkTestingSupport.m */; };
+		C9A8A02C1B8A4E3D000B9169 /* BaseTestingSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A8A01A1B8A4E3D000B9169 /* BaseTestingSupport.m */; };
+		C9A8A02D1B8A4E3D000B9169 /* config.json in Resources */ = {isa = PBXBuildFile; fileRef = C9A8A01B1B8A4E3D000B9169 /* config.json */; };
+		C9A8A02E1B8A4E3D000B9169 /* BRAppUserTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A8A01D1B8A4E3D000B9169 /* BRAppUserTests.m */; };
+		C9A8A02F1B8A4E3D000B9169 /* NSDate_BRTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A8A01E1B8A4E3D000B9169 /* NSDate_BRTests.m */; };
+		C9A8A0311B8A4E3D000B9169 /* Environment.plist in Resources */ = {isa = PBXBuildFile; fileRef = C9A8A0201B8A4E3D000B9169 /* Environment.plist */; };
+		C9A8A0331B8A4E3D000B9169 /* strings.json in Resources */ = {isa = PBXBuildFile; fileRef = C9A8A0221B8A4E3D000B9169 /* strings.json */; };
+		C9A8A0371B8A4E3D000B9169 /* WebApiClientUserServiceTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A8A02A1B8A4E3D000B9169 /* WebApiClientUserServiceTests.m */; };
+		C9A8A03A1B8A5112000B9169 /* BRJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A8A0391B8A5112000B9169 /* BRJSON.m */; };
+		EA2D55BAC1F29F01EBCF2969 /* libPods-BRFCore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 07D714E2304D4D5A716F0270 /* libPods-BRFCore.a */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		C9A89F5A1B8A4C67000B9169 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C9A89F451B8A4C67000B9169 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C9A89F4C1B8A4C67000B9169;
+			remoteInfo = BRFCore;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		C9A89F4B1B8A4C67000B9169 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		07D714E2304D4D5A716F0270 /* libPods-BRFCore.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BRFCore.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4D22872C0290E9130E13C9F2 /* libPods-BRFCore-BRFCoreTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BRFCore-BRFCoreTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		7C4FA78132C66D3025A883D3 /* Pods-BRFCore.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BRFCore.release.xcconfig"; path = "Pods/Target Support Files/Pods-BRFCore/Pods-BRFCore.release.xcconfig"; sourceTree = "<group>"; };
+		C13BFD3959ACABD1D3EDB895 /* Pods-BRFCore.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BRFCore.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BRFCore/Pods-BRFCore.debug.xcconfig"; sourceTree = "<group>"; };
+		C96D0B651BB32ED900AC8D30 /* NSString_BRTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSString_BRTests.m; sourceTree = "<group>"; };
+		C972EB141BAFCA17007FAA59 /* UIImage_BRTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIImage_BRTests.m; sourceTree = "<group>"; };
+		C98DC9911B9D36060067D6A6 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		C9A89F4D1B8A4C67000B9169 /* libBRFCore.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libBRFCore.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		C9A89F581B8A4C67000B9169 /* BRFCoreTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BRFCoreTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		C9A89F681B8A4DDB000B9169 /* BlueRocketFuelCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BlueRocketFuelCore.h; path = Code/BlueRocketFuelCore.h; sourceTree = "<group>"; };
+		C9A89F6A1B8A4DDB000B9169 /* BRAppConfigEnvironmentProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRAppConfigEnvironmentProvider.h; sourceTree = "<group>"; };
+		C9A89F6B1B8A4DDB000B9169 /* BRAppConfigEnvironmentProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRAppConfigEnvironmentProvider.m; sourceTree = "<group>"; };
+		C9A89F6C1B8A4DDB000B9169 /* BRAppUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRAppUser.h; sourceTree = "<group>"; };
+		C9A89F6D1B8A4DDB000B9169 /* BRAppUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRAppUser.m; sourceTree = "<group>"; };
+		C9A89F6E1B8A4DDB000B9169 /* BREntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BREntity.h; sourceTree = "<group>"; };
+		C9A89F6F1B8A4DDB000B9169 /* BREntityReference.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BREntityReference.h; sourceTree = "<group>"; };
+		C9A89F701B8A4DDB000B9169 /* BRKeychainService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRKeychainService.h; sourceTree = "<group>"; };
+		C9A89F711B8A4DDB000B9169 /* BRKeychainService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRKeychainService.m; sourceTree = "<group>"; };
+		C9A89F731B8A4DDB000B9169 /* BRServiceConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRServiceConstants.h; sourceTree = "<group>"; };
+		C9A89F741B8A4DDB000B9169 /* BRServiceConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRServiceConstants.m; sourceTree = "<group>"; };
+		C9A89F751B8A4DDB000B9169 /* BRSimpleEntityReference.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRSimpleEntityReference.h; sourceTree = "<group>"; };
+		C9A89F761B8A4DDB000B9169 /* BRSimpleEntityReference.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRSimpleEntityReference.m; sourceTree = "<group>"; };
+		C9A89F771B8A4DDB000B9169 /* BRSimpleKeychainService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRSimpleKeychainService.h; sourceTree = "<group>"; };
+		C9A89F781B8A4DDB000B9169 /* BRSimpleKeychainService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRSimpleKeychainService.m; sourceTree = "<group>"; };
+		C9A89F791B8A4DDB000B9169 /* BRUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRUser.h; sourceTree = "<group>"; };
+		C9A89F7A1B8A4DDB000B9169 /* BRUserService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRUserService.h; sourceTree = "<group>"; };
+		C9A89F7B1B8A4DDB000B9169 /* BRUserService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRUserService.m; sourceTree = "<group>"; };
+		C9A89F7C1B8A4DDB000B9169 /* NSBundle+BR.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSBundle+BR.h"; sourceTree = "<group>"; };
+		C9A89F7D1B8A4DDB000B9169 /* NSBundle+BR.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSBundle+BR.m"; sourceTree = "<group>"; };
+		C9A89F7E1B8A4DDB000B9169 /* NSDate+BR.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+BR.h"; sourceTree = "<group>"; };
+		C9A89F7F1B8A4DDB000B9169 /* NSDate+BR.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+BR.m"; sourceTree = "<group>"; };
+		C9A89F821B8A4DDB000B9169 /* NSString+BR.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+BR.h"; sourceTree = "<group>"; };
+		C9A89F831B8A4DDB000B9169 /* NSString+BR.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+BR.m"; sourceTree = "<group>"; };
+		C9A89F841B8A4DDB000B9169 /* Core.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Core.h; path = Code/Core.h; sourceTree = "<group>"; };
+		C9A89F861B8A4DDB000B9169 /* BRSimpleLogging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRSimpleLogging.h; sourceTree = "<group>"; };
+		C9A89F871B8A4DDB000B9169 /* BRSimpleLogging.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRSimpleLogging.m; sourceTree = "<group>"; };
+		C9A89F881B8A4DDB000B9169 /* Logging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Logging.h; path = Code/Logging.h; sourceTree = "<group>"; };
+		C9A89F8A1B8A4DDB000B9169 /* BRFullScreenNotificationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRFullScreenNotificationView.h; sourceTree = "<group>"; };
+		C9A89F8B1B8A4DDB000B9169 /* BRFullScreenNotificationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRFullScreenNotificationView.m; sourceTree = "<group>"; };
+		C9A89F8C1B8A4DDB000B9169 /* BRFullScreeNotificationViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRFullScreeNotificationViewDelegate.h; sourceTree = "<group>"; };
+		C9A89F8D1B8A4DDB000B9169 /* BROptionsTray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BROptionsTray.h; sourceTree = "<group>"; };
+		C9A89F8E1B8A4DDB000B9169 /* BROptionsTray.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BROptionsTray.m; sourceTree = "<group>"; };
+		C9A89F911B8A4DDB000B9169 /* PushNoAnimationSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PushNoAnimationSegue.h; sourceTree = "<group>"; };
+		C9A89F921B8A4DDB000B9169 /* PushNoAnimationSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PushNoAnimationSegue.m; sourceTree = "<group>"; };
+		C9A89F931B8A4DDB000B9169 /* ReplaceNoAnimationSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReplaceNoAnimationSegue.h; sourceTree = "<group>"; };
+		C9A89F941B8A4DDB000B9169 /* ReplaceNoAnimationSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReplaceNoAnimationSegue.m; sourceTree = "<group>"; };
+		C9A89F951B8A4DDB000B9169 /* UIBarButtonItem+BR.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+BR.h"; sourceTree = "<group>"; };
+		C9A89F961B8A4DDB000B9169 /* UIBarButtonItem+BR.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBarButtonItem+BR.m"; sourceTree = "<group>"; };
+		C9A89F991B8A4DDB000B9169 /* UIFont+BR.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIFont+BR.h"; sourceTree = "<group>"; };
+		C9A89F9A1B8A4DDB000B9169 /* UIFont+BR.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIFont+BR.m"; sourceTree = "<group>"; };
+		C9A89F9B1B8A4DDB000B9169 /* UIImage+BR.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+BR.h"; sourceTree = "<group>"; };
+		C9A89F9C1B8A4DDB000B9169 /* UIImage+BR.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+BR.m"; sourceTree = "<group>"; };
+		C9A89F9F1B8A4DDB000B9169 /* UILabel+BR.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+BR.h"; sourceTree = "<group>"; };
+		C9A89FA01B8A4DDB000B9169 /* UILabel+BR.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+BR.m"; sourceTree = "<group>"; };
+		C9A89FA51B8A4DDB000B9169 /* UITextField+BR.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextField+BR.h"; sourceTree = "<group>"; };
+		C9A89FA61B8A4DDB000B9169 /* UITextField+BR.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextField+BR.m"; sourceTree = "<group>"; };
+		C9A89FA71B8A4DDB000B9169 /* UIView+BR.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+BR.h"; sourceTree = "<group>"; };
+		C9A89FA81B8A4DDB000B9169 /* UIView+BR.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+BR.m"; sourceTree = "<group>"; };
+		C9A89FA91B8A4DDB000B9169 /* UI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UI.h; path = Code/UI.h; sourceTree = "<group>"; };
+		C9A89FBD1B8A4DDB000B9169 /* BRRestKitDataMapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRRestKitDataMapping.h; sourceTree = "<group>"; };
+		C9A89FBE1B8A4DDB000B9169 /* BRRestKitDataMapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRRestKitDataMapping.m; sourceTree = "<group>"; };
+		C9A89FC41B8A4DDB000B9169 /* WebApiClientUserService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebApiClientUserService.h; sourceTree = "<group>"; };
+		C9A89FC51B8A4DDB000B9169 /* WebApiClientUserService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebApiClientUserService.m; sourceTree = "<group>"; };
+		C9A89FC61B8A4DDB000B9169 /* WebApiClient-Services.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "WebApiClient-Services.h"; path = "Code/WebApiClient-Services.h"; sourceTree = "<group>"; };
+		C9A89FCC1B8A4DDB000B9169 /* BRAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRAppDelegate.h; sourceTree = "<group>"; };
+		C9A89FCD1B8A4DDB000B9169 /* BRAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRAppDelegate.m; sourceTree = "<group>"; };
+		C9A89FCE1B8A4DDB000B9169 /* BRAuthenticatedWebServiceRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRAuthenticatedWebServiceRequest.h; sourceTree = "<group>"; };
+		C9A89FCF1B8A4DDB000B9169 /* BRAuthenticatedWebServiceRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRAuthenticatedWebServiceRequest.m; sourceTree = "<group>"; };
+		C9A89FD01B8A4DDB000B9169 /* BRLoginWebServiceRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRLoginWebServiceRequest.h; sourceTree = "<group>"; };
+		C9A89FD11B8A4DDB000B9169 /* BRLoginWebServiceRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRLoginWebServiceRequest.m; sourceTree = "<group>"; };
+		C9A89FD21B8A4DDB000B9169 /* BRPingWebServiceRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRPingWebServiceRequest.h; sourceTree = "<group>"; };
+		C9A89FD31B8A4DDB000B9169 /* BRPingWebServiceRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRPingWebServiceRequest.m; sourceTree = "<group>"; };
+		C9A89FD41B8A4DDB000B9169 /* BRProfileEditWebServiceRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRProfileEditWebServiceRequest.h; sourceTree = "<group>"; };
+		C9A89FD51B8A4DDB000B9169 /* BRProfileEditWebServiceRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRProfileEditWebServiceRequest.m; sourceTree = "<group>"; };
+		C9A89FD61B8A4DDB000B9169 /* BRProfileViewWebServiceRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRProfileViewWebServiceRequest.h; sourceTree = "<group>"; };
+		C9A89FD71B8A4DDB000B9169 /* BRProfileViewWebServiceRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRProfileViewWebServiceRequest.m; sourceTree = "<group>"; };
+		C9A89FD81B8A4DDB000B9169 /* BRReachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRReachability.h; sourceTree = "<group>"; };
+		C9A89FD91B8A4DDB000B9169 /* BRReachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRReachability.m; sourceTree = "<group>"; };
+		C9A89FDA1B8A4DDB000B9169 /* BRRegisterWebServiceRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRRegisterWebServiceRequest.h; sourceTree = "<group>"; };
+		C9A89FDB1B8A4DDB000B9169 /* BRRegisterWebServiceRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRRegisterWebServiceRequest.m; sourceTree = "<group>"; };
+		C9A89FDC1B8A4DDB000B9169 /* BRUserWebServiceRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRUserWebServiceRequest.h; sourceTree = "<group>"; };
+		C9A89FDD1B8A4DDB000B9169 /* BRUserWebServiceRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRUserWebServiceRequest.m; sourceTree = "<group>"; };
+		C9A89FDE1B8A4DDB000B9169 /* BRWebServiceRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRWebServiceRequest.h; sourceTree = "<group>"; };
+		C9A89FDF1B8A4DDB000B9169 /* BRWebServiceRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRWebServiceRequest.m; sourceTree = "<group>"; };
+		C9A89FE01B8A4DDB000B9169 /* BRWebServiceResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRWebServiceResponse.h; sourceTree = "<group>"; };
+		C9A89FE11B8A4DDB000B9169 /* BRWebServiceResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRWebServiceResponse.m; sourceTree = "<group>"; };
+		C9A89FE21B8A4DDB000B9169 /* ResetPasswordWebServiceRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResetPasswordWebServiceRequest.h; sourceTree = "<group>"; };
+		C9A89FE31B8A4DDB000B9169 /* ResetPasswordWebServiceRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResetPasswordWebServiceRequest.m; sourceTree = "<group>"; };
+		C9A89FE41B8A4DDB000B9169 /* WebRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WebRequest.h; path = Code/WebRequest.h; sourceTree = "<group>"; };
+		C9A8A0171B8A4E3D000B9169 /* BaseNetworkTestingSupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseNetworkTestingSupport.h; sourceTree = "<group>"; };
+		C9A8A0181B8A4E3D000B9169 /* BaseNetworkTestingSupport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseNetworkTestingSupport.m; sourceTree = "<group>"; };
+		C9A8A0191B8A4E3D000B9169 /* BaseTestingSupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseTestingSupport.h; sourceTree = "<group>"; };
+		C9A8A01A1B8A4E3D000B9169 /* BaseTestingSupport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseTestingSupport.m; sourceTree = "<group>"; };
+		C9A8A01B1B8A4E3D000B9169 /* config.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = config.json; sourceTree = "<group>"; };
+		C9A8A01D1B8A4E3D000B9169 /* BRAppUserTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRAppUserTests.m; sourceTree = "<group>"; };
+		C9A8A01E1B8A4E3D000B9169 /* NSDate_BRTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSDate_BRTests.m; sourceTree = "<group>"; };
+		C9A8A0201B8A4E3D000B9169 /* Environment.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Environment.plist; path = ../Tests/Environment.plist; sourceTree = "<group>"; };
+		C9A8A0211B8A4E3D000B9169 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = ../Tests/Info.plist; sourceTree = "<group>"; };
+		C9A8A0221B8A4E3D000B9169 /* strings.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = strings.json; path = ../Tests/strings.json; sourceTree = "<group>"; };
+		C9A8A02A1B8A4E3D000B9169 /* WebApiClientUserServiceTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebApiClientUserServiceTests.m; sourceTree = "<group>"; };
+		C9A8A0381B8A5112000B9169 /* BRJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRJSON.h; sourceTree = "<group>"; };
+		C9A8A0391B8A5112000B9169 /* BRJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRJSON.m; sourceTree = "<group>"; };
+		C9A8A03C1B8A5207000B9169 /* BlueRocketFuelCore.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; name = BlueRocketFuelCore.podspec; path = ../BlueRocketFuelCore.podspec; sourceTree = "<group>"; };
+		C9ED94751BA8FBBD00DE842F /* WebApiClient-RestKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "WebApiClient-RestKit.h"; path = "Code/WebApiClient-RestKit.h"; sourceTree = "<group>"; };
+		CF8901992F8C7787AC0F1E10 /* Pods-BRFCore-BRFCoreTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BRFCore-BRFCoreTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-BRFCore-BRFCoreTests/Pods-BRFCore-BRFCoreTests.release.xcconfig"; sourceTree = "<group>"; };
+		D2337E9FBC5C179A64F55FAB /* Pods-BRFCore-BRFCoreTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BRFCore-BRFCoreTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BRFCore-BRFCoreTests/Pods-BRFCore-BRFCoreTests.debug.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		C9A89F4A1B8A4C67000B9169 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EA2D55BAC1F29F01EBCF2969 /* libPods-BRFCore.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C9A89F551B8A4C67000B9169 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C9A89F591B8A4C67000B9169 /* libBRFCore.a in Frameworks */,
+				C5BB68D733CF728177D4340A /* libPods-BRFCore-BRFCoreTests.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		4DFB62DFDBA07958F3C47A91 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				07D714E2304D4D5A716F0270 /* libPods-BRFCore.a */,
+				4D22872C0290E9130E13C9F2 /* libPods-BRFCore-BRFCoreTests.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C628441DFC86B924D3A8D4B9 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				C13BFD3959ACABD1D3EDB895 /* Pods-BRFCore.debug.xcconfig */,
+				7C4FA78132C66D3025A883D3 /* Pods-BRFCore.release.xcconfig */,
+				D2337E9FBC5C179A64F55FAB /* Pods-BRFCore-BRFCoreTests.debug.xcconfig */,
+				CF8901992F8C7787AC0F1E10 /* Pods-BRFCore-BRFCoreTests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		C972EB131BAFCA17007FAA59 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				C972EB141BAFCA17007FAA59 /* UIImage_BRTests.m */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		C9A89F441B8A4C67000B9169 = {
+			isa = PBXGroup;
+			children = (
+				C9A8A03B1B8A515D000B9169 /* Packaging */,
+				C9A89F671B8A4DDB000B9169 /* Code */,
+				C9A8A0161B8A4E3D000B9169 /* Tests */,
+				C9A89F5C1B8A4C67000B9169 /* Test Support */,
+				C9A89F4E1B8A4C67000B9169 /* Products */,
+				C628441DFC86B924D3A8D4B9 /* Pods */,
+				4DFB62DFDBA07958F3C47A91 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		C9A89F4E1B8A4C67000B9169 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C9A89F4D1B8A4C67000B9169 /* libBRFCore.a */,
+				C9A89F581B8A4C67000B9169 /* BRFCoreTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C9A89F5C1B8A4C67000B9169 /* Test Support */ = {
+			isa = PBXGroup;
+			children = (
+				C9A8A0201B8A4E3D000B9169 /* Environment.plist */,
+				C9A8A0211B8A4E3D000B9169 /* Info.plist */,
+				C9A8A0221B8A4E3D000B9169 /* strings.json */,
+			);
+			name = "Test Support";
+			path = Tests;
+			sourceTree = "<group>";
+		};
+		C9A89F671B8A4DDB000B9169 /* Code */ = {
+			isa = PBXGroup;
+			children = (
+				C9A89F691B8A4DDB000B9169 /* Core */,
+				C9A89F851B8A4DDB000B9169 /* Logging */,
+				C9A89F891B8A4DDB000B9169 /* UI */,
+				C9A89FBC1B8A4DDB000B9169 /* WebApiClient-RestKit */,
+				C9A89FC31B8A4DDB000B9169 /* WebApiClient-Services */,
+				C9A89FCB1B8A4DDB000B9169 /* WebRequest */,
+			);
+			path = Code;
+			sourceTree = "<group>";
+		};
+		C9A89F691B8A4DDB000B9169 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				C9A89F6A1B8A4DDB000B9169 /* BRAppConfigEnvironmentProvider.h */,
+				C9A89F6B1B8A4DDB000B9169 /* BRAppConfigEnvironmentProvider.m */,
+				C9A89F6C1B8A4DDB000B9169 /* BRAppUser.h */,
+				C9A89F6D1B8A4DDB000B9169 /* BRAppUser.m */,
+				C9A89F6E1B8A4DDB000B9169 /* BREntity.h */,
+				C9A89F6F1B8A4DDB000B9169 /* BREntityReference.h */,
+				C9A8A0381B8A5112000B9169 /* BRJSON.h */,
+				C9A8A0391B8A5112000B9169 /* BRJSON.m */,
+				C9A89F701B8A4DDB000B9169 /* BRKeychainService.h */,
+				C9A89F711B8A4DDB000B9169 /* BRKeychainService.m */,
+				C9A89F731B8A4DDB000B9169 /* BRServiceConstants.h */,
+				C9A89F741B8A4DDB000B9169 /* BRServiceConstants.m */,
+				C9A89F751B8A4DDB000B9169 /* BRSimpleEntityReference.h */,
+				C9A89F761B8A4DDB000B9169 /* BRSimpleEntityReference.m */,
+				C9A89F771B8A4DDB000B9169 /* BRSimpleKeychainService.h */,
+				C9A89F781B8A4DDB000B9169 /* BRSimpleKeychainService.m */,
+				C9A89F791B8A4DDB000B9169 /* BRUser.h */,
+				C9A89F7A1B8A4DDB000B9169 /* BRUserService.h */,
+				C9A89F7B1B8A4DDB000B9169 /* BRUserService.m */,
+				C9A89F7C1B8A4DDB000B9169 /* NSBundle+BR.h */,
+				C9A89F7D1B8A4DDB000B9169 /* NSBundle+BR.m */,
+				C9A89F7E1B8A4DDB000B9169 /* NSDate+BR.h */,
+				C9A89F7F1B8A4DDB000B9169 /* NSDate+BR.m */,
+				C9A89F821B8A4DDB000B9169 /* NSString+BR.h */,
+				C9A89F831B8A4DDB000B9169 /* NSString+BR.m */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		C9A89F851B8A4DDB000B9169 /* Logging */ = {
+			isa = PBXGroup;
+			children = (
+				C9A89F861B8A4DDB000B9169 /* BRSimpleLogging.h */,
+				C9A89F871B8A4DDB000B9169 /* BRSimpleLogging.m */,
+			);
+			path = Logging;
+			sourceTree = "<group>";
+		};
+		C9A89F891B8A4DDB000B9169 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				C9A89F8A1B8A4DDB000B9169 /* BRFullScreenNotificationView.h */,
+				C9A89F8B1B8A4DDB000B9169 /* BRFullScreenNotificationView.m */,
+				C9A89F8C1B8A4DDB000B9169 /* BRFullScreeNotificationViewDelegate.h */,
+				C9A89F8D1B8A4DDB000B9169 /* BROptionsTray.h */,
+				C9A89F8E1B8A4DDB000B9169 /* BROptionsTray.m */,
+				C9A89F911B8A4DDB000B9169 /* PushNoAnimationSegue.h */,
+				C9A89F921B8A4DDB000B9169 /* PushNoAnimationSegue.m */,
+				C9A89F931B8A4DDB000B9169 /* ReplaceNoAnimationSegue.h */,
+				C9A89F941B8A4DDB000B9169 /* ReplaceNoAnimationSegue.m */,
+				C9A89F951B8A4DDB000B9169 /* UIBarButtonItem+BR.h */,
+				C9A89F961B8A4DDB000B9169 /* UIBarButtonItem+BR.m */,
+				C9A89F991B8A4DDB000B9169 /* UIFont+BR.h */,
+				C9A89F9A1B8A4DDB000B9169 /* UIFont+BR.m */,
+				C9A89F9B1B8A4DDB000B9169 /* UIImage+BR.h */,
+				C9A89F9C1B8A4DDB000B9169 /* UIImage+BR.m */,
+				C9A89F9F1B8A4DDB000B9169 /* UILabel+BR.h */,
+				C9A89FA01B8A4DDB000B9169 /* UILabel+BR.m */,
+				C9A89FA51B8A4DDB000B9169 /* UITextField+BR.h */,
+				C9A89FA61B8A4DDB000B9169 /* UITextField+BR.m */,
+				C9A89FA71B8A4DDB000B9169 /* UIView+BR.h */,
+				C9A89FA81B8A4DDB000B9169 /* UIView+BR.m */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		C9A89FBC1B8A4DDB000B9169 /* WebApiClient-RestKit */ = {
+			isa = PBXGroup;
+			children = (
+				C9A89FBD1B8A4DDB000B9169 /* BRRestKitDataMapping.h */,
+				C9A89FBE1B8A4DDB000B9169 /* BRRestKitDataMapping.m */,
+			);
+			path = "WebApiClient-RestKit";
+			sourceTree = "<group>";
+		};
+		C9A89FC31B8A4DDB000B9169 /* WebApiClient-Services */ = {
+			isa = PBXGroup;
+			children = (
+				C9A89FC41B8A4DDB000B9169 /* WebApiClientUserService.h */,
+				C9A89FC51B8A4DDB000B9169 /* WebApiClientUserService.m */,
+			);
+			path = "WebApiClient-Services";
+			sourceTree = "<group>";
+		};
+		C9A89FCB1B8A4DDB000B9169 /* WebRequest */ = {
+			isa = PBXGroup;
+			children = (
+				C9A89FCC1B8A4DDB000B9169 /* BRAppDelegate.h */,
+				C9A89FCD1B8A4DDB000B9169 /* BRAppDelegate.m */,
+				C9A89FCE1B8A4DDB000B9169 /* BRAuthenticatedWebServiceRequest.h */,
+				C9A89FCF1B8A4DDB000B9169 /* BRAuthenticatedWebServiceRequest.m */,
+				C9A89FD01B8A4DDB000B9169 /* BRLoginWebServiceRequest.h */,
+				C9A89FD11B8A4DDB000B9169 /* BRLoginWebServiceRequest.m */,
+				C9A89FD21B8A4DDB000B9169 /* BRPingWebServiceRequest.h */,
+				C9A89FD31B8A4DDB000B9169 /* BRPingWebServiceRequest.m */,
+				C9A89FD41B8A4DDB000B9169 /* BRProfileEditWebServiceRequest.h */,
+				C9A89FD51B8A4DDB000B9169 /* BRProfileEditWebServiceRequest.m */,
+				C9A89FD61B8A4DDB000B9169 /* BRProfileViewWebServiceRequest.h */,
+				C9A89FD71B8A4DDB000B9169 /* BRProfileViewWebServiceRequest.m */,
+				C9A89FD81B8A4DDB000B9169 /* BRReachability.h */,
+				C9A89FD91B8A4DDB000B9169 /* BRReachability.m */,
+				C9A89FDA1B8A4DDB000B9169 /* BRRegisterWebServiceRequest.h */,
+				C9A89FDB1B8A4DDB000B9169 /* BRRegisterWebServiceRequest.m */,
+				C9A89FDC1B8A4DDB000B9169 /* BRUserWebServiceRequest.h */,
+				C9A89FDD1B8A4DDB000B9169 /* BRUserWebServiceRequest.m */,
+				C9A89FDE1B8A4DDB000B9169 /* BRWebServiceRequest.h */,
+				C9A89FDF1B8A4DDB000B9169 /* BRWebServiceRequest.m */,
+				C9A89FE01B8A4DDB000B9169 /* BRWebServiceResponse.h */,
+				C9A89FE11B8A4DDB000B9169 /* BRWebServiceResponse.m */,
+				C9A89FE21B8A4DDB000B9169 /* ResetPasswordWebServiceRequest.h */,
+				C9A89FE31B8A4DDB000B9169 /* ResetPasswordWebServiceRequest.m */,
+			);
+			path = WebRequest;
+			sourceTree = "<group>";
+		};
+		C9A8A0161B8A4E3D000B9169 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				C9A8A0171B8A4E3D000B9169 /* BaseNetworkTestingSupport.h */,
+				C9A8A0181B8A4E3D000B9169 /* BaseNetworkTestingSupport.m */,
+				C9A8A0191B8A4E3D000B9169 /* BaseTestingSupport.h */,
+				C9A8A01A1B8A4E3D000B9169 /* BaseTestingSupport.m */,
+				C9A8A01B1B8A4E3D000B9169 /* config.json */,
+				C9A8A01C1B8A4E3D000B9169 /* Core */,
+				C972EB131BAFCA17007FAA59 /* UI */,
+				C9A8A0291B8A4E3D000B9169 /* WebApiClient-Services */,
+			);
+			path = Tests;
+			sourceTree = "<group>";
+		};
+		C9A8A01C1B8A4E3D000B9169 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				C9A8A01D1B8A4E3D000B9169 /* BRAppUserTests.m */,
+				C9A8A01E1B8A4E3D000B9169 /* NSDate_BRTests.m */,
+				C96D0B651BB32ED900AC8D30 /* NSString_BRTests.m */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		C9A8A0291B8A4E3D000B9169 /* WebApiClient-Services */ = {
+			isa = PBXGroup;
+			children = (
+				C9A8A02A1B8A4E3D000B9169 /* WebApiClientUserServiceTests.m */,
+			);
+			path = "WebApiClient-Services";
+			sourceTree = "<group>";
+		};
+		C9A8A03B1B8A515D000B9169 /* Packaging */ = {
+			isa = PBXGroup;
+			children = (
+				C98DC9911B9D36060067D6A6 /* README.md */,
+				C9A8A03C1B8A5207000B9169 /* BlueRocketFuelCore.podspec */,
+				C9A89F681B8A4DDB000B9169 /* BlueRocketFuelCore.h */,
+				C9A89F841B8A4DDB000B9169 /* Core.h */,
+				C9A89F881B8A4DDB000B9169 /* Logging.h */,
+				C9A89FA91B8A4DDB000B9169 /* UI.h */,
+				C9ED94751BA8FBBD00DE842F /* WebApiClient-RestKit.h */,
+				C9A89FC61B8A4DDB000B9169 /* WebApiClient-Services.h */,
+				C9A89FE41B8A4DDB000B9169 /* WebRequest.h */,
+			);
+			name = Packaging;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		C9A89F4C1B8A4C67000B9169 /* BRFCore */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C9A89F611B8A4C67000B9169 /* Build configuration list for PBXNativeTarget "BRFCore" */;
+			buildPhases = (
+				BD13AD4342722B6175B2C1F9 /* Check Pods Manifest.lock */,
+				C9A89F491B8A4C67000B9169 /* Sources */,
+				C9A89F4A1B8A4C67000B9169 /* Frameworks */,
+				C9A89F4B1B8A4C67000B9169 /* CopyFiles */,
+				BC302396D1EEC5C1F52AF886 /* Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = BRFCore;
+			productName = BRFCore;
+			productReference = C9A89F4D1B8A4C67000B9169 /* libBRFCore.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		C9A89F571B8A4C67000B9169 /* BRFCoreTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C9A89F641B8A4C67000B9169 /* Build configuration list for PBXNativeTarget "BRFCoreTests" */;
+			buildPhases = (
+				46E9627FC2A813461322D445 /* Check Pods Manifest.lock */,
+				C9A89F541B8A4C67000B9169 /* Sources */,
+				C9A89F551B8A4C67000B9169 /* Frameworks */,
+				C9A89F561B8A4C67000B9169 /* Resources */,
+				6A5F37CAFF10EB40EFF096AA /* Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C9A89F5B1B8A4C67000B9169 /* PBXTargetDependency */,
+			);
+			name = BRFCoreTests;
+			productName = BRFCoreTests;
+			productReference = C9A89F581B8A4C67000B9169 /* BRFCoreTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		C9A89F451B8A4C67000B9169 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0640;
+				ORGANIZATIONNAME = "Blue Rocket, Inc.";
+				TargetAttributes = {
+					C9A89F4C1B8A4C67000B9169 = {
+						CreatedOnToolsVersion = 6.4;
+					};
+					C9A89F571B8A4C67000B9169 = {
+						CreatedOnToolsVersion = 6.4;
+					};
+				};
+			};
+			buildConfigurationList = C9A89F481B8A4C67000B9169 /* Build configuration list for PBXProject "BRFCore" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = C9A89F441B8A4C67000B9169;
+			productRefGroup = C9A89F4E1B8A4C67000B9169 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				C9A89F4C1B8A4C67000B9169 /* BRFCore */,
+				C9A89F571B8A4C67000B9169 /* BRFCoreTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		C9A89F561B8A4C67000B9169 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C9A8A0311B8A4E3D000B9169 /* Environment.plist in Resources */,
+				C9A8A02D1B8A4E3D000B9169 /* config.json in Resources */,
+				C9A8A0331B8A4E3D000B9169 /* strings.json in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		46E9627FC2A813461322D445 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		6A5F37CAFF10EB40EFF096AA /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BRFCore-BRFCoreTests/Pods-BRFCore-BRFCoreTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BC302396D1EEC5C1F52AF886 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BRFCore/Pods-BRFCore-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BD13AD4342722B6175B2C1F9 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		C9A89F491B8A4C67000B9169 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C9A89FF91B8A4DDB000B9169 /* UIImage+BR.m in Sources */,
+				C9A89FE61B8A4DDB000B9169 /* BRAppUser.m in Sources */,
+				C9A89FF51B8A4DDB000B9169 /* ReplaceNoAnimationSegue.m in Sources */,
+				C9A8A0131B8A4DDB000B9169 /* BRWebServiceRequest.m in Sources */,
+				C9A8A0151B8A4DDB000B9169 /* ResetPasswordWebServiceRequest.m in Sources */,
+				C9A89FF11B8A4DDB000B9169 /* BRFullScreenNotificationView.m in Sources */,
+				C9A8A0061B8A4DDB000B9169 /* BRRestKitDataMapping.m in Sources */,
+				C9A89FFF1B8A4DDB000B9169 /* UIView+BR.m in Sources */,
+				C9A8A00E1B8A4DDB000B9169 /* BRProfileEditWebServiceRequest.m in Sources */,
+				C9A8A00A1B8A4DDB000B9169 /* BRAppDelegate.m in Sources */,
+				C9A8A0111B8A4DDB000B9169 /* BRRegisterWebServiceRequest.m in Sources */,
+				C9A89FE91B8A4DDB000B9169 /* BRSimpleEntityReference.m in Sources */,
+				C9A89FEC1B8A4DDB000B9169 /* NSBundle+BR.m in Sources */,
+				C9A89FF21B8A4DDB000B9169 /* BROptionsTray.m in Sources */,
+				C9A89FFB1B8A4DDB000B9169 /* UILabel+BR.m in Sources */,
+				C9A8A00C1B8A4DDB000B9169 /* BRLoginWebServiceRequest.m in Sources */,
+				C9A8A0101B8A4DDB000B9169 /* BRReachability.m in Sources */,
+				C9A89FEF1B8A4DDB000B9169 /* NSString+BR.m in Sources */,
+				C9A8A03A1B8A5112000B9169 /* BRJSON.m in Sources */,
+				C9A89FF61B8A4DDB000B9169 /* UIBarButtonItem+BR.m in Sources */,
+				C9A89FF41B8A4DDB000B9169 /* PushNoAnimationSegue.m in Sources */,
+				C9A89FE81B8A4DDB000B9169 /* BRServiceConstants.m in Sources */,
+				C9A89FF01B8A4DDB000B9169 /* BRSimpleLogging.m in Sources */,
+				C9A89FED1B8A4DDB000B9169 /* NSDate+BR.m in Sources */,
+				C9A89FF81B8A4DDB000B9169 /* UIFont+BR.m in Sources */,
+				C9A89FE71B8A4DDB000B9169 /* BRKeychainService.m in Sources */,
+				C9A8A0141B8A4DDB000B9169 /* BRWebServiceResponse.m in Sources */,
+				C9A8A00F1B8A4DDB000B9169 /* BRProfileViewWebServiceRequest.m in Sources */,
+				C9A8A00B1B8A4DDB000B9169 /* BRAuthenticatedWebServiceRequest.m in Sources */,
+				C9A89FE51B8A4DDB000B9169 /* BRAppConfigEnvironmentProvider.m in Sources */,
+				C9A8A00D1B8A4DDB000B9169 /* BRPingWebServiceRequest.m in Sources */,
+				C9A89FEB1B8A4DDB000B9169 /* BRUserService.m in Sources */,
+				C9A8A0121B8A4DDB000B9169 /* BRUserWebServiceRequest.m in Sources */,
+				C9A89FEA1B8A4DDB000B9169 /* BRSimpleKeychainService.m in Sources */,
+				C9A89FFE1B8A4DDB000B9169 /* UITextField+BR.m in Sources */,
+				C9A8A0081B8A4DDB000B9169 /* WebApiClientUserService.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C9A89F541B8A4C67000B9169 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C9A8A0371B8A4E3D000B9169 /* WebApiClientUserServiceTests.m in Sources */,
+				C96D0B661BB32ED900AC8D30 /* NSString_BRTests.m in Sources */,
+				C9A8A02F1B8A4E3D000B9169 /* NSDate_BRTests.m in Sources */,
+				C9A8A02B1B8A4E3D000B9169 /* BaseNetworkTestingSupport.m in Sources */,
+				C9A8A02C1B8A4E3D000B9169 /* BaseTestingSupport.m in Sources */,
+				C9A8A02E1B8A4E3D000B9169 /* BRAppUserTests.m in Sources */,
+				C972EB161BAFCBB8007FAA59 /* UIImage_BRTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		C9A89F5B1B8A4C67000B9169 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C9A89F4C1B8A4C67000B9169 /* BRFCore */;
+			targetProxy = C9A89F5A1B8A4C67000B9169 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		C9A89F5F1B8A4C67000B9169 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		C9A89F601B8A4C67000B9169 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		C9A89F621B8A4C67000B9169 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C13BFD3959ACABD1D3EDB895 /* Pods-BRFCore.debug.xcconfig */;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		C9A89F631B8A4C67000B9169 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7C4FA78132C66D3025A883D3 /* Pods-BRFCore.release.xcconfig */;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		C9A89F651B8A4C67000B9169 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D2337E9FBC5C179A64F55FAB /* Pods-BRFCore-BRFCoreTests.debug.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = Tests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		C9A89F661B8A4C67000B9169 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = CF8901992F8C7787AC0F1E10 /* Pods-BRFCore-BRFCoreTests.release.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = Tests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		C9A89F481B8A4C67000B9169 /* Build configuration list for PBXProject "BRFCore" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C9A89F5F1B8A4C67000B9169 /* Debug */,
+				C9A89F601B8A4C67000B9169 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C9A89F611B8A4C67000B9169 /* Build configuration list for PBXNativeTarget "BRFCore" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C9A89F621B8A4C67000B9169 /* Debug */,
+				C9A89F631B8A4C67000B9169 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C9A89F641B8A4C67000B9169 /* Build configuration list for PBXNativeTarget "BRFCoreTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C9A89F651B8A4C67000B9169 /* Debug */,
+				C9A89F661B8A4C67000B9169 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = C9A89F451B8A4C67000B9169 /* Project object */;
+}
