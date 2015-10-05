@@ -320,4 +320,59 @@ static NSCharacterSet *NumbersOnlyCharacterSet = nil;
 	return changedString;
 }
 
+- (NSString *)stringByDeletingCharactersFromSet:(NSCharacterSet *)set {
+	NSString *result = [self stringByTrimmingCharactersInSet:set]; // in case of single unallowed character
+	if ( result.length ) {
+		// zap characters from middle of string
+		result = [[self componentsSeparatedByCharactersInSet:set] componentsJoinedByString:@""];
+	}
+	return result;
+}
+
+- (NSString *)currencyStringByReplacingCharactersInRange:(NSRange)range withString:(NSString *)string formatter:(NSNumberFormatter *)numberFormatter input:(id<UITextInput>)textField {
+	NSCharacterSet *allowedCharacters = [NSString numbersOnlyCharacterSet];
+	NSString *replacementString = string;
+	if ( string.length > 1 ) {
+		NSMutableCharacterSet *allowedToBePastedSet = [allowedCharacters mutableCopy];
+		[allowedToBePastedSet addCharactersInString:numberFormatter.decimalSeparator];
+		replacementString = [replacementString stringByDeletingCharactersFromSet:[allowedToBePastedSet invertedSet]];
+		NSDecimalNumber *numberPasted = [NSDecimalNumber decimalNumberWithString:replacementString];
+		if ( !numberPasted || [numberPasted isEqualToNumber:[NSDecimalNumber notANumber]] ) {
+			return self;
+		}
+		replacementString = [numberFormatter stringFromNumber:numberPasted];
+	}
+	
+	UITextRange *selectedRange = [textField selectedTextRange];
+	UITextPosition *start = textField.beginningOfDocument;
+	NSInteger cursorOffset = [textField offsetFromPosition:start toPosition:selectedRange.start];
+	
+	NSUInteger textFieldTextStrLength = self.length;
+	
+	NSString *textFieldTextStr = [[self stringByReplacingCharactersInRange:range withString:replacementString]
+								  stringByDeletingCharactersFromSet:[allowedCharacters invertedSet]];
+	
+	NSString *result = self;
+	if ( textFieldTextStr.length > 0 && textFieldTextStr.length <= (numberFormatter.maximumIntegerDigits + numberFormatter.maximumFractionDigits) ) {
+		NSDecimalNumber *textFieldTextNum = [NSDecimalNumber decimalNumberWithString:textFieldTextStr];
+		if ( textFieldTextNum && ![textFieldTextNum isEqualToNumber:[NSDecimalNumber notANumber]] ) {
+			NSDecimalNumber *divideByNum = [[[NSDecimalNumber alloc] initWithInt:10] decimalNumberByRaisingToPower:numberFormatter.maximumFractionDigits];
+			NSDecimalNumber *textFieldTextNewNum = [textFieldTextNum decimalNumberByDividingBy:divideByNum];
+			NSString *textFieldTextNewStr = [numberFormatter stringFromNumber:textFieldTextNewNum];
+			
+			result = textFieldTextNewStr;
+			
+			if ( cursorOffset != textFieldTextStrLength ) {
+				NSInteger lengthDelta = textFieldTextNewStr.length - textFieldTextStrLength;
+				NSInteger newCursorOffset = MAX(0, MIN(textFieldTextNewStr.length, cursorOffset + lengthDelta));
+				UITextPosition* newPosition = [textField positionFromPosition:textField.beginningOfDocument offset:newCursorOffset];
+				UITextRange* newRange = [textField textRangeFromPosition:newPosition toPosition:newPosition];
+				[textField setSelectedTextRange:newRange];
+			}
+		}
+	}
+	
+	return result;
+}
+
 @end

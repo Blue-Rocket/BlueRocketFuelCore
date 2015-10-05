@@ -22,7 +22,7 @@
 //  THE SOFTWARE.
 //
 
-#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -85,6 +85,30 @@ NS_ASSUME_NONNULL_BEGIN
  @return The resulting formatted string.
  */
 - (NSString *)numberStringByReplacingCharactersInRange:(NSRange)range withString:(NSString *)string template:(NSString *)filter;
+
+/**
+ Generate a new string by deleting all occurrences of any character in a set.
+ 
+ @param set The set of characters to delete from the receiver.
+ 
+ @return The resulting string.
+ */
+- (NSString *)stringByDeletingCharactersFromSet:(NSCharacterSet *)set;
+
+/**
+ Replace a range of characters in the receiver and format the result as a currency string.
+ 
+ @param range           The range of characters in the receiver to replace.
+ @param string          The string to replace with.
+ @param numberFormatter The number formatter, assumed to be using @c NSNumberFormatterCurrencyStyle.
+ @param textField       An optional text input to adjust the selection range on.
+ 
+ @return The resulting string.
+ */
+- (NSString *)currencyStringByReplacingCharactersInRange:(NSRange)range
+											  withString:(NSString *)string
+											   formatter:(NSNumberFormatter *)numberFormatter
+												   input:(nullable id<UITextInput>)textField;
 
 @end
 

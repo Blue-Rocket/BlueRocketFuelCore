@@ -43,4 +43,99 @@
 	assertThat([@"1" numberStringByReplacingCharactersInRange:NSMakeRange(0, 1) withString:@"" template:pattern], equalTo(@""));
 }
 
+- (void)testFormatCurrencyAddingSingleCharacters {
+	NSNumberFormatter *fmt = [[NSNumberFormatter alloc] init];
+	fmt.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US"];
+	fmt.numberStyle = NSNumberFormatterCurrencyStyle;
+	fmt.maximumFractionDigits = 2;
+	fmt.minimumFractionDigits = 2;
+
+	NSString *result = @"";
+	
+	result = [result currencyStringByReplacingCharactersInRange:NSMakeRange(0, 0) withString:@"1" formatter:fmt input:nil];
+	assertThat(result, equalTo(@"$0.01"));
+
+	result = [result currencyStringByReplacingCharactersInRange:NSMakeRange(5, 0) withString:@"2" formatter:fmt input:nil];
+	assertThat(result, equalTo(@"$0.12"));
+	
+	result = [result currencyStringByReplacingCharactersInRange:NSMakeRange(5, 0) withString:@"3" formatter:fmt input:nil];
+	assertThat(result, equalTo(@"$1.23"));
+	
+	result = [result currencyStringByReplacingCharactersInRange:NSMakeRange(5, 0) withString:@"4" formatter:fmt input:nil];
+	assertThat(result, equalTo(@"$12.34"));
+	
+	result = [result currencyStringByReplacingCharactersInRange:NSMakeRange(6, 0) withString:@"5" formatter:fmt input:nil];
+	assertThat(result, equalTo(@"$123.45"));
+	
+	result = [result currencyStringByReplacingCharactersInRange:NSMakeRange(7, 0) withString:@"6" formatter:fmt input:nil];
+	assertThat(result, equalTo(@"$1,234.56"));
+}
+
+- (void)testFormatCurrencyRemovingSingleCharacters {
+	NSNumberFormatter *fmt = [[NSNumberFormatter alloc] init];
+	fmt.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US"];
+	fmt.numberStyle = NSNumberFormatterCurrencyStyle;
+	fmt.maximumFractionDigits = 2;
+	fmt.minimumFractionDigits = 2;
+	
+	NSString *result = @"$1,234.56";
+	
+	result = [result currencyStringByReplacingCharactersInRange:NSMakeRange(8, 1) withString:@"" formatter:fmt input:nil];
+	assertThat(result, equalTo(@"$123.45"));
+	
+	result = [result currencyStringByReplacingCharactersInRange:NSMakeRange(6, 1) withString:@"" formatter:fmt input:nil];
+	assertThat(result, equalTo(@"$12.34"));
+	
+	result = [result currencyStringByReplacingCharactersInRange:NSMakeRange(5, 1) withString:@"" formatter:fmt input:nil];
+	assertThat(result, equalTo(@"$1.23"));
+	
+	result = [result currencyStringByReplacingCharactersInRange:NSMakeRange(4, 1) withString:@"" formatter:fmt input:nil];
+	assertThat(result, equalTo(@"$0.12"));
+	
+	result = [result currencyStringByReplacingCharactersInRange:NSMakeRange(4, 1) withString:@"" formatter:fmt input:nil];
+	assertThat(result, equalTo(@"$0.01"));
+	
+	result = [result currencyStringByReplacingCharactersInRange:NSMakeRange(4, 1) withString:@"" formatter:fmt input:nil];
+	assertThat(result, equalTo(@"$0.00"));
+}
+
+- (void)testFormatCurrencyReplacingCharacters {
+	NSNumberFormatter *fmt = [[NSNumberFormatter alloc] init];
+	fmt.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US"];
+	fmt.numberStyle = NSNumberFormatterCurrencyStyle;
+	fmt.maximumFractionDigits = 2;
+	fmt.minimumFractionDigits = 2;
+	
+	NSString *result;
+	
+	result = [@"$1,234.56" currencyStringByReplacingCharactersInRange:NSMakeRange(1, 1) withString:@"2" formatter:fmt input:nil];
+	assertThat(result, describedAs(@"Replacing single character", equalTo(@"$2,234.56"), nil));
+
+	result = [@"$1,234.56" currencyStringByReplacingCharactersInRange:NSMakeRange(1, 3) withString:@"" formatter:fmt input:nil];
+	assertThat(result, describedAs(@"Deleting multiple characters", equalTo(@"$34.56"), nil));
+
+	
+	result = [@"$1,234.56" currencyStringByReplacingCharactersInRange:NSMakeRange(0, 9) withString:@"1,000,000" formatter:fmt input:nil];
+	assertThat(result, describedAs(@"Replacing entire value", equalTo(@"$1,000,000.00"), nil));
+}
+
+- (void)testFormatCurrencyAddingNotAllowedCharacters {
+	NSNumberFormatter *fmt = [[NSNumberFormatter alloc] init];
+	fmt.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US"];
+	fmt.numberStyle = NSNumberFormatterCurrencyStyle;
+	fmt.maximumFractionDigits = 2;
+	fmt.minimumFractionDigits = 2;
+	
+	NSString *result;
+	
+	result = [@"" currencyStringByReplacingCharactersInRange:NSMakeRange(0, 0) withString:@"`" formatter:fmt input:nil];
+	assertThat(result, describedAs(@"Replacing empty string with single bad character", equalTo(@""), nil));
+	
+	result = [@"$1.00" currencyStringByReplacingCharactersInRange:NSMakeRange(4, 0) withString:@"`" formatter:fmt input:nil];
+	assertThat(result, describedAs(@"Appending single bad character", equalTo(@"$1.00"), nil));
+	
+	result = [@"$1.00" currencyStringByReplacingCharactersInRange:NSMakeRange(1, 1) withString:@"```" formatter:fmt input:nil];
+	assertThat(result, describedAs(@"Inserting multiple bad character", equalTo(@"$1.00"), nil));
+}
+
 @end
