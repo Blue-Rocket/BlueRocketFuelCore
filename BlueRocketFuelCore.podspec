@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
   s.name         = 'BlueRocketFuelCore'
-  s.version      = '0.9.0'
+  s.version      = '0.10.0'
   s.summary      = 'This framework helps to jump start iOS development.'
 
   s.description        = <<-DESC
@@ -47,6 +47,7 @@ Pod::Spec.new do |s|
   s.subspec 'UI' do |sp|
     sp.source_files = 'BRFCore/Code/UI.h', 'BRFCore/Code/UI'
     sp.dependency 'BlueRocketFuelCore/Core'
+	sp.dependency 'BRStyle/Core'
   end
 
   s.subspec 'WebApiClient-RestKit' do |sp|
