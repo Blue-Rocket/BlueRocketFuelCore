@@ -8,6 +8,7 @@
 
 #import "BRRestKitDataMapping.h"
 
+#import <ISO8601DateFormatterValueTransformer/RKISO8601DateFormatter.h>
 #import <TransformerKit/TTTStringTransformers.h>
 #import <WebApiClient/WebApiRoute.h>
 #import "BRAppUser.h"
@@ -44,6 +45,15 @@ static Class kAppUserClass;
 }
 
 + (void)registerObjectMappings:(RestKitWebApiDataMapper *)dataMapper {
+	// remove the date transformer that drops milliseconds, see https://github.com/RestKit/RestKit/issues/1683
+	[RKObjectMapping class]; // make that +initialize method go
+	NSArray<id<RKValueTransforming>> *xforms = [[RKValueTransformer defaultValueTransformer] valueTransformersForTransformingFromClass:[NSString class] toClass:[NSDate class]];
+	for ( id<RKValueTransforming> xform in xforms ) {
+		if ( [xform isKindOfClass:[RKISO8601DateFormatter class]] ) {
+			[[RKValueTransformer defaultValueTransformer] removeValueTransformer:xform];
+		}
+	}
+	
 	RKObjectMapping *appUserMapping = [self appUserMapping];
 	RKObjectMapping *apiUserEncoding = [appUserMapping inverseMapping];
 	[dataMapper registerRequestObjectMapping:apiUserEncoding forRouteName:WebApiRouteLogin];
