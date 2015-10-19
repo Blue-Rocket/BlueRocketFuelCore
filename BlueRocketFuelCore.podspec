@@ -47,6 +47,7 @@ Pod::Spec.new do |s|
   s.subspec 'UI' do |sp|
     sp.source_files = 'BRFCore/Code/UI.h', 'BRFCore/Code/UI'
     sp.dependency 'BlueRocketFuelCore/Core'
+	sp.dependency 'BRScroller'
 	sp.dependency 'BRStyle/Core'
   end
 
