@@ -40,7 +40,7 @@ static NSString * const BRSlideshowViewControllerViewed = @"BRSlideshowViewContr
 	if ( !imagePaths && ![self.slideshowDelegate respondsToSelector:@selector(numberOfSlides)] ) {
 		[self configureDefaultSlideshowContent];
 	}
-	if ( self.showDismissButtonOnlyAtEnd ) {
+	if ( self.showDismissButtonOnlyAtEnd && [self numberOfPagesInScroller:self.scrollView] > 0 ) {
 		self.dismissButton.alpha = 0;
 	}
 	if ( [self.dismissButton actionsForTarget:self forControlEvent:UIControlEventTouchUpInside].count < 1 ) {
