@@ -18,5 +18,6 @@
 #import <BlueRocketFuelCore/BRUser.h>
 #import <BlueRocketFuelCore/BRUserService.h>
 #import <BlueRocketFuelCore/NSBundle+BR.h>
+#import <BlueRocketFuelCore/NSData+BR.h>
 #import <BlueRocketFuelCore/NSDate+BR.h>
 #import <BlueRocketFuelCore/NSString+BR.h>

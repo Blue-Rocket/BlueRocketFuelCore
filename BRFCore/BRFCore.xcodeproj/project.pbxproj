@@ -11,6 +11,8 @@
 		C912831C1BCC63F9002B1258 /* BRGradientView.m in Sources */ = {isa = PBXBuildFile; fileRef = C912831B1BCC63F9002B1258 /* BRGradientView.m */; settings = {ASSET_TAGS = (); }; };
 		C96D0B661BB32ED900AC8D30 /* NSString_BRTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C96D0B651BB32ED900AC8D30 /* NSString_BRTests.m */; settings = {ASSET_TAGS = (); }; };
 		C972EB161BAFCBB8007FAA59 /* UIImage_BRTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C972EB141BAFCA17007FAA59 /* UIImage_BRTests.m */; settings = {ASSET_TAGS = (); }; };
+		C98F24931BD73868000A6D6F /* NSData+BR.m in Sources */ = {isa = PBXBuildFile; fileRef = C98F24921BD73868000A6D6F /* NSData+BR.m */; settings = {ASSET_TAGS = (); }; };
+		C98F24951BD73966000A6D6F /* NSData_BRTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C98F24941BD73966000A6D6F /* NSData_BRTests.m */; settings = {ASSET_TAGS = (); }; };
 		C99813E61BD4548F00FF16EA /* BRSlideshowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C99813E51BD4548F00FF16EA /* BRSlideshowViewController.m */; settings = {ASSET_TAGS = (); }; };
 		C99813E91BD45BBD00FF16EA /* BRSlideshowSlideView.m in Sources */ = {isa = PBXBuildFile; fileRef = C99813E81BD45BBD00FF16EA /* BRSlideshowSlideView.m */; settings = {ASSET_TAGS = (); }; };
 		C9A89F591B8A4C67000B9169 /* libBRFCore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C9A89F4D1B8A4C67000B9169 /* libBRFCore.a */; };
@@ -93,6 +95,9 @@
 		C96D0B651BB32ED900AC8D30 /* NSString_BRTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSString_BRTests.m; sourceTree = "<group>"; };
 		C972EB141BAFCA17007FAA59 /* UIImage_BRTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIImage_BRTests.m; sourceTree = "<group>"; };
 		C98DC9911B9D36060067D6A6 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		C98F24911BD73868000A6D6F /* NSData+BR.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+BR.h"; sourceTree = "<group>"; };
+		C98F24921BD73868000A6D6F /* NSData+BR.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+BR.m"; sourceTree = "<group>"; };
+		C98F24941BD73966000A6D6F /* NSData_BRTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSData_BRTests.m; sourceTree = "<group>"; };
 		C99813E41BD4548F00FF16EA /* BRSlideshowViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRSlideshowViewController.h; sourceTree = "<group>"; };
 		C99813E51BD4548F00FF16EA /* BRSlideshowViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRSlideshowViewController.m; sourceTree = "<group>"; };
 		C99813E71BD45BBD00FF16EA /* BRSlideshowSlideView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRSlideshowSlideView.h; sourceTree = "<group>"; };
@@ -317,6 +322,8 @@
 				C9A89F7B1B8A4DDB000B9169 /* BRUserService.m */,
 				C9A89F7C1B8A4DDB000B9169 /* NSBundle+BR.h */,
 				C9A89F7D1B8A4DDB000B9169 /* NSBundle+BR.m */,
+				C98F24911BD73868000A6D6F /* NSData+BR.h */,
+				C98F24921BD73868000A6D6F /* NSData+BR.m */,
 				C9A89F7E1B8A4DDB000B9169 /* NSDate+BR.h */,
 				C9A89F7F1B8A4DDB000B9169 /* NSDate+BR.m */,
 				C9A89F821B8A4DDB000B9169 /* NSString+BR.h */,
@@ -436,6 +443,7 @@
 			isa = PBXGroup;
 			children = (
 				C9A8A01D1B8A4E3D000B9169 /* BRAppUserTests.m */,
+				C98F24941BD73966000A6D6F /* NSData_BRTests.m */,
 				C9A8A01E1B8A4E3D000B9169 /* NSDate_BRTests.m */,
 				C96D0B651BB32ED900AC8D30 /* NSString_BRTests.m */,
 			);
@@ -648,6 +656,7 @@
 				C9A89FF11B8A4DDB000B9169 /* BRFullScreenNotificationView.m in Sources */,
 				C9A8A0061B8A4DDB000B9169 /* BRRestKitDataMapping.m in Sources */,
 				C9A89FFF1B8A4DDB000B9169 /* UIView+BR.m in Sources */,
+				C98F24931BD73868000A6D6F /* NSData+BR.m in Sources */,
 				C912831C1BCC63F9002B1258 /* BRGradientView.m in Sources */,
 				C9A8A00E1B8A4DDB000B9169 /* BRProfileEditWebServiceRequest.m in Sources */,
 				C9A8A00A1B8A4DDB000B9169 /* BRAppDelegate.m in Sources */,
@@ -690,6 +699,7 @@
 				C96D0B661BB32ED900AC8D30 /* NSString_BRTests.m in Sources */,
 				C9A8A02F1B8A4E3D000B9169 /* NSDate_BRTests.m in Sources */,
 				C9A8A02B1B8A4E3D000B9169 /* BaseNetworkTestingSupport.m in Sources */,
+				C98F24951BD73966000A6D6F /* NSData_BRTests.m in Sources */,
 				C9A8A02C1B8A4E3D000B9169 /* BaseTestingSupport.m in Sources */,
 				C9A8A02E1B8A4E3D000B9169 /* BRAppUserTests.m in Sources */,
 				C972EB161BAFCBB8007FAA59 /* UIImage_BRTests.m in Sources */,
