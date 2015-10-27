@@ -187,4 +187,24 @@
 	assertThat([BRAppUser currentUser].email, equalTo(@"updated"));
 }
 
+- (void)testResetPassword {
+	NSString *emailToReset = @"foo@localhost";
+	
+	// sub the client call to return a successfully reset response
+	OCMStub([mockClient requestAPI:equalTo(@"resetPassword") withPathVariables:nil parameters:@{@"email" : emailToReset} data:nil finished:[OCMArg checkWithBlock:^BOOL(id obj) {
+		void (^block)(id<WebApiResponse> response, NSError *error) = obj;
+		block(@{ @"statusCode" : @200}, nil);
+		return YES;
+	}]]);
+	
+	XCTestExpectation *callbackExpectation = [self expectationWithDescription:@"Callback"];
+	[userService requestPasswordReset:emailToReset finished:^(BOOL success, NSError * _Nullable error) {
+		assertThatBool(success, isTrue());
+		assertThatBool([NSThread isMainThread], describedAs(@"Should be on main thread", isTrue(), nil));
+		[callbackExpectation fulfill];
+	}];
+	[self waitForExpectationsWithTimeout:2 handler:nil];
+	OCMVerifyAll((id)mockClient);
+}
+
 @end
