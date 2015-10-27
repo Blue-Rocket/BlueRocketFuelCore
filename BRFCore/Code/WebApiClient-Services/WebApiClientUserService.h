@@ -16,6 +16,9 @@ extern NSString * const WebApiRouteRegister;
 /** A standard route name for user login. */
 extern NSString * const WebApiRouteLogin;
 
+/** A standard route name for requesting a password to be reset. */
+extern NSString * const WebApiRouteResetPassword;
+
 /** A standard route name for getting a user profile (account details). */
 extern NSString * const WebApiRouteGetUser;
 

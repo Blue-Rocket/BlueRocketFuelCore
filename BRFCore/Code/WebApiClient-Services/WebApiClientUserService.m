@@ -14,6 +14,7 @@
 
 NSString * const WebApiRouteRegister = @"register";
 NSString * const WebApiRouteLogin = @"login";
+NSString * const WebApiRouteResetPassword = @"resetPassword";
 NSString * const WebApiRouteGetUser = @"user";
 NSString * const WebApiRouteUpdateUser = @"userUpdate";
 
@@ -168,9 +169,8 @@ NSString * const WebApiRouteUpdateUser = @"userUpdate";
 			callback(success, error);
 		}
 	};
-	id<BRUserRegistration> newUser = [self newUser];
-	newUser.email = email;
-	[self.client requestAPI:WebApiRouteLogin withPathVariables:nil parameters:newUser data:nil finished:^(id<WebApiResponse> response, NSError *error) {
+	NSDictionary *params = @{ @"email" : email };
+	[self.client requestAPI:WebApiRouteResetPassword withPathVariables:nil parameters:params data:nil finished:^(id<WebApiResponse> response, NSError *error) {
 		log4Debug(@"Got reset password response: %@; error: %@", response, error);
 		doCallback((error == nil), error);
 	}];
