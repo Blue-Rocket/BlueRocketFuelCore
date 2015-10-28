@@ -25,6 +25,9 @@ extern NSString * const WebApiRouteGetUser;
 /** A standard route name for updating a user profile (account details). */
 extern NSString * const WebApiRouteUpdateUser;
 
+/** A BREnvironment key for a "return URL" to include in the password reset parameters. */
+extern NSString * const WebApiClientUserServiceResetPasswordReturnURLEnvironmentKey;
+
 /**
  Implementation of @c BRUserService using @c WebApiClient for login and registration requests.
  This class also conforms to @c WebApiAuthorizationProvider so that it can act as an authentication

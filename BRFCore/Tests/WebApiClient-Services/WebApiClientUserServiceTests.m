@@ -207,4 +207,26 @@
 	OCMVerifyAll((id)mockClient);
 }
 
+- (void)testResetPasswordWithReturnURL {
+	NSString *emailToReset = @"foo@localhost";
+	[BREnvironment sharedEnvironment][WebApiClientUserServiceResetPasswordReturnURLEnvironmentKey] = @"foo://bar";
+	
+	// sub the client call to return a successfully reset response
+	NSDictionary *resetParams = @{@"email" : emailToReset, @"return_url" : @"foo://bar"};
+	OCMStub([mockClient requestAPI:equalTo(@"resetPassword") withPathVariables:nil parameters:resetParams data:nil finished:[OCMArg checkWithBlock:^BOOL(id obj) {
+		void (^block)(id<WebApiResponse> response, NSError *error) = obj;
+		block(@{ @"statusCode" : @200}, nil);
+		return YES;
+	}]]);
+	
+	XCTestExpectation *callbackExpectation = [self expectationWithDescription:@"Callback"];
+	[userService requestPasswordReset:emailToReset finished:^(BOOL success, NSError * _Nullable error) {
+		assertThatBool(success, isTrue());
+		assertThatBool([NSThread isMainThread], describedAs(@"Should be on main thread", isTrue(), nil));
+		[callbackExpectation fulfill];
+	}];
+	[self waitForExpectationsWithTimeout:2 handler:nil];
+	OCMVerifyAll((id)mockClient);
+}
+
 @end

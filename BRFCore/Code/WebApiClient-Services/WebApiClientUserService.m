@@ -17,6 +17,7 @@ NSString * const WebApiRouteLogin = @"login";
 NSString * const WebApiRouteResetPassword = @"resetPassword";
 NSString * const WebApiRouteGetUser = @"user";
 NSString * const WebApiRouteUpdateUser = @"userUpdate";
+NSString * const WebApiClientUserServiceResetPasswordReturnURLEnvironmentKey = @"ResetPasswordReturnURL";
 
 @implementation WebApiClientUserService
 
@@ -163,13 +164,17 @@ NSString * const WebApiRouteUpdateUser = @"userUpdate";
 	}];
 }
 
-- (void)requestPasswordReset:(NSString *)email  finished:(void (^)(BOOL, NSError * _Nullable))callback {
+- (void)requestPasswordReset:(NSString *)email finished:(void (^)(BOOL, NSError * _Nullable))callback {
 	void (^doCallback)(BOOL, NSError *) = ^(BOOL success, NSError *error) {
 		if ( callback ) {
 			callback(success, error);
 		}
 	};
-	NSDictionary *params = @{ @"email" : email };
+	NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObject:email forKey:@"email"];
+	NSURL *returnURL = [[BREnvironment sharedEnvironment] URLForKey:WebApiClientUserServiceResetPasswordReturnURLEnvironmentKey];
+	if ( returnURL ) {
+		params[@"return_url"] = [returnURL absoluteString];
+	}
 	[self.client requestAPI:WebApiRouteResetPassword withPathVariables:nil parameters:params data:nil finished:^(id<WebApiResponse> response, NSError *error) {
 		log4Debug(@"Got reset password response: %@; error: %@", response, error);
 		doCallback((error == nil), error);
