@@ -9,6 +9,7 @@
 #import <BlueRocketFuelCore/BRFullScreeNotificationViewDelegate.h>
 #import <BlueRocketFuelCore/BRFullScreenNotificationView.h>
 #import <BlueRocketFuelCore/BRFullScreenNotificationView.h>
+#import <BlueRocketFuelCore/BRGradientView.h>
 #import <BlueRocketFuelCore/BROptionsTray.h>
 #import <BlueRocketFuelCore/BRSlideshowSlideView.h>
 #import <BlueRocketFuelCore/BRSlideshowViewController.h>
