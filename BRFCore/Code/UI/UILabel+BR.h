@@ -24,9 +24,22 @@
 
 #import <UIKit/UIKit.h>
 
+/**
+ Extension to UILabel with utility methods.
+ */
 @interface UILabel (BR)
 
 - (void)setText:(NSString *)text withHTMLFormatting:(NSURL *)htmlURL;
 - (void)boldSubstring:(NSString *)substring;
+
+/**
+ Get a @c NSAttributedString attribute dictionary based on the configuration of the receiver.
+ 
+ This method considers things like the font, text color, and line wrap configured on the label
+ and returns a dictionary of attributes suitable for using with @c NSAttributedString instances.
+ 
+ @return An attribute dictionary.
+ */
+- (NSDictionary<NSString *, id> *)attributedStringAttributes;
 
 @end

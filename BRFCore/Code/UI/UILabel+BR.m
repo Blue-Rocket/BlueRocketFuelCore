@@ -58,4 +58,25 @@
     [self setAttributedText:attributedText];
 }
 
+- (NSDictionary<NSString *, id> *)attributedStringAttributes {
+	NSMutableDictionary<NSString *, id> *mutableAttributes = [NSMutableDictionary dictionary];
+	
+	mutableAttributes[NSFontAttributeName] = self.font;
+	mutableAttributes[NSForegroundColorAttributeName] = self.textColor;
+	
+	NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+	paragraphStyle.alignment = self.textAlignment;
+	paragraphStyle.headIndent = paragraphStyle.firstLineHeadIndent;
+	
+	if ( self.numberOfLines == 1 ) {
+		paragraphStyle.lineBreakMode = self.lineBreakMode;
+	} else {
+		paragraphStyle.lineBreakMode = NSLineBreakByWordWrapping;
+	}
+	
+	mutableAttributes[NSParagraphStyleAttributeName] = paragraphStyle;
+	
+	return mutableAttributes;
+}
+
 @end
