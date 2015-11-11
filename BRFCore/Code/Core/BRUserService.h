@@ -23,7 +23,7 @@ extern NSString * const BRUserServiceNotificationLoginDidSucceed;
 /** Notification sent after a login failed. The `userInfo` dictionary will contain a `NSUnderlyingError` key with the associated NSError. */
 extern NSString * const BRUserServiceNotificationLoginDidFail;
 
-/** Notification sent after the user has logged out. */
+/** Notification sent after the user has logged out. The object will be the BRUser instance that logged out. */
 extern NSString * const BRUserServiceNotificationLogoutDidSucceed;
 
 /** Notification sent after the active user's details have been updated. The object will be the active BRUser instance. */

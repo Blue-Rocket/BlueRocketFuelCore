@@ -182,6 +182,9 @@ NSString * const WebApiClientUserServiceResetPasswordReturnURLEnvironmentKey = @
 }
 
 - (void)logout {
+	// get reference to current user to share in notification
+	id<BRUser> oldUser = [self activeUser];
+	
 	[self.appUserClass replaceCurrentUser:nil];
 	
 	// clear out any cookies associated with our client
@@ -190,7 +193,7 @@ NSString * const WebApiClientUserServiceResetPasswordReturnURLEnvironmentKey = @
 		[cookies deleteCookie:cookie];
 	}
 	
-	[[NSNotificationCenter defaultCenter] postNotificationName:BRUserServiceNotificationLogoutDidSucceed object:nil userInfo:nil];
+	[[NSNotificationCenter defaultCenter] postNotificationName:BRUserServiceNotificationLogoutDidSucceed object:oldUser userInfo:nil];
 }
 
 @end
