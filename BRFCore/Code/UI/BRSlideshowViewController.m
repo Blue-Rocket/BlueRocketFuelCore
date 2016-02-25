@@ -30,6 +30,7 @@ static NSString * const BRSlideshowViewControllerViewed = @"BRSlideshowViewContr
 		scroller.pagingEnabled = YES;
 		scroller.backgroundColor = [UIColor clearColor];
 	}
+	self.automaticallyAdjustsScrollViewInsets = NO;
 	if ( self.viewingForFirstTime ) {
 		self.showDismissButtonOnlyAtEnd = YES;
 	}
