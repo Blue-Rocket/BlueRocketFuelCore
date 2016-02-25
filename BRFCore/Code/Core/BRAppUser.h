@@ -44,6 +44,9 @@ extern NSString * const BREnvironmentKeyPasswordMinLength;
 @property (nonatomic, strong) NSString *password;
 @property (nonatomic, strong) NSString *passwordAgain;
 
+/** The keychain service associated with this user. */
+@property (nonatomic, readonly) id<BRKeychainService> keychainService;
+
 - (void)initializeWithDictionary:(NSDictionary *)dictionary;
 
 /**

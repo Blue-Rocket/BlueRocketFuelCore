@@ -47,6 +47,8 @@ static id CurrentUser;
 	id<BRKeychainService> keychainService;
 }
 
+@synthesize keychainService;
+
 + (instancetype)currentUser {
 	return [self currentUserFromUserDefaults:nil keychain:nil];
 }
