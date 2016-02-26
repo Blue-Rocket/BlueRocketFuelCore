@@ -138,4 +138,33 @@
 	assertThat(result, describedAs(@"Inserting multiple bad character", equalTo(@"$1.00"), nil));
 }
 
+- (void)testExtractMarkdownReferenceLink {
+	NSString *input = @"This string has [a link][1] in it.";
+	NSArray<id<BRStringLink>> *links = nil;
+	NSString *result = [input stringByExtractingMarkdownLinks:&links];
+	assertThat(result, equalTo(@"This string has a link in it."));
+	assertThatUnsignedInteger(links.count, describedAs(@"Extracted link count", equalToUnsignedInteger(1), nil));
+	id<BRStringLink> link = [links firstObject];
+	assertThatUnsignedInteger(link.range.location, describedAs(@"Link location", equalToUnsignedInteger(16), nil));
+	assertThatUnsignedInteger(link.range.length, describedAs(@"Link length", equalToUnsignedInteger(6), nil));
+	assertThat(link.reference, describedAs(@"Link reference", equalTo(@"1"), nil));
+}
+
+- (void)testExtractMarkdownReferenceLinks {
+	NSString *input = @"This string has [a link][1] and [another][2] in it.";
+	NSArray<id<BRStringLink>> *links = nil;
+	NSString *result = [input stringByExtractingMarkdownLinks:&links];
+	assertThat(result, equalTo(@"This string has a link and another in it."));
+	assertThatUnsignedInteger(links.count, describedAs(@"Extracted link count", equalToUnsignedInteger(2), nil));
+	id<BRStringLink> link = [links firstObject];
+	assertThatUnsignedInteger(link.range.location, describedAs(@"Link location", equalToUnsignedInteger(16), nil));
+	assertThatUnsignedInteger(link.range.length, describedAs(@"Link length", equalToUnsignedInteger(6), nil));
+	assertThat(link.reference, describedAs(@"Link reference", equalTo(@"1"), nil));
+	
+	link = [links lastObject];
+	assertThatUnsignedInteger(link.range.location, describedAs(@"Link location", equalToUnsignedInteger(27), nil));
+	assertThatUnsignedInteger(link.range.length, describedAs(@"Link length", equalToUnsignedInteger(7), nil));
+	assertThat(link.reference, describedAs(@"Link reference", equalTo(@"2"), nil));
+}
+
 @end

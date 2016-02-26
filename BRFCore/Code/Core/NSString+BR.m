@@ -33,6 +33,24 @@ static NSRegularExpression *kValidEmailRegex = nil;
 static NSMutableDictionary *kPhoneRegexes = nil;
 static NSCharacterSet *NumbersOnlyCharacterSet = nil;
 
+static inline NSRegularExpression * MarkdownReferenceLinkRegularExpression() {
+	static NSRegularExpression *_mdLinkRegularExpression = nil;
+	static dispatch_once_t onceToken;
+	dispatch_once(&onceToken, ^{
+		// regex matches links link [link][ref]
+		_mdLinkRegularExpression = [[NSRegularExpression alloc] initWithPattern:@"\\[([^\\]]+)\\]\\[([^\\]]+)\\]" options:NSRegularExpressionCaseInsensitive error:nil];
+	});
+	
+	return _mdLinkRegularExpression;
+}
+
+@interface BRSimpleStringLink : NSObject <BRStringLink>
+
+- (instancetype)initWithRange:(NSRange)range reference:(NSString *)reference;
+- (instancetype)initWithRange:(NSRange)range URL:(NSURL *)url;
+
+@end
+
 @implementation NSString (BR)
 
 - (BOOL)isValidEmailAddress {
@@ -373,6 +391,63 @@ static NSCharacterSet *NumbersOnlyCharacterSet = nil;
 	}
 	
 	return result;
+}
+
+- (NSString *)stringByExtractingMarkdownLinks:(NSArray<id<BRStringLink>> * _Nullable __autoreleasing * _Nullable)links {
+	// first create our actual label value by replacing MD style ref links [link][action] with just "link" and capturing the range of that link, and it's action, to add as a URL attribute later
+	// TODO: handle URL link style; at the moment only reference link style supported
+	
+	NSMutableArray<id<BRStringLink>> *linkData = [[NSMutableArray alloc] initWithCapacity:4];
+	NSRegularExpression *regex = MarkdownReferenceLinkRegularExpression();
+	NSMutableString *replaced = [[NSMutableString alloc] initWithCapacity:self.length];
+	
+	__block NSUInteger endOfPreviousMatch = 0;
+	[regex enumerateMatchesInString:self options:0 range:NSMakeRange(0, self.length) usingBlock:^(NSTextCheckingResult *result, NSMatchingFlags flags, BOOL *stop) {
+		NSRange matchRange = [result range];
+		[replaced appendString:[self substringWithRange:NSMakeRange(endOfPreviousMatch, matchRange.location - endOfPreviousMatch)]];
+		NSString *linkText = [self substringWithRange:[result rangeAtIndex:1]];
+		NSString *reference = [self substringWithRange:[result rangeAtIndex:2]];
+		NSRange linkRange = NSMakeRange(replaced.length, linkText.length);
+		[linkData addObject:[[BRSimpleStringLink alloc] initWithRange:linkRange reference:reference]];
+		[replaced appendString:linkText];
+		endOfPreviousMatch = matchRange.location + matchRange.length;
+	}];
+	if ( endOfPreviousMatch < self.length ) {
+		// add last bit of string
+		[replaced appendString:[self substringFromIndex:endOfPreviousMatch]];
+	}
+	
+	if ( links ) {
+		*links = linkData;
+	}
+	
+	return replaced;
+}
+
+@end
+
+@implementation BRSimpleStringLink {
+	NSRange range;
+	NSString *reference;
+	NSURL *url;
+}
+
+@synthesize range, reference, url;
+
+- (instancetype)initWithRange:(NSRange)theRange reference:(NSString *)theReference {
+	if ( (self = [super init]) ) {
+		range = theRange;
+		reference = theReference;
+	}
+	return self;
+}
+
+- (instancetype)initWithRange:(NSRange)theRange URL:(NSURL *)theUrl {
+	if ( (self = [super init]) ) {
+		range = theRange;
+		url = theUrl;
+	}
+	return self;
 }
 
 @end

@@ -26,6 +26,8 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@protocol BRStringLink;
+
 @interface NSString (BR)
 
 + (NSString *)commaSeparatedStringFromArray:(NSArray *)array;
@@ -109,6 +111,33 @@ NS_ASSUME_NONNULL_BEGIN
 											  withString:(NSString *)string
 											   formatter:(NSNumberFormatter *)numberFormatter
 												   input:(nullable id<UITextInput>)textField;
+
+/**
+ Replace Markdown style links with their link text and provide an array of @c BRStringLink objects for any discovered link.
+ 
+ @param links The discovered links will be returned here.
+ 
+ @return The string after replacing all discovered links with just the link text.
+ */
+- (NSString *)stringByExtractingMarkdownLinks:(NSArray<id<BRStringLink>> * __autoreleasing _Nullable * _Nullable)links;
+
+@end
+
+#pragma mark - BRStringLink
+
+/**
+ A discovered link within a string.
+ */
+@protocol BRStringLink <NSObject>
+
+/** The range for this link. */
+@property (nonatomic, readonly) NSRange range;
+
+/** A reference style link value. Either this or @c url will be available. */
+@property (nonatomic, readonly, nullable) NSString *reference;
+
+/** A URL style link value. Either this or @c reference will be avaiable. */
+@property (nonatomic, readonly, nullable) NSURL *url;
 
 @end
 
