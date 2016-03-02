@@ -52,8 +52,6 @@ static UIActivityIndicatorView *fullScreenSpinner;
     BOOL inProgress;
 }
 @property (nonatomic, strong) NSURLConnection *connection;
-@property (nonatomic) NSInteger responseCode;
-@property (nonatomic, strong) BRWebServiceResponse *response;
 @property (nonatomic, strong) void (^completionCallback)(BRWebServiceResponse *);
 @property (nonatomic, strong) void (^failureCallback)(NSError *, NSInteger code);
 @property (nonatomic, strong) NSString *key;
@@ -471,6 +469,7 @@ static UIActivityIndicatorView *fullScreenSpinner;
     if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
         NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)response;
         self.responseCode = httpResponse.statusCode;
+        self.responseHeaders = httpResponse.allHeaderFields;
         BRInfoLog(@"REQUEST ACKNOWLEDGED: %d: %@",self.responseCode,self.request.URL);
     }
     else {
@@ -531,11 +530,15 @@ static UIActivityIndicatorView *fullScreenSpinner;
             
         default:
             BRInfoLog(@"REQUEST SUCCEEDED: %@",self.request.URL);
+            [self requestHasCompleted];
             self.completionCallback(self.response);
             break;
     }
     self.connection = nil;
     
+}
+
+- (void)requestHasCompleted {
 }
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {

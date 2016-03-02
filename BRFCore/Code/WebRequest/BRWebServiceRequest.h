@@ -45,6 +45,9 @@ typedef NS_OPTIONS(NSUInteger, BRAppNetworkNotificationOptions) {
 @property (nonatomic, strong) NSMutableURLRequest *request;
 @property (nonatomic, strong, readonly) NSURL *url;
 @property (nonatomic, strong) NSData *data;
+@property (nonatomic) NSInteger responseCode;
+@property (nonatomic, strong) BRWebServiceResponse *response;
+@property (nonatomic, strong) NSDictionary *responseHeaders;
 
 + (id)requestForResourceAtURL:(NSURL *)url;
 + (id)requestForAPI:(NSString *)api;
@@ -59,5 +62,7 @@ typedef NS_OPTIONS(NSUInteger, BRAppNetworkNotificationOptions) {
 - (void)beginWithCompletion:(void (^)(BRWebServiceResponse *response))completion failure:(void (^)(NSError *error, NSInteger code))failure;
 - (void)retry;
 - (void)cancel;
+
+- (void)requestHasCompleted;
 
 @end
