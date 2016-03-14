@@ -8,6 +8,7 @@
 
 #import "BaseTestingSupport.h"
 
+#import <CoreText/CoreText.h>
 #import "NSString+BR.h"
 
 @interface NSString_BRTests : BaseTestingSupport
@@ -165,6 +166,33 @@
 	assertThatUnsignedInteger(link.range.location, describedAs(@"Link location", equalToUnsignedInteger(27), nil));
 	assertThatUnsignedInteger(link.range.length, describedAs(@"Link length", equalToUnsignedInteger(7), nil));
 	assertThat(link.reference, describedAs(@"Link reference", equalTo(@"2"), nil));
+}
+
+- (void)testParseMarkup {
+	NSString *input = @"This string has *bold text* and _italic text_ in it.";
+	NSAttributedString *result = [input attributedStringByReplacingMarkup];
+	assertThat([result string], equalTo(@"This string has bold text and italic text in it."));
+	NSArray<NSValue *> *expectedRanges = @[[NSValue valueWithRange:NSMakeRange(0, 16)],
+										   [NSValue valueWithRange:NSMakeRange(16, 9)],
+										   [NSValue valueWithRange:NSMakeRange(25, 5)],
+										   [NSValue valueWithRange:NSMakeRange(30, 11)],
+										   [NSValue valueWithRange:NSMakeRange(41, 7)]];
+	NSArray<NSNumber *> *expectedTraits = @[@0, @(kCTFontTraitBold), @0, @(kCTFontTraitItalic), @0];
+	__block int count = 0;
+	[result enumerateAttribute:(NSString *)kCTFontSymbolicTrait inRange:NSMakeRange(0, [result length]) options:0 usingBlock:^(id  _Nullable value, NSRange range, BOOL * _Nonnull stop) {
+		NSRange expectedRange = [(NSValue *)expectedRanges[count] rangeValue];
+		CTFontSymbolicTraits expectedTrait = [expectedTraits[count] unsignedIntValue];
+		assertThatUnsignedInteger(range.location, describedAs(@"Range %0 location %1", equalToUnsignedInteger(expectedRange.location), @(count), @(expectedRange.location), nil));
+		assertThatUnsignedInteger(range.length, describedAs(@"Range %0 length %1", equalToUnsignedInteger(expectedRange.length), @(count), @(expectedRange.length), nil));
+		
+		CTFontSymbolicTraits traits = [value unsignedIntValue];
+		assertThatUnsignedInt(traits, describedAs(@"Trait %0 == %1", equalToUnsignedInt(expectedTrait), @(count), @(expectedTrait), nil));
+
+		count += 1;
+		if ( count == expectedTraits.count ) {
+			*stop = YES;
+		}
+	}];
 }
 
 @end

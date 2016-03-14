@@ -27,6 +27,7 @@
 #import <BRCocoaLumberjack/BRCocoaLumberjack.h>
 #import <BREnvironment/BREnvironment.h>
 #import <CommonCrypto/CommonDigest.h>
+#import <CoreText/CoreText.h>
 #import "NSBundle+BR.h"
 
 static NSRegularExpression *kValidEmailRegex = nil;
@@ -393,6 +394,8 @@ static inline NSRegularExpression * MarkdownReferenceLinkRegularExpression() {
 	return result;
 }
 
+#pragma mark - Markup support
+
 - (NSString *)stringByExtractingMarkdownLinks:(NSArray<id<BRStringLink>> * _Nullable __autoreleasing * _Nullable)links {
 	// first create our actual label value by replacing MD style ref links [link][action] with just "link" and capturing the range of that link, and it's action, to add as a URL attribute later
 	// TODO: handle URL link style; at the moment only reference link style supported
@@ -423,6 +426,76 @@ static inline NSRegularExpression * MarkdownReferenceLinkRegularExpression() {
 	
 	return replaced;
 }
+
+typedef NS_OPTIONS(int, BRMarkupType) {
+	BRMarkupTypeNone		= 0,
+	BRMarkupTypeBold		= (1 << 0),
+	BRMarkupTypeItalic		= (1 << 1),
+};
+
++ (NSDictionary *)attributesForMarkupType:(BRMarkupType)type {
+	CTFontSymbolicTraits traits = 0;
+	CTUnderlineStyle underlineStyle = kCTUnderlineStyleNone;
+	NSMutableDictionary *result = [NSMutableDictionary new];
+	if ( (type & BRMarkupTypeBold) == BRMarkupTypeBold ) {
+		traits |= kCTFontBoldTrait;
+	}
+	if ( (type & BRMarkupTypeItalic) == BRMarkupTypeItalic ) {
+		traits |= kCTFontItalicTrait;
+	}
+	if ( traits != 0 ) {
+		result[(id)kCTFontSymbolicTrait] = @(traits);
+	} else if ( underlineStyle != kCTUnderlineStyleNone ) {
+		result[(id)kCTUnderlineStyleAttributeName] = @(underlineStyle);
+	}
+	if ( [result count] < 1 ) {
+		result = nil;
+	}
+	return result;
+}
+
++ (BRMarkupType)markupTypeForStyleKey:(NSString *)key {
+	BRMarkupType result = BRMarkupTypeNone;
+	if ( [key isEqualToString:@"*"] ) {
+		result = BRMarkupTypeBold;
+	} else if ( [key isEqualToString:@"_"] ) {
+		result = BRMarkupTypeItalic;
+	}
+	return result;
+}
+
+- (NSString *)stringByRemovingMarkup {
+	return [[self attributedStringByReplacingMarkup] string];
+}
+
+static NSUInteger kMarkupMatchIndex = 1;
+
+- (NSAttributedString *)attributedStringByReplacingMarkup {
+	static NSRegularExpression *regex = nil;
+	if ( regex == nil ) {
+		regex = [NSRegularExpression regularExpressionWithPattern:@"([*_])(.+?)\\1" options:0 error:nil];
+	}
+	NSMutableAttributedString *string = [NSMutableAttributedString new];
+	__block NSUInteger endOfPreviousMatch = 0;
+	[regex enumerateMatchesInString:self options:0 range:NSMakeRange(0, [self length]) usingBlock:^(NSTextCheckingResult *result, NSMatchingFlags flags, BOOL *stop) {
+		NSRange matchRange = [result range];
+		NSString *text = [self substringWithRange:NSMakeRange(endOfPreviousMatch, matchRange.location - endOfPreviousMatch)];
+		[string appendAttributedString:[[NSAttributedString alloc] initWithString:text]];
+		NSString *style = [self substringWithRange:[result rangeAtIndex:kMarkupMatchIndex]];
+		// remove the markup from the text
+		text = [self substringWithRange:[result rangeAtIndex:(kMarkupMatchIndex + 1)]];
+		BRMarkupType type = [NSString markupTypeForStyleKey:style];
+		NSDictionary *attributes = [NSString attributesForMarkupType:type];
+		[string appendAttributedString:[[NSAttributedString alloc] initWithString:text attributes:attributes]];
+		endOfPreviousMatch = matchRange.location + matchRange.length;
+	}];
+	if ( endOfPreviousMatch < [self length] ) {
+		// add last bit of string
+		[string appendAttributedString:[[NSAttributedString alloc] initWithString:[self substringFromIndex:endOfPreviousMatch]]];
+	}
+	return string;
+}
+
 
 @end
 

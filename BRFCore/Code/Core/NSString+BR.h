@@ -121,6 +121,23 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (NSString *)stringByExtractingMarkdownLinks:(NSArray<id<BRStringLink>> * __autoreleasing _Nullable * _Nullable)links;
 
+/**
+ Create an attributed string by replacing simple markup with attributes. Supported markup is:
+ 
+  1. *bold*
+  2. _italic_
+ 
+ @return An attributed version of the receiver.
+ */
+- (NSAttributedString *)attributedStringByReplacingMarkup;
+
+/**
+ Return a plain-text string with all markup removed. For example a string like `Make *it* so.` would result in `Make it so.`
+ 
+ @return The string without any markup.
+ */
+- (NSString *)stringByRemovingMarkup;
+
 @end
 
 #pragma mark - BRStringLink
