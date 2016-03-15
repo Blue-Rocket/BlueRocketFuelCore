@@ -113,15 +113,6 @@ NS_ASSUME_NONNULL_BEGIN
 												   input:(nullable id<UITextInput>)textField;
 
 /**
- Replace Markdown style links with their link text and provide an array of @c BRStringLink objects for any discovered link.
- 
- @param links The discovered links will be returned here.
- 
- @return The string after replacing all discovered links with just the link text.
- */
-- (NSString *)stringByExtractingMarkdownLinks:(NSArray<id<BRStringLink>> * __autoreleasing _Nullable * _Nullable)links;
-
-/**
  Create an attributed string by replacing simple markup with attributes. Supported markup is:
  
   1. *bold*
@@ -130,9 +121,13 @@ NS_ASSUME_NONNULL_BEGIN
   4. =double underline=
   5. +thick underline+
  
- @return An attributed version of the receiver.
+ In addition will replace Markdown style links with their link text and provide an array of @c BRStringLink objects for any discovered link.
+
+ @param links The discovered links will be returned here. Note the links will @b not have string attributes added to the returned attributed string.
+ 
+ @return An attributed version of the receiver with markup turned into attributes and links replaced by just the link text.
  */
-- (NSAttributedString *)attributedStringByReplacingMarkup;
+- (NSAttributedString *)attributedStringByReplacingMarkup:(NSArray<id<BRStringLink>> * __autoreleasing _Nullable * _Nullable)links;
 
 /**
  Return a plain-text string with all markup removed. For example a string like `Make *it* so.` would result in `Make it so.`

@@ -142,7 +142,7 @@
 - (void)testExtractMarkdownReferenceLink {
 	NSString *input = @"This string has [a link][1] in it.";
 	NSArray<id<BRStringLink>> *links = nil;
-	NSString *result = [input stringByExtractingMarkdownLinks:&links];
+	NSString *result = [[input attributedStringByReplacingMarkup:&links] string];
 	assertThat(result, equalTo(@"This string has a link in it."));
 	assertThatUnsignedInteger(links.count, describedAs(@"Extracted link count", equalToUnsignedInteger(1), nil));
 	id<BRStringLink> link = [links firstObject];
@@ -154,7 +154,7 @@
 - (void)testExtractMarkdownReferenceLinks {
 	NSString *input = @"This string has [a link][1] and [another][2] in it.";
 	NSArray<id<BRStringLink>> *links = nil;
-	NSString *result = [input stringByExtractingMarkdownLinks:&links];
+	NSString *result = [[input attributedStringByReplacingMarkup:&links] string];
 	assertThat(result, equalTo(@"This string has a link and another in it."));
 	assertThatUnsignedInteger(links.count, describedAs(@"Extracted link count", equalToUnsignedInteger(2), nil));
 	id<BRStringLink> link = [links firstObject];
@@ -170,7 +170,7 @@
 
 - (void)testParseMarkup {
 	NSString *input = @"This string has *bold text* and _italic text_ in it.";
-	NSAttributedString *result = [input attributedStringByReplacingMarkup];
+	NSAttributedString *result = [input attributedStringByReplacingMarkup:nil];
 	assertThat([result string], equalTo(@"This string has bold text and italic text in it."));
 	NSArray<NSValue *> *expectedRanges = @[[NSValue valueWithRange:NSMakeRange(0, 16)],
 										   [NSValue valueWithRange:NSMakeRange(16, 9)],
@@ -195,9 +195,41 @@
 	}];
 }
 
+- (void)testParseMarkupWithLink {
+	NSString *input = @"This *string* has [a link][1] in it.";
+	NSArray<id<BRStringLink>> *links = nil;
+	NSAttributedString *result = [input attributedStringByReplacingMarkup:&links];
+	assertThat([result string], equalTo(@"This string has a link in it."));
+	NSArray<NSValue *> *expectedRanges = @[[NSValue valueWithRange:NSMakeRange(0, 5)],
+										   [NSValue valueWithRange:NSMakeRange(5, 6)],
+										   [NSValue valueWithRange:NSMakeRange(11, 18)]];
+	NSArray<NSNumber *> *expectedTraits = @[@0, @(kCTFontTraitBold), @0];
+	__block int count = 0;
+	[result enumerateAttribute:(NSString *)kCTFontSymbolicTrait inRange:NSMakeRange(0, [result length]) options:0 usingBlock:^(id  _Nullable value, NSRange range, BOOL * _Nonnull stop) {
+		NSRange expectedRange = [(NSValue *)expectedRanges[count] rangeValue];
+		CTFontSymbolicTraits expectedTrait = [expectedTraits[count] unsignedIntValue];
+		assertThatUnsignedInteger(range.location, describedAs(@"Range %0 location %1", equalToUnsignedInteger(expectedRange.location), @(count), @(expectedRange.location), nil));
+		assertThatUnsignedInteger(range.length, describedAs(@"Range %0 length %1", equalToUnsignedInteger(expectedRange.length), @(count), @(expectedRange.length), nil));
+		
+		CTFontSymbolicTraits traits = [value unsignedIntValue];
+		assertThatUnsignedInt(traits, describedAs(@"Trait %0 == %1", equalToUnsignedInt(expectedTrait), @(count), @(expectedTrait), nil));
+		
+		count += 1;
+		if ( count == expectedTraits.count ) {
+			*stop = YES;
+		}
+	}];
+
+	assertThatUnsignedInteger(links.count, describedAs(@"Extracted link count", equalToUnsignedInteger(1), nil));
+	id<BRStringLink> link = [links firstObject];
+	assertThatUnsignedInteger(link.range.location, describedAs(@"Link location", equalToUnsignedInteger(16), nil));
+	assertThatUnsignedInteger(link.range.length, describedAs(@"Link length", equalToUnsignedInteger(6), nil));
+	assertThat(link.reference, describedAs(@"Link reference", equalTo(@"1"), nil));
+}
+
 - (void)testParseUnderlineMarkup {
 	NSString *input = @"This string has ~single underlined~, =double underlined=, and +thick underlined+ text.";
-	NSAttributedString *result = [input attributedStringByReplacingMarkup];
+	NSAttributedString *result = [input attributedStringByReplacingMarkup:nil];
 	assertThat([result string], equalTo(@"This string has single underlined, double underlined, and thick underlined text."));
 	
 	NSArray<NSValue *> *expectedRanges = @[[NSValue valueWithRange:NSMakeRange(0, 16)],

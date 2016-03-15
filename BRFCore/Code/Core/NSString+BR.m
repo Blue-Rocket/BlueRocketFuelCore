@@ -35,14 +35,22 @@ static NSMutableDictionary *kPhoneRegexes = nil;
 static NSCharacterSet *NumbersOnlyCharacterSet = nil;
 
 static inline NSRegularExpression * MarkdownReferenceLinkRegularExpression() {
-	static NSRegularExpression *_mdLinkRegularExpression = nil;
+	static NSRegularExpression *LinkRegExp = nil;
 	static dispatch_once_t onceToken;
 	dispatch_once(&onceToken, ^{
 		// regex matches links link [link][ref]
-		_mdLinkRegularExpression = [[NSRegularExpression alloc] initWithPattern:@"\\[([^\\]]+)\\]\\[([^\\]]+)\\]" options:NSRegularExpressionCaseInsensitive error:nil];
+		LinkRegExp = [[NSRegularExpression alloc] initWithPattern:@"\\[([^\\]]+)\\]\\[([^\\]]+)\\]" options:0 error:nil];
 	});
-	
-	return _mdLinkRegularExpression;
+	return LinkRegExp;
+}
+
+static inline NSRegularExpression * MarkupRegularExpression() {
+	static NSRegularExpression *MarkupRegExpr = nil;
+	static dispatch_once_t onceToken;
+	dispatch_once(&onceToken, ^{
+		MarkupRegExpr = [NSRegularExpression regularExpressionWithPattern:@"([*_~=+])(.+?)\\1" options:0 error:nil];
+	});
+	return MarkupRegExpr;
 }
 
 @interface BRSimpleStringLink : NSObject <BRStringLink>
@@ -396,37 +404,6 @@ static inline NSRegularExpression * MarkdownReferenceLinkRegularExpression() {
 
 #pragma mark - Markup support
 
-- (NSString *)stringByExtractingMarkdownLinks:(NSArray<id<BRStringLink>> * _Nullable __autoreleasing * _Nullable)links {
-	// first create our actual label value by replacing MD style ref links [link][action] with just "link" and capturing the range of that link, and it's action, to add as a URL attribute later
-	// TODO: handle URL link style; at the moment only reference link style supported
-	
-	NSMutableArray<id<BRStringLink>> *linkData = [[NSMutableArray alloc] initWithCapacity:4];
-	NSRegularExpression *regex = MarkdownReferenceLinkRegularExpression();
-	NSMutableString *replaced = [[NSMutableString alloc] initWithCapacity:self.length];
-	
-	__block NSUInteger endOfPreviousMatch = 0;
-	[regex enumerateMatchesInString:self options:0 range:NSMakeRange(0, self.length) usingBlock:^(NSTextCheckingResult *result, NSMatchingFlags flags, BOOL *stop) {
-		NSRange matchRange = [result range];
-		[replaced appendString:[self substringWithRange:NSMakeRange(endOfPreviousMatch, matchRange.location - endOfPreviousMatch)]];
-		NSString *linkText = [self substringWithRange:[result rangeAtIndex:1]];
-		NSString *reference = [self substringWithRange:[result rangeAtIndex:2]];
-		NSRange linkRange = NSMakeRange(replaced.length, linkText.length);
-		[linkData addObject:[[BRSimpleStringLink alloc] initWithRange:linkRange reference:reference]];
-		[replaced appendString:linkText];
-		endOfPreviousMatch = matchRange.location + matchRange.length;
-	}];
-	if ( endOfPreviousMatch < self.length ) {
-		// add last bit of string
-		[replaced appendString:[self substringFromIndex:endOfPreviousMatch]];
-	}
-	
-	if ( links ) {
-		*links = linkData;
-	}
-	
-	return replaced;
-}
-
 typedef NS_OPTIONS(int, BRMarkupType) {
 	BRMarkupTypeNone			= 0,
 	BRMarkupTypeBold			= (1 << 0),
@@ -484,17 +461,15 @@ typedef NS_OPTIONS(int, BRMarkupType) {
 }
 
 - (NSString *)stringByRemovingMarkup {
-	return [[self attributedStringByReplacingMarkup] string];
+	return [[self attributedStringByReplacingMarkup:nil] string];
 }
 
 static NSUInteger kMarkupMatchIndex = 1;
 
-- (NSAttributedString *)attributedStringByReplacingMarkup {
-	static NSRegularExpression *regex = nil;
-	if ( regex == nil ) {
-		regex = [NSRegularExpression regularExpressionWithPattern:@"([*_~=+])(.+?)\\1" options:0 error:nil];
-	}
+- (NSAttributedString *)attributedStringByReplacingMarkup:(NSArray<id<BRStringLink>> * _Nullable __autoreleasing * _Nullable)links {
 	NSMutableAttributedString *string = [NSMutableAttributedString new];
+
+	NSRegularExpression *regex = MarkupRegularExpression();
 	__block NSUInteger endOfPreviousMatch = 0;
 	[regex enumerateMatchesInString:self options:0 range:NSMakeRange(0, [self length]) usingBlock:^(NSTextCheckingResult *result, NSMatchingFlags flags, BOOL *stop) {
 		NSRange matchRange = [result range];
@@ -512,7 +487,34 @@ static NSUInteger kMarkupMatchIndex = 1;
 		// add last bit of string
 		[string appendAttributedString:[[NSAttributedString alloc] initWithString:[self substringFromIndex:endOfPreviousMatch]]];
 	}
-	return string;
+
+	// first create our actual label value by replacing MD style ref links [link][action] with just "link" and capturing the range of that link, and it's action, to add as a URL attribute later
+	// TODO: handle URL link style; at the moment only reference link style supported
+	NSMutableArray<id<BRStringLink>> *linkData = [[NSMutableArray alloc] initWithCapacity:4];
+	regex = MarkdownReferenceLinkRegularExpression();
+	NSMutableAttributedString *final = [NSMutableAttributedString new];
+	
+	endOfPreviousMatch = 0;
+	[regex enumerateMatchesInString:[string string] options:0 range:NSMakeRange(0, string.length) usingBlock:^(NSTextCheckingResult *result, NSMatchingFlags flags, BOOL *stop) {
+		NSRange matchRange = [result range];
+		[final appendAttributedString:[string attributedSubstringFromRange:NSMakeRange(endOfPreviousMatch, matchRange.location - endOfPreviousMatch)]];
+		NSAttributedString *linkText = [string attributedSubstringFromRange:[result rangeAtIndex:1]];
+		NSAttributedString *reference = [string attributedSubstringFromRange:[result rangeAtIndex:2]];
+		NSRange linkRange = NSMakeRange(final.length, linkText.length);
+		[linkData addObject:[[BRSimpleStringLink alloc] initWithRange:linkRange reference:[reference string]]];
+		[final appendAttributedString:linkText];
+		endOfPreviousMatch = matchRange.location + matchRange.length;
+	}];
+	if ( endOfPreviousMatch < string.length ) {
+		// add last bit of string
+		[final appendAttributedString:[string attributedSubstringFromRange:NSMakeRange(endOfPreviousMatch, (string.length - endOfPreviousMatch))]];
+	}
+	
+	if ( links ) {
+		*links = linkData;
+	}
+	
+	return final;
 }
 
 
