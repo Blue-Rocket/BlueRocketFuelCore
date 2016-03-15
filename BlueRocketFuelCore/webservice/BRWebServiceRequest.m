@@ -98,6 +98,10 @@ static UIActivityIndicatorView *fullScreenSpinner;
 
         request.method = [BRApp.config objectForPath:[NSString stringWithFormat:@"webservice.api.%@.method",api]];
         if (!request.method) request.method = @"GET";
+
+        NSNumber *preventUserInteraction = [BRApp.config objectForPath:[NSString stringWithFormat:@"webservice.api.%@.preventUserInteraction",api]];
+        request.preventUserInteraction = NO;
+        if (preventUserInteraction) request.preventUserInteraction = [preventUserInteraction boolValue];
         
         NSString *port = [BRApp.config objectForPath:@"webservice.port"];
         
