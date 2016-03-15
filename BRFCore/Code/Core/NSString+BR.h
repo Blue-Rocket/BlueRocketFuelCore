@@ -127,6 +127,8 @@ NS_ASSUME_NONNULL_BEGIN
   1. *bold*
   2. _italic_
   3. ~underline~
+  4. =double underline=
+  5. +thick underline+
  
  @return An attributed version of the receiver.
  */

@@ -196,14 +196,20 @@
 }
 
 - (void)testParseUnderlineMarkup {
-	NSString *input = @"This string has ~a part of it underlined~.";
+	NSString *input = @"This string has ~single underlined~, =double underlined=, and +thick underlined+ text.";
 	NSAttributedString *result = [input attributedStringByReplacingMarkup];
-	assertThat([result string], equalTo(@"This string has a part of it underlined."));
+	assertThat([result string], equalTo(@"This string has single underlined, double underlined, and thick underlined text."));
 	
 	NSArray<NSValue *> *expectedRanges = @[[NSValue valueWithRange:NSMakeRange(0, 16)],
-										   [NSValue valueWithRange:NSMakeRange(16, 23)],
-										   [NSValue valueWithRange:NSMakeRange(39, 1)]];
-	NSArray<NSNumber *> *expectedUnderlineStyles = @[@(kCTUnderlineStyleNone), @(kCTUnderlineStyleSingle), @(kCTUnderlineStyleNone)];
+										   [NSValue valueWithRange:NSMakeRange(16, 17)],
+										   [NSValue valueWithRange:NSMakeRange(33, 2)],
+										   [NSValue valueWithRange:NSMakeRange(35, 17)],
+										   [NSValue valueWithRange:NSMakeRange(52, 6)],
+										   [NSValue valueWithRange:NSMakeRange(58, 16)],
+										   [NSValue valueWithRange:NSMakeRange(74, 6)]];
+	NSArray<NSNumber *> *expectedUnderlineStyles = @[@(kCTUnderlineStyleNone), @(kCTUnderlineStyleSingle), @(kCTUnderlineStyleNone),
+													 @(kCTUnderlineStyleDouble), @(kCTUnderlineStyleNone), @(kCTUnderlineStyleThick),
+													 @(kCTUnderlineStyleNone)];
 	__block int count = 0;
 	[result enumerateAttribute:(NSString *)kCTUnderlineStyleAttributeName inRange:NSMakeRange(0, [result length]) options:0 usingBlock:^(id  _Nullable value, NSRange range, BOOL * _Nonnull stop) {
 		NSRange expectedRange = [(NSValue *)expectedRanges[count] rangeValue];

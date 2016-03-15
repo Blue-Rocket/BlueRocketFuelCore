@@ -428,10 +428,12 @@ static inline NSRegularExpression * MarkdownReferenceLinkRegularExpression() {
 }
 
 typedef NS_OPTIONS(int, BRMarkupType) {
-	BRMarkupTypeNone		= 0,
-	BRMarkupTypeBold		= (1 << 0),
-	BRMarkupTypeItalic		= (1 << 1),
-	BRMarkupTypeUnderline	= (1 << 2),
+	BRMarkupTypeNone			= 0,
+	BRMarkupTypeBold			= (1 << 0),
+	BRMarkupTypeItalic			= (1 << 1),
+	BRMarkupTypeUnderline		= (1 << 2),
+	BRMarkupTypeDoubleUnderline	= (1 << 3),
+	BRMarkupTypeThickUnderline	= (1 << 4),
 };
 
 + (NSDictionary *)attributesForMarkupType:(BRMarkupType)type {
@@ -450,6 +452,10 @@ typedef NS_OPTIONS(int, BRMarkupType) {
 
 	if ( (type & BRMarkupTypeUnderline) == BRMarkupTypeUnderline ) {
 		underlineStyle = kCTUnderlineStyleSingle;
+	} else if ( (type & BRMarkupTypeDoubleUnderline) == BRMarkupTypeDoubleUnderline ) {
+		underlineStyle = kCTUnderlineStyleDouble;
+	} else if ( (type & BRMarkupTypeThickUnderline) == BRMarkupTypeThickUnderline ) {
+		underlineStyle = kCTUnderlineStyleThick;
 	}
 	if ( underlineStyle != kCTUnderlineStyleNone ) {
 		result[(id)kCTUnderlineStyleAttributeName] = @(underlineStyle);
@@ -469,6 +475,10 @@ typedef NS_OPTIONS(int, BRMarkupType) {
 		result = BRMarkupTypeItalic;
 	} else if ( [key isEqualToString:@"~"] ) {
 		result = BRMarkupTypeUnderline;
+	} else if ( [key isEqualToString:@"="] ) {
+		result = BRMarkupTypeDoubleUnderline;
+	} else if ( [key isEqualToString:@"+"] ) {
+		result = BRMarkupTypeThickUnderline;
 	}
 	return result;
 }
@@ -482,7 +492,7 @@ static NSUInteger kMarkupMatchIndex = 1;
 - (NSAttributedString *)attributedStringByReplacingMarkup {
 	static NSRegularExpression *regex = nil;
 	if ( regex == nil ) {
-		regex = [NSRegularExpression regularExpressionWithPattern:@"([*_~])(.+?)\\1" options:0 error:nil];
+		regex = [NSRegularExpression regularExpressionWithPattern:@"([*_~=+])(.+?)\\1" options:0 error:nil];
 	}
 	NSMutableAttributedString *string = [NSMutableAttributedString new];
 	__block NSUInteger endOfPreviousMatch = 0;
