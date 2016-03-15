@@ -195,4 +195,30 @@
 	}];
 }
 
+- (void)testParseUnderlineMarkup {
+	NSString *input = @"This string has ~a part of it underlined~.";
+	NSAttributedString *result = [input attributedStringByReplacingMarkup];
+	assertThat([result string], equalTo(@"This string has a part of it underlined."));
+	
+	NSArray<NSValue *> *expectedRanges = @[[NSValue valueWithRange:NSMakeRange(0, 16)],
+										   [NSValue valueWithRange:NSMakeRange(16, 23)],
+										   [NSValue valueWithRange:NSMakeRange(39, 1)]];
+	NSArray<NSNumber *> *expectedUnderlineStyles = @[@(kCTUnderlineStyleNone), @(kCTUnderlineStyleSingle), @(kCTUnderlineStyleNone)];
+	__block int count = 0;
+	[result enumerateAttribute:(NSString *)kCTUnderlineStyleAttributeName inRange:NSMakeRange(0, [result length]) options:0 usingBlock:^(id  _Nullable value, NSRange range, BOOL * _Nonnull stop) {
+		NSRange expectedRange = [(NSValue *)expectedRanges[count] rangeValue];
+		CTUnderlineStyle expectedStyle = [expectedUnderlineStyles[count] intValue];
+		assertThatUnsignedInteger(range.location, describedAs(@"Underline range %0 location %1", equalToUnsignedInteger(expectedRange.location), @(count), @(expectedRange.location), nil));
+		assertThatUnsignedInteger(range.length, describedAs(@"Underline range %0 length %1", equalToUnsignedInteger(expectedRange.length), @(count), @(expectedRange.length), nil));
+		
+		CTFontSymbolicTraits traits = [value unsignedIntValue];
+		assertThatUnsignedInt(traits, describedAs(@"Underline style %0 == %1", equalToUnsignedInt(expectedStyle), @(count), @(expectedStyle), nil));
+		
+		count += 1;
+		if ( count == expectedUnderlineStyles.count ) {
+			*stop = YES;
+		}
+	}];
+}
+
 @end

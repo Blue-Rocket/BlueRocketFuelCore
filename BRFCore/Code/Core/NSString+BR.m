@@ -431,6 +431,7 @@ typedef NS_OPTIONS(int, BRMarkupType) {
 	BRMarkupTypeNone		= 0,
 	BRMarkupTypeBold		= (1 << 0),
 	BRMarkupTypeItalic		= (1 << 1),
+	BRMarkupTypeUnderline	= (1 << 2),
 };
 
 + (NSDictionary *)attributesForMarkupType:(BRMarkupType)type {
@@ -445,9 +446,15 @@ typedef NS_OPTIONS(int, BRMarkupType) {
 	}
 	if ( traits != 0 ) {
 		result[(id)kCTFontSymbolicTrait] = @(traits);
-	} else if ( underlineStyle != kCTUnderlineStyleNone ) {
+	}
+
+	if ( (type & BRMarkupTypeUnderline) == BRMarkupTypeUnderline ) {
+		underlineStyle = kCTUnderlineStyleSingle;
+	}
+	if ( underlineStyle != kCTUnderlineStyleNone ) {
 		result[(id)kCTUnderlineStyleAttributeName] = @(underlineStyle);
 	}
+	
 	if ( [result count] < 1 ) {
 		result = nil;
 	}
@@ -460,6 +467,8 @@ typedef NS_OPTIONS(int, BRMarkupType) {
 		result = BRMarkupTypeBold;
 	} else if ( [key isEqualToString:@"_"] ) {
 		result = BRMarkupTypeItalic;
+	} else if ( [key isEqualToString:@"~"] ) {
+		result = BRMarkupTypeUnderline;
 	}
 	return result;
 }
@@ -473,7 +482,7 @@ static NSUInteger kMarkupMatchIndex = 1;
 - (NSAttributedString *)attributedStringByReplacingMarkup {
 	static NSRegularExpression *regex = nil;
 	if ( regex == nil ) {
-		regex = [NSRegularExpression regularExpressionWithPattern:@"([*_])(.+?)\\1" options:0 error:nil];
+		regex = [NSRegularExpression regularExpressionWithPattern:@"([*_~])(.+?)\\1" options:0 error:nil];
 	}
 	NSMutableAttributedString *string = [NSMutableAttributedString new];
 	__block NSUInteger endOfPreviousMatch = 0;

@@ -26,6 +26,7 @@
 	mockClient = OCMProtocolMock(@protocol(WebApiClient));
 	userService = [[WebApiClientUserService alloc] init];
 	userService.client = mockClient;
+	userService.appUserClass = [BRAppUser class];
 }
 
 - (void)testRegisterUser {
@@ -178,7 +179,6 @@
 	[userService updateUserDetails:updateUser finished:^(id<BRUser>  _Nullable user, NSError * _Nullable error) {
 		assertThat(user, sameInstance(updateUser));
 		assertThatBool(user.newUser, isFalse());
-		assertThatBool(user.authenticated, isTrue());
 		assertThatBool([NSThread isMainThread], describedAs(@"Should be on main thread", isTrue(), nil));
 		[callbackExpectation fulfill];
 	}];
