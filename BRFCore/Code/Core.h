@@ -15,6 +15,8 @@
 #import <BlueRocketFuelCore/BRServiceConstants.h>
 #import <BlueRocketFuelCore/BRSimpleEntityReference.h>
 #import <BlueRocketFuelCore/BRSimpleKeychainService.h>
+#import <BlueRocketFuelCore/BRSimpleStringLink.h>
+#import <BlueRocketFuelCore/BRStringLink.h>
 #import <BlueRocketFuelCore/BRUser.h>
 #import <BlueRocketFuelCore/BRUserService.h>
 #import <BlueRocketFuelCore/NSBundle+BR.h>

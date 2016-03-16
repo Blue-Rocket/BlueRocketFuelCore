@@ -24,9 +24,9 @@
 
 #import <UIKit/UIKit.h>
 
-NS_ASSUME_NONNULL_BEGIN
+#import "BRStringLink.h"
 
-@protocol BRStringLink;
+NS_ASSUME_NONNULL_BEGIN
 
 @interface NSString (BR)
 
@@ -135,24 +135,6 @@ NS_ASSUME_NONNULL_BEGIN
  @return The string without any markup.
  */
 - (NSString *)stringByRemovingMarkup;
-
-@end
-
-#pragma mark - BRStringLink
-
-/**
- A discovered link within a string.
- */
-@protocol BRStringLink <NSObject>
-
-/** The range for this link. */
-@property (nonatomic, readonly) NSRange range;
-
-/** A reference style link value. Either this or @c url will be available. */
-@property (nonatomic, readonly, nullable) NSString *reference;
-
-/** A URL style link value. Either this or @c reference will be avaiable. */
-@property (nonatomic, readonly, nullable) NSURL *url;
 
 @end
 

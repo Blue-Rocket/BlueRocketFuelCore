@@ -28,6 +28,7 @@
 #import <BREnvironment/BREnvironment.h>
 #import <CommonCrypto/CommonDigest.h>
 #import <CoreText/CoreText.h>
+#import "BRSimpleStringLink.h"
 #import "NSBundle+BR.h"
 
 static NSRegularExpression *kValidEmailRegex = nil;
@@ -52,13 +53,6 @@ static inline NSRegularExpression * MarkupRegularExpression() {
 	});
 	return MarkupRegExpr;
 }
-
-@interface BRSimpleStringLink : NSObject <BRStringLink>
-
-- (instancetype)initWithRange:(NSRange)range reference:(NSString *)reference;
-- (instancetype)initWithRange:(NSRange)range URL:(NSURL *)url;
-
-@end
 
 @implementation NSString (BR)
 
@@ -517,31 +511,5 @@ static NSUInteger kMarkupMatchIndex = 1;
 	return final;
 }
 
-
-@end
-
-@implementation BRSimpleStringLink {
-	NSRange range;
-	NSString *reference;
-	NSURL *url;
-}
-
-@synthesize range, reference, url;
-
-- (instancetype)initWithRange:(NSRange)theRange reference:(NSString *)theReference {
-	if ( (self = [super init]) ) {
-		range = theRange;
-		reference = theReference;
-	}
-	return self;
-}
-
-- (instancetype)initWithRange:(NSRange)theRange URL:(NSURL *)theUrl {
-	if ( (self = [super init]) ) {
-		range = theRange;
-		url = theUrl;
-	}
-	return self;
-}
 
 @end
