@@ -9,6 +9,7 @@
 #import <WebApiClient/WebApiClient-Core.h>
 #import "BRUserService.h"
 
+NS_ASSUME_NONNULL_BEGIN
 
 /** A standard route name for user registration. */
 extern NSString * const WebApiRouteRegister;
@@ -30,8 +31,16 @@ extern NSString * const WebApiClientUserServiceResetPasswordReturnURLEnvironment
 
 /**
  Implementation of @c BRUserService using @c WebApiClient for login and registration requests.
+ 
  This class also conforms to @c WebApiAuthorizationProvider so that it can act as an authentication
- provider for client requests.
+ provider for client requests. When @c configureAuthorizationForRoute:request: is called to authorize
+ a request, the active user's @c authenticationToken will be added to the request as a HTTP header.
+ The HTTP header defaults to
+ 
+     Authorization Token token="123"
+ 
+ where @b 123 is the @c authenticationToken value. The header name and value can be configured via
+ the @c authenticationTokenHeaderName and @c authenticationTokenHeaderTemplate properties.
  */
 @interface WebApiClientUserService : NSObject <BRUserService, WebApiAuthorizationProvider>
 
@@ -53,4 +62,20 @@ extern NSString * const WebApiClientUserServiceResetPasswordReturnURLEnvironment
  */
 @property (nonatomic, strong) NSSet<NSString *> *internalHostNames;
 
+/**
+ The HTTP header name to use for posting the user authentication token. Defaults to @c Authorization.
+ Set to @c nil to omit the authentication token header entirely.
+ */
+@property (nonatomic, strong, nullable) NSString * authenticationTokenHeaderName;
+
+/**
+ A string template for formatting the authentication token HTTP header value. The template must accept a single
+ object parameter, which will be passed the active user's @c authenticationToken value.
+ 
+ Defaults to `"Token token="%@"`. If @c nil then the raw token value will be used directly as the header value.
+ */
+@property (nonatomic, strong, nullable) NSString * authenticationTokenHeaderTemplate;
+
 @end
+
+NS_ASSUME_NONNULL_END

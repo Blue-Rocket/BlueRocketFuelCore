@@ -229,4 +229,78 @@
 	OCMVerifyAll((id)mockClient);
 }
 
+- (void)testAuthorizeRouteNoActiveUser {
+	[BRAppUser replaceCurrentUser:nil];
+	NSMutableURLRequest *req = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"http://localhost/"]];
+	[userService configureAuthorizationForRoute:@{@"name" : @"test"} request:req];
+	
+	NSString *result = [req allHTTPHeaderFields][@"Authorization"];
+	assertThat(result, nilValue());
+}
+
+- (void)testAuthorizeRouteNoAuthenticationToken {
+	BRAppUser *newUser = [BRAppUser new];
+	newUser.uniqueId = @"test-id";
+	[BRAppUser replaceCurrentUser:newUser];
+	NSMutableURLRequest *req = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"http://localhost/"]];
+	[userService configureAuthorizationForRoute:@{@"name" : @"test"} request:req];
+	
+	NSString *result = [req allHTTPHeaderFields][@"Authorization"];
+	assertThat(result, nilValue());
+}
+
+- (void)testAuthorizeRouteAuthenticationToken {
+	BRAppUser *newUser = [BRAppUser new];
+	newUser.uniqueId = @"test-id";
+	newUser.authenticationToken = @"123";
+	[BRAppUser replaceCurrentUser:newUser];
+	NSMutableURLRequest *req = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"http://localhost/"]];
+	[userService configureAuthorizationForRoute:@{@"name" : @"test"} request:req];
+
+	NSString *result = [req allHTTPHeaderFields][@"Authorization"];
+	assertThat(result, equalTo(@"Token token=\"123\""));
+}
+
+- (void)testAuthorizeRouteCustomHeaderName {
+	userService.authenticationTokenHeaderName = @"X-API-Token";
+	
+	BRAppUser *newUser = [BRAppUser new];
+	newUser.uniqueId = @"test-id";
+	newUser.authenticationToken = @"123";
+	[BRAppUser replaceCurrentUser:newUser];
+	NSMutableURLRequest *req = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"http://localhost/"]];
+	[userService configureAuthorizationForRoute:@{@"name" : @"test"} request:req];
+	
+	NSString *result = [req allHTTPHeaderFields][@"X-API-Token"];
+	assertThat(result, equalTo(@"Token token=\"123\""));
+}
+
+- (void)testAuthorizeRouteCustomHeaderTemplate {
+	userService.authenticationTokenHeaderTemplate = @"token %@";
+	
+	BRAppUser *newUser = [BRAppUser new];
+	newUser.uniqueId = @"test-id";
+	newUser.authenticationToken = @"123";
+	[BRAppUser replaceCurrentUser:newUser];
+	NSMutableURLRequest *req = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"http://localhost/"]];
+	[userService configureAuthorizationForRoute:@{@"name" : @"test"} request:req];
+	
+	NSString *result = [req allHTTPHeaderFields][@"Authorization"];
+	assertThat(result, equalTo(@"token 123"));
+}
+
+- (void)testAuthorizeRouteCustomNoHeaderTemplate {
+	userService.authenticationTokenHeaderTemplate = nil;
+	
+	BRAppUser *newUser = [BRAppUser new];
+	newUser.uniqueId = @"test-id";
+	newUser.authenticationToken = @"123";
+	[BRAppUser replaceCurrentUser:newUser];
+	NSMutableURLRequest *req = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"http://localhost/"]];
+	[userService configureAuthorizationForRoute:@{@"name" : @"test"} request:req];
+	
+	NSString *result = [req allHTTPHeaderFields][@"Authorization"];
+	assertThat(result, equalTo(@"123"));
+}
+
 @end

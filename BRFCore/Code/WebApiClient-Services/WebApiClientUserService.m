@@ -19,12 +19,19 @@ NSString * const WebApiRouteGetUser = @"user";
 NSString * const WebApiRouteUpdateUser = @"userUpdate";
 NSString * const WebApiClientUserServiceResetPasswordReturnURLEnvironmentKey = @"ResetPasswordReturnURL";
 
-@implementation WebApiClientUserService
+@implementation WebApiClientUserService {
+	NSString * authenticationTokenHeaderName;
+	NSString * authenticationTokenHeaderTemplate;
+}
+
+@synthesize authenticationTokenHeaderName, authenticationTokenHeaderTemplate;
 
 - (id)init {
 	if ( (self = [super init]) ) {
 		self.appUserClass = [BRAppUser class];
 		self.internalHostNames = [NSSet setWithObject:[BREnvironment sharedEnvironment][WebApiClientSupportServerHostEnvironmentKey]];
+		authenticationTokenHeaderName = @"Authorization";
+		authenticationTokenHeaderTemplate = @"Token token=\"%@\"";
 	}
 	return self;
 }
@@ -40,16 +47,20 @@ NSString * const WebApiClientUserServiceResetPasswordReturnURLEnvironmentKey = @
 #pragma mark - WebApiAuthorizationProvider
 
 - (void)configureAuthorizationForRoute:(id<WebApiRoute>)route request:(NSMutableURLRequest *)request {
-	BOOL include = YES;
-	if ( self.includeAuthorizationOnExternalRequests == NO ) {
+	BOOL include = (authenticationTokenHeaderName != nil);
+	if ( include && self.includeAuthorizationOnExternalRequests == NO ) {
 		// check if external request or not
 		include = [self.internalHostNames containsObject:request.URL.host];
 	}
 	if ( include ) {
 		id<BRUser> activeUser = [self activeUser];
 		if ( activeUser.authenticated ) {
-			// toss in a standard auth token header
-			[request setValue:[NSString stringWithFormat:@"token %@", activeUser.authenticationToken] forHTTPHeaderField:@"Authorization"];
+			// toss in auth token header
+			NSString *headerValue = activeUser.authenticationToken;
+			if ( authenticationTokenHeaderTemplate.length > 0 ) {
+				headerValue = [NSString stringWithFormat:authenticationTokenHeaderTemplate, headerValue];
+			}
+			[request setValue:headerValue forHTTPHeaderField:authenticationTokenHeaderName];
 		}
 	}
 }
