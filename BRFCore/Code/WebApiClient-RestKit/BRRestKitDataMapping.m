@@ -89,4 +89,16 @@ static Class kAppUserClass;
 	return mapping;
 }
 
++ (RKObjectMapping *)inverseMappingWithStringDates:(RKObjectMapping *)mapping {
+	RKObjectMapping *inverse = [mapping inverseMapping];
+	NSDictionary<NSString *, RKPropertyMapping *> *inverseAttributeMappings = [inverse propertyMappingsByDestinationKeyPath];
+	for ( RKPropertyMapping *propMapping in mapping.attributeMappings ) {
+		if ( [propMapping.propertyValueClass isSubclassOfClass:[NSDate class]] ) {
+			RKPropertyMapping *inverseDate = inverseAttributeMappings[propMapping.sourceKeyPath];
+			inverseDate.propertyValueClass = [NSString class];
+		}
+	}
+	return inverse;
+}
+
 @end

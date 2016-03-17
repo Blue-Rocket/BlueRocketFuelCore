@@ -46,4 +46,14 @@
  */
 + (RKObjectMapping *)appUserMapping;
 
+/**
+ Create an inverse mapping that transforms @c NSDate properties into string values. This is useful
+ when posting dates in requests, so that @c NSDate instances will be automatically posted as strings.
+ 
+ @param mapping The mapping to create an inverse mapping for.
+ 
+ @return The inverse mapping.
+ */
++ (RKObjectMapping *)inverseMappingWithStringDates:(RKObjectMapping *)mapping;
+
 @end
