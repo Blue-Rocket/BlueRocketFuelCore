@@ -227,7 +227,7 @@ static id CurrentUser;
 }
 
 - (BOOL)isAuthenticated {
-    return (self.authenticationToken != nil);
+    return (self.uniqueId != nil && self.authenticationToken != nil);
 }
 
 #pragma mark - Persistence support
