@@ -13,6 +13,7 @@
 #import <BlueRocketFuelCore/BRJSON.h>
 #import <BlueRocketFuelCore/BRKeychainService.h>
 #import <BlueRocketFuelCore/BRServiceConstants.h>
+#import <BlueRocketFuelCore/BRServiceRegistry.h>
 #import <BlueRocketFuelCore/BRSimpleEntityReference.h>
 #import <BlueRocketFuelCore/BRSimpleKeychainService.h>
 #import <BlueRocketFuelCore/BRSimpleStringLink.h>

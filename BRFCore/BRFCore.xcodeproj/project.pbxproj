@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		C5BB68D733CF728177D4340A /* libPods-BRFCore-BRFCoreTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D22872C0290E9130E13C9F2 /* libPods-BRFCore-BRFCoreTests.a */; };
 		C912831C1BCC63F9002B1258 /* BRGradientView.m in Sources */ = {isa = PBXBuildFile; fileRef = C912831B1BCC63F9002B1258 /* BRGradientView.m */; };
+		C935D3E21C9BB87100CF2C77 /* BRServiceRegistry.m in Sources */ = {isa = PBXBuildFile; fileRef = C935D3E11C9BB87100CF2C77 /* BRServiceRegistry.m */; };
+		C935D3E81C9BBA8E00CF2C77 /* WebApiClientServiceRegistry.m in Sources */ = {isa = PBXBuildFile; fileRef = C935D3E71C9BBA8E00CF2C77 /* WebApiClientServiceRegistry.m */; };
 		C93D2D331C98DE290094E6F0 /* BRSimpleStringLink.m in Sources */ = {isa = PBXBuildFile; fileRef = C93D2D321C98DE290094E6F0 /* BRSimpleStringLink.m */; };
 		C96D0B661BB32ED900AC8D30 /* NSString_BRTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C96D0B651BB32ED900AC8D30 /* NSString_BRTests.m */; };
 		C972EB161BAFCBB8007FAA59 /* UIImage_BRTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C972EB141BAFCA17007FAA59 /* UIImage_BRTests.m */; };
@@ -93,6 +95,12 @@
 		C13BFD3959ACABD1D3EDB895 /* Pods-BRFCore.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BRFCore.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BRFCore/Pods-BRFCore.debug.xcconfig"; sourceTree = "<group>"; };
 		C912831A1BCC63F9002B1258 /* BRGradientView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRGradientView.h; sourceTree = "<group>"; };
 		C912831B1BCC63F9002B1258 /* BRGradientView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRGradientView.m; sourceTree = "<group>"; };
+		C935D3E01C9BB87100CF2C77 /* BRServiceRegistry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRServiceRegistry.h; sourceTree = "<group>"; };
+		C935D3E11C9BB87100CF2C77 /* BRServiceRegistry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRServiceRegistry.m; sourceTree = "<group>"; };
+		C935D3E31C9BB9B600CF2C77 /* BRServiceRegistry+BR.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BRServiceRegistry+BR.h"; sourceTree = "<group>"; };
+		C935D3E61C9BBA8E00CF2C77 /* WebApiClientServiceRegistry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebApiClientServiceRegistry.h; sourceTree = "<group>"; };
+		C935D3E71C9BBA8E00CF2C77 /* WebApiClientServiceRegistry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebApiClientServiceRegistry.m; sourceTree = "<group>"; };
+		C935D3E91C9BBB0D00CF2C77 /* WebApiClientServiceRegistry+BR.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "WebApiClientServiceRegistry+BR.h"; sourceTree = "<group>"; };
 		C93D2D311C98DE290094E6F0 /* BRSimpleStringLink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRSimpleStringLink.h; sourceTree = "<group>"; };
 		C93D2D321C98DE290094E6F0 /* BRSimpleStringLink.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRSimpleStringLink.m; sourceTree = "<group>"; };
 		C93D2D341C98DE8F0094E6F0 /* BRStringLink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRStringLink.h; sourceTree = "<group>"; };
@@ -317,6 +325,9 @@
 				C9A89F711B8A4DDB000B9169 /* BRKeychainService.m */,
 				C9A89F731B8A4DDB000B9169 /* BRServiceConstants.h */,
 				C9A89F741B8A4DDB000B9169 /* BRServiceConstants.m */,
+				C935D3E01C9BB87100CF2C77 /* BRServiceRegistry.h */,
+				C935D3E11C9BB87100CF2C77 /* BRServiceRegistry.m */,
+				C935D3E31C9BB9B600CF2C77 /* BRServiceRegistry+BR.h */,
 				C9A89F751B8A4DDB000B9169 /* BRSimpleEntityReference.h */,
 				C9A89F761B8A4DDB000B9169 /* BRSimpleEntityReference.m */,
 				C9A89F771B8A4DDB000B9169 /* BRSimpleKeychainService.h */,
@@ -394,6 +405,9 @@
 		C9A89FC31B8A4DDB000B9169 /* WebApiClient-Services */ = {
 			isa = PBXGroup;
 			children = (
+				C935D3E61C9BBA8E00CF2C77 /* WebApiClientServiceRegistry.h */,
+				C935D3E71C9BBA8E00CF2C77 /* WebApiClientServiceRegistry.m */,
+				C935D3E91C9BBB0D00CF2C77 /* WebApiClientServiceRegistry+BR.h */,
 				C9A89FC41B8A4DDB000B9169 /* WebApiClientUserService.h */,
 				C9A89FC51B8A4DDB000B9169 /* WebApiClientUserService.m */,
 			);
@@ -666,7 +680,9 @@
 				C98F24931BD73868000A6D6F /* NSData+BR.m in Sources */,
 				C912831C1BCC63F9002B1258 /* BRGradientView.m in Sources */,
 				C9A8A00E1B8A4DDB000B9169 /* BRProfileEditWebServiceRequest.m in Sources */,
+				C935D3E81C9BBA8E00CF2C77 /* WebApiClientServiceRegistry.m in Sources */,
 				C9A8A00A1B8A4DDB000B9169 /* BRAppDelegate.m in Sources */,
+				C935D3E21C9BB87100CF2C77 /* BRServiceRegistry.m in Sources */,
 				C9A8A0111B8A4DDB000B9169 /* BRRegisterWebServiceRequest.m in Sources */,
 				C9A89FE91B8A4DDB000B9169 /* BRSimpleEntityReference.m in Sources */,
 				C99813E61BD4548F00FF16EA /* BRSlideshowViewController.m in Sources */,
