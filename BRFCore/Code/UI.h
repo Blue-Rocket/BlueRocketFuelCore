@@ -21,3 +21,4 @@
 #import <BlueRocketFuelCore/UILabel+BR.h>
 #import <BlueRocketFuelCore/UITextField+BR.h>
 #import <BlueRocketFuelCore/UIView+BR.h>
+#import <BlueRocketFuelCore/UIViewController+BR.h>

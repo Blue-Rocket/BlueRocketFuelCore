@@ -29,6 +29,13 @@ NS_ASSUME_NONNULL_BEGIN
 + (void)setSharedRegistryClass:(Class)clazz;
 
 /**
+ Test if a shared registry exists. This can be useful during application startup.
+ 
+ @return YES if the shared registry has been created.
+ */
++ (BOOL)hasSharedRegistry;
+
+/**
  Get a globally shared instance.
  
  @return The shared instance.

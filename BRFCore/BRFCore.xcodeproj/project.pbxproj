@@ -11,6 +11,7 @@
 		C912831C1BCC63F9002B1258 /* BRGradientView.m in Sources */ = {isa = PBXBuildFile; fileRef = C912831B1BCC63F9002B1258 /* BRGradientView.m */; };
 		C935D3E21C9BB87100CF2C77 /* BRServiceRegistry.m in Sources */ = {isa = PBXBuildFile; fileRef = C935D3E11C9BB87100CF2C77 /* BRServiceRegistry.m */; };
 		C935D3E81C9BBA8E00CF2C77 /* WebApiClientServiceRegistry.m in Sources */ = {isa = PBXBuildFile; fileRef = C935D3E71C9BBA8E00CF2C77 /* WebApiClientServiceRegistry.m */; };
+		C935D3EE1C9BC16000CF2C77 /* UIViewController+BR.m in Sources */ = {isa = PBXBuildFile; fileRef = C935D3ED1C9BC16000CF2C77 /* UIViewController+BR.m */; };
 		C93D2D331C98DE290094E6F0 /* BRSimpleStringLink.m in Sources */ = {isa = PBXBuildFile; fileRef = C93D2D321C98DE290094E6F0 /* BRSimpleStringLink.m */; };
 		C96D0B661BB32ED900AC8D30 /* NSString_BRTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C96D0B651BB32ED900AC8D30 /* NSString_BRTests.m */; };
 		C972EB161BAFCBB8007FAA59 /* UIImage_BRTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C972EB141BAFCA17007FAA59 /* UIImage_BRTests.m */; };
@@ -101,6 +102,9 @@
 		C935D3E61C9BBA8E00CF2C77 /* WebApiClientServiceRegistry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebApiClientServiceRegistry.h; sourceTree = "<group>"; };
 		C935D3E71C9BBA8E00CF2C77 /* WebApiClientServiceRegistry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebApiClientServiceRegistry.m; sourceTree = "<group>"; };
 		C935D3E91C9BBB0D00CF2C77 /* WebApiClientServiceRegistry+BR.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "WebApiClientServiceRegistry+BR.h"; sourceTree = "<group>"; };
+		C935D3EC1C9BC16000CF2C77 /* UIViewController+BR.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+BR.h"; sourceTree = "<group>"; };
+		C935D3ED1C9BC16000CF2C77 /* UIViewController+BR.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+BR.m"; sourceTree = "<group>"; };
+		C935D3EF1C9BC6DB00CF2C77 /* BRAsynchronousUISupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRAsynchronousUISupport.h; sourceTree = "<group>"; };
 		C93D2D311C98DE290094E6F0 /* BRSimpleStringLink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRSimpleStringLink.h; sourceTree = "<group>"; };
 		C93D2D321C98DE290094E6F0 /* BRSimpleStringLink.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRSimpleStringLink.m; sourceTree = "<group>"; };
 		C93D2D341C98DE8F0094E6F0 /* BRStringLink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRStringLink.h; sourceTree = "<group>"; };
@@ -362,6 +366,7 @@
 		C9A89F891B8A4DDB000B9169 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				C935D3EF1C9BC6DB00CF2C77 /* BRAsynchronousUISupport.h */,
 				C9A89F8A1B8A4DDB000B9169 /* BRFullScreenNotificationView.h */,
 				C9A89F8B1B8A4DDB000B9169 /* BRFullScreenNotificationView.m */,
 				C9A89F8C1B8A4DDB000B9169 /* BRFullScreeNotificationViewDelegate.h */,
@@ -389,6 +394,8 @@
 				C9A89FA61B8A4DDB000B9169 /* UITextField+BR.m */,
 				C9A89FA71B8A4DDB000B9169 /* UIView+BR.h */,
 				C9A89FA81B8A4DDB000B9169 /* UIView+BR.m */,
+				C935D3EC1C9BC16000CF2C77 /* UIViewController+BR.h */,
+				C935D3ED1C9BC16000CF2C77 /* UIViewController+BR.m */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -689,6 +696,7 @@
 				C9A89FEC1B8A4DDB000B9169 /* NSBundle+BR.m in Sources */,
 				C9A89FF21B8A4DDB000B9169 /* BROptionsTray.m in Sources */,
 				C9A89FFB1B8A4DDB000B9169 /* UILabel+BR.m in Sources */,
+				C935D3EE1C9BC16000CF2C77 /* UIViewController+BR.m in Sources */,
 				C9A8A00C1B8A4DDB000B9169 /* BRLoginWebServiceRequest.m in Sources */,
 				C9A8A0101B8A4DDB000B9169 /* BRReachability.m in Sources */,
 				C9A89FEF1B8A4DDB000B9169 /* NSString+BR.m in Sources */,

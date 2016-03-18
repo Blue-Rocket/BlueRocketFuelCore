@@ -17,6 +17,10 @@ static BRServiceRegistry *SharedRegistry =  nil;
 
 @synthesize userService;
 
++ (BOOL)hasSharedRegistry {
+	return (SharedRegistry != nil);
+}
+
 + (instancetype)sharedRegistry {
 	// note we are not locking this, with the expectation an app will set this once during startup and never touch it again
 	BRServiceRegistry *result = SharedRegistry;
@@ -33,7 +37,10 @@ static BRServiceRegistry *SharedRegistry =  nil;
 
 + (void)setSharedRegistryClass:(Class)clazz {
 	NSAssert([clazz isSubclassOfClass:[SharedRegistry class]], @"Must be a subclass of ServiceRegistry, not %@", NSStringFromClass(clazz));
-	SharedRegistryClass = clazz;
+	if ( clazz != SharedRegistryClass ) {
+		SharedRegistryClass = clazz;
+		SharedRegistry = nil;
+	}
 }
 
 @end
