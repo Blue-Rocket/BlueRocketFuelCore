@@ -15,6 +15,12 @@
 		C93D2D331C98DE290094E6F0 /* BRSimpleStringLink.m in Sources */ = {isa = PBXBuildFile; fileRef = C93D2D321C98DE290094E6F0 /* BRSimpleStringLink.m */; };
 		C96D0B661BB32ED900AC8D30 /* NSString_BRTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C96D0B651BB32ED900AC8D30 /* NSString_BRTests.m */; };
 		C972EB161BAFCBB8007FAA59 /* UIImage_BRTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C972EB141BAFCA17007FAA59 /* UIImage_BRTests.m */; };
+		C98E53231CA0986300B666FA /* NSFileManager+BR.m in Sources */ = {isa = PBXBuildFile; fileRef = C98E53221CA0986300B666FA /* NSFileManager+BR.m */; };
+		C98E53261CA09A9800B666FA /* BRCryptoUtilities.c in Sources */ = {isa = PBXBuildFile; fileRef = C98E53241CA09A9800B666FA /* BRCryptoUtilities.c */; };
+		C98E53281CA09ECD00B666FA /* BRCryptoUtilitiesTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C98E53271CA09ECD00B666FA /* BRCryptoUtilitiesTests.m */; };
+		C98E532A1CA09F1B00B666FA /* brcrypto-sample-file.txt in Resources */ = {isa = PBXBuildFile; fileRef = C98E53291CA09F1600B666FA /* brcrypto-sample-file.txt */; };
+		C98E532C1CA0A81100B666FA /* brcrypto-sample-file.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = C98E532B1CA09FB500B666FA /* brcrypto-sample-file.mp4 */; };
+		C98E532E1CA0A83300B666FA /* NSFileManager_BRTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C98E532D1CA0A83300B666FA /* NSFileManager_BRTests.m */; };
 		C98F24931BD73868000A6D6F /* NSData+BR.m in Sources */ = {isa = PBXBuildFile; fileRef = C98F24921BD73868000A6D6F /* NSData+BR.m */; };
 		C98F24951BD73966000A6D6F /* NSData_BRTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C98F24941BD73966000A6D6F /* NSData_BRTests.m */; };
 		C99813E61BD4548F00FF16EA /* BRSlideshowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C99813E51BD4548F00FF16EA /* BRSlideshowViewController.m */; };
@@ -111,6 +117,14 @@
 		C96D0B651BB32ED900AC8D30 /* NSString_BRTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSString_BRTests.m; sourceTree = "<group>"; };
 		C972EB141BAFCA17007FAA59 /* UIImage_BRTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIImage_BRTests.m; sourceTree = "<group>"; };
 		C98DC9911B9D36060067D6A6 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		C98E53211CA0986300B666FA /* NSFileManager+BR.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSFileManager+BR.h"; sourceTree = "<group>"; };
+		C98E53221CA0986300B666FA /* NSFileManager+BR.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSFileManager+BR.m"; sourceTree = "<group>"; };
+		C98E53241CA09A9800B666FA /* BRCryptoUtilities.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = BRCryptoUtilities.c; sourceTree = "<group>"; };
+		C98E53251CA09A9800B666FA /* BRCryptoUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRCryptoUtilities.h; sourceTree = "<group>"; };
+		C98E53271CA09ECD00B666FA /* BRCryptoUtilitiesTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRCryptoUtilitiesTests.m; sourceTree = "<group>"; };
+		C98E53291CA09F1600B666FA /* brcrypto-sample-file.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "brcrypto-sample-file.txt"; sourceTree = "<group>"; };
+		C98E532B1CA09FB500B666FA /* brcrypto-sample-file.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "brcrypto-sample-file.mp4"; sourceTree = "<group>"; };
+		C98E532D1CA0A83300B666FA /* NSFileManager_BRTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSFileManager_BRTests.m; sourceTree = "<group>"; };
 		C98F24911BD73868000A6D6F /* NSData+BR.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+BR.h"; sourceTree = "<group>"; };
 		C98F24921BD73868000A6D6F /* NSData+BR.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+BR.m"; sourceTree = "<group>"; };
 		C98F24941BD73966000A6D6F /* NSData_BRTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSData_BRTests.m; sourceTree = "<group>"; };
@@ -321,6 +335,8 @@
 				C9A89F6B1B8A4DDB000B9169 /* BRAppConfigEnvironmentProvider.m */,
 				C9A89F6C1B8A4DDB000B9169 /* BRAppUser.h */,
 				C9A89F6D1B8A4DDB000B9169 /* BRAppUser.m */,
+				C98E53251CA09A9800B666FA /* BRCryptoUtilities.h */,
+				C98E53241CA09A9800B666FA /* BRCryptoUtilities.c */,
 				C9A89F6E1B8A4DDB000B9169 /* BREntity.h */,
 				C9A89F6F1B8A4DDB000B9169 /* BREntityReference.h */,
 				C9A8A0381B8A5112000B9169 /* BRJSON.h */,
@@ -348,6 +364,8 @@
 				C98F24921BD73868000A6D6F /* NSData+BR.m */,
 				C9A89F7E1B8A4DDB000B9169 /* NSDate+BR.h */,
 				C9A89F7F1B8A4DDB000B9169 /* NSDate+BR.m */,
+				C98E53211CA0986300B666FA /* NSFileManager+BR.h */,
+				C98E53221CA0986300B666FA /* NSFileManager+BR.m */,
 				C9A89F821B8A4DDB000B9169 /* NSString+BR.h */,
 				C9A89F831B8A4DDB000B9169 /* NSString+BR.m */,
 			);
@@ -470,9 +488,13 @@
 		C9A8A01C1B8A4E3D000B9169 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				C98E532B1CA09FB500B666FA /* brcrypto-sample-file.mp4 */,
+				C98E53291CA09F1600B666FA /* brcrypto-sample-file.txt */,
 				C9A8A01D1B8A4E3D000B9169 /* BRAppUserTests.m */,
+				C98E53271CA09ECD00B666FA /* BRCryptoUtilitiesTests.m */,
 				C98F24941BD73966000A6D6F /* NSData_BRTests.m */,
 				C9A8A01E1B8A4E3D000B9169 /* NSDate_BRTests.m */,
+				C98E532D1CA0A83300B666FA /* NSFileManager_BRTests.m */,
 				C96D0B651BB32ED900AC8D30 /* NSString_BRTests.m */,
 			);
 			path = Core;
@@ -586,8 +608,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				C9A8A0311B8A4E3D000B9169 /* Environment.plist in Resources */,
+				C98E532C1CA0A81100B666FA /* brcrypto-sample-file.mp4 in Resources */,
 				C9A8A02D1B8A4E3D000B9169 /* config.json in Resources */,
 				C9A8A0331B8A4E3D000B9169 /* strings.json in Resources */,
+				C98E532A1CA09F1B00B666FA /* brcrypto-sample-file.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -691,6 +715,7 @@
 				C9A8A00A1B8A4DDB000B9169 /* BRAppDelegate.m in Sources */,
 				C935D3E21C9BB87100CF2C77 /* BRServiceRegistry.m in Sources */,
 				C9A8A0111B8A4DDB000B9169 /* BRRegisterWebServiceRequest.m in Sources */,
+				C98E53261CA09A9800B666FA /* BRCryptoUtilities.c in Sources */,
 				C9A89FE91B8A4DDB000B9169 /* BRSimpleEntityReference.m in Sources */,
 				C99813E61BD4548F00FF16EA /* BRSlideshowViewController.m in Sources */,
 				C9A89FEC1B8A4DDB000B9169 /* NSBundle+BR.m in Sources */,
@@ -698,6 +723,7 @@
 				C9A89FFB1B8A4DDB000B9169 /* UILabel+BR.m in Sources */,
 				C935D3EE1C9BC16000CF2C77 /* UIViewController+BR.m in Sources */,
 				C9A8A00C1B8A4DDB000B9169 /* BRLoginWebServiceRequest.m in Sources */,
+				C98E53231CA0986300B666FA /* NSFileManager+BR.m in Sources */,
 				C9A8A0101B8A4DDB000B9169 /* BRReachability.m in Sources */,
 				C9A89FEF1B8A4DDB000B9169 /* NSString+BR.m in Sources */,
 				C9A8A03A1B8A5112000B9169 /* BRJSON.m in Sources */,
@@ -727,7 +753,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C98E53281CA09ECD00B666FA /* BRCryptoUtilitiesTests.m in Sources */,
 				C9A8A0371B8A4E3D000B9169 /* WebApiClientUserServiceTests.m in Sources */,
+				C98E532E1CA0A83300B666FA /* NSFileManager_BRTests.m in Sources */,
 				C96D0B661BB32ED900AC8D30 /* NSString_BRTests.m in Sources */,
 				C9A8A02F1B8A4E3D000B9169 /* NSDate_BRTests.m in Sources */,
 				C9A8A02B1B8A4E3D000B9169 /* BaseNetworkTestingSupport.m in Sources */,

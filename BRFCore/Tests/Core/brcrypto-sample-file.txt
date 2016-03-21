@@ -1,0 +1,1 @@
+This is a sample file that is pretty small, to test crypto utilities against.

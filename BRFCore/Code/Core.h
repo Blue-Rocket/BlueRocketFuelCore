@@ -23,4 +23,5 @@
 #import <BlueRocketFuelCore/NSBundle+BR.h>
 #import <BlueRocketFuelCore/NSData+BR.h>
 #import <BlueRocketFuelCore/NSDate+BR.h>
+#import <BlueRocketFuelCore/NSFileManager+BR.h>
 #import <BlueRocketFuelCore/NSString+BR.h>

@@ -36,7 +36,7 @@ Pod::Spec.new do |s|
 	sp.dependency 'BRCocoaLumberjack'
     sp.dependency 'BREnvironment',     '~> 1.1'
 	sp.dependency 'BRLocalize/Core'
-    sp.ios.frameworks = 'MobileCoreServices', 'Security'
+    sp.ios.frameworks = 'CommonCrypto', 'MobileCoreServices', 'Security'
   end
   
   s.subspec 'Logging' do |sp|
