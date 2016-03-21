@@ -3,7 +3,7 @@
 //  BRFCore
 //
 //  Created by Matt on 21/10/15.
-//  Copyright © 2015 Blue Rocket, Inc. All rights reserved.
+//  Copyright © 2015 Blue Rocket, Inc. Distributable under the terms of the Apache License, Version 2.0.
 //
 
 #import "BaseTestingSupport.h"

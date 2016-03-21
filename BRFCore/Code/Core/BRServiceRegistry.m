@@ -3,7 +3,7 @@
 //  BRFCore
 //
 //  Created by Matt on 18/03/16.
-//  Copyright © 2016 Blue Rocket, Inc. All rights reserved.
+//  Copyright © 2016 Blue Rocket, Inc. Distributable under the terms of the Apache License, Version 2.0.
 //
 
 #import "BRServiceRegistry+BR.h"
