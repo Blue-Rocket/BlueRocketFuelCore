@@ -18,7 +18,7 @@
 
 + (CGSize)size:(CGSize)aSize to:(CGSize)maxSize fill:(BOOL)fill {
 	CGFloat scale = 1.0;
-	if ( maxSize.width > 0.0 && maxSize.height > 0.0 ) {
+	if ( aSize.width > 0.0 && aSize.height > 0.0 ) {
 		CGFloat dw = maxSize.width / aSize.width;
 		CGFloat dh = maxSize.height / aSize.height;
 		scale = (dw < dh ? (fill ? dh : dw) : (fill ? dw : dh));

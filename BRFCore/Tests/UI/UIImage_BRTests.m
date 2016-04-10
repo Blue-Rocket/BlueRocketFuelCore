@@ -16,6 +16,18 @@
 
 @implementation UIImage_BRTests
 
+- (void)testAspectFitZero {
+	CGSize result = [UIImage size:CGSizeMake(180, 120) toFit:CGSizeZero];
+	assertThatFloat(result.width, closeTo(0, 0.001));
+	assertThatFloat(result.height, closeTo(0, 0.001));
+}
+
+- (void)testAspectFitFromZero {
+	CGSize result = [UIImage size:CGSizeZero toFit:CGSizeMake(120, 120)];
+	assertThatFloat(result.width, closeTo(0, 0.001));
+	assertThatFloat(result.height, closeTo(0, 0.001));
+}
+
 - (void)testAspectFitSmallerWidth {
 	CGSize result = [UIImage size:CGSizeMake(180, 120) toFit:CGSizeMake(120, 120)];
 	assertThatFloat(result.width, closeTo(120, 0.001));
@@ -32,6 +44,18 @@
 	CGSize result = [UIImage size:CGSizeMake(180, 120) toFit:CGSizeMake(320, 240)];
 	assertThatFloat(result.width, closeTo(320, 0.001));
 	assertThatFloat(result.height, closeTo(214, 0.001));
+}
+
+- (void)testAspectFillZero {
+	CGSize result = [UIImage size:CGSizeMake(180, 120) toFill:CGSizeZero];
+	assertThatFloat(result.width, closeTo(0, 0.001));
+	assertThatFloat(result.height, closeTo(0, 0.001));
+}
+
+- (void)testAspectFillFromZero {
+	CGSize result = [UIImage size:CGSizeZero toFill:CGSizeMake(120, 120)];
+	assertThatFloat(result.width, closeTo(0, 0.001));
+	assertThatFloat(result.height, closeTo(0, 0.001));
 }
 
 - (void)testAspectFillSmallerWidth {
@@ -51,6 +75,5 @@
 	assertThatFloat(result.width, closeTo(360, 0.001));
 	assertThatFloat(result.height, closeTo(240, 0.001));
 }
-
 
 @end
