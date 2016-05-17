@@ -8,6 +8,7 @@
 
 #import <BlueRocketFuelCore/BRAppConfigEnvironmentProvider.h>
 #import <BlueRocketFuelCore/BRAppUser.h>
+#import <BlueRocketFuelCore/BRCryptoUtilities.h>
 #import <BlueRocketFuelCore/BREntity.h>
 #import <BlueRocketFuelCore/BREntityReference.h>
 #import <BlueRocketFuelCore/BRJSON.h>
