@@ -21,7 +21,7 @@
 - (NSString *)hexStringValue {
 	NSMutableString *stringBuffer = [NSMutableString stringWithCapacity:([self length] * 2)];
 	const unsigned char *dataBuffer = [self bytes];
-	int i, len;
+	NSUInteger i, len;
 	for ( i = 0, len = [self length]; i < len; ++i ) {
 		[stringBuffer appendFormat:@"%02x", (unsigned int)dataBuffer[i]];
 	}
