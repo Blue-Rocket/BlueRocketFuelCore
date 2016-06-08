@@ -44,7 +44,14 @@
 		block(@{ @"responseObject" : regUser, @"statusCode" : @200}, nil);
 		return YES;
 	}]]);
-	
+
+	[self expectationForNotification:BRUserServiceNotificationLoginDidSucceed object:nil handler:^BOOL(NSNotification * _Nonnull notification) {
+		assertThat(notification.object, instanceOf([BRAppUser class]));
+		assertThat([notification.object email], equalTo(@"email"));
+		assertThatBool([NSThread isMainThread], describedAs(@"Should be on main thread", isTrue(), nil));
+		return YES;
+	}];
+
 	__block BOOL called = NO;
 	[userService registerNewUser:newUser finished:^(id<BRUser> user, NSError *error) {
 		assertThat(user.uniqueId, equalTo(@"123"));
@@ -54,6 +61,8 @@
 		assertThatBool([NSThread isMainThread], describedAs(@"Should be on main thread", isTrue(), nil));
 		called = YES;
 	}];
+	
+	[self waitForExpectationsWithTimeout:2 handler:nil];
 	
 	OCMVerifyAll((id)mockClient);
 	assertThatBool(called, isTrue());

@@ -104,6 +104,7 @@ NSString * const WebApiClientUserServiceResetPasswordReturnURLEnvironmentKey = @
 		} else {
 			user = response.responseObject;
 			[self.appUserClass replaceCurrentUser:user];
+			[[NSNotificationCenter defaultCenter] postNotificationName:BRUserServiceNotificationLoginDidSucceed object:user userInfo:nil];
 		}
 		doCallback(user, error);
 	}];
