@@ -21,6 +21,7 @@ static NSString * const BRSlideshowViewControllerViewed = @"BRSlideshowViewContr
 }
 
 @dynamic uiStyle;
+@synthesize imagePaths;
 
 - (void)viewDidLoad {
     [super viewDidLoad];

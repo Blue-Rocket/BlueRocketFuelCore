@@ -41,6 +41,9 @@ NS_ASSUME_NONNULL_BEGIN
 /** An optional delegate, which can provide the image resources to display. */
 @property (nonatomic, weak) id<BRSlideshowViewControllerDelegate> slideshowDelegate;
 
+/** An alternative to the delegate: an array of paths to image files to show. */
+@property (nonatomic, copy) NSArray<NSString *> *imagePaths;
+
 /** Test if this view controller is being presented for the first time in the app's life. */
 @property (nonatomic, readonly, getter=isViewingForFirstTime) BOOL viewingForFirstTime;
 
