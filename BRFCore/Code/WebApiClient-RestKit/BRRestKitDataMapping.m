@@ -56,6 +56,7 @@ static Class kAppUserClass;
 	
 	RKObjectMapping *appUserMapping = [self appUserMapping];
 	RKObjectMapping *apiUserEncoding = [appUserMapping inverseMapping];
+	apiUserEncoding.assignsDefaultValueForMissingAttributes = NO; // only pass non-nil values when updating users
 	[dataMapper registerRequestObjectMapping:apiUserEncoding forRouteName:WebApiRouteLogin];
 	[dataMapper registerResponseObjectMapping:appUserMapping forRouteName:WebApiRouteLogin];
 	
