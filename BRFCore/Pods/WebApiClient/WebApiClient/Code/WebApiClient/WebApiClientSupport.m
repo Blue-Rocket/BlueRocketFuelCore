@@ -18,7 +18,7 @@
 #import "WebApiClientEnvironment.h"
 #import "WebApiDataMapper.h"
 
-NSString * const WebApiClientSupportAppApiKeyDefaultHTTPHeaderName = @"X-App-API-Key";
+NSString * const WebApiClientSupportAppApiKeyDefaultHTTPHeaderName = @"X-Api-Key";
 NSString * const WebApiClientSupportAppIdDefaultHTTPHeaderName = @"X-App-ID";
 
 static NSString * const kRoutePropertyPattern = @"_pattern";
@@ -107,7 +107,7 @@ static NSString * const kRoutePropertyDataMapperInstance = @"_dataMapper";
 	id<WebApiRoute> result = routes[name];
 	if ( !result && error ) {
 		*error = [NSError errorWithDomain:WebApiClientErrorDomain code:WebApiClientErrorRouteNotAvailable userInfo:
-				  @{@"name" : name, NSLocalizedDescriptionKey : [@"web.api.missingRoute" localizedString] }];
+				  @{@"name" : name, NSLocalizedDescriptionKey : [@"{web.api.missingRoute}" localizedString] }];
 	}
 	return result;
 }
@@ -165,7 +165,7 @@ static NSString * const kRoutePropertyDataMapperInstance = @"_dataMapper";
 		DDLogError(@"No API path defined for route %@", route);
 		if ( error ) {
 			*error = [NSError errorWithDomain:WebApiClientErrorDomain code:WebApiClientErrorRouteNotAvailable userInfo:
-					  @{@"route" : route, NSLocalizedDescriptionKey : [@"web.api.missingRoutePath" localizedString] }];
+					  @{@"route" : route, NSLocalizedDescriptionKey : [@"{web.api.missingRoutePath}" localizedString] }];
 		}
 		return nil;
 	}
@@ -207,7 +207,79 @@ static NSString * const kRoutePropertyDataMapperInstance = @"_dataMapper";
 
 - (void)requestAPI:(NSString *)name withPathVariables:(id)pathVariables parameters:(NSDictionary *)parameters data:(id<WebApiResource>)data
 		  finished:(void (^)(id<WebApiResponse>, NSError *))callback {
+	[self requestAPI:name withPathVariables:pathVariables parameters:parameters data:data queue:dispatch_get_main_queue() progress:nil finished:callback];
+}
+
+- (void)requestAPI:(NSString *)name withPathVariables:(id)pathVariables parameters:(id)parameters data:(id<WebApiResource>)data
+			 queue:(dispatch_queue_t)callbackQueue
+		  progress:(nullable WebApiClientRequestProgressBlock)progressCallback
+		  finished:(nonnull void (^)(id<WebApiResponse> _Nonnull, NSError * _Nullable))callback {
 	// extending classes probably want to do something useful here
+}
+
+- (nullable id<WebApiResponse>)blockingRequestAPI:(NSString *)name
+								withPathVariables:(nullable id)pathVariables
+									   parameters:(nullable id)parameters
+											 data:(nullable id<WebApiResource>)data
+									  maximumWait:(const NSTimeInterval)maximumWait
+											error:(NSError **)error {
+	
+	// results
+	__block id<WebApiResponse> clientResponse = nil;
+	__block NSError *clientError = nil;
+	
+	// we're going to block the calling thread here, for up to maximumWait seconds
+	NSCondition *condition = [NSCondition new];
+	[condition lock];
+	
+	dispatch_queue_t bgQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+	__block BOOL finished = NO;
+	[self requestAPI:name withPathVariables:pathVariables parameters:parameters data:data queue:bgQueue progress:nil finished:^(id<WebApiResponse>  _Nonnull response, NSError * _Nullable error) {
+		[condition lock];
+		finished = YES;
+		clientResponse = response;
+		clientError = error;
+		[condition signal];
+		[condition unlock];
+	}];
+	
+	// block and wait for our response now...
+	BOOL timeout = NO;
+	if ( maximumWait > 0 ) {
+		NSDate *timeoutDate = [NSDate dateWithTimeIntervalSinceNow:maximumWait];
+		while ( !finished && [timeoutDate timeIntervalSinceNow] > 0 ) {
+			timeout = ![condition waitUntilDate:timeoutDate];
+		}
+	} else {
+		while ( !finished ) {
+			[condition wait];
+		}
+	}
+	[condition unlock];
+	
+	if ( timeout && !clientError ) {
+		log4Warn(@"No response returned from route %@ within %0.1f seconds", name, maximumWait);
+		NSString *message = [NSString stringWithFormat:[@"{web.api.responseTimeout}" localizedString], @(maximumWait)];
+		clientError = [NSError errorWithDomain:WebApiClientErrorDomain code:WebApiClientErrorResponseTimeout userInfo:
+					   @{@"name" : name, NSLocalizedDescriptionKey : message }];
+	}
+	
+	if ( error && clientError ) {
+		*error = clientError;
+	}
+	return clientResponse;
+}
+
+- (void)addRequestHeadersToRequest:(NSMutableURLRequest *)request forRoute:(id<WebApiRoute>)route {
+	NSDictionary<NSString *, NSString *> *routeHeaders = route.requestHeaders;
+	[self.globalHTTPRequestHeaders enumerateKeysAndObjectsUsingBlock:^(NSString * _Nonnull key, NSString * _Nonnull obj, BOOL * _Nonnull stop) {
+		if ( !routeHeaders[key] ) {
+			[request addValue:obj forHTTPHeaderField:key];
+		}
+	}];
+	[routeHeaders enumerateKeysAndObjectsUsingBlock:^(NSString * _Nonnull key, NSString * _Nonnull obj, BOOL * _Nonnull stop) {
+		[request addValue:obj forHTTPHeaderField:key];
+	}];
 }
 
 - (void)addAuthorizationHeadersToRequest:(NSMutableURLRequest *)request forRoute:(id<WebApiRoute>)route {

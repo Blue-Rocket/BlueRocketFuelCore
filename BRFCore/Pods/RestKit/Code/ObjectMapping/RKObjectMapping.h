@@ -18,8 +18,8 @@
 //  limitations under the License.
 //
 
-#import "Support/RKMacros.h"
-#import "ObjectMapping/RKMapping.h"
+#import "RKMacros.h"
+#import "RKMapping.h"
 
 #import <RKValueTransformers/RKValueTransformers.h>
 
@@ -86,7 +86,7 @@
  @param objectClass The class that the mapping targets. Cannot be `nil`.
  @return The receiver, initialized with the given class.
  */
-- (instancetype)initWithClass:(Class)objectClass;
+- (instancetype)initWithClass:(Class)objectClass NS_DESIGNATED_INITIALIZER;
 
 /**
  Returns an object mapping with an `objectClass` of `NSMutableDictionary`.
@@ -340,7 +340,7 @@
  
  @return A new mapping that will map the inverse of the receiver.
  */
-- (instancetype)inverseMapping;
+- (RKObjectMapping *)inverseMapping;
 
 /**
  Generates an inverse mapping with all property mappings of the receiver that pass the given test. Each `RKAttributeMapping` and `RKRelationshipMapping` added to the receiver is yielded to the block for evaluation. The block is also invoked for any nested relationships that are traversed during the inversion process.
@@ -349,7 +349,7 @@
  @return A new mapping that will map the inverse of the receiver.
  @see inverseMapping
  */
-- (instancetype)inverseMappingWithPropertyMappingsPassingTest:(BOOL (^)(RKPropertyMapping *propertyMapping))predicate;
+- (RKObjectMapping *)inverseMappingWithPropertyMappingsPassingTest:(BOOL (^)(RKPropertyMapping *propertyMapping))predicate;
 
 ///---------------------------------------------------
 /// @name Obtaining Information About the Target Class

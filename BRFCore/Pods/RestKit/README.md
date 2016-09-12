@@ -528,7 +528,7 @@ RKMappingTest *mappingTest = [[RKMappingTest alloc] initWithMapping:mapping sour
 
 ## Requirements
 
-RestKit requires [iOS 5.1.1](http://developer.apple.com/library/ios/#releasenotes/General/WhatsNewIniPhoneOS/Articles/iOS5.html#//apple_ref/doc/uid/TP30915195-SW1) and above or [Mac OS X 10.7](http://developer.apple.com/library/mac/#releasenotes/MacOSX/WhatsNewInOSX/Articles/MacOSX10_7.html#//apple_ref/doc/uid/TP40010355-SW5) and above.
+RestKit requires [iOS 8.0](https://developer.apple.com/library/ios/releasenotes/General/WhatsNewIniOS/Articles/iOS8.html#//apple_ref/doc/uid/TP40014205-SW1) and above or [Mac OS X 10.9](https://developer.apple.com/library/mac/releasenotes/MacOSX/WhatsNewInOSX/Articles/MacOSX10_9.html#//apple_ref/doc/uid/TP40013207-CH100) and above.
 
 Several third-party open source libraries are used within RestKit, including:
 
@@ -614,6 +614,10 @@ Please note that if your installation fails, it may be because you are installin
 ### From a Release Package or as a Git submodule
 
 Detailed installation instructions are available in the [Visual Install Guide](https://github.com/RestKit/RestKit/wiki/Installing-RestKit-v0.20.x-as-a-Git-Submodule) on the Wiki.
+
+## Using RestKit in a Swift Project
+
+Install RestKit using one of the above methods. Then add `@import RestKit;` (if RestKit is built as a dynamic framework) or `#import <RestKit/RestKit.h>` (if RestKit is built as a static library) into the bridging header for your Swift project. To enable the Core Data functionality in RestKit, add `@import CoreData;` into your bridging header _before_ you import RestKit.
 
 ## License
 

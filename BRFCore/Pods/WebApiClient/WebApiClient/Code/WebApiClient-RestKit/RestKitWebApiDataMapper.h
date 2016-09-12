@@ -10,9 +10,11 @@
 
 #import "WebApiDataMapper.h"
 
-@class RKObjectMapping;
+@class RKMapping;
 
-typedef id(^RestKitWebApiDataMapperBlock)(id sourceObject, id<WebApiRoute>route, NSError * __autoreleasing *error);
+NS_ASSUME_NONNULL_BEGIN
+
+typedef id _Nullable (^RestKitWebApiDataMapperBlock)(id sourceObject, id<WebApiRoute> route, NSError * __autoreleasing *error);
 
 /**
  A WebApiRoute property for a root object property to wrap the encoded request object in. This provides
@@ -46,7 +48,7 @@ extern NSString * const RestKitWebApiRoutePropertyResponseRootKeyPath;
  @param objectMapping The mapping to register.
  @param name          The route name to register the mapping with.
  */
-- (void)registerRequestObjectMapping:(RKObjectMapping *)objectMapping forRouteName:(NSString *)name;
+- (void)registerRequestObjectMapping:(RKMapping *)objectMapping forRouteName:(NSString *)name;
 
 /**
  Register a block to invoke after any object encoding has been performed on a request object.
@@ -62,7 +64,7 @@ extern NSString * const RestKitWebApiRoutePropertyResponseRootKeyPath;
  @param objectMapping The mapping to register.
  @param name          The route name to register the mapping with.
  */
-- (void)registerResponseObjectMapping:(RKObjectMapping *)objectMapping forRouteName:(NSString *)name;
+- (void)registerResponseObjectMapping:(RKMapping *)objectMapping forRouteName:(NSString *)name;
 
 /**
  Register a block to invoke after any object mapping has been performed on a response object.
@@ -73,3 +75,5 @@ extern NSString * const RestKitWebApiRoutePropertyResponseRootKeyPath;
 - (void)registerResponseMappingBlock:(RestKitWebApiDataMapperBlock)block forRouteName:(NSString *)name;
 
 @end
+
+NS_ASSUME_NONNULL_END

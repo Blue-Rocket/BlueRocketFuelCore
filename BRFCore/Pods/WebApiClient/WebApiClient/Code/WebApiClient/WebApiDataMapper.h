@@ -10,6 +10,8 @@
 
 @protocol WebApiRoute;
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  API for mapping data between native object and serialized forms.
  */
@@ -23,7 +25,7 @@
  @param error An optional output error pointer, or @c nil.
  @return The mapped domain object, or @c nil if an error occurs.
  */
-- (id)performMappingWithSourceObject:(id)sourceObject route:(id<WebApiRoute>)route error:(NSError *__autoreleasing *)error;
+- (nullable id)performMappingWithSourceObject:(id)sourceObject route:(id<WebApiRoute>)route error:(NSError *__autoreleasing *)error;
 
 /**
  Encode a domain object into an encoded form, such as @c NSDictionary or @c NSData.
@@ -35,7 +37,7 @@
  @param error An optional output error pointer, or @c nil.
  @return The serialized representation, or @c nil if an error occurs.
  */
-- (id)performEncodingWithObject:(id)domainObject route:(id<WebApiRoute>)route error:(NSError *__autoreleasing *)error;
+- (nullable id)performEncodingWithObject:(id)domainObject route:(id<WebApiRoute>)route error:(NSError *__autoreleasing *)error;
 
 @end
 
@@ -50,3 +52,5 @@
 + (id<WebApiDataMapper>)sharedDataMapper;
 
 @end
+
+NS_ASSUME_NONNULL_END

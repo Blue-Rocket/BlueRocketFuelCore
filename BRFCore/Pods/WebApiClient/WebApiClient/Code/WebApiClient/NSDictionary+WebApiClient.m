@@ -19,6 +19,29 @@ static CFStringRef CreateURLEncodedQueryParameterString(CFStringRef string) {
 
 @implementation NSDictionary (WebApiClient)
 
++ (nullable NSDictionary<NSString *, NSString *> *)dictionaryWithURLQueryParameters:(NSURL *)url
+																				url:(NSURL * __autoreleasing _Nullable * _Nullable)urlWithoutQueryParameters {
+	
+	NSURLComponents *urlComponents = [NSURLComponents componentsWithURL:url resolvingAgainstBaseURL:YES];
+	NSArray<NSURLQueryItem *> *queryItems = urlComponents.queryItems;
+	
+	NSMutableDictionary<NSString *, id> *parameters = [[NSMutableDictionary alloc] initWithCapacity:queryItems.count];
+	for ( NSURLQueryItem *item in queryItems ) {
+		parameters[item.name] = item.value;
+	}
+
+	if ( urlWithoutQueryParameters ) {
+		if ( parameters.count > 0 ) {
+			urlComponents.queryItems = nil;
+			*urlWithoutQueryParameters = urlComponents.URL;
+		} else {
+			*urlWithoutQueryParameters = url;
+		}
+	}
+	
+	return (parameters.count > 0 ? parameters : nil);
+}
+
 #pragma mark - WebApiRoute
 
 - (NSString *)name {
@@ -53,6 +76,20 @@ static CFStringRef CreateURLEncodedQueryParameterString(CFStringRef string) {
 - (BOOL)isPreventUserInteraction {
 	NSNumber *val = self[@"preventUserInteraction"];
 	return [val boolValue];
+}
+
+- (BOOL)isGzip {
+	NSNumber *val = self[@"gzip"];
+	return [val boolValue];
+}
+
+- (BOOL)isSaveAsResource {
+	NSNumber *val = self[@"saveAsResource"];
+	return [val boolValue];
+}
+
+- (NSDictionary<NSString *, NSString *> *)requestHeaders {
+	return self[NSStringFromSelector(@selector(requestHeaders))];
 }
 
 - (NSString *)asURLQueryParameterString {
@@ -122,7 +159,7 @@ static CFStringRef CreateURLEncodedQueryParameterString(CFStringRef string) {
 
 @end
 
-@implementation NSMutableDictionary (WebApiClient)
+@implementation NSMutableDictionary (MutableWebApiClient)
 
 /**
  Set an object on the receiver if non-nil, otherwise remove that key.
@@ -174,6 +211,18 @@ static CFStringRef CreateURLEncodedQueryParameterString(CFStringRef string) {
 
 - (void)setPreventUserInteraction:(BOOL)preventUserInteraction {
 	[self setOrRemoveObject:@(preventUserInteraction) forKey:@"preventUserInteraction"];
+}
+
+- (void)setGzip:(BOOL)gzip {
+	[self setOrRemoveObject:@(gzip) forKey:@"gzip"];
+}
+
+- (void)setSaveAsResource:(BOOL)saveAsResource {
+	[self setOrRemoveObject:@(saveAsResource) forKey:@"saveAsResource"];
+}
+
+- (void)setRequestHeaders:(NSDictionary<NSString *,NSString *> *)requestHeaders {
+	[self setOrRemoveObject:requestHeaders forKey:NSStringFromSelector(@selector(requestHeaders))];
 }
 
 #pragma mark - WebApiResponse

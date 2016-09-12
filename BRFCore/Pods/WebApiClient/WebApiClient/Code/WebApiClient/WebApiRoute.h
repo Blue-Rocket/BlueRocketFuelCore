@@ -51,6 +51,15 @@ typedef enum : NSUInteger {
 /** Flag to indicate that while this API endpoint is being called, no user interaction should be allowed. */
 @property (nonatomic, readonly, getter=isPreventUserInteraction) BOOL preventUserInteraction;
 
+/** Flag to indicate that the @i request data should be compressed via GZip. */
+@property (nonatomic, readonly, getter=isGzip) BOOL gzip;
+
+/** Flag to indicate that the response data should be saved to a temporary resource. The response object will then be a @c WebApiResource. */
+@property (nonatomic, readonly, getter=isSaveAsResource) BOOL saveAsResource;
+
+/** A set of HTTP headers names with associated values to add to HTTP requests made for this route. */
+@property (nonatomic, readonly) NSDictionary<NSString *, NSString *> *requestHeaders;
+
 /**
  Get a route property by keyed subscript.
  

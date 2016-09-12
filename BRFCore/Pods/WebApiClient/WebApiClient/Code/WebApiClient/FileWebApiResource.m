@@ -9,6 +9,7 @@
 #import "FileWebApiResource.h"
 
 #import <MobileCoreServices/MobileCoreServices.h>
+#import "WebApiClientDigestUtils.h"
 
 @implementation FileWebApiResource {
 	NSURL *url;
@@ -16,6 +17,7 @@
 	NSString *name;
 	NSString *fileName;
 	NSString *MIMEType;
+	NSData *md5;
 }
 
 @synthesize fileName;
@@ -52,6 +54,27 @@
 
 - (NSInputStream *)inputStream {
 	return [[NSInputStream alloc] initWithURL:url];
+}
+
+- (NSString *)MD5 {
+	NSData *digest = self.MD5Digest;
+	if ( digest ) {
+		return CFBridgingRelease(WebApiClientHexEncodedStringCreateWithData((__bridge CFDataRef)digest));
+	}
+	return nil;
+}
+
+- (NSData *)MD5Digest {
+	NSData *result = md5;
+	if ( !result && fileName ) {
+		result = CFBridgingRelease(WebApiClientMD5DigestCreateWithFilePath((__bridge CFStringRef)[url path], 0));
+		md5 = result;
+	}
+	return result;
+}
+
+- (nullable NSURL *)URLValue {
+	return url;
 }
 
 @end

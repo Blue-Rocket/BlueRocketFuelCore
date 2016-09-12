@@ -8,17 +8,22 @@
 
 #import "RestKitWebApiDataMapper.h"
 
+#import <BRCocoaLumberjack/BRCocoaLumberjack.h>
 #import <RestKit/ObjectMapping.h>
-#import <RestKit/ObjectMapping/RKObjectMappingOperationDataSource.h>
+#import <RestKit/RKObjectMappingOperationDataSource.h>
+#import <RestKit/RKPropertyInspector.h>
 #import "WebApiRoute.h"
 
 NSString * const RestKitWebApiRoutePropertyRequestRootKeyPath = @"dataMapperRequestRootKeyPath";
 NSString * const RestKitWebApiRoutePropertyResponseRootKeyPath = @"dataMapperResponseRootKeyPath";
 
+@interface RestKitWebApiDataMapper () <RKMappingOperationDelegate>
+@end
+
 @implementation RestKitWebApiDataMapper {
-	NSMutableDictionary *requestRouteMappers;
+	NSMutableDictionary<NSString *, RKMapping *> *requestRouteMappers;
 	NSMutableDictionary *requestRouteBlockMappers;
-	NSMutableDictionary *responseRouteMappers;
+	NSMutableDictionary<NSString *, RKMapping *> *responseRouteMappers;
 	NSMutableDictionary *responseRouteBlockMappers;
 }
 
@@ -66,8 +71,8 @@ NSString * const RestKitWebApiRoutePropertyResponseRootKeyPath = @"dataMapperRes
 	return dataSource;
 }
 
-- (RKObjectMapping *)requestObjectMappingForRoute:(id<WebApiRoute>)route object:(id)domainObject {
-	RKObjectMapping *objectMapper = requestRouteMappers[route.name];
+- (RKMapping *)requestObjectMappingForRoute:(id<WebApiRoute>)route object:(id)domainObject {
+	RKMapping *objectMapper = requestRouteMappers[route.name];
 	if ( !objectMapper ) {
 		// TODO: automatic, convention based lookup? Could base off of domainObject.class, for example.
 	}
@@ -78,8 +83,8 @@ NSString * const RestKitWebApiRoutePropertyResponseRootKeyPath = @"dataMapperRes
 	return requestRouteBlockMappers[route.name];
 }
 
-- (RKObjectMapping *)responseObjectMappingForRoute:(id<WebApiRoute>)route data:(id)response {
-	RKObjectMapping *objectMapper = responseRouteMappers[route.name];
+- (RKMapping *)responseObjectMappingForRoute:(id<WebApiRoute>)route data:(id)response {
+	RKMapping *objectMapper = responseRouteMappers[route.name];
 	if ( !objectMapper ) {
 		// TODO: automatic, convention based lookup? Could base off of response data, for example.
 	}
@@ -109,12 +114,13 @@ NSString * const RestKitWebApiRoutePropertyResponseRootKeyPath = @"dataMapperRes
 }
 
 - (id)performEncodingWithObject:(id)domainObject route:(id<WebApiRoute>)route error:(NSError *__autoreleasing *)error {
-	RKObjectMapping *objectMapping = [self requestObjectMappingForRoute:route object:domainObject];
+	RKMapping *objectMapping = [self requestObjectMappingForRoute:route object:domainObject];
 	RKMappingOperation *mappingOperation = [[RKMappingOperation alloc] initWithSourceObject:domainObject
 																		  destinationObject:[NSMutableDictionary new]
 																					mapping:objectMapping];
 	id<RKMappingOperationDataSource> dataSource = [self dataSourceForMappingOperation:mappingOperation];
 	mappingOperation.dataSource = dataSource;
+	mappingOperation.delegate = self;
 	[mappingOperation start];
 	if ( mappingOperation.error ) {
 		if ( error ) {
@@ -129,12 +135,14 @@ NSString * const RestKitWebApiRoutePropertyResponseRootKeyPath = @"dataMapperRes
 	if ( blockMapper ) {
 		encoded = blockMapper(encoded, route, error);
 	}
-	
+
+	log4Debug(@"Encoded %@ into %@", domainObject, encoded);
+
 	return encoded;
 }
 
 - (id)performMappingWithSourceObject:(id)sourceObject route:(id<WebApiRoute>)route error:(NSError *__autoreleasing *)error {
-	RKObjectMapping *objectMapping = [self responseObjectMappingForRoute:route data:sourceObject];
+	RKMapping *objectMapping = [self responseObjectMappingForRoute:route data:sourceObject];
 	id decodeSource = sourceObject;
 	if ( route[RestKitWebApiRoutePropertyResponseRootKeyPath] ) {
 		decodeSource = [sourceObject valueForKeyPath:route[RestKitWebApiRoutePropertyResponseRootKeyPath]];
@@ -158,7 +166,58 @@ NSString * const RestKitWebApiRoutePropertyResponseRootKeyPath = @"dataMapperRes
 		result = blockMapper(result, route, error);
 	}
 	
+	log4Debug(@"Mapped %@ into %@", sourceObject, result);
+	
 	return result;
+}
+
+#pragma mark - RKMappingOperationDelegate
+
+// the following is adapted from RKObjectParameterization.m, which is part of RestKit/Network and thus not available here
+
+- (void)mappingOperation:(RKMappingOperation *)operation didSetValue:(id)value forKeyPath:(NSString *)keyPath usingMapping:(RKAttributeMapping *)mapping {
+	id transformedValue = nil;
+	if ( value == nil ) {
+		// Serialize nil values as null
+		if ( mapping.objectMapping.assignsDefaultValueForMissingAttributes ) {
+			transformedValue = [NSNull null];
+		}
+	} else if ([value isKindOfClass:[NSDate class]]) {
+		[mapping.valueTransformer transformValue:value toValue:&transformedValue ofClass:[NSString class] error:nil];
+	} else if ([value isKindOfClass:[NSDecimalNumber class]]) {
+		// Precision numbers are serialized as strings to work around Javascript notation limits
+		transformedValue = [(NSDecimalNumber *)value stringValue];
+	} else if ([value isKindOfClass:[NSSet class]]) {
+		// NSSets are not natively serializable, so let's just turn it into an NSArray
+		transformedValue = [value allObjects];
+	} else if ([value isKindOfClass:[NSOrderedSet class]]) {
+		// NSOrderedSets are not natively serializable, so let's just turn it into an NSArray
+		transformedValue = [value array];
+	} else {
+		Class propertyClass = RKPropertyInspectorGetClassForPropertyAtKeyPathOfObject(mapping.sourceKeyPath, operation.sourceObject);
+		if ([propertyClass isSubclassOfClass:NSClassFromString(@"__NSCFBoolean")] || [propertyClass isSubclassOfClass:NSClassFromString(@"NSCFBoolean")]) {
+			transformedValue = @([value boolValue]);
+		}
+	}
+	
+	if (transformedValue) {
+		log4Debug(@"Serialized %@ value at keyPath to %@ (%@)", NSStringFromClass([value class]), NSStringFromClass([transformedValue class]), value);
+		[operation.destinationObject setValue:transformedValue forKeyPath:keyPath];
+	}
+}
+
+- (BOOL)mappingOperation:(RKMappingOperation *)operation shouldSetValue:(id)value forKeyPath:(NSString *)keyPath usingMapping:(RKPropertyMapping *)propertyMapping {
+	NSArray *keyPathComponents = [keyPath componentsSeparatedByString:@"."];
+	id currentValue = operation.destinationObject;
+	for (NSString *key in keyPathComponents) {
+		id value = [currentValue valueForKey:key];
+		if (value == nil) {
+			value = [NSMutableDictionary new];
+			[currentValue setValue:value forKey:key];
+		}
+		currentValue = value;
+	}
+	return YES;
 }
 
 @end

@@ -9,6 +9,8 @@
 #import "WebApiResponse.h"
 #import "WebApiRoute.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  Extension to @c NSDictionary to implement some web API support.
  */
@@ -20,6 +22,17 @@
  @return A string suitable for using as the query component of a URL.
  */
 - (NSString *)asURLQueryParameterString;
+
+/**
+ Extract query parameters from a URL into a dictionary.
+ 
+ @param url                       The URL to extract query parameters from.
+ @param urlWithoutQueryParameters An optional pointer to a URL to place a copy of @c url with the query parameters removed.
+ 
+ @return The extracted query parameters, or @c nil if there are none to extract.
+ @since 1.1
+ */
++ (nullable NSDictionary<NSString *, NSString *> *)dictionaryWithURLQueryParameters:(NSURL *)url url:(NSURL * __autoreleasing _Nullable * _Nullable)urlWithoutQueryParameters;
 
 /**
  Transform a serialization enum into a string.
@@ -48,11 +61,13 @@
 @property (nonatomic, readwrite) NSString *path;
 @property (nonatomic, readwrite) NSString *method;
 @property (nonatomic, readwrite) WebApiSerialization serialization;
-@property (nonatomic, readwrite) NSString *serializationName;
-@property (nonatomic, readwrite) NSString *contentType;
-@property (nonatomic, readwrite) NSString *dataMapper;
+@property (nonatomic, readwrite, nullable) NSString *serializationName;
+@property (nonatomic, readwrite, nullable) NSString *contentType;
+@property (nonatomic, readwrite, nullable) NSString *dataMapper;
 @property (nonatomic, readwrite, getter=isPreventUserInteraction) BOOL preventUserInteraction;
-
+@property (nonatomic, readwrite, getter=isGzip) BOOL gzip;
+@property (nonatomic, readwrite, getter=isSaveAsResource) BOOL saveAsResource;
+@property (nonatomic, readwrite, nullable) NSDictionary<NSString *, NSString *> *requestHeaders;
 @end
 
 /**
@@ -62,8 +77,8 @@
 
 @property (nonatomic, readwrite) NSString *routeName;
 @property (nonatomic, readwrite) NSInteger statusCode;
-@property (nonatomic, readwrite) id responseObject;
-@property (nonatomic, readwrite) NSDictionary *responseHeaders;
+@property (nonatomic, readwrite, nullable) id responseObject;
+@property (nonatomic, readwrite, nullable) NSDictionary *responseHeaders;
 
 /**
  Set an object on the receiver if non-nil, otherwise remove that key.
@@ -71,6 +86,9 @@
  @param object The object to set, or @c nil to remove any value associated with @c key.
  @param key The key of the object to set or remove.
  */
-- (void)setOrRemoveObject:(id)object forKey:(NSString *)key;
+- (void)setOrRemoveObject:(nullable id)object forKey:(NSString *)key;
 
 @end
+
+NS_ASSUME_NONNULL_END
+

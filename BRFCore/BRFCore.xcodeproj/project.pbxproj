@@ -7,12 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		C5BB68D733CF728177D4340A /* libPods-BRFCore-BRFCoreTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D22872C0290E9130E13C9F2 /* libPods-BRFCore-BRFCoreTests.a */; };
+		546F6BB56534FA71CDB720E1 /* libPods-BRFCore-BRFCoreTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D703EB1A20F5E7F3F96CCE19 /* libPods-BRFCore-BRFCoreTests.a */; };
 		C912831C1BCC63F9002B1258 /* BRGradientView.m in Sources */ = {isa = PBXBuildFile; fileRef = C912831B1BCC63F9002B1258 /* BRGradientView.m */; };
 		C935D3E21C9BB87100CF2C77 /* BRServiceRegistry.m in Sources */ = {isa = PBXBuildFile; fileRef = C935D3E11C9BB87100CF2C77 /* BRServiceRegistry.m */; };
 		C935D3E81C9BBA8E00CF2C77 /* WebApiClientServiceRegistry.m in Sources */ = {isa = PBXBuildFile; fileRef = C935D3E71C9BBA8E00CF2C77 /* WebApiClientServiceRegistry.m */; };
 		C935D3EE1C9BC16000CF2C77 /* UIViewController+BR.m in Sources */ = {isa = PBXBuildFile; fileRef = C935D3ED1C9BC16000CF2C77 /* UIViewController+BR.m */; };
 		C93D2D331C98DE290094E6F0 /* BRSimpleStringLink.m in Sources */ = {isa = PBXBuildFile; fileRef = C93D2D321C98DE290094E6F0 /* BRSimpleStringLink.m */; };
+		C9523A0B1D868D7900318EB7 /* BRDevelopmentWebApiClient.m in Sources */ = {isa = PBXBuildFile; fileRef = C9523A0A1D868D7900318EB7 /* BRDevelopmentWebApiClient.m */; };
 		C96D0B661BB32ED900AC8D30 /* NSString_BRTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C96D0B651BB32ED900AC8D30 /* NSString_BRTests.m */; };
 		C972EB161BAFCBB8007FAA59 /* UIImage_BRTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C972EB141BAFCA17007FAA59 /* UIImage_BRTests.m */; };
 		C98E53231CA0986300B666FA /* NSFileManager+BR.m in Sources */ = {isa = PBXBuildFile; fileRef = C98E53221CA0986300B666FA /* NSFileManager+BR.m */; };
@@ -70,7 +71,9 @@
 		C9A8A0331B8A4E3D000B9169 /* strings.json in Resources */ = {isa = PBXBuildFile; fileRef = C9A8A0221B8A4E3D000B9169 /* strings.json */; };
 		C9A8A0371B8A4E3D000B9169 /* WebApiClientUserServiceTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A8A02A1B8A4E3D000B9169 /* WebApiClientUserServiceTests.m */; };
 		C9A8A03A1B8A5112000B9169 /* BRJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A8A0391B8A5112000B9169 /* BRJSON.m */; };
-		EA2D55BAC1F29F01EBCF2969 /* libPods-BRFCore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 07D714E2304D4D5A716F0270 /* libPods-BRFCore.a */; };
+		C9DFC9381D86975000641284 /* MockData in Resources */ = {isa = PBXBuildFile; fileRef = C9DFC9371D86975000641284 /* MockData */; };
+		C9DFC93A1D86977800641284 /* BRDevelopmentWebApiClientTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C9DFC9391D86977800641284 /* BRDevelopmentWebApiClientTests.m */; };
+		E896943AC3A5467C98E23B06 /* libPods-BRFCore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 67C22EC7DC368FA23BAD6914 /* libPods-BRFCore.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -96,10 +99,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		07D714E2304D4D5A716F0270 /* libPods-BRFCore.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BRFCore.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		4D22872C0290E9130E13C9F2 /* libPods-BRFCore-BRFCoreTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BRFCore-BRFCoreTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		7C4FA78132C66D3025A883D3 /* Pods-BRFCore.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BRFCore.release.xcconfig"; path = "Pods/Target Support Files/Pods-BRFCore/Pods-BRFCore.release.xcconfig"; sourceTree = "<group>"; };
-		C13BFD3959ACABD1D3EDB895 /* Pods-BRFCore.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BRFCore.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BRFCore/Pods-BRFCore.debug.xcconfig"; sourceTree = "<group>"; };
+		3DFDCA28574ED3E770515E44 /* Pods-BRFCore-BRFCoreTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BRFCore-BRFCoreTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BRFCore-BRFCoreTests/Pods-BRFCore-BRFCoreTests.debug.xcconfig"; sourceTree = "<group>"; };
+		67C22EC7DC368FA23BAD6914 /* libPods-BRFCore.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BRFCore.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		AC25C2562A9A771FFC24C20E /* Pods-BRFCore.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BRFCore.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BRFCore/Pods-BRFCore.debug.xcconfig"; sourceTree = "<group>"; };
+		AFD41FF3A6BAA9EBCDA0A837 /* Pods-BRFCore-BRFCoreTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BRFCore-BRFCoreTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-BRFCore-BRFCoreTests/Pods-BRFCore-BRFCoreTests.release.xcconfig"; sourceTree = "<group>"; };
 		C912831A1BCC63F9002B1258 /* BRGradientView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRGradientView.h; sourceTree = "<group>"; };
 		C912831B1BCC63F9002B1258 /* BRGradientView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRGradientView.m; sourceTree = "<group>"; };
 		C935D3E01C9BB87100CF2C77 /* BRServiceRegistry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRServiceRegistry.h; sourceTree = "<group>"; };
@@ -114,6 +117,8 @@
 		C93D2D311C98DE290094E6F0 /* BRSimpleStringLink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRSimpleStringLink.h; sourceTree = "<group>"; };
 		C93D2D321C98DE290094E6F0 /* BRSimpleStringLink.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRSimpleStringLink.m; sourceTree = "<group>"; };
 		C93D2D341C98DE8F0094E6F0 /* BRStringLink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRStringLink.h; sourceTree = "<group>"; };
+		C9523A091D868D7900318EB7 /* BRDevelopmentWebApiClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRDevelopmentWebApiClient.h; sourceTree = "<group>"; };
+		C9523A0A1D868D7900318EB7 /* BRDevelopmentWebApiClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRDevelopmentWebApiClient.m; sourceTree = "<group>"; };
 		C96D0B651BB32ED900AC8D30 /* NSString_BRTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSString_BRTests.m; sourceTree = "<group>"; };
 		C972EB141BAFCA17007FAA59 /* UIImage_BRTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIImage_BRTests.m; sourceTree = "<group>"; };
 		C98DC9911B9D36060067D6A6 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
@@ -228,9 +233,11 @@
 		C9A8A0381B8A5112000B9169 /* BRJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRJSON.h; sourceTree = "<group>"; };
 		C9A8A0391B8A5112000B9169 /* BRJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRJSON.m; sourceTree = "<group>"; };
 		C9A8A03C1B8A5207000B9169 /* BlueRocketFuelCore.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; name = BlueRocketFuelCore.podspec; path = ../BlueRocketFuelCore.podspec; sourceTree = "<group>"; };
+		C9DFC9371D86975000641284 /* MockData */ = {isa = PBXFileReference; lastKnownFileType = folder; path = MockData; sourceTree = "<group>"; };
+		C9DFC9391D86977800641284 /* BRDevelopmentWebApiClientTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRDevelopmentWebApiClientTests.m; sourceTree = "<group>"; };
 		C9ED94751BA8FBBD00DE842F /* WebApiClient-RestKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "WebApiClient-RestKit.h"; path = "Code/WebApiClient-RestKit.h"; sourceTree = "<group>"; };
-		CF8901992F8C7787AC0F1E10 /* Pods-BRFCore-BRFCoreTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BRFCore-BRFCoreTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-BRFCore-BRFCoreTests/Pods-BRFCore-BRFCoreTests.release.xcconfig"; sourceTree = "<group>"; };
-		D2337E9FBC5C179A64F55FAB /* Pods-BRFCore-BRFCoreTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BRFCore-BRFCoreTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BRFCore-BRFCoreTests/Pods-BRFCore-BRFCoreTests.debug.xcconfig"; sourceTree = "<group>"; };
+		D703EB1A20F5E7F3F96CCE19 /* libPods-BRFCore-BRFCoreTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BRFCore-BRFCoreTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		EA9AED850E32DE847753D05A /* Pods-BRFCore.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BRFCore.release.xcconfig"; path = "Pods/Target Support Files/Pods-BRFCore/Pods-BRFCore.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -238,7 +245,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EA2D55BAC1F29F01EBCF2969 /* libPods-BRFCore.a in Frameworks */,
+				E896943AC3A5467C98E23B06 /* libPods-BRFCore.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -247,31 +254,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				C9A89F591B8A4C67000B9169 /* libBRFCore.a in Frameworks */,
-				C5BB68D733CF728177D4340A /* libPods-BRFCore-BRFCoreTests.a in Frameworks */,
+				546F6BB56534FA71CDB720E1 /* libPods-BRFCore-BRFCoreTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		4DFB62DFDBA07958F3C47A91 /* Frameworks */ = {
+		1AA0F9DFA40615565CE2D39B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				07D714E2304D4D5A716F0270 /* libPods-BRFCore.a */,
-				4D22872C0290E9130E13C9F2 /* libPods-BRFCore-BRFCoreTests.a */,
+				67C22EC7DC368FA23BAD6914 /* libPods-BRFCore.a */,
+				D703EB1A20F5E7F3F96CCE19 /* libPods-BRFCore-BRFCoreTests.a */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		C628441DFC86B924D3A8D4B9 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				C13BFD3959ACABD1D3EDB895 /* Pods-BRFCore.debug.xcconfig */,
-				7C4FA78132C66D3025A883D3 /* Pods-BRFCore.release.xcconfig */,
-				D2337E9FBC5C179A64F55FAB /* Pods-BRFCore-BRFCoreTests.debug.xcconfig */,
-				CF8901992F8C7787AC0F1E10 /* Pods-BRFCore-BRFCoreTests.release.xcconfig */,
-			);
-			name = Pods;
 			sourceTree = "<group>";
 		};
 		C972EB131BAFCA17007FAA59 /* UI */ = {
@@ -290,8 +286,8 @@
 				C9A8A0161B8A4E3D000B9169 /* Tests */,
 				C9A89F5C1B8A4C67000B9169 /* Test Support */,
 				C9A89F4E1B8A4C67000B9169 /* Products */,
-				C628441DFC86B924D3A8D4B9 /* Pods */,
-				4DFB62DFDBA07958F3C47A91 /* Frameworks */,
+				EF2588C2894179150A84264E /* Pods */,
+				1AA0F9DFA40615565CE2D39B /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -430,6 +426,8 @@
 		C9A89FC31B8A4DDB000B9169 /* WebApiClient-Services */ = {
 			isa = PBXGroup;
 			children = (
+				C9523A091D868D7900318EB7 /* BRDevelopmentWebApiClient.h */,
+				C9523A0A1D868D7900318EB7 /* BRDevelopmentWebApiClient.m */,
 				C935D3E61C9BBA8E00CF2C77 /* WebApiClientServiceRegistry.h */,
 				C935D3E71C9BBA8E00CF2C77 /* WebApiClientServiceRegistry.m */,
 				C935D3E91C9BBB0D00CF2C77 /* WebApiClientServiceRegistry+BR.h */,
@@ -503,6 +501,8 @@
 		C9A8A0291B8A4E3D000B9169 /* WebApiClient-Services */ = {
 			isa = PBXGroup;
 			children = (
+				C9DFC9371D86975000641284 /* MockData */,
+				C9DFC9391D86977800641284 /* BRDevelopmentWebApiClientTests.m */,
 				C9A8A02A1B8A4E3D000B9169 /* WebApiClientUserServiceTests.m */,
 			);
 			path = "WebApiClient-Services";
@@ -524,6 +524,17 @@
 			name = Packaging;
 			sourceTree = "<group>";
 		};
+		EF2588C2894179150A84264E /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				AC25C2562A9A771FFC24C20E /* Pods-BRFCore.debug.xcconfig */,
+				EA9AED850E32DE847753D05A /* Pods-BRFCore.release.xcconfig */,
+				3DFDCA28574ED3E770515E44 /* Pods-BRFCore-BRFCoreTests.debug.xcconfig */,
+				AFD41FF3A6BAA9EBCDA0A837 /* Pods-BRFCore-BRFCoreTests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -531,11 +542,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C9A89F611B8A4C67000B9169 /* Build configuration list for PBXNativeTarget "BRFCore" */;
 			buildPhases = (
-				BD13AD4342722B6175B2C1F9 /* Check Pods Manifest.lock */,
+				5319650F4095B207BED4A880 /* [CP] Check Pods Manifest.lock */,
 				C9A89F491B8A4C67000B9169 /* Sources */,
 				C9A89F4A1B8A4C67000B9169 /* Frameworks */,
 				C9A89F4B1B8A4C67000B9169 /* CopyFiles */,
-				BC302396D1EEC5C1F52AF886 /* Copy Pods Resources */,
+				A20735F43ABC060214F3B25C /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -550,12 +561,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C9A89F641B8A4C67000B9169 /* Build configuration list for PBXNativeTarget "BRFCoreTests" */;
 			buildPhases = (
-				46E9627FC2A813461322D445 /* Check Pods Manifest.lock */,
+				10B2D400C9A6C6406031FFE5 /* [CP] Check Pods Manifest.lock */,
 				C9A89F541B8A4C67000B9169 /* Sources */,
 				C9A89F551B8A4C67000B9169 /* Frameworks */,
 				C9A89F561B8A4C67000B9169 /* Resources */,
-				6A5F37CAFF10EB40EFF096AA /* Copy Pods Resources */,
-				5ED0E31B2BCE2A091C8836E2 /* Embed Pods Frameworks */,
+				6AC6E2853946675CEA36A4C0 /* [CP] Embed Pods Frameworks */,
+				B0D54B1F9F5574B646DDDF12 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -611,6 +622,7 @@
 				C98E532C1CA0A81100B666FA /* brcrypto-sample-file.mp4 in Resources */,
 				C9A8A02D1B8A4E3D000B9169 /* config.json in Resources */,
 				C9A8A0331B8A4E3D000B9169 /* strings.json in Resources */,
+				C9DFC9381D86975000641284 /* MockData in Resources */,
 				C98E532A1CA09F1B00B666FA /* brcrypto-sample-file.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -618,14 +630,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		46E9627FC2A813461322D445 /* Check Pods Manifest.lock */ = {
+		10B2D400C9A6C6406031FFE5 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -633,14 +645,29 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		5ED0E31B2BCE2A091C8836E2 /* Embed Pods Frameworks */ = {
+		5319650F4095B207BED4A880 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Embed Pods Frameworks";
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		6AC6E2853946675CEA36A4C0 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -648,29 +675,14 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BRFCore-BRFCoreTests/Pods-BRFCore-BRFCoreTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		6A5F37CAFF10EB40EFF096AA /* Copy Pods Resources */ = {
+		A20735F43ABC060214F3B25C /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BRFCore-BRFCoreTests/Pods-BRFCore-BRFCoreTests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		BC302396D1EEC5C1F52AF886 /* Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Copy Pods Resources";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -678,19 +690,19 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BRFCore/Pods-BRFCore-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		BD13AD4342722B6175B2C1F9 /* Check Pods Manifest.lock */ = {
+		B0D54B1F9F5574B646DDDF12 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Check Pods Manifest.lock";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BRFCore-BRFCoreTests/Pods-BRFCore-BRFCoreTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -724,6 +736,7 @@
 				C935D3EE1C9BC16000CF2C77 /* UIViewController+BR.m in Sources */,
 				C9A8A00C1B8A4DDB000B9169 /* BRLoginWebServiceRequest.m in Sources */,
 				C98E53231CA0986300B666FA /* NSFileManager+BR.m in Sources */,
+				C9523A0B1D868D7900318EB7 /* BRDevelopmentWebApiClient.m in Sources */,
 				C9A8A0101B8A4DDB000B9169 /* BRReachability.m in Sources */,
 				C9A89FEF1B8A4DDB000B9169 /* NSString+BR.m in Sources */,
 				C9A8A03A1B8A5112000B9169 /* BRJSON.m in Sources */,
@@ -754,6 +767,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C98E53281CA09ECD00B666FA /* BRCryptoUtilitiesTests.m in Sources */,
+				C9DFC93A1D86977800641284 /* BRDevelopmentWebApiClientTests.m in Sources */,
 				C9A8A0371B8A4E3D000B9169 /* WebApiClientUserServiceTests.m in Sources */,
 				C98E532E1CA0A83300B666FA /* NSFileManager_BRTests.m in Sources */,
 				C96D0B661BB32ED900AC8D30 /* NSString_BRTests.m in Sources */,
@@ -858,7 +872,7 @@
 		};
 		C9A89F621B8A4C67000B9169 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C13BFD3959ACABD1D3EDB895 /* Pods-BRFCore.debug.xcconfig */;
+			baseConfigurationReference = AC25C2562A9A771FFC24C20E /* Pods-BRFCore.debug.xcconfig */;
 			buildSettings = {
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -867,7 +881,7 @@
 		};
 		C9A89F631B8A4C67000B9169 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7C4FA78132C66D3025A883D3 /* Pods-BRFCore.release.xcconfig */;
+			baseConfigurationReference = EA9AED850E32DE847753D05A /* Pods-BRFCore.release.xcconfig */;
 			buildSettings = {
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -876,7 +890,7 @@
 		};
 		C9A89F651B8A4C67000B9169 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D2337E9FBC5C179A64F55FAB /* Pods-BRFCore-BRFCoreTests.debug.xcconfig */;
+			baseConfigurationReference = 3DFDCA28574ED3E770515E44 /* Pods-BRFCore-BRFCoreTests.debug.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -896,7 +910,7 @@
 		};
 		C9A89F661B8A4C67000B9169 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = CF8901992F8C7787AC0F1E10 /* Pods-BRFCore-BRFCoreTests.release.xcconfig */;
+			baseConfigurationReference = AFD41FF3A6BAA9EBCDA0A837 /* Pods-BRFCore-BRFCoreTests.release.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (

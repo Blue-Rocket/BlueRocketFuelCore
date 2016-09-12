@@ -11,12 +11,15 @@
 NSString * const WebApiClientErrorDomain = @"WebApiClientError";
 
 const NSInteger WebApiClientErrorRouteNotAvailable = 2000;
+const NSInteger WebApiClientErrorResponseTimeout = 2001;
 
 NSString * const WebApiClientRequestWillBeginNotification = @"WebApiClientRequestWillBegin";
 
 NSString * const WebApiClientRequestDidBeginNotification = @"WebApiClientRequestDidBegin";
 
 NSString * const WebApiClientRequestDidProgressNotification = @"WebApiClientRequestDidProgress";
+
+NSString * const WebApiClientResponseDidProgressNotification = @"WebApiClientResponseDidProgress";
 
 NSString * const WebApiClientRequestDidSucceedNotification = @"WebApiClientRequestDidSucceed";
 
@@ -27,3 +30,9 @@ NSString * const WebApiClientRequestDidCancelNotification = @"WebApiClientReques
 NSString * const WebApiClientURLRequestNotificationKey = @"request";
 
 NSString * const WebApiClientURLResponseNotificationKey = @"response";
+
+NSString * const WebApiClientProgressNotificationKey = @"progress";
+
+NSString * const WebApiClientJSONContentType = @"application/json";
+
+NSString * const WebApiClientJSONAPIContentType = @"application/vnd.api+json";

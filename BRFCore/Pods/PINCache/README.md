@@ -2,6 +2,7 @@
 
 [![CocoaPods](https://img.shields.io/cocoapods/v/PINCache.svg)](http://cocoadocs.org/docsets/PINCache/)
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
+[![Tavis CI build](https://img.shields.io/travis/pinterest/PINCache.svg?style=flat)](https://travis-ci.org/pinterest/PINCache)
 
 ## Fast, non-deadlocking parallel object cache for iOS and OS X.
 
@@ -13,7 +14,7 @@
 UIImage *img = [[UIImage alloc] initWithData:data scale:[[UIScreen mainScreen] scale]];
 [[PINCache sharedCache] setObject:img forKey:@"image" block:nil]; // returns immediately
 ```
-    
+
 Get them back out like this:
 
 ```objective-c
@@ -23,7 +24,7 @@ Get them back out like this:
                                   NSLog(@"image scale: %f", image.scale);
                               }];
 ```
-                                  
+
 Both `PINMemoryCache` and PINDiskCache use locks to protect reads and writes. `PINCache` coordinates them so that objects added to memory are available immediately to other threads while being written to disk safely in the background. Both caches are public properties of `PINCache`, so it's easy to manipulate one or the other separately if necessary.
 
 Collections work too. Thanks to the magic of `NSKeyedArchiver`, objects repeated in a collection only occupy the space of one on disk:

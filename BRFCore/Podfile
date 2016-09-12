@@ -10,7 +10,7 @@ target :BRFCore do
 	pod 'BRScroller',				'~> 1.4'
 	pod 'BRStyle',                  '~> 0.10'
 	pod 'ImageEffects',				'~> 1.0'
-	pod 'WebApiClient',				'~> 0.9'
+	pod 'WebApiClient',				'~> 1.0'
 	
 	target :BRFCoreTests do
 		pod 'OCHamcrest',			'~> 4.1'

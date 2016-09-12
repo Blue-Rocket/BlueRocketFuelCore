@@ -1,0 +1,1 @@
+../../../WebApiClient/WebApiClient/Code/WebApiClient-AFNetworking/JSONAPIErrorExtractor.h

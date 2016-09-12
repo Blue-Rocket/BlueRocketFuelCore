@@ -14,13 +14,20 @@
 #import "NSDictionary+CachingWebApiClient.h"
 #import "SupportingWebApiClient.h"
 #import "WebApiClientCacheEntry.h"
+#import "WebApiClientDigestUtils.h"
+
+static NSString * const kKeyClassificationDelimiter = @"+";
 
 static id<WebApiClient> SharedGlobalClient;
 
 @implementation PINCacheWebApiClient {
 	PINCache *entryCache;
 	PINCache *dataCache;
+	NSString *keyDiscriminator;
 }
+
+@synthesize entryCache, dataCache;
+@synthesize keyDiscriminator;
 
 + (void)setSharedClient:(id<WebApiClient>)sharedClient {
 	SharedGlobalClient = sharedClient;
@@ -50,19 +57,6 @@ static id<WebApiClient> SharedGlobalClient;
 	return self;
 }
 
-- (NSString *)MD5Hash:(NSString *)str {
-	const char *cstr = [str UTF8String];
-	unsigned char result[16];
-	CC_MD5(cstr, (CC_LONG)strlen(cstr), result);
-	return [NSString stringWithFormat:
-			@"%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X",
-			result[0], result[1], result[2], result[3],
-			result[4], result[5], result[6], result[7],
-			result[8], result[9], result[10], result[11],
-			result[12], result[13], result[14], result[15]
-			];
-}
-
 - (nullable NSString *)cacheKeyForRoute:(id<WebApiRoute>)route pathVariables:(nullable id)pathVariables parameters:(nullable id)parameters {
 	NSURL *url = [self.client URLForRoute:route pathVariables:pathVariables parameters:parameters error:nil];
 	if ( !url ) {
@@ -83,7 +77,9 @@ static id<WebApiClient> SharedGlobalClient;
 	}
 	[key appendString:[url path]];
 	
-	if ( [[url query] length] > 0 ) {
+	BOOL ignoreQueryParams = ([route respondsToSelector:@selector(isCacheIgnoreQueryParameters)]
+							  ? ((id<CachingWebApiRoute>)route).cacheIgnoreQueryParameters : NO);
+	if ( ignoreQueryParams == NO && [[url query] length] > 0 ) {
 		// add to key using ordered query terms so URLs with same properties, but in different order, result in same cache key
 		NSURLComponents *components = [NSURLComponents componentsWithURL:url resolvingAgainstBaseURL:NO];
 		NSArray *queryItems = [components queryItems];
@@ -108,23 +104,86 @@ static id<WebApiClient> SharedGlobalClient;
 		}
 	}
 	
-	return [self MD5Hash:key];
+	NSData *digest = CFBridgingRelease(WebApiClientMD5DigestCreateWithString((__bridge CFStringRef)key));
+	NSString *hexDigest = CFBridgingRelease(WebApiClientHexEncodedStringCreateWithData((__bridge CFDataRef)digest));
+	NSString *discriminator = self.keyDiscriminator;
+	NSArray *keyComponents = (discriminator.length > 0
+							  ? @[discriminator, route.name, hexDigest]
+							  : @[route.name, hexDigest]);
+	return [keyComponents componentsJoinedByString:kKeyClassificationDelimiter];
 }
 
 - (NSArray<NSHTTPCookie *> *)cookiesForAPI:(NSString *)name inCookieStorage:(NSHTTPCookieStorage *)cookieJar {
 	return [self.client cookiesForAPI:name inCookieStorage:cookieJar];
 }
 
-- (void)requestAPI:(NSString * __nonnull)name withPathVariables:(nullable id)pathVariables parameters:(nullable id)parameters
-			  data:(nullable id<WebApiResource>)data finished:(void (^ __nonnull)(id<WebApiResponse> __nonnull, NSError * __nullable))callback {
-	void (^doCallback)(id<WebApiResponse> __nonnull, NSError * __nullable) = ^(id<WebApiResponse> __nonnull response, NSError * __nullable error){
-		if ( [NSThread isMainThread] ) {
-			callback(response, error);
-		} else {
-			dispatch_async(dispatch_get_main_queue(), ^{
-				callback(response, error);
-			});
+- (nullable id<WebApiResponse>)blockingRequestAPI:(NSString *)name
+								withPathVariables:(nullable id)pathVariables
+									   parameters:(nullable id)parameters
+											 data:(nullable id<WebApiResource>)data
+									  maximumWait:(NSTimeInterval)maximumWait
+											error:(NSError **)error {
+	id<WebApiRoute> route = [self.client routeForName:name error:nil];
+	NSTimeInterval cacheTTL = 0;
+	NSString *cacheKey = nil;
+	if ( [route respondsToSelector:@selector(cacheTTL)] ) {
+		cacheTTL = ((id<CachingWebApiRoute>)route).cacheTTL;
+		if ( cacheTTL > 0 ) {
+			// look in cache for this data
+			cacheKey = [self cacheKeyForRoute:route pathVariables:pathVariables parameters:parameters];
 		}
+	}
+	id<WebApiResponse> (^delegateRequest)(void) = ^{
+		__weak PINCache *weakDataCache = dataCache;
+		__weak PINCache *weakEntryCache = entryCache;
+		NSError *clientError = nil;
+		id<WebApiResponse> response = [self.client blockingRequestAPI:name withPathVariables:pathVariables parameters:parameters data:data maximumWait:maximumWait error:&clientError];
+		if ( cacheKey && response && clientError == nil && response.statusCode >= 200 && response.statusCode < 300 && [response conformsToProtocol:@protocol(NSCoding)]) {
+			// valid response; cache the data
+			WebApiClientCacheEntry *entry = [[WebApiClientCacheEntry alloc] initWithCreationTime:[NSDate timeIntervalSinceReferenceDate]
+																					  expireTime:[[NSDate dateWithTimeIntervalSinceNow:cacheTTL] timeIntervalSinceReferenceDate]];
+			[weakDataCache setObject:(id<NSCoding>)response forKey:cacheKey block:^(PINCache *cache, NSString *key, id __nullable object) {
+				[weakEntryCache setObject:entry forKey:cacheKey block:nil];
+			}];
+		}
+		if ( error == nil && response.statusCode >= 200 && response.statusCode < 300 ) {
+			[self handleInvalidatedCachedDataForRoute:route];
+		}
+		if ( error && clientError ) {
+			*error = clientError;
+		}
+		return response;
+	};
+	if ( cacheKey ) {
+		WebApiClientCacheEntry *entry = [entryCache objectForKey:cacheKey];
+		if ( [NSDate timeIntervalSinceReferenceDate] < entry.expires ) {
+			// entry valid; return cached data
+			id<WebApiResponse> response = [dataCache objectForKey:cacheKey];
+			if ( !response ) {
+				// cached data missing from cache; make request
+				return delegateRequest();
+			}
+			return response;
+		} else {
+			// entry expired: clean out entry from cache
+			[entryCache removeObjectForKey:cacheKey block:nil];
+			[dataCache removeObjectForKey:cacheKey block:nil];
+		}
+		
+		// not found in cache, or expired from cache
+		return delegateRequest();
+	} else {
+		return delegateRequest();
+	}
+}
+
+- (void)requestCachedAPI:(NSString *)name withPathVariables:(id)pathVariables parameters:(id)parameters
+				   queue:(dispatch_queue_t)callbackQueue
+				finished:(void (^)(id<WebApiResponse> _Nullable, NSError * _Nullable))callback {
+	void (^doCallback)(id<WebApiResponse> _Nullable, NSError * _Nullable) = ^(id<WebApiResponse> _Nullable response, NSError * _Nullable error){
+		dispatch_async(callbackQueue, ^{
+			callback(response, error);
+		});
 	};
 	id<WebApiRoute> route = [self.client routeForName:name error:nil];
 	NSTimeInterval cacheTTL = 0;
@@ -136,21 +195,6 @@ static id<WebApiClient> SharedGlobalClient;
 			cacheKey = [self cacheKeyForRoute:route pathVariables:pathVariables parameters:parameters];
 		}
 	}
-	void (^delegateRequest)(void) = ^{
-		__weak PINCache *weakDataCache = dataCache;
-		__weak PINCache *weakEntryCache = entryCache;
-		[self.client requestAPI:name withPathVariables:pathVariables parameters:parameters data:data finished:^(id<WebApiResponse> __nonnull response, NSError * __nullable error) {
-			if ( cacheKey && response && error == nil && response.statusCode >= 200 && response.statusCode < 300 && [response conformsToProtocol:@protocol(NSCoding)]) {
-				// valid response; cache the data
-				WebApiClientCacheEntry *entry = [[WebApiClientCacheEntry alloc] initWithCreationTime:[NSDate timeIntervalSinceReferenceDate]
-																						  expireTime:[[NSDate dateWithTimeIntervalSinceNow:cacheTTL] timeIntervalSinceReferenceDate]];
-				[weakDataCache setObject:(id<NSCoding>)response forKey:cacheKey block:^(PINCache *cache, NSString *key, id __nullable object) {
-					[weakEntryCache setObject:entry forKey:cacheKey block:nil];
-				}];
-			}
-			doCallback(response, error);
-		}];
-	};
 	if ( cacheKey ) {
 		[entryCache objectForKey:cacheKey block:^(PINCache *cache, NSString *key, id __nullable object) {
 			WebApiClientCacheEntry *entry = object;
@@ -162,8 +206,8 @@ static id<WebApiClient> SharedGlobalClient;
 						if ( response ) {
 							doCallback(response, nil);
 						} else {
-							// cached data missing from cache; make request
-							delegateRequest();
+							// cached data missing from cache; return nil
+							doCallback(nil, nil);
 						}
 					}];
 					return;
@@ -175,11 +219,129 @@ static id<WebApiClient> SharedGlobalClient;
 			}
 			
 			// not found in cache, or expired from cache
-			delegateRequest();
+			doCallback(nil, nil);
 		}];
 	} else {
-		delegateRequest();
+		doCallback(nil, nil);
 	}
 }
+
+- (void)requestAPI:(NSString * __nonnull)name withPathVariables:(nullable id)pathVariables parameters:(nullable id)parameters
+			  data:(nullable id<WebApiResource>)data finished:(void (^ __nonnull)(id<WebApiResponse> __nonnull, NSError * __nullable))callback {
+	return [self requestAPI:name withPathVariables:pathVariables parameters:parameters data:data queue:dispatch_get_main_queue() progress:nil finished:callback];
+}
+
+- (void)requestAPI:(NSString *)name withPathVariables:(id)pathVariables parameters:(id)parameters
+			  data:(id<WebApiResource>)data queue:(dispatch_queue_t)callbackQueue
+		  progress:(nullable WebApiClientRequestProgressBlock)progressCallback
+		  finished:(nonnull void (^)(id<WebApiResponse> _Nonnull, NSError * _Nullable))callback {
+	void (^doCallback)(id<WebApiResponse> __nonnull, NSError * __nullable) = ^(id<WebApiResponse> __nonnull response, NSError * __nullable error){
+		dispatch_async(callbackQueue, ^{
+			callback(response, error);
+		});
+	};
+	id<WebApiRoute> route = [self.client routeForName:name error:nil];
+	NSTimeInterval cacheTTL = 0;
+	NSString *cacheKey = nil;
+	if ( [route respondsToSelector:@selector(cacheTTL)] ) {
+		cacheTTL = ((id<CachingWebApiRoute>)route).cacheTTL;
+		if ( cacheTTL > 0 ) {
+			// look in cache for this data
+			cacheKey = [self cacheKeyForRoute:route pathVariables:pathVariables parameters:parameters];
+		}
+	}
+
+	[self requestCachedAPI:name withPathVariables:pathVariables parameters:parameters queue:callbackQueue finished:^(id<WebApiResponse>  _Nullable response, NSError * _Nullable error) {
+		if ( response != nil ) {
+			// found in cache: return immediately
+			if ( progressCallback ) {
+				int64_t totalUnits = [response.responseHeaders[@"Content-Length"] longLongValue];
+				if ( totalUnits < 1 ) {
+					totalUnits = 1;
+				}
+				NSProgress *downloadProgress = [NSProgress discreteProgressWithTotalUnitCount:totalUnits];
+				downloadProgress.completedUnitCount = totalUnits;
+				progressCallback(name, nil, downloadProgress);
+			}
+			doCallback(response, error);
+			return;
+		}
+		// not found in cache, or cache not supported
+		__weak PINCache *weakDataCache = dataCache;
+		__weak PINCache *weakEntryCache = entryCache;
+		[self.client requestAPI:name withPathVariables:pathVariables parameters:parameters data:data queue:callbackQueue progress:progressCallback finished:^(id<WebApiResponse> __nonnull response, NSError * __nullable error) {
+			if ( cacheKey && response && error == nil && response.statusCode >= 200 && response.statusCode < 300 && [response conformsToProtocol:@protocol(NSCoding)]) {
+				// valid response; cache the data
+				WebApiClientCacheEntry *entry = [[WebApiClientCacheEntry alloc] initWithCreationTime:[NSDate timeIntervalSinceReferenceDate]
+																						  expireTime:[[NSDate dateWithTimeIntervalSinceNow:cacheTTL] timeIntervalSinceReferenceDate]];
+				[weakDataCache setObject:(id<NSCoding>)response forKey:cacheKey block:^(PINCache *cache, NSString *key, id __nullable object) {
+					[weakEntryCache setObject:entry forKey:cacheKey block:nil];
+				}];
+			}
+			if ( error == nil && response.statusCode >= 200 && response.statusCode < 300 ) {
+				[self handleInvalidatedCachedDataForRoute:route];
+			}
+			doCallback(response, error);
+		}];
+	}];
+}
+
+- (void)handleInvalidatedCachedDataForRoute:(id<WebApiRoute>)route {
+	if ( ![route respondsToSelector:@selector(invalidatesCachedRouteNames)] ) {
+		return;
+	}
+	id<CachingWebApiRoute> cachingRoute = (id<CachingWebApiRoute>)route;
+	NSArray<NSString *> *invalidatedRouteNames = cachingRoute.invalidatesCachedRouteNames;
+	if ( invalidatedRouteNames.count < 1 ) {
+		return;
+	}
+	NSMutableSet<NSString *> *invalidCacheKeyPrefixes = [[NSMutableSet alloc] initWithCapacity:invalidatedRouteNames.count];
+	NSString *discriminator = self.keyDiscriminator;
+	for ( NSString *routeName in invalidatedRouteNames ) {
+		NSArray *keyComponents = (discriminator.length > 0 ? @[discriminator, routeName, @""] : @[routeName, @""]);
+		NSString *prefix = [keyComponents componentsJoinedByString:kKeyClassificationDelimiter];
+		[invalidCacheKeyPrefixes addObject:prefix];
+	}
+	[entryCache.memoryCache enumerateObjectsWithBlock:^(PINMemoryCache * _Nonnull cache, NSString * _Nonnull key, id  _Nullable object) {
+		for ( NSString *prefix in invalidCacheKeyPrefixes ) {
+			if ( [key hasPrefix:prefix] ) {
+				log4Debug(@"Route %@ has invalidated memory cached data for key %@", route.name, key);
+				[cache removeObjectForKey:key block:nil];
+				return;
+			}
+		}
+	}];
+	[entryCache.diskCache enumerateObjectsWithBlock:^(PINDiskCache * _Nonnull cache, NSString * _Nonnull key, id<NSCoding>  _Nullable object, NSURL * _Nonnull fileURL) {
+		for ( NSString *prefix in invalidCacheKeyPrefixes ) {
+			if ( [key hasPrefix:prefix] ) {
+				log4Debug(@"Route %@ has invalidated disk cached data for key %@", route.name, key);
+				[cache removeObjectForKey:key block:nil];
+				return;
+			}
+		}
+	}];
+}
+
+#pragma mark - SupportingWebApiClient
+
+- (nullable id<WebApiRoute>)routeForName:(NSString *)name error:(NSError * __nullable __autoreleasing *)error {
+	id<WebApiRoute> route = nil;
+	if ( [self.client respondsToSelector:@selector(routeForName:error:)] ) {
+		route = [self.client routeForName:name error:error];
+	}
+	return route;
+}
+
+- (NSURL *)URLForRoute:(id<WebApiRoute>)route
+		 pathVariables:(nullable id)pathVariables
+			parameters:(nullable id)parameters
+				 error:(NSError * __autoreleasing *)error {
+	NSURL *result = nil;
+	if ( [self.client respondsToSelector:@selector(URLForRoute:pathVariables:parameters:error:)] ) {
+		result = [self.client URLForRoute:route pathVariables:pathVariables parameters:parameters error:error];
+	}
+	return result;
+}
+
 
 @end

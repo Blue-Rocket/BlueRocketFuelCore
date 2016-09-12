@@ -10,6 +10,7 @@
 
 @protocol WebApiAuthorizationProvider;
 @protocol WebApiDataMapper;
+@protocol WebApiErrorExtractor;
 @class BREnvironment;
 
 NS_ASSUME_NONNULL_BEGIN
@@ -20,10 +21,18 @@ extern NSString * const WebApiClientSupportAppApiKeyDefaultHTTPHeaderName;
 /** The HTTP header name to put the @c appId value in. */
 extern NSString * const WebApiClientSupportAppIdDefaultHTTPHeaderName;
 
+/**
+ An abstract implementation of @c SupportingWebApiClient, for concrete implementations to extend.
+ 
+ This class provides a set of core configuration and utility methods to help actual implementations of @c WebApiClient.
+ */
 @interface WebApiClientSupport : NSObject <SupportingWebApiClient>
 
 /** A provider of authorization details. */
 @property (nonatomic, weak, nullable) id<WebApiAuthorizationProvider> authorizationProvider;
+
+/** A global error extractor. */
+@property (nonatomic, strong, nullable) id<WebApiErrorExtractor> errorExtractor;
 
 /** An API key to add as a header value to each request. */
 @property (nonatomic, strong, nullable) NSString *appApiKey;
@@ -37,13 +46,16 @@ extern NSString * const WebApiClientSupportAppIdDefaultHTTPHeaderName;
 /** The HTTP header name to use for the application ID. */
 @property (nonatomic, strong) NSString *appIdHTTPHeaderName;
 
+/** A set of HTTP header names and associated values to add to every HTTP request. */
+@property (nonatomic, strong) NSDictionary<NSString *, NSString *> *globalHTTPRequestHeaders;
+
 /**
  Init with a custom environment.
  
  @param environment The environment to use.
  @return The new instance.
  */
-- (id)initWithEnvironment:(BREnvironment *)environment;
+- (id)initWithEnvironment:(BREnvironment *)environment NS_DESIGNATED_INITIALIZER;
 
 /**
  Configure default routes in the receiver. Extending classes can override to customize the instance.
@@ -96,6 +108,18 @@ extern NSString * const WebApiClientSupportAppIdDefaultHTTPHeaderName;
  @return The configured data mapper, or @c nil if no data mapper configured for the given route.
  */
 - (nullable id<WebApiDataMapper>)dataMapperForRoute:(id<WebApiRoute>)route;
+
+/**
+ Add any HTTP request headers configured with a route, plus any global HTTP headers configured on the @c globalHTTPRequestHeaders properties,
+ to a given request. If the route defines the same HTTP header name as configured in @c globalHTTPRequestHeaders, the global value will 
+ @b not be added to the request.
+ 
+ @b Note this does not add the authorization related headers included by @c addAuthorizationHeadersToRequest:forRoute:.
+ 
+ @param request The request to add the HTTP headers to.
+ @param route   The route.
+ */
+- (void)addRequestHeadersToRequest:(NSMutableURLRequest *)request forRoute:(id<WebApiRoute>)route;
 
 /**
  Add authorization headers to a request for a given route.

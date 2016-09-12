@@ -7,3 +7,4 @@
 //
 
 #import <WebApiClient/AFNetworkingWebApiClient.h>
+#import <WebApiClient/JSONAPIErrorExtractor.h>

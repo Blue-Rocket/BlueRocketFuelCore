@@ -80,6 +80,11 @@ static NSString *RKFailureReasonErrorStringForMappingNotFoundError(id representa
 
 @implementation RKMapperOperation
 
+- (instancetype)init
+{
+    return [self initWithRepresentation:nil mappingsDictionary:nil];
+}
+
 - (instancetype)initWithRepresentation:(id)representation mappingsDictionary:(NSDictionary *)mappingsDictionary;
 {
     self = [super init];
@@ -229,6 +234,8 @@ static NSString *RKFailureReasonErrorStringForMappingNotFoundError(id representa
     NSArray *metadataList = [NSArray arrayWithObjects:metadata, self.metadata, nil];
     NSMutableArray *mappedObjects = [NSMutableArray arrayWithCapacity:[representations count]];
     [objectsToMap enumerateObjectsUsingBlock:^(id mappableObject, NSUInteger index, BOOL *stop) {
+        if (mappableObject == [NSNull null]) { return; }
+        
         id destinationObject = [self objectForRepresentation:mappableObject withMapping:mapping];
         if (destinationObject) {
             mappingData.collectionIndex = index;
