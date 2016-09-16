@@ -25,6 +25,26 @@
 	assertThat(str, equalTo(@"04080c18"));
 }
 
+- (void)testDataFromHexString {
+	NSData *data = [NSData dataWithHexString:@"04080c18"];
+	assertThatUnsignedInteger(data.length, equalToUnsignedInteger(4));
+	const char *bytes = data.bytes;
+	assertThatChar(bytes[0], equalToChar(4));
+	assertThatChar(bytes[1], equalToChar(8));
+	assertThatChar(bytes[2], equalToChar(12));
+	assertThatChar(bytes[3], equalToChar(24));
+}
+
+- (void)testDataFromHexStringWithWhitespace {
+	NSData *data = [NSData dataWithHexStringWithWhitespace:@"04 08\n0c18"];
+	assertThatUnsignedInteger(data.length, equalToUnsignedInteger(4));
+	const char *bytes = data.bytes;
+	assertThatChar(bytes[0], equalToChar(4));
+	assertThatChar(bytes[1], equalToChar(8));
+	assertThatChar(bytes[2], equalToChar(12));
+	assertThatChar(bytes[3], equalToChar(24));
+}
+
 - (void)testMD5DigestEmptyValue {
 	NSData *data = [[NSData alloc] init];
 	NSString *string = [[data MD5DigestValue] hexStringValue];

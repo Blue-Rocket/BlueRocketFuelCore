@@ -24,4 +24,24 @@
  */
 - (NSString *)hexStringValue;
 
+/**
+ Convert a hex-encoded string into a data instance.
+ 
+ @param hexString The hex string, e.g. one returned from @c hexStringValue. Whitespace is @b not handled.
+ 
+ @return The data, or @c nil if nothing converted.
+ @since 0.14
+ */
++ (NSData *)dataWithHexString:(NSString *)hexString;
+
+/**
+ Convert a hex-encoded string into a data instance.
+ 
+ @param hexString The hex string, e.g. one returned from @c hexStringValue. Whitespace is striped from the input before converting.
+ 
+ @return The data, or @c nil if nothing converted.
+ @since 0.14
+ */
++ (NSData *)dataWithHexStringWithWhitespace:(NSString *)hexString;
+
 @end

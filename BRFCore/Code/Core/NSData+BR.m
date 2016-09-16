@@ -28,4 +28,38 @@
 	return [stringBuffer copy];
 }
 
++ (NSData *)dataWithHexString:(NSString *)hexString {
+	if ( hexString.length < 2 ) {
+		return nil;
+	}
+	
+	const char *bytes = [hexString cStringUsingEncoding:NSUTF8StringEncoding];
+	if ( !bytes ) {
+		return nil;
+	}
+	
+	char twoChars[3] = {0,0,0};
+	NSUInteger resultSize = hexString.length / 2;
+	NSUInteger remaining = resultSize;
+	Byte *resultBytes = malloc(resultSize);
+	if ( !resultBytes ) {
+		return nil;
+	}
+	Byte *outByte = resultBytes;
+	while ( remaining-- ) {
+		twoChars[0] = *bytes++;
+		twoChars[1] = *bytes++;
+		*outByte++ = strtol(twoChars, NULL, 16);
+	}
+	return [NSData dataWithBytesNoCopy:resultBytes length:resultSize freeWhenDone:YES];
+}
+
++ (NSData *)dataWithHexStringWithWhitespace:(NSString *)hexString {
+	NSString *sanitized = [hexString stringByReplacingOccurrencesOfString:@"\\s"
+															   withString:@""
+																  options:NSRegularExpressionSearch
+																	range:NSMakeRange(0, hexString.length)];
+	return [self dataWithHexString:sanitized];
+}
+
 @end
