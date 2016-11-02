@@ -73,6 +73,7 @@
 		C9A8A03A1B8A5112000B9169 /* BRJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A8A0391B8A5112000B9169 /* BRJSON.m */; };
 		C9DFC9381D86975000641284 /* MockData in Resources */ = {isa = PBXBuildFile; fileRef = C9DFC9371D86975000641284 /* MockData */; };
 		C9DFC93A1D86977800641284 /* BRDevelopmentWebApiClientTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C9DFC9391D86977800641284 /* BRDevelopmentWebApiClientTests.m */; };
+		D0582FB01DCA96050069611A /* UIColor+BR.m in Sources */ = {isa = PBXBuildFile; fileRef = D0582FAF1DCA96050069611A /* UIColor+BR.m */; };
 		E896943AC3A5467C98E23B06 /* libPods-BRFCore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 67C22EC7DC368FA23BAD6914 /* libPods-BRFCore.a */; };
 /* End PBXBuildFile section */
 
@@ -236,6 +237,8 @@
 		C9DFC9371D86975000641284 /* MockData */ = {isa = PBXFileReference; lastKnownFileType = folder; path = MockData; sourceTree = "<group>"; };
 		C9DFC9391D86977800641284 /* BRDevelopmentWebApiClientTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRDevelopmentWebApiClientTests.m; sourceTree = "<group>"; };
 		C9ED94751BA8FBBD00DE842F /* WebApiClient-RestKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "WebApiClient-RestKit.h"; path = "Code/WebApiClient-RestKit.h"; sourceTree = "<group>"; };
+		D0582FAE1DCA96050069611A /* UIColor+BR.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+BR.h"; sourceTree = "<group>"; };
+		D0582FAF1DCA96050069611A /* UIColor+BR.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+BR.m"; sourceTree = "<group>"; };
 		D703EB1A20F5E7F3F96CCE19 /* libPods-BRFCore-BRFCoreTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BRFCore-BRFCoreTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA9AED850E32DE847753D05A /* Pods-BRFCore.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BRFCore.release.xcconfig"; path = "Pods/Target Support Files/Pods-BRFCore/Pods-BRFCore.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -402,6 +405,8 @@
 				C9A89F9A1B8A4DDB000B9169 /* UIFont+BR.m */,
 				C9A89F9B1B8A4DDB000B9169 /* UIImage+BR.h */,
 				C9A89F9C1B8A4DDB000B9169 /* UIImage+BR.m */,
+				D0582FAE1DCA96050069611A /* UIColor+BR.h */,
+				D0582FAF1DCA96050069611A /* UIColor+BR.m */,
 				C9A89F9F1B8A4DDB000B9169 /* UILabel+BR.h */,
 				C9A89FA01B8A4DDB000B9169 /* UILabel+BR.m */,
 				C9A89FA51B8A4DDB000B9169 /* UITextField+BR.h */,
@@ -747,6 +752,7 @@
 				C9A89FED1B8A4DDB000B9169 /* NSDate+BR.m in Sources */,
 				C9A89FF81B8A4DDB000B9169 /* UIFont+BR.m in Sources */,
 				C9A89FE71B8A4DDB000B9169 /* BRKeychainService.m in Sources */,
+				D0582FB01DCA96050069611A /* UIColor+BR.m in Sources */,
 				C9A8A0141B8A4DDB000B9169 /* BRWebServiceResponse.m in Sources */,
 				C99813E91BD45BBD00FF16EA /* BRSlideshowSlideView.m in Sources */,
 				C9A8A00F1B8A4DDB000B9169 /* BRProfileViewWebServiceRequest.m in Sources */,
