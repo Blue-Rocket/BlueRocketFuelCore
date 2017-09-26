@@ -96,8 +96,7 @@ typedef void (^CompletionBlock)();
                          transform = CATransform3DTranslate(transform, -12, 0, 0);
                          self.imageView.layer.transform = transform;
                      }
-                     completion:^(BOOL finished) {
-                     }
+                     completion:nil
      ];
     
     
@@ -111,8 +110,7 @@ typedef void (^CompletionBlock)();
 }
 
 - (void)hide {
-    [self hideWithCompletion:^{
-    }];
+    [self hideWithCompletion:nil];
 }
 
 - (void)hideWithCompletion:(void (^)())completion {
